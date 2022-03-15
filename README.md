@@ -13,10 +13,8 @@ O software tem como objetivo principal ajudar biólogos, estudantes ou entusiast
 
 
 ## Dependências (linguagem de desenvolvimento, frameworks usados, banco de dados, pacotes de software, etc...)
-Ainda não decidido:
-- Nuxt - vue 
-- Next - react
-- Nest - node
+- Frontend: React;
+- Backend: Node.
 
 
 ## Instruções para download e execução do projeto em qualquer computador
