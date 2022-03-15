@@ -18,8 +18,15 @@ O software tem como objetivo principal ajudar biólogos, estudantes ou entusiast
 
 
 ## Instruções para download e execução do projeto em qualquer computador
+### Dependências necessárias para executar o projeto:
+- React;
+- Node;
+- [BD].
 
-
+### Comandos iniciais:
+- teste;
+- teste2;
+- teste3.
 
 ## Contato dos membros da equipe
 **Alexandre:**
