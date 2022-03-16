@@ -1,7 +1,7 @@
 # Nome do Software
 
 ## Descrição do software
-O software tem como objetivo principal ajudar biólogos, estudantes ou entusiastas da botânica a descubrir nomes e/ou famílias de plantas. Para tanto, uma pessoa qualquer pode postar a foto da planta que, para ela, é desconhecida, e então uma outra pessoa pode ajudá-la a descobrir qual planta é aquela.
+O software tem como objetivo principal ajudar biólogos, estudantes ou entusiastas da botânica a descobrir nomes e/ou famílias de plantas. Para tanto, uma pessoa qualquer pode postar a foto da planta que, para ela, é desconhecida, e então uma outra pessoa pode ajudá-la a descobrir qual planta é aquela.
 
 
 ## Principais requisitos (funcionalidades)
