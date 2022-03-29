@@ -42,6 +42,9 @@ O software tem como objetivo principal ajudar biólogos, estudantes ou entusiast
  **Carlos Miguel:**
   - cmiguelsantosfilho@gmail.com
 
+ **Leonardo Omori Farias:**
+  - leonardoomori99@gmail.com
+
 
 ## Papéis dos membros da equipe (Product Owner, Scrum Master, Desenvolvedores)
 Ainda não decidido.
