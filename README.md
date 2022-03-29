@@ -17,7 +17,8 @@ O software tem como objetivo principal ajudar biólogos, estudantes ou entusiast
 
 ## Dependências (linguagem de desenvolvimento, frameworks usados, banco de dados, pacotes de software, etc...)
 - Frontend: React;
-- Backend: Node.
+- Backend: Node;
+- Banco de dados: PostgreSQL.
 
 
 ## Instruções para download e execução do projeto em qualquer computador
