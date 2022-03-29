@@ -24,7 +24,7 @@ O software tem como objetivo principal ajudar biólogos, estudantes ou entusiast
 ### Dependências necessárias para executar o projeto:
 - React;
 - Node;
-- [BD].
+- PostgreSQL.
 
 ### Comandos iniciais:
 - teste;
