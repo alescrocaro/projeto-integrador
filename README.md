@@ -33,7 +33,7 @@ O software tem como objetivo principal ajudar biólogos, estudantes ou entusiast
 
 ## Contato dos membros da equipe
 **Alexandre:**
-  - email pessoal: alescrocaro@gmail.com
+  - alescrocaro@gmail.com
   
 **Caio Miglioli:**
   - caiomiglioli@gmail.com
