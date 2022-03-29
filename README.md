@@ -4,7 +4,7 @@
 Projeto desenvolvido para as matérias projeto integrador e engenharia de software 1
 
 ## Descrição do software
-O software tem como objetivo principal ajudar biólogos, estudantes ou entusiastas da botânica a descobrir nomes e/ou famílias de plantas. Para tanto, uma pessoa qualquer pode postar a foto da planta que, para ela, é desconhecida, e então uma outra pessoa pode ajudá-la a descobrir qual planta é aquela.
+O software tem como objetivo principal ajudar pesquisadores, professores, estudantes ou entusiastas da botânica a descobrir nomes e/ou famílias de plantas. Para tanto, uma pessoa qualquer pode postar a foto da planta que, para ela, é desconhecida, e então uma outra pessoa pode ajudá-la a descobrir qual planta é aquela.
 
 
 ## Principais requisitos (funcionalidades)
