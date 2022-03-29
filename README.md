@@ -38,6 +38,9 @@ O software tem como objetivo principal ajudar biólogos, estudantes ou entusiast
 **Caio Miglioli:**
   - caiomiglioli@gmail.com
 
+ **Carlos Miguel:**
+  - cmiguelsantosfilho@gmail.com
+
 
 ## Papéis dos membros da equipe (Product Owner, Scrum Master, Desenvolvedores)
 Ainda não decidido.
