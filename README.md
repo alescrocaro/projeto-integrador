@@ -35,6 +35,8 @@ O software tem como objetivo principal ajudar biólogos, estudantes ou entusiast
 **Alexandre:**
   - email pessoal: alescrocaro@gmail.com
   
+**Caio Miglioli:**
+  - caiomiglioli@gmail.com
 
 
 ## Papéis dos membros da equipe (Product Owner, Scrum Master, Desenvolvedores)
