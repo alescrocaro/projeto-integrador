@@ -15,4 +15,6 @@
 
 - Analisamos os requisitos da tarefa juntos;
 - Definimos a introdução (mesma encontrada no readme do projeto - https://github.com/alescrocaro/forum-botanica#descri%C3%A7%C3%A3o-do-software);
-- Discutimos e definimos qual seria a proposta de valor inicial e segmentos de clientes;
+- Discutimos e definimos qual seria a proposta de valor inicial e segmentos de clientes (a partir daqui, tudo foi feito remotamente);
+- Fizemos algumas entrevistas, mas uma única com um profissional da área (Caxambu);
+- Alexandre e Carlos finalizaram o Inception.
