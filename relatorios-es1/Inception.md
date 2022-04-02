@@ -7,7 +7,7 @@ O software tem como objetivo principal ajudar pesquisadores, professores, estuda
 Oferecer um local para sanar dúvidas, discutir e comentar assuntos de botânica, oferecendo ao usuário uma conexão com especialistas.
 
 ## Segmentos de clientes
-Estudantes, pesquisadores, especialistas e entusiastas de botânica
+Estudantes, pesquisadores, especialistas e entusiastas de botânica.
 
 ## Entrevistas
 - **Marcelo Caxambu**
@@ -35,4 +35,4 @@ Estudantes, pesquisadores, especialistas e entusiastas de botânica
 
 
 ## Proposta de valor final e segmentos de consumidores
-Pelas entrevistas e conversando com o professor Reginaldo Ré, foi possível perceber que o software pode ser utilizado também para outras áreas, não somente a botânica. Entretanto, a proposta de valor e o segmento de clientes continuariam com a mesma base, com áreas mais abrangentes.
+Pelas entrevistas e conversando com o professor Reginaldo Ré, foi possível perceber que o software pode ser utilizado também para outras áreas, não somente a botânica. Entretanto, a proposta de valor e o segmento de clientes continuariam com a mesma base, com áreas mais abrangentes, assim permitindo a generalização do sistema.
