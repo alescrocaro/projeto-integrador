@@ -35,7 +35,7 @@ npm run dev
 ```
 ### para rodar o frontend:
 ```
-cd backend
+cd frontend
 npm install
 npm start
 ```
