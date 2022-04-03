@@ -27,10 +27,18 @@ O software tem como objetivo principal ajudar pesquisadores, professores, estuda
 - Node;
 - PostgreSQL.
 
-### Comandos iniciais:
-- teste;
-- teste2;
-- teste3.
+### para rodar o backend:
+```
+cd backend
+npm install
+npm run dev
+```
+### para rodar o frontend:
+```
+cd backend
+npm install
+npm start
+```
 
 ## Contato dos membros da equipe
 **Alexandre:**
