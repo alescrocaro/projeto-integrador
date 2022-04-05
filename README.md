@@ -25,7 +25,7 @@ O software tem como objetivo principal ajudar pesquisadores, professores, estuda
 ### Dependências necessárias para executar o projeto:
 - React;
 - Node;
-- PostgreSQL.
+- SQLite.
 
 ### para rodar o backend:
 ```
