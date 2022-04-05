@@ -25,14 +25,21 @@ O software tem como objetivo principal ajudar pesquisadores, professores, estuda
 ### Dependências necessárias para executar o projeto:
 - React;
 - Node;
-- PostgreSQL.
+- Sqlite3.
+
 
 ### para rodar o backend:
+
 ```
 cd backend
 npm install
+```
+#### para inicializar o sqlite
+```
+npx knex migrate:latest
 npm run dev
 ```
+
 ### para rodar o frontend:
 ```
 cd frontend
