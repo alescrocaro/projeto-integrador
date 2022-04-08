@@ -1,11 +1,11 @@
 # Ata da reunião do grupo D - semana 2
 **“Fórum de ”**\
-**Repositório do projeto:** https://github.com/alescrocaro/forum-botanica \
+**Repositório do projeto:** https://github.com/alescrocaro/forum-botanica
 
 **Tomador da ata:** Alexandre \
 **Garantia de qualidade:** Caio \
 **Gerente:** Leonardo \
-**Apresentador:** Carlos\
+**Apresentador:** Carlos
 
 ## Ações
 **Data e local:** 05 de abril de 2022, sala E101\
@@ -27,3 +27,14 @@
 - Não será possível realizar o documento de requisitos devido às entrevistas atrasadas (professor Re marcará a reunião);
 - O inception será reenviado quando fizer as entrevistas;
 - Resolvemos manter os cargos até finalizar a parte de requisitos do projeto.
+
+
+**Data e local:** 08 de abril de 2022, sala E101\
+**Início:** 15h50 \
+**Término:** 17h30 \
+**Presentes:** Alexandre, Caio, Carlos, Leonardo\
+**Faltantes:** Wagner
+
+- Leonardo, Carlos e Wagner farão a reunião com os clientes do professor Re;
+- Leonardo e Caio entrevistaram o professor Reginaldo Re;
+
