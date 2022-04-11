@@ -33,6 +33,20 @@ Estudantes, pesquisadores, especialistas e entusiastas de botânica.
   - Avaliação:
     - Achou o software uma boa ideia, porém acredita que seria um tanto incômodo esperar pela resposta de alguém (que pode demorar muito ou nem acontecer). Entretanto, muito interessante para se conectar com especialistas e poder aprender e se interessar ainda mais para aprofundar seu conhecimento no assunto.
 
+-**Reginaldo Ré**
+  - Professor e pesquisador da UTFPR-CM;
+  - Participantes: Leonardo Omori, Caio, carlos, Wagner;
+  - 8/04/2002;
+  - Insights:
+    - Procuraria em algum site de taxonomia, the Plant List ou flora do brasil,caso precise da imagem procuraria no google, em sites de ocorrência e usaria algum app de pesquisa de planta que usa um método de perguntas até achar a espécie da planta. Site do CAS para peixes;
+    - São fáceis de usar. No app, é legal a forma de pergunta pois é bem interativa e você não precisa de uma foto.
+    - Nos sites de ocorrência existem muitos erros no banco de dados (tipografia, nome das espécies, atualização). No app é bem difícil classificar a partir de perguntas depois de achar as famílias, pois são características muito complexas;
+    - Não teve muitos empecilhos, pois participou de pesquisas que usavam muitas espécies (2000+), caso exista dúvida sobre uma espécie se torna necessário contactar um taxonomista da espécie específica
+    - Não conseguiria ajudar outras pessoas por falta de conhecimento específicos na área
+  - Avaliação:
+    - Acredita que um sistema como esse resolveria muitos problemas de classificação, pois é um problema recorrente na área
+-**Dayani Bailly**
+- Professora e pesquisadora da UEM
 
 ## Proposta de valor final e segmentos de consumidores
 Pelas entrevistas e conversando com o professor Reginaldo Ré, foi possível perceber que o software pode ser utilizado também para outras áreas, não somente a botânica. Entretanto, a proposta de valor e o segmento de clientes continuariam com a mesma base, com áreas mais abrangentes, assim permitindo a generalização do sistema.
