@@ -39,14 +39,23 @@ Estudantes, pesquisadores, especialistas e entusiastas de botânica.
   - 8/04/2002;
   - Insights:
     - Procuraria em algum site de taxonomia, the Plant List ou flora do brasil,caso precise da imagem procuraria no google, em sites de ocorrência e usaria algum app de pesquisa de planta que usa um método de perguntas até achar a espécie da planta. Site do CAS para peixes;
-    - São fáceis de usar. No app, é legal a forma de pergunta pois é bem interativa e você não precisa de uma foto.
+    - São fáceis de usar. No app, é legal a forma de pergunta pois é bem interativa e você não precisa de uma foto;
     - Nos sites de ocorrência existem muitos erros no banco de dados (tipografia, nome das espécies, atualização). No app é bem difícil classificar a partir de perguntas depois de achar as famílias, pois são características muito complexas;
-    - Não teve muitos empecilhos, pois participou de pesquisas que usavam muitas espécies (2000+), caso exista dúvida sobre uma espécie se torna necessário contactar um taxonomista da espécie específica
-    - Não conseguiria ajudar outras pessoas por falta de conhecimento específicos na área
+    - Não teve muitos empecilhos, pois participou de pesquisas que usavam muitas espécies (2000+), caso exista dúvida sobre uma espécie se torna necessário contactar um taxonomista da espécie específica;
+    - Não conseguiria ajudar outras pessoas por falta de conhecimento específicos na área;
   - Avaliação:
-    - Acredita que um sistema como esse resolveria muitos problemas de classificação, pois é um problema recorrente na área
+    - Acredita que um sistema como esse resolveria muitos problemas de classificação, pois é um problema recorrente na área;
 - **Dayani Bailly**
   - Professora e pesquisadora da UEM
+  - 8/04/2002;
+  - Insights:
+    - De maneira pragmática: procura um especialista no grupo, envia o exemplar, ele analisa e ele retorna. Consegue a resposta se a espécie tiver uma identificação bem estabelecida, existem espécies que se encontram em confusões taxonômicas, indivíduos muito similares. Seria muito bom um aplicativo para respostas rápidas praticando pesquisas em campo;
+    - Não utiliza nenhuma ferramenta assim, devido a facilidade de contatar um especialista;
+    - Nenhum projeto foi inviabilizado, porém conhece casos de colegas em que essa demora do retorno da identificação da espécie atrasou pesquisas. Desconhece um aplicativo que faça identificação de peixes. A demanda para identificações é muito grande. Geralmente utiliza-se ferramentas como e-mails e WhatsApp para essa identificação, totalmente informal. É uma tarefa pesada para quem faz a identificação devido a alta demanda. Por alunos, biólogos, conservacionistas existiria a demanda de um aplicativo para a identificação de espécies;
+    - Pelo ponto de vista taxonômico, não ajudaria na identificação de espécies, apenas de modo grosseiro, com espécies mais comuns, em tempo livre ajudaria nessa identificação;
+    - Existe uma demanda para um aplicativo de identificação de espécies, se conseguisse resolver na boa parte dos casos já ajudaria bastante;
+  - Avaliação:
+    - A professora acredita que um sistema de mapeamento de espécies invasoras seria uma caminho para esse projeto, pois o problema de classificação acaba sendo resolvido de melhor maneira com a ajuda de um especialista presencialmente;
 
 ## Proposta de valor final e segmentos de consumidores
 Com as entrevistas decidimos que mudaríamos o foco do software, partindo para o ramo de mapear seres invasores. Desse modo, nossa proposta de valor e o segmento de clientes seriam alterados. Primeiramente, nossa proposta de valor seria oferecer um software capaz de mapear seres invasores de regiões específicas, possibilitando uma visualização desses dados por parte do usuário. A partir disso, nosso segmento de clientes se afunilaria ainda mais, focando em pesquisadores e estudantes.
