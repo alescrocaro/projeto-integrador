@@ -5,7 +5,6 @@
 O problema [descreva o problema]
 afeta [as partes interessadas afetadas pelo problema]
 cujo impacto é [qual é o impacto do problema? Qual é o custo?]
-
 Exemplo de enunciado de problema: “O problema da priorização ineficiente das tarefas de casa
 afeta estudantes universitários; cujo impacto é entregar tarefas atrasadas e receber notas
 baixas.” O problema deve ser lido como um problema (deve ser algo ruim que faça as pessoas
@@ -13,21 +12,6 @@ gastarem tempo ou dinheiro de forma ineficiente.
 
 
 ### Intenção do produto
-Forneça uma declaração de acordo com a seguinte estrutura:
-Para [cliente-alvo]
-Quem [tem uma necessidade ou oportunidade]
-O [nome do produto] é uma [categoria do produto]
-Que [declaração de benefício chave; ou seja, a razão convincente para comprar]
-Ao contrário de [alternativa competitiva primária]
-Nosso produto [declaração de diferenciação primária]
-Exemplo de uma declaração de posição do produto: “Para estudantes universitários que têm
-muitas tarefas paralelas, o MyPrioritizationApp é um aplicativo de planejamento que faz
-crowdsourcing da identificação da complexidade e do tempo necessário para realizar as tarefas,
-apoiando a priorização informada; ao contrário do myHomeworkStudentPlanner, nosso
-produto não depende do julgamento de um aluno que ainda não começou o dever de casa.”
-Certifique-se de que sua declaração de intenção do produto esteja relacionada ao seu
-problema.
-
 Para pesquisadores e estudantes que precisam identificar se um ser específico é invasor ou não de uma determinada área. O fórum é um site de biologia que procura mapear os seres invasores de um lugar. Nosso software procura ser informativo de maneira que o usuário consiga visualizar facilmente os seres que não fazem parte de determinado ambiente, além de possibilitar que qualquer pessoa possa ajudar a comunidade fazendo postagens para identificar novos invasores.
 
 
@@ -41,7 +25,9 @@ enfatizando quaisquer responsabilidades com o projeto. Exemplos de stakeholders 
 usuários, clientes, concorrentes, detratores, desenvolvedores, etc.
 Os stakeholders não podem ser muito genéricos ou específicos. A lista deve refletir o que foi
 descrito na Seção 1.
-
+#### Dayani Bailly
+Professora doutora do Departamento de Biologia da Universidade Estadual de Maringá.\
+Foi uma das entrevistadas
 
 
 ## Requisitos funcionais (recursos)
@@ -54,8 +40,13 @@ implementados.
 A lista deve ser completa (lembre-se que não se espera que você implemente todos os
 requisitos até o final da disciplina, mas você deve listá-los). Siga o mesmo padrão para
 descrever todos os requisitos. A lista de requisitos deve ser coerente com as seções anteriores.
-
-
+1. O usuário pode fazer uma postagem contendo uma foto, descrições conhecidas do ser (como reino, filo, classe, ordem, família, gênero e espécie) e descrição de ambiente ou outros, além de escolher um local específico (no mapa) no qual ele encontrou o ser e escolher o tipo de postagem (se é para contribuir diretamente com o banco de dados - já especificando o ser invasor e colocando uma flag de respondida na questão - ou se é para abrir uma discussão - a pessoa não sabe/não tem certeza que tal ser é invasor e marca a questão como não resolvida);
+2. O usuário pode publicar um comentário ou resposta na postagem de terceiros;
+3. O usuário pode marcar uma publicação sua como respondida e escolher uma das respostas como a principal/certa;
+4. O sistema deve ter um modo de classificação de postagens como like e afins (melhor utilizar algo como o do reddit);
+5. O sistema deve mostrar um feed de postagens ao usuário;
+6. O sistema deve mostrar abas no site para cada um dos 5 reinos;
+7. O sistema deve conter um sistema de perfis com login.
 
 ## Requisitos não funcionais
 Faça uma lista numerada de requisitos não funcionais que são importantes para o seu software.
@@ -72,6 +63,8 @@ Descreva o que seria considerado o Produto Mínimo Viável e como será testado 
 implementação, prototipo, Wizard of Oz, etc.). Deixe claro o que você vai validar. O MVP deve
 ser coerente com as seções anteriores.
 
+Nosso MVP será um sistema web no qual uma pessoa é capaz de fazer uma postagem com uma foto e descrição que estará aberta para discussão.
+
 
 
 ## Histórias de usuários
@@ -86,12 +79,5 @@ para cada história de usuário.
 
 
 ## Issue Tracker/Kanban
-As histórias de usuários devem ser registradas como cartões em um quadro público no GitHub
-Projects (ou Trello, ou em outro issue tracker). Inclua aqui o link do seu rastreador de
-problemas e uma captura de tela do que vocês fizeram. A partir de agora, é esperado que vocês
-usem um issue tracker para gerenciar TODAS as tarefas do projeto.
-Forneça o URL e a captura de tela do rastreador de problemas. As histórias de usuários devem
-ser registradas lá.
-  
-  
-  
+https://github.com/alescrocaro/forum-botanica/projects/1
+![Screenshot - Kanban](https://i.imgur.com/PLiRRHa.png)
