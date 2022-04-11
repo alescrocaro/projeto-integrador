@@ -56,6 +56,15 @@ Estudantes, pesquisadores, especialistas e entusiastas de botânica.
     - Existe uma demanda para um aplicativo de identificação de espécies, se conseguisse resolver na boa parte dos casos já ajudaria bastante;
   - Avaliação:
     - A professora acredita que um sistema de mapeamento de espécies invasoras seria uma caminho para esse projeto, pois o problema de classificação acaba sendo resolvido de melhor maneira com a ajuda de um especialista presencialmente;
+- **Jean**
+  - Aluno estudante de Ciẽncias da computação em UTFPR-CM 
+  - 25/03/2002;
+  - Insights:
+    - usaria o Google e o Google schoolar como fonte de pesquisa;
+    - As técnologias citadas são confiáveis, pois possuem muitos pesquisadores das maiores universidades do mundo 
+    - pesquisa por imagem e respostas com detalhes sobre essa espécie de planta seria uma featura interessante
+  - Avaliação:
+    - Caso fosse um especialista iria me disponibilizar para responder dúvidas de alunos em alguma plataforma online  
 
 ## Proposta de valor final e segmentos de consumidores
 Com as entrevistas decidimos que mudaríamos o foco do software, partindo para o ramo de mapear seres invasores. Desse modo, nossa proposta de valor e o segmento de clientes seriam alterados. Primeiramente, nossa proposta de valor seria oferecer um software capaz de mapear seres invasores de regiões específicas, possibilitando uma visualização desses dados por parte do usuário. A partir disso, nosso segmento de clientes se afunilaria ainda mais, focando em pesquisadores e estudantes.
