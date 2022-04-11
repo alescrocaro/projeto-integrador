@@ -33,7 +33,7 @@ Estudantes, pesquisadores, especialistas e entusiastas de botânica.
   - Avaliação:
     - Achou o software uma boa ideia, porém acredita que seria um tanto incômodo esperar pela resposta de alguém (que pode demorar muito ou nem acontecer). Entretanto, muito interessante para se conectar com especialistas e poder aprender e se interessar ainda mais para aprofundar seu conhecimento no assunto.
 
--**Reginaldo Ré**
+- **Reginaldo Ré**
   - Professor e pesquisador da UTFPR-CM;
   - Participantes: Leonardo Omori, Caio, carlos, Wagner;
   - 8/04/2002;
@@ -45,8 +45,8 @@ Estudantes, pesquisadores, especialistas e entusiastas de botânica.
     - Não conseguiria ajudar outras pessoas por falta de conhecimento específicos na área
   - Avaliação:
     - Acredita que um sistema como esse resolveria muitos problemas de classificação, pois é um problema recorrente na área
--**Dayani Bailly**
-- Professora e pesquisadora da UEM
+- **Dayani Bailly**
+  - Professora e pesquisadora da UEM
 
 ## Proposta de valor final e segmentos de consumidores
-Pelas entrevistas e conversando com o professor Reginaldo Ré, foi possível perceber que o software pode ser utilizado também para outras áreas, não somente a botânica. Entretanto, a proposta de valor e o segmento de clientes continuariam com a mesma base, com áreas mais abrangentes, assim permitindo a generalização do sistema.
+Com as entrevistas decidimos que mudaríamos o foco do software, partindo para o ramo de mapear seres invasores. Desse modo, nossa proposta de valor e o segmento de clientes seriam alterados. Primeiramente, nossa proposta de valor seria oferecer um software capaz de mapear seres invasores de regiões específicas, possibilitando uma visualização desses dados por parte do usuário. A partir disso, nosso segmento de clientes se afunilaria ainda mais, focando em pesquisadores e estudantes.
