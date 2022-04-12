@@ -1,4 +1,4 @@
-# Requistos - Fórum
+# Requisitos - Fórum
 ## Introdução
 
 ### Declaração do problema
@@ -15,12 +15,12 @@ Nossa proposta de valor é oferecer um software capaz de mapear seres invasores 
 
 ## Partes interessadas
 #### Clientes
-Pesquisadores sêniores da área de biologia: utilizariam o software para contribuir e facilitar suas pesquisas, assim como forma de auxílio no aprendizado de seus orientados (graduandos da área). 
+Pesquisadores seniores da área de biologia: utilizariam o software para contribuir e facilitar suas pesquisas, assim como forma de auxílio no aprendizado de seus orientandos (graduandos da área). 
 
 Estudantes universitários: utilizariam o software para auxiliar seus estudos e pesquisas.
 
 #### Inspirações
-iNaturalist: publicações, comentários e geolocalização.
+iNaturalist: é uma rede social que conecta naturalistas, biólogos e entusiastas com o objetivo de mapear a biodiversidade no planeta através do compartilhamento de observações. A princípio nos inspiramos em como são feitas suas publicações, com comentários e geolocalização.
 
 #### Desenvolvedores
 Grupo de estudantes de ciência da computação: responsáveis pelo planejamento e desenvolvimento do software.
@@ -29,10 +29,10 @@ Grupo de estudantes de ciência da computação: responsáveis pelo planejamento
 ## Requisitos funcionais (recursos)
 1. O usuário pode fazer uma postagem contendo uma imagem, geolocalização e descrição do espécime (como reino, filo, classe, ordem, família, gênero e espécie - chamaremos de RFCOFGE a partir de agora);
 2. O usuário pode buscar por seres invasores a partir de uma determinada geolocalização (com determinado raio), com filtros de descrição do ser (RFCOFGE);
-3. O usuário pode contestar qualquer postagem;
+3. O usuário pode contestar a veracidade de qualquer postagem;
 4. O usuário pode fazer comentários em qualquer postagem;
 5. O usuário pode editar a própria postagem;
-6. O sistema deve um esquema de perfis de usuário;
+6. O sistema deve ter um esquema de perfis de usuário;
 7. O usuário deve ter acesso à uma lista com suas postagens;
 8. O usuário pode editar suas informações do perfil;
 9. O sistema deve possuir perfis de moderação;
@@ -41,11 +41,11 @@ Grupo de estudantes de ciência da computação: responsáveis pelo planejamento
 
 ## Requisitos não funcionais
 Adaptabilidade: Possibilita o manuseio do site por parte do usuário em plataformas móveis, desse modo facilita o uso em campo por pesquisadores. A métrica seria a responsividade em diferentes dispositivos;\
-Facilidade de uso: O site deve ser flexível, intuitivo e consistente, seguindo as heurísticas de nielsen.
+Facilidade de uso: O site deve ser flexível, intuitivo e consistente, seguindo as heurísticas de Nielsen.
 
 
 ## MVP
-Nosso MVP será um sistema web no qual uma pessoa é capaz de compartilhar um ser invasor encontrado por meio de uma postagem com imagem, geolocalização e descrição que estará aberta para discussão. Será testado via implementação. Validaremos se as pessoas (segmento de clientes) estão interessados em uma plataforma de compartilhamento descentralizado e disponibilização dos dados acerca de seres invasores.
+Nosso MVP será um sistema web no qual uma pessoa é capaz de compartilhar um ser invasor encontrado por meio de uma postagem com imagem, geolocalização e descrição que estará aberta para discussão. Será testado via implementação. Validaremos se as pessoas (segmento de clientes) estão interessadas em uma plataforma de compartilhamento descentralizado e disponibilização dos dados acerca de seres invasores.
 
 
 ## Histórias de usuários  
@@ -56,10 +56,10 @@ Nosso MVP será um sistema web no qual uma pessoa é capaz de compartilhar um se
 **2.2** Como usuário, gostaria de definir um raio de busca em meus filtros de busca para me certificar que estou abordando apenas a área que estou interessado.\
 **2.3** Como usuário, gostaria de especificar qual ser estou buscando a partir de filtros (como reino, filo, classe, ordem, família, gênero e espécie) para encontrar apenas os seres que tenho interesse.\
 **3.1** Como usuário, gostaria de contestar uma postagem que acredito não estar correta para que não haja dados incorretos no site.\
-**4.1** Como usuário, gostaria de comentar em uma postagem para contribuir com mais dados (RFCOFGE) para uma descrição mais completa.\
-**4.1** Como usuário, gostaria de comentar em uma postagem para explicar o motivo de tê-la contestado (3.1).\
-**5.1** Como usuário, gostaria de editar minha postagem para corrigir ou adicionar mais dados.\
-  
+**4.1** Como usuário, gostaria de comentar em uma postagem para contribuir com mais dados (RFCOFGE), caso esteja faltando, para uma descrição mais completa.\
+**4.2** Como usuário, gostaria de comentar em uma postagem para explicar o motivo de tê-la contestado (3.1).\
+**5.1** Como usuário, gostaria de editar minha postagem para corrigir ou adicionar mais dados.
+
 
 
 
