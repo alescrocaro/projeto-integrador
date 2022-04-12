@@ -27,8 +27,8 @@ Grupo de estudantes de ciência da computação: responsáveis pelo planejamento
 
 
 ## Requisitos funcionais (recursos)
-1. O usuário pode fazer uma postagem contendo uma imagem, geolocalização, descrição do espécime (como reino, filo, classe, ordem, família, gênero e espécie) e descrição do ambiente;
-2. O usuário pode buscar por seres invasores a partir de uma determinada geolocalização, com filtros de descrição ser (como reino, filo, classe, ordem, família, gênero e espécie);
+1. O usuário pode fazer uma postagem contendo uma imagem, geolocalização e descrição do espécime (como reino, filo, classe, ordem, família, gênero e espécie - chamaremos de RFCOFGE a partir de agora);
+2. O usuário pode buscar por seres invasores a partir de uma determinada geolocalização (com determinado raio), com filtros de descrição do ser (RFCOFGE);
 3. O usuário pode contestar qualquer postagem;
 4. O usuário pode fazer comentários em qualquer postagem;
 5. O usuário pode editar a própria postagem;
@@ -48,14 +48,18 @@ Facilidade de uso: O site deve ser flexível, intuitivo e consistente, seguindo 
 Nosso MVP será um sistema web no qual uma pessoa é capaz de compartilhar um ser invasor encontrado por meio de uma postagem com imagem, geolocalização e descrição que estará aberta para discussão. Será testado via implementação. Validaremos se as pessoas (segmento de clientes) estão interessados em uma plataforma de compartilhamento descentralizado e disponibilização dos dados acerca de seres invasores.
 
 
-## Histórias de usuários
-Escreva duas histórias de usuário para cada membro do grupo. Adote o seguinte formato:
-"Como <PAPEL>, gostaria de fazer <TAL COISA> para que <OBJETIVO SEJA ALCANÇADO>."
-Estabeleça um nível de prioridade para cada história de usuário e estime quanto esforço cada
-uma demandará usando a abordagem do planning poker.
-Use o formato fornecido. As histórias de usuário devem estar em um nível adequado de
-granularidade (não muito amplo nem muito específico). Forneça a prioridade e a estimativa
-para cada história de usuário.
+## Histórias de usuários  
+**1.1** Como usuário, gostaria de anexar uma imagem à minha postagem para que facilite a visualização do ser, além de facilitar a discussão.\
+**1.2** Como usuário, gostaria de anexar uma geolocalização à minha postagem para que seja possível identificar se o ser é invasor daquela área específica.\
+**1.3** Como usuário, gostaria de anexar uma descrição do espécime (RFCOFGE) à minha postagem para que seja possível identificar o ser mais facilmente e verificar se ele é um invasor.\
+**2.1** Como usuário, gostaria de buscar por seres invasores de uma localização específica para me auxiliar em minhas pesquisas.\
+**2.2** Como usuário, gostaria de definir um raio de busca em meus filtros de busca para me certificar que estou abordando apenas a área que estou interessado.\
+**2.3** Como usuário, gostaria de especificar qual ser estou buscando a partir de filtros (como reino, filo, classe, ordem, família, gênero e espécie) para encontrar apenas os seres que tenho interesse.\
+**3.1** Como usuário, gostaria de contestar uma postagem que acredito não estar correta para que não haja dados incorretos no site.\
+**4.1** Como usuário, gostaria de comentar em uma postagem para contribuir com mais dados (RFCOFGE) para uma descrição mais completa.\
+**4.1** Como usuário, gostaria de comentar em uma postagem para explicar o motivo de tê-la contestado (3.1).\
+**5.1** Como usuário, gostaria de editar minha postagem para corrigir ou adicionar mais dados.\
+  
 
 
 
