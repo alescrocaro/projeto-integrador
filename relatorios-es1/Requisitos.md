@@ -31,7 +31,12 @@ Grupo de estudantes de ciência da computação: responsáveis pelo planejamento
 2. O usuário pode buscar por seres invasores a partir de uma determinada geolocalização, com filtros de descrição ser (como reino, filo, classe, ordem, família, gênero e espécie);
 3. O usuário pode contestar qualquer postagem;
 4. O usuário pode fazer comentários em qualquer postagem;
-5. O usuário pode editar a própria postagem.
+5. O usuário pode editar a própria postagem;
+6. O sistema deve um esquema de perfis de usuário;
+7. O usuário deve ter acesso à uma lista com suas postagens;
+8. O usuário pode editar suas informações do perfil;
+9. O sistema deve possuir perfis de moderação;
+10. O moderador pode excluir postagens de outros usuários.
 
 
 ## Requisitos não funcionais
