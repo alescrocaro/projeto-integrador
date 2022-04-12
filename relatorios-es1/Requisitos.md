@@ -2,15 +2,15 @@
 ## Introdução
 
 ### Declaração do problema
-O problema da falta de mapeamento de seres invasores afeta pesquisadores e estudantes; cujo impacto é a ineficiência em produzir soluções para entender e tratar problemas ambientais causados por esses seres.
+O problema da falta de mapeamento de seres invasores afeta pesquisadores e estudantes, e pode ser visto pela dificuldade em mensurar o impacto ambiental causado por tais seres, dificultando assim a elaboração de soluções que possam vir a tratar problemas ambientais em uma determinada região.
 
 
 ### Intenção do produto
-Para pesquisadores e estudantes que precisam identificar se um ser específico é invasor ou não de uma determinada área. O fórum é um site de biologia que procura mapear os seres invasores de um lugar. Nosso software procura ser informativo de maneira que o usuário consiga visualizar facilmente os seres que não fazem parte de determinado ambiente, além de possibilitar que qualquer pessoa possa ajudar a comunidade fazendo postagens para identificar novos invasores.
+Para pesquisadores e estudantes que precisam identificar se um ser específico é invasor ou não de uma determinada área. O FÓRUM é um site de biologia que procura mapear os seres invasores de um determinado lugar. Nosso software procura ser informativo de maneira que o usuário consiga visualizar facilmente os seres que não fazem parte de determinado ambiente, além de possibilitar que qualquer pessoa possa ajudar a comunidade fazendo postagens para identificar novos invasores.
 
 
 ### Proposta de valor e segmento de clientes
-Nossa proposta de valor é oferecer um software capaz de mapear seres invasores de regiões específicas, possibilitando uma visualização desses dados por parte do usuário. A partir disso, nosso segmento de clientes se afunilaria para focar em pesquisadores e estudantes. Acreditamos que não haja nenhum produto parecido com o nosso atualmente, sendo uma solução inovadora para a área.
+Nossa proposta de valor é oferecer um software capaz de mapear seres invasores de regiões específicas, possibilitando uma visualização destes dados por parte do usuário. A partir disso, nosso segmento de clientes se afunila para focar em pesquisadores e estudantes. Acreditamos que não haja nenhum produto parecido com o nosso atualmente, sendo uma solução inovadora para a área.
 
 
 ## Partes interessadas
@@ -40,12 +40,12 @@ Grupo de estudantes de ciência da computação: responsáveis pelo planejamento
 
 
 ## Requisitos não funcionais
-Adaptabilidade: Possibilita o manuseio do site por parte do usuário em plataformas móveis, desse modo facilita o uso em campo por pesquisadores. A métrica seria a responsividade em diferentes dispositivos;\
-Facilidade de uso: O site deve ser flexível, intuitivo e consistente, seguindo as heurísticas de Nielsen.
+- Adaptabilidade: Possibilita o manuseio do site por parte do usuário em plataformas móveis, desse modo facilita o uso em campo por pesquisadores. A métrica seria a responsividade em diferentes dispositivos;
+- Facilidade de uso: O site deve ser flexível, intuitivo e consistente, seguindo as heurísticas de Nielsen.
 
 
 ## MVP
-Nosso MVP será um sistema web no qual uma pessoa é capaz de compartilhar um ser invasor encontrado por meio de uma postagem com imagem, geolocalização e descrição que estará aberta para discussão. Será testado via implementação. Validaremos se as pessoas (segmento de clientes) estão interessadas em uma plataforma de compartilhamento descentralizado e disponibilização dos dados acerca de seres invasores.
+Nosso MVP será um sistema web no qual uma pessoa é capaz de compartilhar um ser invasor encontrado por meio de uma postagem com imagem, geolocalização e descrição que estará aberta para discussão. Será testado via implementação. Validaremos se as pessoas (segmento de clientes) estão interessadas em uma plataforma de compartilhamento de informações sobre seres invasores gerenciado pelos próprios usuários, e na disponibilização destas informações para o auxilio em estudos e pesquisas (o que demanda confiabilidade).
 
 
 ## Histórias de usuários  
