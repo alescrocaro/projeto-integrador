@@ -26,3 +26,15 @@
 **Faltantes:** Wagner
 
 - Fizemos o documento dos requisitos, faltou as histórias de usuários.
+
+## Ações
+**Data e local:** 14 de abril de 2022, sala E101\
+**Início:** 16h00 \
+**Término:** 17h30 \
+**Presentes:** Alexandre, Caio, Carlos, Leonardo\
+**Faltantes:** Wagner 
+
+- Leonardo modificou o gitignore.
+- Os presentes trabalharam no documento de Ánalise.
+  - Fizemos a parte de descrição do sistema.
+  - decidimos adicionar um novo requisiro para alcançar as 6 entidades pedidas pelo professor.
