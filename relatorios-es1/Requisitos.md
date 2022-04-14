@@ -32,11 +32,12 @@ Grupo de estudantes de ciência da computação: responsáveis pelo planejamento
 3. O usuário pode contestar a veracidade de qualquer postagem;
 4. O usuário pode fazer comentários em qualquer postagem;
 5. O usuário pode editar a própria postagem;
-6. O sistema deve ter um esquema de perfis de usuário;
-7. O usuário deve ter acesso à uma lista com suas postagens;
-8. O usuário pode editar suas informações do perfil;
-9. O sistema deve possuir perfis de moderação;
-10. O moderador pode excluir postagens de outros usuários.
+6. O usuário pode colocar uma hashtag específica em sua postagem; 
+7. O sistema deve ter um esquema de perfis de usuário;
+8. O usuário deve ter acesso à uma lista com suas postagens;
+9. O usuário pode editar suas informações do perfil;
+10. O sistema deve possuir perfis de moderação;
+11. O moderador pode excluir postagens de outros usuários.
 
 
 ## Requisitos não funcionais
