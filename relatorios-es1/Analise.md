@@ -8,17 +8,5 @@
 
 
 ## Modelo
-ENUNCIADO:
-Forneça o modelo conceitual de seu sistema como um diagrama de classes UML. Representam cardinalidades próprias (multiplicidades) para todas as associações. Inclua também os nomes das associações.
- 
-Alguns pontos a considerar:
-o   Use UML ou qualquer notação que possa representar o modelo inicial de seu sistema (Entidade-Relacionamento é OK se não for usar algo OO). \
-o   Não complique demais como você representa os elementos do seu modelo (por exemplo, usando herança ou uma associação quando não são necessários). Preste atenção à simplicidade, manutenibilidade, repetição desnecessária.
-o   Não representam ações que não precisam ser registradas no sistema.\
-o   Não represente elementos técnicos, como interface do usuário ou bibliotecas de linguagem de programação no modelo. Neste ponto, estamos modelando a lógica/domínio de negócios do seu sistema. Durante a fase de projeto, o modelo será refinado para incluir elementos e decisões específicas da tecnologia.\
-o   Não represente "Sistema" como uma classe ou entidade em seu modelo. Tudo o que você está modelando faz parte do sistema.\
-o   Se você sentir a necessidade de justificar suas decisões, você pode escrever sua justificativa nesta seção ou como comentários no diagrama.\
- 
-O modelo deve ter pelo menos 6 classes ou entidades. Você pode adicionar requisitos na descrição do sistema se precisar de mais classes.
- 
-Seu domínio deve ser modelado adequadamente. O modelo deve evitar complexidade desnecessária, repetição, falta de coesão e acoplamento. As classes devem estar em um nível de abstração adequado.
+
+![modelo](./modelo.drawio.svg)
