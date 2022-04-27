@@ -1,15 +1,9 @@
 const express = require('express');
 const app = express();
+const routes = require('./routes');
 
 app.use(express.json());
-
-app.post('/posts', (req, res) => {
-    return res.json({
-        post_id: '1',
-        post_title: 'Macaco fora do lugar',
-        post_description: 'Macaco estava no chão invés de estar numa árvore'
-    });
-})
+app.use(routes);
 
 app.listen(3333, () => {
     console.log('server on');
