@@ -1,16 +1,10 @@
 const express = require('express');
 const routes = express.Router();
+const postController = require('./controllers/postController');
 
-routes.post('/posts', (req, res) => {
-  const body = req.body;
-
-  console.log(body);
-
-  return res.json({
-      post_id: '1',
-      post_title: 'Macaco fora do lugar',
-      post_description: 'Macaco estava no chão invés de estar numa árvore'
-  });
-});
-
+routes.post('/posts', postController.create);
+routes.post('/posts', postController.read);/*
+routes.post('/posts', postController.update);
+routes.post('/posts', postController.delete);
+*/
 module.exports = routes;
