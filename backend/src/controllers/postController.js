@@ -2,6 +2,12 @@ const connection = require('../database/connection');
 const crypto = require('crypto');
 
 module.exports = {
+  async index(req, res){
+    const posts = await connection('posts').select('*');
+
+    return res.json(posts);
+  },
+  
   async create(req, res){
     const { title, description } = req.body;
     const id = crypto.randomBytes(4).toString('HEX'); // cria um id aleatório de 
@@ -17,13 +23,8 @@ module.exports = {
   
     return res.json({ id }); // devolve o id (imagino que vai precisar do id pra 
                              // mostrar a página do post criado)
-  },
-
-  async read(req, res){
-    const posts = await connection('posts').select('*');
-
-    return res.json(posts);
   }
+
   
   /*,
 
