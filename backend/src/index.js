@@ -1,7 +1,9 @@
 const express = require('express');
 const app = express();
 
-app.get('/posts', (req, res) => {
+app.use(express.json());
+
+app.post('/posts', (req, res) => {
     return res.json({
         post_id: '1',
         post_title: 'Macaco fora do lugar',
