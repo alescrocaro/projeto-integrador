@@ -53,6 +53,7 @@ docker compose version
 Vá até a pasta do backend e rode o seguinte comando
 ```
 cd backend
+sudo chmod 666 /var/run/docker.sock
 docker compose up -d
 ```
 
