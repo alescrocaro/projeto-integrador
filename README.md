@@ -31,19 +31,50 @@ O software tem como objetivo principal ajudar pesquisadores e estudantes de biol
 ### Dependências necessárias para executar o projeto:
 - React;
 - Node;
-- Sqlite3.
+- Docker
 
+## para instalar o banco de dados
+
+É necessário ter instalado o docker na sua máquina. Após a instalação do docker é preciso instalar o docker compose. Caso esteja usando windows, a instalação do docker compose já vem junto com o docker.
+
+```
+DOCKER_CONFIG=${DOCKER_CONFIG:-$HOME/.docker}
+mkdir -p $DOCKER_CONFIG/cli-plugins
+curl -SL https://github.com/docker/compose/releases/download/v2.4.1/docker-compose-linux-x86_64 -o $DOCKER_CONFIG/cli-plugins/docker-compose
+```
+De permissão do binário para seu usário
+```
+chmod +x $DOCKER_CONFIG/cli-plugins/docker-compose
+```
+teste para ver se a instalação foi bem sucedida
+```
+docker compose version
+```
+Vá até a pasta do backend e rode o seguinte comando
+```
+cd backend
+docker compose up -d
+```
+
+agora abra o browser em localhost:8080 para acessar o pgadmin4. As credencias do pgadmin4 são
+usuário:admin@admin.com
+senha:123456
+crie um servidor e conecte no host pgsql-server na porta 5432. As credencias do banco são:
+usuário:admin 
+senha:123456
+
+após criar o banco, vá para a pasta do backend e rode o comando:
+
+```
+cd backend
+npx sequelize-cli db:migrate
+```
 
 ### para rodar o backend:
 
 ```
 cd backend
 npm install
-```
-#### para inicializar o sqlite
-```
-npx knex migrate:latest
-npm run dev
 ```
 
 ### para rodar o frontend:
