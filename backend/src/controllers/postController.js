@@ -1,29 +1,68 @@
-const connection = require('../database/connection');
-const crypto = require('crypto');
+const { Post } = require('../models');
 
 module.exports = {
   async index(req, res){
-    const posts = await connection('posts').select('*');
-
-    return res.json(posts);
+    try {
+      const posts = await Post.findAll();
+  
+      return res.json(posts);
+    } catch (error) {
+      res.status(500).send();
+    }
   },
   
+  async get(req, res){
+    try {
+      const post = await Post.findOne({ where: { id: req.params.id } });
+  
+      return res.json(post);
+    } catch (error) {
+      console.log(error)
+      res.status(500).send();
+    }
+  },
+
   async create(req, res){
-    const { title, description } = req.body;
-    const id = crypto.randomBytes(4).toString('HEX'); // cria um id aleatório de 
-                                                      // 4 bytes em hexadecimal
-    console.log(id, title, description);
-  
-    await connection('posts').insert({
-      id,
-      title,
-      description,
-    }); // utiliza-se o async-await pois o insert pode demorar um pouco, e 
-        // queremos que o retorno aconteca apenas depois do insert
-  
-    return res.json({ id }); // devolve o id (imagino que vai precisar do id pra 
-                             // mostrar a página do post criado)
-  }
+    try {
+      const { 
+        userName, 
+        specie,
+        genus,
+        family,
+        order,
+        _class,
+        phylum,
+        kingdom,
+        country,
+        city,
+        weather,
+        dateFound,
+        description,
+      } = req.body;
+    
+      const post = await Post.create({
+        userName, 
+        specie,
+        genus,
+        family,
+        order,
+        _class,
+        phylum,
+        kingdom,
+        country,
+        city,
+        weather,
+        dateFound,
+        description,
+      }); 
+
+      console.log("PRINT-------------------------------------------------"+post.dataValues.id);
+      return res.json(post.dataValues.id); 
+    } catch (error) {
+      console.log(error);
+      res.status(500).send();      
+    }
+  },
 
   
   /*,
@@ -32,24 +71,36 @@ module.exports = {
     // const { title, description } = req.body;
 
   },
+  */
 
   async delete(req, res){
-    const { id } = req.params;
-    const user_id = req.headers.authorization;
+    try {
+      const { id } = req.params;
+      // const user_id = req.headers.authorization;
+      /*
+      const post = await connection('posts')
+        .where('id', id)
+        .select('user_id')
+        .first() // retorna apenas 1 resultado
+  
+      if(post.user_id !== user_id){
+        return response.status(401).json({ error: 'Unauthorized user.'}); 
+        // 401 - nao autorizado
+      }
+  
+      await connection('posts').where('id', id).delete();
+      */
 
-    const post = await connection('posts')
-      .where('id', id)
-      .select('user_id')
-      .first() // retorna apenas 1 resultado
+      await Post.destroy({
+        where: {
+          id: id
+        }
+      });
 
-    if(post.user_id !== user_id){
-      return response.status(401).json({ error: 'Unauthorized user.'}); 
-      // 401 - nao autorizado
+      return res.status(204).send(); // 204 - res sucesso sem conteudo
+    } catch (error) {
+      console.log(error);
+      res.status(500).send();
     }
-
-    await connection('posts').where('id', id).delete();
-
-    return res.status(204).send(); // 204 - res sucesso sem conteudo
   }
-  */
 }
