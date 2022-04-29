@@ -68,6 +68,7 @@ após criar o banco, vá para a pasta do backend e rode o comando:
 
 ```
 cd backend
+npm install
 npx sequelize-cli db:migrate
 ```
 
