@@ -34,4 +34,4 @@
 **Presentes:** Alexandre, Caio, Carlos, Leonardo\
 **Faltantes:** Wagner
 
-- Alexandre finalizou sua tarefa com auxílio do Leonardo
+- Alexandre finalizou o CRUD da postagem com auxílio do Leonardo
