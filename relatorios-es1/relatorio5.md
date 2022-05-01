@@ -25,3 +25,13 @@
   - Garantia de qualidade: Product Owner
   - Outros: Desenvolvedores
 - Definimos os padrões de pasta do projeto, tanto do backend quanto do frontend
+
+
+## Ações - Reunião 2
+**Data e local:** 29 de abril de 2022, sala E101\
+**Início:** 14h00 \
+**Término:** 15h30 \
+**Presentes:** Alexandre, Caio, Carlos, Leonardo\
+**Faltantes:** Wagner
+
+- Alexandre finalizou sua tarefa com auxílio do Leonardo
