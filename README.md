@@ -77,6 +77,7 @@ npx sequelize-cli db:migrate
 ```
 cd backend
 npm install
+npm run dev
 ```
 
 ### para rodar o frontend:
