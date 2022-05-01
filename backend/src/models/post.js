@@ -19,7 +19,7 @@ module.exports = (sequelize, DataTypes) => {
     genus: DataTypes.STRING,
     family: DataTypes.STRING,
     order: DataTypes.STRING,
-    class: DataTypes.STRING,
+    className: DataTypes.STRING,
     phylum: DataTypes.STRING,
     kingdom: DataTypes.STRING,
     country: DataTypes.STRING,
