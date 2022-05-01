@@ -23,7 +23,7 @@ module.exports = {
       order: {
         type: Sequelize.STRING
       },
-      class: {
+      className: {
         type: Sequelize.STRING
       },
       phylum: {

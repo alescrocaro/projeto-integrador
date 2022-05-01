@@ -30,7 +30,7 @@ module.exports = {
         genus,
         family,
         order,
-        _class,
+        className,
         phylum,
         kingdom,
         country,
@@ -46,7 +46,7 @@ module.exports = {
         genus,
         family,
         order,
-        _class,
+        className,
         phylum,
         kingdom,
         country,
@@ -56,7 +56,7 @@ module.exports = {
         description,
       }); 
 
-      console.log("PRINT-------------------------------------------------"+post.dataValues.id);
+      console.log("PRINT ID ---------------------------- "+post.dataValues.id);
       return res.json(post.dataValues.id); 
     } catch (error) {
       console.log(error);
