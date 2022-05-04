@@ -1,3 +1,10 @@
-export default function Dashboard(){
-  return <h1>Dashboard</h1>;
+import HeaderMenu from '../../components/HeaderMenu';
+import StickyFooter from '../../components/StickyFooter';
+export default function Dashboard () {
+  return(
+    <>
+      <HeaderMenu />
+      <StickyFooter />
+    </>
+  )
 }
