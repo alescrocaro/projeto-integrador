@@ -2,8 +2,7 @@ import React, { useEffect, useState } from 'react';
 import api from '../../services/api';
 
 import Container from '../../components/Container';
-import HeaderMenu from '../../components/HeaderMenu';
-import StickyFooter from '../../components/StickyFooter';
+import Layout from '../../components/Layout';
 import StyledCard from '../../components/Card';
 
 export default function ListPosts({ data }) {  
@@ -20,20 +19,18 @@ export default function ListPosts({ data }) {
   }, []);
 
   return (
-    <>
-      <HeaderMenu />
-        <Container container>
-          {
-            posts.map((item) => (
-              <StyledCard
-                key={item.id}
-                owner={item.userName}
-                description={item.description}
-              />
-            ))
-          }
-        </Container>
-      <StickyFooter />
-    </>
+    <Layout>
+      <Container container>
+        {
+          posts.map((item) => (
+            <StyledCard
+              key={item.id}
+              owner={item.userName}
+              description={item.description}
+            />
+          ))
+        }
+      </Container>
+    </Layout>
   );
 };
