@@ -1,7 +1,7 @@
-import * as React from 'react';
+import React from 'react';
 import AppBar from '@mui/material/AppBar';
-import Typography from '@mui/material/Typography';
 import Avatar from '@mui/material/Avatar';
+import {StyledImage} from './style';
 
 export default function HeaderMenu () {
   return (
@@ -10,17 +10,17 @@ export default function HeaderMenu () {
       sx={{
         display: 'flex', 
         flexDirection: 'row', 
-        justifyContent:'space-between'
+        justifyContent:'space-between',
+        alignItems: 'center',
+        backgroundColor: '#3c9e44',
+        marginBottom: '20px'
     }}>
-      <Typography
-        variant="h6"
-        noWrap
-        component="div"
-      >
-        LOGO AQUI
-      </Typography>
+      <StyledImage
+        src={require('../../img/logo.png')}
+        alt='LOGO'
+      />
 
-      <Avatar />
+      <Avatar sx={{ marginRight: '50px', width: '50px', height: '50px' }}/>
   </AppBar>
   );
 };
