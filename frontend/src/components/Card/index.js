@@ -7,12 +7,17 @@ import { CardActionArea } from '@mui/material';
 
 export default function StyledCard({ owner, description }) {
   return (
-    <Card sx={{ maxWidth: 345 }}>
+    <Card sx={{ 
+      display: 'flex',
+      justifyContent: 'space-between',
+      marginBottom: '5px',
+      width:'100%',
+    }}>
       <CardActionArea>
         <CardMedia
           component="img"
-          height="140"
-          image="https://s5.static.brasilescola.uol.com.br/be/2021/10/lobo.jpg"
+          height="50"
+          image={require('../../img/foto1.jpg')}
           alt="logo utfpr"
         />
         <CardContent>
