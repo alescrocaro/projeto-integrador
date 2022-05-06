@@ -3,6 +3,7 @@ import api from '../../services/api';
 
 import Container from '../../components/Container';
 import Layout from '../../components/Layout';
+import StyledButton from '../../components/Button';
 import StyledCard from '../../components/Card';
 
 export default function ListPosts({ data }) {  
@@ -21,6 +22,7 @@ export default function ListPosts({ data }) {
   return (
     <Layout>
       <Container container>
+        <StyledButton> TESTE</StyledButton>
         {
           posts.map((post) => (
             <StyledCard
