@@ -13,7 +13,7 @@ import {
 export default function StyledCard({ post }) {
   return (
     <Card sx={{ 
-      margin: '5px',
+      margin: '10px 0',
       width:'100%',
       maxHeight: '190px'
     }}>

@@ -5,6 +5,7 @@ import Container from '../../components/Container';
 import Layout from '../../components/Layout';
 import StyledButton from '../../components/Button';
 import StyledCard from '../../components/Card';
+import HeaderPage from '../../components/HeaderPage';
 
 export default function ListPosts({ data }) {  
   const [posts, setPosts] = useState([]);
@@ -22,7 +23,8 @@ export default function ListPosts({ data }) {
   return (
     <Layout>
       <Container container>
-        <StyledButton> TESTE</StyledButton>
+        <StyledButton />
+        <HeaderPage title="Mostrando postagens recentes:" filter />
         {
           posts.map((post) => (
             <StyledCard
