@@ -1,0 +1,21 @@
+import React from 'react';
+import HeaderMenu from '../HeaderMenu';
+import StickyFooter from '../StickyFooter';
+import Box from '@mui/material/Box';
+
+export default function Layout({ children }){
+  return(
+    <Box 
+      component='header' 
+      sx={{
+        display: 'flex',
+        flexDirection: 'column',
+        height: '100%'
+      }}
+    >
+      <HeaderMenu />
+      {children}
+      <StickyFooter />
+    </Box>
+  )
+}
