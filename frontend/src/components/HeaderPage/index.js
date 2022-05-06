@@ -8,9 +8,10 @@ export default function BasicCard({ title='SEM TITULO', userName, dateFound, fil
   return (
     <Card 
       sx={{ 
-        minWidth: '100%',
         margin: '10px 0',
-        backgroundColor: '#232423'
+        backgroundColor: '#232423',
+        minWidth: '100%',
+        maxHeight: '100px',
       }}
     >
       <CardContent>
