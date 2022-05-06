@@ -22,11 +22,10 @@ export default function ListPosts({ data }) {
     <Layout>
       <Container container>
         {
-          posts.map((item) => (
+          posts.map((post) => (
             <StyledCard
-              key={item.id}
-              owner={item.userName}
-              description={item.description}
+              key={post.id}
+              post={post}
             />
           ))
         }

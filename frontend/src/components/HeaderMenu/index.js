@@ -13,7 +13,6 @@ export default function HeaderMenu () {
         justifyContent:'space-between',
         alignItems: 'center',
         backgroundColor: '#3c9e44',
-        marginBottom: '20px'
     }}>
       <StyledImage
         src={require('../../img/logo.png')}

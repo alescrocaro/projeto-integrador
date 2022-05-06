@@ -3,9 +3,16 @@ import { StyledContainer } from './style';
 
 const Container = ({ children, ...props }) => {
   return (
-    <StyledContainer {...props}>
-      {children}
-    </StyledContainer>
+    <div
+      style={{
+        display: 'flex',
+        justifyContent: 'center'
+      }}
+    >
+      <StyledContainer {...props}>
+        {children}
+      </StyledContainer>
+    </div>
   );
 };
 
