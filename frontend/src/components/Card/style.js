@@ -3,15 +3,15 @@ import { CardContent } from '@mui/material';
 
 export const BannerImage = styled.img`
   height: 100%;
-  min-width: 300px !important;
-  max-width: 300px !important;
+  min-width: 400px !important;
+  max-width: 400px !important;
   object-fit: cover;
 `;
 
 export const StyledCardContent = styled(CardContent)`
   display: flex;
   flex-direction: column;
-  width: 85%;
+  width: 100%;
   justify-content: space-between;
   align-items: center;
   overflow: hidden;

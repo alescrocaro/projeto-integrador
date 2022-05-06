@@ -27,6 +27,7 @@ export default function StyledButton() {
           style={{
             textDecoration: 'none',
             margin: '10px 0',
+            marginTop: '20px',
           }}
         >
           <MyButton variant="contained">

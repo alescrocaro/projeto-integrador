@@ -4,12 +4,12 @@ import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 
-export default function BasicCard({ title='SEM TITULO', userName, dateFound, filter=false }) {
+export default function StyledCard({ title='SEM TITULO', userName, dateFound, filter=false }) {
   return (
     <Card 
       sx={{ 
         margin: '10px 0',
-        backgroundColor: '#232423',
+        backgroundColor: '#3c9e44',
         minWidth: '100%',
         maxHeight: '100px',
       }}
