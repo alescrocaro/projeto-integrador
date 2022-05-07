@@ -25,6 +25,9 @@ module.exports = {
   async create(req, res){
     try {
       const { 
+        title,
+        biome,
+        imgUrl,
         userName, 
         specie,
         genus,
@@ -41,6 +44,9 @@ module.exports = {
       } = req.body;
     
       const post = await Post.create({
+        title,
+        biome,
+        imgUrl,
         userName, 
         specie,
         genus,
