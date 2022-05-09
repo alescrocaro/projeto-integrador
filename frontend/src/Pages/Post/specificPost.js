@@ -30,6 +30,7 @@ export default function SpecificPost() {
 
   return (
     <Layout>
+      
       {!!post &&
         <Container container>
           <div 
@@ -40,8 +41,8 @@ export default function SpecificPost() {
               width: '100%',
             }}
           >
-            <HeaderPage 
-              title={post.id} 
+            <HeaderPage
+              title={post.title} 
               userName={post.userName} 
               dateFound={post.dateFound} 
             />
@@ -69,7 +70,7 @@ export default function SpecificPost() {
                   ESPÉCIME:
                 </Typography>
                 <img 
-                  src={require('../../img/foto1.jpg')} 
+                  src={require(post.imageUrl)} 
                   alt='img'
                   style={{
                     maxWidth: '90%',
@@ -97,7 +98,7 @@ export default function SpecificPost() {
                   LOCAL E DATA:
                 </Typography>
                 <img 
-                  src={require('../../img/loc.png')} 
+                  src={require(post.imageUrl)} 
                   alt='img'
                   style={{
                     maxWidth: '90%',
