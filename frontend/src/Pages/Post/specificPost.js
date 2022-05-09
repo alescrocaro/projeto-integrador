@@ -62,6 +62,7 @@ export default function SpecificPost() {
                   alignItems: 'center',
                   maxWidth: '50%',
                   backgroundColor: 'gray',
+                  minHeight: '100%'
                 }}
               >
                 <Typography variant='h5' color='black'>
@@ -72,7 +73,7 @@ export default function SpecificPost() {
                   alt='img'
                   style={{
                     maxWidth: '90%',
-                    margin: '10px' 
+                    margin: '10px', 
                   }}
                 />
                 <Typography variant='h7' color='black'>
@@ -89,17 +90,19 @@ export default function SpecificPost() {
                   alignItems: 'center',
                   maxWidth: '50%',
                   backgroundColor: 'blue',
+                  minHeight: '100%'
                 }}
               >
                 <Typography variant='h5' color='black'>
                   LOCAL E DATA:
                 </Typography>
                 <img 
-                  src={require('../../img/foto1.jpg')} 
+                  src={require('../../img/loc.png')} 
                   alt='img'
                   style={{
                     maxWidth: '90%',
-                    margin: '10px' 
+                    margin: '10px', 
+                    height: '100%',
                   }}
                 />
                 <Typography variant='h7' color='black'>
@@ -136,25 +139,38 @@ export default function SpecificPost() {
                 COMUNIDADE:
               </Typography>
               <Typography variant='h7' color='black'>
-                COMENTARIO 1:
+                COMENTARIO 1: muito legal legal mesmo
               </Typography>
 
               <Typography variant='h7' color='black'>
-                CONTESTAÇÃO:
+                CONTESTAÇÃO: Ta errado burro
               </Typography>
-              <Typography variant='h5' color='black'>
-                ESCREVER COMENTÁRIO:
-              </Typography>
-              <TextField id="outlined-basic" label="Outlined" variant="outlined" />
               <div
+                className='comment-area'
                 style={{
                   display: 'flex',
-                  flexDirection: 'row',
-                  justifyContent: 'flex-end'
+                  flexDirection: 'column',
+                  backgroundColor: 'gray',
                 }}
               >
-                <Button variant='contained' color='error'>CONTESTAR</Button>
-                <Button variant='contained' color='primary'>COMENTAR</Button>
+                <Typography variant='h5' color='black'>
+                  ESCREVER COMENTÁRIO:
+                </Typography>
+                <TextField 
+                  label="Escreva seu comentário" 
+                  variant="outlined" 
+                  multiline
+                />
+                <div
+                  style={{
+                    display: 'flex',
+                    flexDirection: 'row',
+                    justifyContent: 'flex-end'
+                  }}
+                >
+                  <Button variant='contained' color='error'>CONTESTAR</Button>
+                  <Button variant='contained' color='primary'>COMENTAR</Button>
+                </div>
               </div>
             </div>
           </div>
@@ -162,6 +178,7 @@ export default function SpecificPost() {
       }
       {!!!post && 
         <h1>Pagina nao encontrada</h1>
+
       
       }
     </Layout>
