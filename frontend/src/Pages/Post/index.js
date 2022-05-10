@@ -7,14 +7,13 @@ import StyledButton from '../../components/Button';
 import StyledCard from '../../components/Card';
 import HeaderPage from '../../components/HeaderPage';
 
-export default function ListPosts({ data }) {  
+export default function ListPosts() {  
   const [posts, setPosts] = useState([]);
 
   useEffect(() => {
     const fetch = async () => {
       const { data } = await api.get('/posts');
-      console.log('item de posts',data);
-
+      
       setPosts(data);
     };
     fetch();

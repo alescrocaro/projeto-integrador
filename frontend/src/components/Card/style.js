@@ -3,8 +3,9 @@ import { CardContent } from '@mui/material';
 
 export const BannerImage = styled.img`
   height: 100%;
-  min-width: 400px !important;
-  max-width: 400px !important;
+  max-height: 190px;
+  min-width: 400px;
+  max-width: 400px;
   object-fit: cover;
 `;
 
