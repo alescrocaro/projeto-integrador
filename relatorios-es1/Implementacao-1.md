@@ -9,7 +9,7 @@
 \
 **REQUISITO: Como usuário, gostaria de criar uma postagem contendo informações sobre o ser invasor encontrado.** \
 Issue: https://github.com/alescrocaro/forum-botanica/issues/20 \
-Pull request: #44\
+Pull request: https://github.com/alescrocaro/forum-botanica/pull/44 \
 Implementado por: Alexandre, Caio, Carlos e Leonardo\
 Aprovado por: Alexandre (encarregado pela garantia de qualidade)\
 Tela de impressão: FALTANDO\
