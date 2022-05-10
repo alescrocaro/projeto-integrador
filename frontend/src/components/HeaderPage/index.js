@@ -32,12 +32,12 @@ export default function StyledCard({ title='SEM TITULO', userName, dateFound, fi
               color: 'white',
             }}  
           >
-            <Typography variant='h5' color='white'>
+            <Typography variant='h5' color='black'>
               {title}
             </Typography>
 
             {!!userName && !!dateFound &&
-              <Typography sx={{ mb: 1.5 }} color="white">
+              <Typography sx={{ mb: 1.5 }} color="black">
                   Avistado por {userName} em {dateFound}
               </Typography>
             }

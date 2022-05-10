@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import AppBar from '@mui/material/AppBar';
 import Avatar from '@mui/material/Avatar';
 import {StyledImage} from './style';
@@ -14,10 +15,12 @@ export default function HeaderMenu () {
         alignItems: 'center',
         backgroundColor: '#3c9e44',
     }}>
-      <StyledImage
-        src={require('../../img/logo.png')}
-        alt='LOGO'
-      />
+      <Link to='/'>
+        <StyledImage
+          src={require('../../img/logo.png')}
+          alt='LOGO'
+        />
+      </Link>
 
       <Avatar sx={{ marginRight: '50px', width: '50px', height: '50px' }}/>
   </AppBar>

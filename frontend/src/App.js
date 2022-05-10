@@ -1,7 +1,10 @@
 import React from 'react';
 import { Routes, Route, BrowserRouter } from 'react-router-dom';
+
 import Post from './Pages/Post';
 import CreatePost from './Pages/CreatePost';
+import CreatePost from './Pages/Post/create-post';
+import SpecificPost from './Pages/Post/specificPost';
 
 export default function App() {
   return (
@@ -9,6 +12,8 @@ export default function App() {
       <Routes>
         <Route exact path="/" element={<Post />} />
         <Route path="/create-post" element={<CreatePost />} />
+        <Route exact path="/create-post" element={<CreatePost />} />
+        <Route exact path="/posts/:id" element={<SpecificPost />} />
       </Routes>
     </BrowserRouter>
   );
