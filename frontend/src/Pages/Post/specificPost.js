@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import api from '../../services/api';
 
-
 import StyledTable from '../../components/Table';
 import Container from '../../components/Container';
 import Layout from '../../components/Layout';
@@ -16,21 +15,20 @@ import Button from '@mui/material/Button';
 export default function SpecificPost() {  
   const [post, setPost] = useState({});
   const {id} = useParams();
-  console.log('ID::::::::::::',id);
-
+  
+  async function getPost(id) {
+    const { data } = await api.get(`posts/${id}`);
+    setPost(data);
+  };
 
   useEffect(() => {
-    const fetch = async () => {
-      const { data } = await api.get('/posts/'+id);
-      setPost(data);
-      console.log('info do post:::::::::::', data);
-    };
-    fetch();
-  }, []);
+    getPost(id);
+
+  }, [id]);
 
   return (
     <Layout>
-      
+      {/* {console.log("post", (post))} */}
       {!!post &&
         <Container container>
           <div 
@@ -70,7 +68,7 @@ export default function SpecificPost() {
                   ESPÉCIME:
                 </Typography>
                 <img 
-                  src={require(post.imageUrl)} 
+                  src={post.imgUrl} 
                   alt='img'
                   style={{
                     maxWidth: '90%',
@@ -98,7 +96,7 @@ export default function SpecificPost() {
                   LOCAL E DATA:
                 </Typography>
                 <img 
-                  src={require(post.imageUrl)} 
+                  src={require('../../img/foto1.jpg')} 
                   alt='img'
                   style={{
                     maxWidth: '90%',
@@ -179,8 +177,6 @@ export default function SpecificPost() {
       }
       {!!!post && 
         <h1>Pagina nao encontrada</h1>
-
-      
       }
     </Layout>
   );

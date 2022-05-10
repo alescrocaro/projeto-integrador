@@ -12,6 +12,7 @@ import {
 } from './style.js';
 
 export default function StyledCard({ post }) {
+  console.log(post)
   return (
     <Link 
       to={'/posts/'+post.id}
@@ -39,7 +40,7 @@ export default function StyledCard({ post }) {
           />
           <StyledCardContent>
             <Typography variant="h4" component="div" sx={{right: 0}}>
-              {post.id}
+              {post.title}
             </Typography>
             <Typography variant="h7" color="#3c9e44">
               Avistado por {post.userName} em {post.dateFound}
@@ -61,7 +62,7 @@ export default function StyledCard({ post }) {
                   LOCAL: {<br/>}
                 </Typography>            
                 <Typography variant="body2" color="black">
-                  Bioma: {post.weather}{<br/>}
+                  Bioma: {post.biome}{<br/>}
                   Clima: {post.weather}{<br/>}
                   Cidade: {post.city}{<br/>}
                 </Typography>            
