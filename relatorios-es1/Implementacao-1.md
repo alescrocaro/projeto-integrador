@@ -47,8 +47,19 @@ Tela de impressão: FALTANDO\
 \
 &emsp; Escolhemos React e Node pois JavaScript era a linguagem que a maioria dos integrantes do grupo tinha familiaridade em desenvolver, assim facilitando a implementação do sistema e não precisando se adaptar a tecnologias desconhecidas.
 ## Aprendizado/treinamento
+&emsp; Alguns membros já conheciam as tecnologias, ao precisar de aprender algo foi por meio de troca de conhecimento interno, como também vídeo-aulas no youtube.
+
 ## Implantação
+O sistema ainda não foi implantado.
+
 ## Licenciamento
+A licença escolhida foi a [MIT](https://choosealicense.com/licenses/mit/), mais informações no arquivo [LICENSE](https://github.com/alescrocaro/forum-botanica/blob/main/LICENSE). Escolhemos esta licença por ser simples e permissiva para contribuidores.
+
 ## Look & feel
+disney
+
 ## Lições aprendidas
+fazer em grupo
+
 ## Demo
+resolver na prox aula
