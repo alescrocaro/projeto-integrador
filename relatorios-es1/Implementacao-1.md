@@ -5,6 +5,37 @@
 \
 &emsp; Link para o projeto: https://github.com/alescrocaro/forum-botanica/
 ## Requisitos implementados
+&emsp; Resolvemos implementar apenas um requisito nessa primeira entrega, ele foi subdividido em issues menores e todos os quatro membros do grupo participaram.\
+\
+Requisito: Como usuário, gostaria de criar uma postagem contendo informações sobre o ser invasor encontrado\
+Issue: https://github.com/alescrocaro/forum-botanica/issues/20 \
+Pull request: \
+Implementado por: Alexandre, Caio, Carlos e Leonardo\
+Aprovado por: Alexandre (encarregado pela garantia de qualidade)\
+Tela de impressão:\
+
+**Subrequisito: Fazer o CRUD da tabela de postagens.**\
+Issue: github.com/alescrocaro/forum-botanica/issues/24 \
+Pull request: https://github.com/alescrocaro/forum-botanica/pull/29 \
+Implementado por: Alexandre\
+Aprovado por: Caio\
+Tela de impressão:\
+
+**Subrequisito: Criar página de listagem de todos posts com um botão de criar post no topo da tela. **\
+Issue: https://github.com/alescrocaro/forum-botanica/issues/25 \
+Pull request: https://github.com/alescrocaro/forum-botanica/pull/36 \
+Implementado por: Alexandre, Carlos\
+Aprovado por: Caio\
+Tela de impressão:\
+
+**Subrequisito: Criar página para mostrar um post.**\
+Issue: github.com/alescrocaro/forum-botanica/issues/27 \ 
+Pull request: https://github.com/alescrocaro/forum-botanica/pull/42 \
+Implementado por: Alexandre\
+Aprovado por: Leonardo\
+Tela de impressão:\
+
+
 ## Testes
 &emsp; O framework que utilizaremos para a implementação dos testes no sistema será o Jest.
 ## Tecnologias adotadas
