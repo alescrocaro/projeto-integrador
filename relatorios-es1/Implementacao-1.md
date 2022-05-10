@@ -6,6 +6,7 @@
 &emsp; Link para o projeto: https://github.com/alescrocaro/forum-botanica/
 ## Requisitos implementados
 ## Testes
+&emsp; O framework que utilizaremos para a implementação dos testes no sistema será o Jest.
 ## Tecnologias adotadas
  - **React**: uma biblioteca de JavaScript para construir interfaces de usuário baseadas em componentes de UI;
  - **Node**: um ambiente JavaScript orientado a eventos assíncronos, é utilizado para a criação de aplicativos de rede escaláveis;
