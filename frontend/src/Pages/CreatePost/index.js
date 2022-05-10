@@ -15,8 +15,6 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 
 export default function CreatePost() {  
 
-  const [open, setOpen] = useState(false);
-
   const navigate = useNavigate();
 
   const validationSchema = yup.object({
@@ -99,20 +97,11 @@ export default function CreatePost() {
           dateFound: values.dateEncounter
         } )
       } catch (e) {
-        setOpen(true);
+        console.log(e)
       }
       navigate('/');
     },
   });
-
-  const handleClose = (event, reason) => {
-    if (reason === 'clickaway') {
-      return;
-    }
-
-    setOpen(false);
-  };
-  
 
   return (
     <Layout>
@@ -333,7 +322,6 @@ export default function CreatePost() {
 
             </form>
         </Card>
-        <Button onClick={() => {setOpen(true)}} variant="text" sx={{mr:2,color:'#000000', fontWeight:'bold'}}>BOTAO</Button>
       </Container>
     </Layout>
   );
