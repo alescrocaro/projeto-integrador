@@ -7,33 +7,33 @@
 ## Requisitos implementados
 &emsp; Resolvemos implementar apenas um requisito nessa primeira entrega, ele foi subdividido em issues menores e todos os quatro membros do grupo participaram.\
 \
-Requisito: Como usuário, gostaria de criar uma postagem contendo informações sobre o ser invasor encontrado\
+**REQUISITO: Como usuário, gostaria de criar uma postagem contendo informações sobre o ser invasor encontrado.** \
 Issue: https://github.com/alescrocaro/forum-botanica/issues/20 \
-Pull request: \
+Pull request: FALTANDO\
 Implementado por: Alexandre, Caio, Carlos e Leonardo\
 Aprovado por: Alexandre (encarregado pela garantia de qualidade)\
-Tela de impressão:\
+Tela de impressão: FALTANDO\
 
-**Subrequisito: Fazer o CRUD da tabela de postagens.**\
-Issue: github.com/alescrocaro/forum-botanica/issues/24 \
+**Subrequisito: Fazer o CRUD da tabela de postagens.** \
+Issue: https://github.com/alescrocaro/forum-botanica/issues/24 \
 Pull request: https://github.com/alescrocaro/forum-botanica/pull/29 \
 Implementado por: Alexandre\
 Aprovado por: Caio\
-Tela de impressão:\
+Tela de impressão: FALTANDO\
 
-**Subrequisito: Criar página de listagem de todos posts com um botão de criar post no topo da tela. **\
+**Subrequisito: Criar página de listagem de todos posts com um botão de criar post no topo da tela.** \
 Issue: https://github.com/alescrocaro/forum-botanica/issues/25 \
 Pull request: https://github.com/alescrocaro/forum-botanica/pull/36 \
 Implementado por: Alexandre, Carlos\
 Aprovado por: Caio\
-Tela de impressão:\
+Tela de impressão: FALTANDO\
 
-**Subrequisito: Criar página para mostrar um post.**\
-Issue: github.com/alescrocaro/forum-botanica/issues/27 \ 
+**Subrequisito: Criar página para mostrar um post.** \
+Issue: https://github.com/alescrocaro/forum-botanica/issues/27 \
 Pull request: https://github.com/alescrocaro/forum-botanica/pull/42 \
 Implementado por: Alexandre\
 Aprovado por: Leonardo\
-Tela de impressão:\
+Tela de impressão: FALTANDO\
 
 
 ## Testes
