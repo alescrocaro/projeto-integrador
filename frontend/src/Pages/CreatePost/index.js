@@ -119,7 +119,7 @@ export default function CreatePost() {
       <Container container>
         <Box fullWidth sx={{minWidth: '100%', backgroundColor:'#3b3b3b', p:2, display:'flex', alignItems:'center', mt:4, borderRadius: 1}}>
           <Typography variant="h5" component="h5" color={'#ffffff'}>
-            ADICIONAR NOVA OBSERVAÇÂO:
+            ADICIONAR NOVA OBSERVAÇÃO:
           </Typography>           
         </Box>
         <Card 

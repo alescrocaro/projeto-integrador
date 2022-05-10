@@ -3,7 +3,6 @@ import { Routes, Route, BrowserRouter } from 'react-router-dom';
 
 import Post from './Pages/Post';
 import CreatePost from './Pages/CreatePost';
-import CreatePost from './Pages/Post/create-post';
 import SpecificPost from './Pages/Post/specificPost';
 
 export default function App() {
