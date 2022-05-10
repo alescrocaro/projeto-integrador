@@ -2,12 +2,15 @@ import { useEffect, useState } from 'react';
 import * as yup from 'yup';
 import { useFormik } from 'formik';
 import api from '../../services/api';
-import { ValidationTextField } from './style';
+import { ValidationTextField, StyledDatePicker } from './style';
 import Layout from '../../components/Layout';
 import Container from '../../components/Container';
-import {Box, Card, Typography, Button, Snackbar, Alert} from '@mui/material/';
+import {Box, Card, Typography, Button} from '@mui/material/';
 import UploadButton from './components/UploadButton';
 import { useNavigate } from "react-router-dom";
+import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+
 
 
 export default function CreatePost() {  
@@ -51,7 +54,10 @@ export default function CreatePost() {
     .string('cidade')
     .required('Campo obrigatório'),
     description: yup
-    .string('Descrição')
+    .string('Descrição'),
+    dateEncounter:yup
+    .date()
+    .required('Campo obrigatório')
   });
 
   const formik = useFormik({
@@ -67,12 +73,11 @@ export default function CreatePost() {
       biomeName:'',
       climateType:'',
       city: '',
-      description:''
+      description:'',
+      dateEncounter: new Date(),
     },
     validationSchema: validationSchema,
     onSubmit: (values) => {
-
-      setOpen(true);
 
       try {
         api.post('/posts', {
@@ -89,12 +94,12 @@ export default function CreatePost() {
           description:values.description,
           imgUrl:'',
           userName:'Usuário', 
-          phylum: '',
+          phylum: values.specieDivision,
           country:'Brasil',
-          dateFound:"2012-04-23T18:25:43.511Z"
+          dateFound: values.dateEncounter
         } )
       } catch (e) {
-
+        setOpen(true);
       }
       navigate('/');
     },
@@ -265,17 +270,40 @@ export default function CreatePost() {
                 />                               
               </Box>
 
-              <ValidationTextField 
-                  id='climateType'
-                  name='climateType'
-                  value={formik.values.climateType}
-                  onChange={formik.handleChange}
-                  error={formik.touched.climateType && Boolean(formik.errors.climateType)}
-                  helperText={formik.touched.climateType && formik.errors.climateType}
-                  label={'Tipo de clima'}
-                  color="success"
-                  sx={{ width: '48%', mt:4 }}
+              <Box sx={{display:'flex', flexDirection:"row", mt:4}}>
+
+                <ValidationTextField 
+                    id='climateType'
+                    name='climateType'
+                    value={formik.values.climateType}
+                    onChange={formik.handleChange}
+                    error={formik.touched.climateType && Boolean(formik.errors.climateType)}
+                    helperText={formik.touched.climateType && formik.errors.climateType}
+                    label={'Tipo de clima'} 
+                    color="success"
+                    sx={{ width: '48%', mr:8}}
                 /> 
+
+                <LocalizationProvider dateAdapter={AdapterDateFns}>
+                  <StyledDatePicker
+                    label="Data do encontro"
+                    id="dateEncounter"
+                    name="dateEncounter"
+                    backgroundColor="#fff"
+                    value={formik.values.dateEncounter}
+                    onChange={ (value) => {
+                      formik.setFieldValue('dateEncounter', value)
+                     }
+                    }
+                    renderInput={(params) => 
+                    <ValidationTextField 
+                    color="success" {...params} 
+                    helperText={formik.touched.dateEncounter && formik.errors.dateEncounter }
+                    error={formik.touched.dateEncounter && Boolean(formik.errors.dateEncounter)}/>}
+                  />
+                </LocalizationProvider>
+              </Box>
+
 
               <Typography variant="h5" component="h5" color={'#3c9e44'} sx={{marginTop:4}}>
                 Descrição:
@@ -295,6 +323,7 @@ export default function CreatePost() {
                 multiline
                 rows={4}
               />
+              
               <Box
                 sx={{display:'flex', justifyContent:'flex-end', mt:5}}
               >
@@ -305,14 +334,6 @@ export default function CreatePost() {
             </form>
         </Card>
         <Button onClick={() => {setOpen(true)}} variant="text" sx={{mr:2,color:'#000000', fontWeight:'bold'}}>BOTAO</Button>
-        <Snackbar
-          anchorOrigin={{ vertical:'bottom', horizontal:'right' }}
-          open={open}
-          autoHideDuration={6000}
-          onClose={handleClose}
-        >
-          <Alert severity="success">"Você criou uma postagem!"</Alert>
-        </Snackbar>
       </Container>
     </Layout>
   );
