@@ -24,7 +24,7 @@ export default function ListPosts({ data }) {
     <Layout>
       <Container container>
         <StyledButton />
-        <HeaderPage title="Mostrando postagens recentes:" filter />
+        <HeaderPage title="Mostrando observações recentes:" filter />
         {
           posts.map((post) => (
             <StyledCard
