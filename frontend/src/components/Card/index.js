@@ -8,10 +8,22 @@ import Divider from '@mui/material/Divider';
 import { 
   BannerImage,
   StyledCardContent,
-  StyledCardDescription
+  StyledCardDescription,
+  Titulo,
+  DescricaoG, DescricaoB,
+  Subtitulo
 } from './style.js';
 
 export default function StyledCard({ post }) {
+
+  // const postDateFound = (date) => {
+  //   return 
+  // }
+  // console.log(typeof post.dateFound);
+  const date = new Date(post.dateFound);
+  // console.log(date.toString());
+  // console.log(date)
+
   return (
     <Link 
       to={'/posts/'+post.id}
@@ -23,50 +35,61 @@ export default function StyledCard({ post }) {
     >
       <Card sx={{ 
         width:'100%',
-        maxHeight: '190px'
+        height: '150px',
+        alignItems: 'center',
       }}>
+
+        {/* card com tudo dentro */}
         <CardActionArea sx={{
-          display: 'flex',
-          flexDirection: 'row',
+          display: 'grid',
+          gridTemplateColumns: '35% 65%',
           width: '100%',
-          height: '100%'
+          height: '100%',
         }}
         > 
+          {/* imagem */}
           <BannerImage 
             component='img'
             src={require('../../img/foto1.jpg')} 
             alt='img'
           />
+
+          {/* conteudo */}
           <StyledCardContent>
-            <Typography variant="h4" component="div" sx={{right: 0}}>
-              {post.id}
-            </Typography>
-            <Typography variant="h7" color="#3c9e44">
-              Avistado por {post.userName} em {post.dateFound}
-            </Typography>
+
+            {/* titulo do post */}
+            <Titulo>
+              TITULO {post.id} {post.title}
+            </Titulo>
+            <DescricaoG>
+              Observado por <b>{post.userName}</b> em <b>{date.getDate()}/{date.getMonth() + 1}/{date.getFullYear()}</b>.
+            </DescricaoG>
+
+            {/* descriçao do post */}
             <StyledCardDescription>
+
+              {/* especime */}
               <div>
-                <Typography variant="body1" color="#3c9e44">
-                  ESPÉCIME: {<br/>}
-                </Typography>
-                <Typography variant="body2" color="black">
-                  Espécie: {post.specie}{<br/>}
-                  Gênero: {post.genus}{<br/>}
-                  Família: {post.family}{<br/>}
-                </Typography>
+                <Subtitulo>ESPÉCIME:</Subtitulo>
+                <DescricaoB>
+                  Espécie: {post.specie}<br/>
+                  Gênero: {post.genus}<br/>
+                  Família: {post.family}<br/>
+                </DescricaoB>
               </div>
-              <Divider orientation="vertical" variant="middle" flexItem />
+
+              {/* local */}
               <div>
-                <Typography variant="body1" color="#3c9e44">
-                  LOCAL: {<br/>}
-                </Typography>            
-                <Typography variant="body2" color="black">
+                <Subtitulo>LOCAL:</Subtitulo>          
+                <DescricaoB>
                   Bioma: {post.weather}{<br/>}
                   Clima: {post.weather}{<br/>}
                   Cidade: {post.city}{<br/>}
-                </Typography>            
+                </DescricaoB>
               </div>
             </StyledCardDescription>
+
+
           </StyledCardContent>
         </CardActionArea>
       </Card>

@@ -49,7 +49,7 @@ export default function StyledCard({ title='SEM TITULO', filter=false }) {
           </div>
           <div id='filter'>
             {filter &&
-              <div class="filterButton" style={{display: 'flex', flexDirection: 'row', alignItems: 'center'}}>
+              <div className="filterButton" style={{display: 'flex', flexDirection: 'row', alignItems: 'center'}}>
                 <Typography
                   size="large"
                   color="white"

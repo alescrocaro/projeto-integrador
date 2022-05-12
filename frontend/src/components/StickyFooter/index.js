@@ -11,7 +11,7 @@ export default function StickyFooter() {
         display: 'grid',
         gridTemplateColumns: '30% 30% 30%',
         //gap: '5vw',
-        alignItems: 'top',
+        alignItems: 'start',
         justifyContent: 'space-between',
         width: '1hz',
         marginTop: '5vh',
@@ -24,7 +24,7 @@ export default function StickyFooter() {
       {/* Info do projeto */}
       <Projeto>
         <StyledImage2 
-          src={require('../../img/logo.png')} 
+          src={require('../../img/logofooter.png')} 
           alt='Logo Invasores'
         />
         <Pfooter>Projeto desenvolvido para as disciplinas "BCC35C - Projeto Integrador" e "BCC35E - Eng. de Software 1".</Pfooter>
