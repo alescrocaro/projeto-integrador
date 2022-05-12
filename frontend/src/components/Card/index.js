@@ -1,9 +1,7 @@
 import * as React from 'react';
 import { Link } from 'react-router-dom';
 import Card from '@mui/material/Card';
-import Typography from '@mui/material/Typography';
 import { CardActionArea } from '@mui/material';
-import Divider from '@mui/material/Divider';
 
 import { 
   BannerImage,
