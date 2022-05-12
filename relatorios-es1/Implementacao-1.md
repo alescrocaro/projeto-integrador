@@ -18,51 +18,37 @@ Tela de impressão: Para tanto, foi necessário criar três páginas: listagem c
 Issue: https://github.com/alescrocaro/forum-botanica/issues/24 \
 Pull request: https://github.com/alescrocaro/forum-botanica/pull/29 \
 Implementado por: Alexandre\
-Aprovado por: Caio (Alexandre - garantia de qualidade - que fez o PR)\
-Tela de impressão: Para tanto, tive que fazer alguns outros requisitos, como a criação de rotas e seu arquivo. Esse CRUD é o responsável pelas funções de criação, remoção e leitura de post(s) no banco de dados, e enviará essa informação para o frontend por meio das rotas citadas.
+Aprovado por: Caio\
+Tela de impressão: Para tanto, tive que fazer alguns outros requisitos, como a criação de rotas e seu arquivo. Esse CRUD é o responsável pelas funções de criação, remoção e leitura de post(s) no banco de dados, e enviará essa informação para o frontend por meio das rotas citadas.\
 
 **Subrequisito: Criar página de listagem de todos posts com um botão de criar post no topo da tela.** \
 Issue: https://github.com/alescrocaro/forum-botanica/issues/25 \
 Pull request: https://github.com/alescrocaro/forum-botanica/pull/36 \
 Implementado por: Alexandre, Carlos, Caio\
-Aprovado por: Caio (Alexandre - garantia de qualidade - que fez o PR)\
-Tela de impressão: Como foi a primeira tarefa do frontend demandou algumas outras subtarefas, como criação de rotas, consumir a api do backend e criação de alguns components. Essa página mostrará a listagem com todos os posts criados, um botão para criar um post, além do header e rodapé da página.
+Aprovado por: Caio\
+Tela de impressão: Como foi a primeira tarefa do frontend demandou algumas outras subtarefas, como criação de rotas, consumir a api do backend e criação de alguns components. Essa página mostrará a listagem com todos os posts criados, um botão para criar um post, além do header e rodapé da página.\
 
 **Subrequisito: Criar página para mostrar um post.** \
 Issue: https://github.com/alescrocaro/forum-botanica/issues/27 \
 Pull request: https://github.com/alescrocaro/forum-botanica/pull/42 \
 Implementado por: Alexandre\
-Aprovado por: Leonardo (Alexandre - garantia de qualidade - que fez o PR)\
-Tela de impressão: Essa página irá mostrar todas as informações disponíveis do post, ela é acessada a partir da página com a listagem de todos posts, clicando no card de um post específico.
-
-**Subrequisito: Sequelize config.** \
-Issue:https://github.com/alescrocaro/forum-botanica/issues/23 \
-Pull request: https://github.com/alescrocaro/forum-botanica/pull/28 \
-Implementado por: Leonardo\
-Aprovado por: Alexandre\
-Tela de impressão: Primeira configuração do sequelize no backend.\
-
-
-**Subrequisito: Criar página de criação de post** \
-Issue: https://github.com/alescrocaro/forum-botanica/issues/26 \
-Pull request: https://github.com/alescrocaro/forum-botanica/pull/44 \
-Implementado por: Leonardo\
-Aprovado por: Alexandre\
-Tela de impressão:  Arrumar alguns dados faltante no modelo de posts.\
-
+Aprovado por: Leonardo\
+Tela de impressão: Essa página irá mostrar todas as informações disponíveis do post, ela é acessada a partir da página com a listagem de todos posts, clicando no card de um post específico.\
 
 ## Testes
 &emsp; O framework que utilizaremos para a implementação dos testes no sistema será o Jest.
 ## Tecnologias adotadas
  - **React**: uma biblioteca de JavaScript para construir interfaces de usuário baseadas em componentes de UI;
  - **Node**: um ambiente JavaScript orientado a eventos assíncronos, é utilizado para a criação de aplicativos de rede escaláveis;
+ - **Jest**: framework de testes em JavaScript projetado para garantir a corretude dos códigos;
  - **PostgreSQL**: um sistema gerenciador de banco de dados relacional;
  - **Docker**: possibilita o empacotamento de uma aplicação ou ambiente inteiro dentro de um container.
 \
 \
-&emsp; Escolhemos React e Node pois JavaScript era a linguagem que a maioria dos integrantes do grupo tinha familiaridade em desenvolver, assim facilitando a implementação do sistema e não precisando se adaptar a tecnologias desconhecidas.
+&emsp; Escolhemos React e Node pois JavaScript era a linguagem que a maioria dos integrantes do grupo tinha familiaridade em desenvolver, assim facilitando a implementação do sistema e não precisando se adaptar a tecnologias desconhecidas, o Jest pois nosso grupo teve experiência utilizando ele em algumas aulas práticas na disciplina de Projeto Integrador, o PostgreSQL pois trabalharemos com geolocalizações e o Docker para configurar o ambiente de maneira mais acessível e descomplicada.
+
 ## Aprendizado/treinamento
-&emsp; Alguns membros já conheciam as tecnologias, ao precisar de aprender algo foi por meio de troca de conhecimento interno, como também vídeo-aulas no youtube.
+&emsp; Alguns membros já conheciam as tecnologias, ao precisar aprender algo, foi realizada através da troca de conhecimento interno, como também vídeoaulas no YouTube e cursos online.
 
 ## Implantação
 O sistema ainda não foi implantado.
