@@ -6,7 +6,7 @@ import ArrowDropDownCircleIcon from '@mui/icons-material/ArrowDropDownCircle';
 
 import "./style.css";
 
-export default function StyledCard({ title='SEM TITULO', filter=false }) {
+export default function StyledCard({ title='SEM TITULO', userName, dateFound, filter=false }) {
   return (
     <Card 
       sx={{ 
