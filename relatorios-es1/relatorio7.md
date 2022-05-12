@@ -16,3 +16,13 @@
 
 - Iniciamos a escrever o documento de Implementação 1
 - Leonardo terminou a criação da página de criação do post
+
+## Ações - Reunião 2
+**Data e local:** 12 de maio de 2022, Discord\
+**Início:** 16h30 \
+**Término:** 17h30 \
+**Presentes:** Alexandre, Carlos\
+**Faltantes:** Caio, Leonardo
+
+- Alexandre, Carlos e Leonardo trabalharam no documento da Implementação 1 e acrescentaram mudanças
+- Caio fez mudanças no estilo das páginas
