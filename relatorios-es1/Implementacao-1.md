@@ -29,6 +29,7 @@ Aprovado por: Caio (Alexandre - garantia de qualidade - que fez o PR)\
 Tela de impressão: Como foi a primeira tarefa do frontend demandou algumas outras subtarefas, como criação de rotas, consumir a api do backend e criação de alguns components. Essa página mostrará a listagem com todos os posts criados, um botão para criar um post, além do header e rodapé da página.
 ![Tela de listagem](./assets/prints/tela-listagem.png)
 
+
 **Subrequisito: Criar página para mostrar um post.** \
 Issue: https://github.com/alescrocaro/forum-botanica/issues/27 \
 Pull request: https://github.com/alescrocaro/forum-botanica/pull/42 \
@@ -42,15 +43,15 @@ Tela de impressão: Essa página irá mostrar todas as informações disponívei
 Issue:https://github.com/alescrocaro/forum-botanica/issues/23 \
 Pull request: https://github.com/alescrocaro/forum-botanica/pull/28 \
 Implementado por: Leonardo\
-Aprovado por: Alexandre\
+Aprovado por: Alexandre (encarregado pela garantia de qualidade)\
 Tela de impressão: Primeira configuração do sequelize no backend.
 
 
 **Subrequisito: Criar página de criação de post** \
 Issue: https://github.com/alescrocaro/forum-botanica/issues/26 \
-Pull request: https://github.com/alescrocaro/forum-botanica/pull/44\
+Pull request: https://github.com/alescrocaro/forum-botanica/pull/44 \ 
 Implementado por: Leonardo\
-Aprovado por: Alexandre\
+Aprovado por: Alexandre (encarregado pela garantia de qualidade)\
 Tela de impressão:  Arrumar alguns dados faltante no modelo de posts.
 ![Tela de criação de post](./assets/prints/tela-criacao-post.png)
 
@@ -63,9 +64,10 @@ Tela de impressão:  Arrumar alguns dados faltante no modelo de posts.
  - **Docker**: possibilita o empacotamento de uma aplicação ou ambiente inteiro dentro de um container.
 \
 \
-&emsp; Escolhemos React e Node pois JavaScript era a linguagem que a maioria dos integrantes do grupo tinha familiaridade em desenvolver, assim facilitando a implementação do sistema e não precisando se adaptar a tecnologias desconhecidas.
+&emsp; Escolhemos React e Node pois JavaScript era a linguagem que a maioria dos integrantes do grupo tinha familiaridade em desenvolver, assim facilitando a implementação do sistema e não precisando se adaptar a tecnologias desconhecidas, o Jest pois nosso grupo teve experiência utilizando ele em algumas aulas práticas na disciplina de Projeto Integrador, o PostgreSQL pois trabalharemos com geolocalizações e o Docker para configurar o ambiente de maneira mais acessível e descomplicada.
+
 ## Aprendizado/treinamento
-&emsp; Alguns membros já conheciam as tecnologias, ao precisar de aprender algo foi por meio de troca de conhecimento interno, como também vídeo-aulas no youtube.
+&emsp; Alguns membros já conheciam as tecnologias, ao precisar aprender algo, foi realizada através da troca de conhecimento interno, como também vídeoaulas no YouTube e cursos online.
 
 ## Implantação
 O sistema ainda não foi implantado.
