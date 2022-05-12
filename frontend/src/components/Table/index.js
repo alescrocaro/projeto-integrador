@@ -35,7 +35,7 @@ export default function MyTable({
   return (
     <>
       {scientificTable &&
-        <TableContainer component={Paper}>
+        <TableContainer component={Paper} sx={{margin: '5px', maxWidth: '90%'}}>
           <Table sx={{ minWidth: '100%' }} size="small" aria-label="a table">
             <TableBody>
               {rowsScientificTable.map((row) => (
@@ -54,7 +54,7 @@ export default function MyTable({
         </TableContainer>
       }
       {detailsTable &&
-        <TableContainer component={Paper}>
+        <TableContainer component={Paper} sx={{margin: '5px', maxWidth: '90%'}}>
           <Table sx={{ minWidth: '100%' }} size="small" aria-label="a table">
             <TableBody>
               {rowsDetailsTable.map((row) => (

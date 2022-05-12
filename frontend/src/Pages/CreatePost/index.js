@@ -140,7 +140,7 @@ export default function CreatePost() {
             sx={{marginTop:2}}
           >
               Título:
-            </Typography>
+          </Typography>
 
             <ValidationTextField 
               fullWidth

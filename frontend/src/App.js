@@ -1,9 +1,10 @@
 import React from 'react';
 import { Routes, Route, BrowserRouter } from 'react-router-dom';
 
-import Post from './Pages/Post';
+import Post from './Pages/ListPost';
 import CreatePost from './Pages/CreatePost';
-import SpecificPost from './Pages/Post/specificPost';
+import SpecificPost from './Pages/ShowPost';
+import NotFound from './Pages/NotFound';
 
 export default function App() {
   return (
@@ -13,6 +14,7 @@ export default function App() {
         <Route path="/create-post" element={<CreatePost />} />
         <Route exact path="/create-post" element={<CreatePost />} />
         <Route exact path="/posts/:id" element={<SpecificPost />} />
+        <Route exact path="/*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>
   );
