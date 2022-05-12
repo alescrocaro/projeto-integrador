@@ -7,6 +7,7 @@ import ArrowDropDownCircleIcon from '@mui/icons-material/ArrowDropDownCircle';
 import "./style.css";
 
 export default function StyledCard({ title='SEM TITULO', userName, dateFound, filter=false }) {
+  const date = new Date(dateFound);
   return (
     <Card 
       sx={{ 
@@ -47,8 +48,8 @@ export default function StyledCard({ title='SEM TITULO', userName, dateFound, fi
             </Typography>
 
             {!!userName && !!dateFound &&
-              <Typography sx={{ mb: 1.5 }} color="black">
-                  Avistado por {userName} em {dateFound}
+              <Typography sx={{ mb: 1.5 }} color="#14aa6b">
+                  Avistado por {userName} em {date.getDate()}/{date.getMonth() + 1}/{date.getFullYear()}
               </Typography>
             }
           </div>
