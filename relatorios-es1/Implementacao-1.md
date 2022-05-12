@@ -45,7 +45,7 @@ Tela de impressão: Primeira configuração do sequelize no backend.\
 
 **Subrequisito: Criar página de criação de post** \
 Issue: https://github.com/alescrocaro/forum-botanica/issues/26 \
-Pull request: https://github.com/alescrocaro/forum-botanica/pull/44\
+Pull request: https://github.com/alescrocaro/forum-botanica/pull/44 \
 Implementado por: Leonardo\
 Aprovado por: Alexandre\
 Tela de impressão:  Arrumar alguns dados faltante no modelo de posts.\
