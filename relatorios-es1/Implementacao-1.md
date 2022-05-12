@@ -19,21 +19,21 @@ Issue: https://github.com/alescrocaro/forum-botanica/issues/24 \
 Pull request: https://github.com/alescrocaro/forum-botanica/pull/29 \
 Implementado por: Alexandre\
 Aprovado por: Caio\
-Tela de impressão: FALTANDO\
+Tela de impressão: Para tanto, tive que fazer alguns outros requisitos, como a criação de rotas e seu arquivo. Esse CRUD é o responsável pelas funções de criação, remoção e leitura de post(s) no banco de dados, e enviará essa informação para o frontend por meio das rotas citadas.\
 
 **Subrequisito: Criar página de listagem de todos posts com um botão de criar post no topo da tela.** \
 Issue: https://github.com/alescrocaro/forum-botanica/issues/25 \
 Pull request: https://github.com/alescrocaro/forum-botanica/pull/36 \
-Implementado por: Alexandre, Carlos\
+Implementado por: Alexandre, Carlos, Caio\
 Aprovado por: Caio\
-Tela de impressão: FALTANDO\
+Tela de impressão: Como foi a primeira tarefa do frontend demandou algumas outras subtarefas, como criação de rotas, consumir a api do backend e criação de alguns components. Essa página mostrará a listagem com todos os posts criados, um botão para criar um post, além do header e rodapé da página.\
 
 **Subrequisito: Criar página para mostrar um post.** \
 Issue: https://github.com/alescrocaro/forum-botanica/issues/27 \
 Pull request: https://github.com/alescrocaro/forum-botanica/pull/42 \
 Implementado por: Alexandre\
 Aprovado por: Leonardo\
-Tela de impressão: FALTANDO\
+Tela de impressão: Essa página irá mostrar todas as informações disponíveis do post, ela é acessada a partir da página com a listagem de todos posts, clicando no card de um post específico.\
 
 
 ## Testes
