@@ -37,8 +37,22 @@ Aprovado por: Leonardo (Alexandre - garantia de qualidade - que fez o PR)\
 Tela de impressão: Essa página irá mostrar todas as informações disponíveis do post, ela é acessada a partir da página com a listagem de todos posts, clicando no card de um post específico.
 ![Tela de mostrar post](./assets/prints/tela-mostra-um-post.png)
 
-**Subrequisito: Criar página para criar post**\
-Tela de impressão: ![Tela de criação de post](./assets/prints/tela-criacao-post.png)
+
+**Subrequisito: Sequelize config.** \
+Issue:https://github.com/alescrocaro/forum-botanica/issues/23 \
+Pull request: https://github.com/alescrocaro/forum-botanica/pull/28 \
+Implementado por: Leonardo\
+Aprovado por: Alexandre\
+Tela de impressão: Primeira configuração do sequelize no backend.
+
+
+**Subrequisito: Criar página de criação de post** \
+Issue: https://github.com/alescrocaro/forum-botanica/issues/26 \
+Pull request: https://github.com/alescrocaro/forum-botanica/pull/44\
+Implementado por: Leonardo\
+Aprovado por: Alexandre\
+Tela de impressão:  Arrumar alguns dados faltante no modelo de posts.
+![Tela de criação de post](./assets/prints/tela-criacao-post.png)
 
 ## Testes
 &emsp; O framework que utilizaremos para a implementação dos testes no sistema será o Jest.
