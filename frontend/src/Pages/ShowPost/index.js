@@ -10,8 +10,11 @@ import Layout from '../../components/Layout';
 import HeaderPage from '../../components/HeaderPage';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 
-import { Img } from './style';
+import { Descricao, Img, Subsubtitulo, Subtitulo } from './style';
 import NotFound from '../NotFound';
+import { Divider} from '@material-ui/core';
+
+import Paper from '@mui/material/Paper';
 
 export default function SpecificPost() {  
   const [post, setPost] = useState({});
@@ -41,99 +44,95 @@ export default function SpecificPost() {
   return (
     <Layout>
       {!!post &&
-        <Container container>
+        <Container container sx={{
+          display: 'grid',
+          alignItems: 'start',
+          gap: '2vh',
+          margin: '2vh 0',
+        }}>
+          
+          {/* titulo do post */}
           <HeaderPage
             title={post.title} 
             userName={post.userName} 
             dateFound={post.dateFound} 
           />
+          
+          {/* card do post */}
           <Card 
             sx={{ 
-              p:2,
-              minWidth: '100%', 
-              marginTop:4, 
+              width: '100%',
+              height: 'fit-content',
               backgroundColor:'#f0f0f0', 
-              border: 1, 
-              borderColor: 'grey.500', 
-              mb:10 
+              // border: 1,
+              // borderColor: 'grey.500',s
+              display: 'grid',
+              marginBottom: '5px',
             }}
-          >
-            {/* Box com fotos e tabelas */}
+            >
+
+            {/* Box das infos com fotos e tabelas */}
             <Box
               sx={{
-                display: 'flex',
-                flexDirection: 'row',
-                justifyContent: 'space-around',
-                alignItems: 'flex-start'
+                display: 'grid',
+                gridTemplateColumns: '50% 50%',
+                alignItems: 'start',
+                marginBottom: '.15rem'
               }}
             >
+
               {/* Box com foto do especime e tabela de classificacao*/}
               <Box
                 sx={{
-                  display: 'flex',
-                  flexDirection: 'column',
-                  justifyContent: 'space-around',
-                  alignItems: 'center'
+                  display: 'grid',
+                  gap: '.5rem',
+                  padding: '1rem',
                 }}
               >
-                <Typography variant='h7' color='black'>
-                  ESPÉCIME:
-                </Typography>
-
-                <Img 
-                  src={post.imgUrl} 
-                  alt='img'
-                />
-
-                <Typography variant='h7' color='black'>
-                  CLASSIFICAÇÃO CIENTÍFICA:
-                </Typography>
-
+                <Subtitulo>ESPÉCIME:</Subtitulo>
+                <Img src={post.imgUrl} alt='img'/>
+                <Subsubtitulo>CLASSIFICAÇÃO CIENTÍFICA:</Subsubtitulo>
                 <StyledTable data={post} scientificTable />
               </Box>
-
+              
+             
               {/* Box com localizacao e tabela de detalhes*/}
               <Box
               sx={{
-                display: 'flex',
-                flexDirection: 'column',
-                justifyContent: 'space-around',
-                alignItems: 'center',
+                display: 'grid',
+                gap: '.5rem',
+                padding: '1rem',
               }}
               >
-                <Typography variant='h7' color='black'>
-                  LOCAL E DATA:
-                </Typography>
-
-                <Img 
-                  src={require('../../img/foto1.jpg')} 
-                  alt='img'
-                />
-                
-                <Typography variant='h7' color='black'>
-                  DETALHES:
-                </Typography>
-
+                <Subtitulo>LOCAL E DATA:</Subtitulo>
+                <Img src={require('../../img/foto1.jpg')} alt='img'/>
+                <Subsubtitulo>DETALHES:</Subsubtitulo>
                 <StyledTable data={post} detailsTable />
               </Box>
-
-
             </Box>
-            <Box 
-              className='description'
-              sx={{
-                display: 'flex',
-                flexDirection: 'column',
-                margin: '10px 0',
-              }}
-            >
-              <Typography variant='h7' color='black'>
-                DESCRIÇÃO: 
-              </Typography>
+              
+              {/* box da descricao */}
+              <Divider variant='middle'/>
+              <Box 
+                className='description'
+                sx={{
+                  display: 'grid',
+                  gap: '.5rem',
+                  padding: '1rem',
+                }}
+              >
+                <Subtitulo>DESCRIÇÃO:</Subtitulo>
+                <Paper elevation={0}>
+                  <Descricao>{post.description}</Descricao>
+                </Paper>
+              </Box> 
 
-              <Typography variant='h8' color='black'>
-                {post.description}
-              </Typography>
+          </Card>
+          
+              
+
+
+            {/*}
             </Box>
 
             <Box 
@@ -238,7 +237,7 @@ export default function SpecificPost() {
                 </Button>
               </Box>
             </Box>
-          </Card>
+          </Card> */}
         </Container>
       }
     </Layout>
