@@ -15,15 +15,7 @@ import {
 } from './style.js';
 
 export default function StyledCard({ post }) {
-
-  // const postDateFound = (date) => {
-  //   return 
-  // }
-  // console.log(typeof post.dateFound);
   const date = new Date(post.dateFound);
-  // console.log(date.toString());
-  // console.log(date)
-
   return (
     <Link 
       to={'/posts/'+post.id}
@@ -83,6 +75,7 @@ export default function StyledCard({ post }) {
                 <Subtitulo>LOCAL:</Subtitulo>          
                 <DescricaoB>
                   Bioma: {post.weather}{<br/>}
+                  Bioma: {post.biome}{<br/>}
                   Clima: {post.weather}{<br/>}
                   Cidade: {post.city}{<br/>}
                 </DescricaoB>

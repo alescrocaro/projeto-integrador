@@ -46,6 +46,11 @@ export default function StyledCard({ title='SEM TITULO', filter=false }) {
               {title}
             </Typography>
 
+            {!!userName && !!dateFound &&
+              <Typography sx={{ mb: 1.5 }} color="black">
+                  Avistado por {userName} em {dateFound}
+              </Typography>
+            }
           </div>
           <div id='filter'>
             {filter &&
