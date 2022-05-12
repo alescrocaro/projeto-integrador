@@ -9,11 +9,12 @@ export default function HeaderMenu () {
     <AppBar 
       position="static"  
       sx={{
+        backgroundColor: '#3D3D3D',
+        alignItems: 'center',
         display: 'flex', 
         flexDirection: 'row', 
         justifyContent:'space-between',
-        alignItems: 'center',
-        backgroundColor: '#3c9e44',
+        padding: '2vh 12.5vw',
     }}>
       <Link to='/'>
         <StyledImage
@@ -21,8 +22,7 @@ export default function HeaderMenu () {
           alt='LOGO'
         />
       </Link>
-
-      <Avatar sx={{ marginRight: '50px', width: '50px', height: '50px' }}/>
+      <Avatar sx={{ width: '50px', height: '50px', margin: '0' }}/>
   </AppBar>
   );
 };

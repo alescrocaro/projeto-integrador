@@ -2,19 +2,24 @@ import * as React from 'react';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
-import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+import ArrowDropDownCircleIcon from '@mui/icons-material/ArrowDropDownCircle';
 
-export default function StyledCard({ title='SEM TITULO', userName, dateFound, filter=false }) {
+import "./style.css";
+
+export default function StyledCard({ title='SEM TITULO', filter=false }) {
   return (
     <Card 
       sx={{ 
-        margin: '10px 0',
-        backgroundColor: '#3c9e44',
-        minWidth: '100%',
-        maxHeight: '100px',
+        margin: '2vh 0',
+        backgroundColor: '#3D3D3D',
+        width: '100%',
       }}
     >
-      <CardContent>
+      <CardContent
+        sx={{
+          paddingBottom: '16px !important',
+        }}
+      >
         <div 
           id='card-content'
           style={{
@@ -22,6 +27,7 @@ export default function StyledCard({ title='SEM TITULO', userName, dateFound, fi
             flexDirection: 'row',
             justifyContent: 'space-between',
             alignItems: 'center',
+            paddingBottom: '0px',
           }}
         >
           <div 
@@ -32,7 +38,11 @@ export default function StyledCard({ title='SEM TITULO', userName, dateFound, fi
               color: 'white',
             }}  
           >
-            <Typography variant='h5' color='black'>
+            <Typography vartiant='h5' style={{
+              fontFamily: 'Montserrat, Sans Serif',
+              fontWeight: '600',
+              letterSpacing: '-0.05em',
+            }}>
               {title}
             </Typography>
 
@@ -44,15 +54,19 @@ export default function StyledCard({ title='SEM TITULO', userName, dateFound, fi
           </div>
           <div id='filter'>
             {filter &&
-              <div style={{display: 'flex', flexDirection: 'row'}}>
+              <div className="filterButton" style={{display: 'flex', flexDirection: 'row', alignItems: 'center'}}>
                 <Typography
                   size="large"
                   color="white"
+                  style={{
+                    fontFamily: 'Montserrat, Sans Serif',
+                    fontWeight: '600',
+                  }}
                 >
                   FILTROS
                 </Typography>
-                <KeyboardArrowDownIcon sx={{color:'white'}} />
-                </div>
+                <ArrowDropDownCircleIcon sx={{color:'white', fontSize: '1.5rem', margin: '-.1em 0 0 5px'}} />
+              </div>
             } 
           </div>
         </div>

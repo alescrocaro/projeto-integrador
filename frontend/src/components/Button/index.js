@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Typography from '@mui/material/Typography';
-import AddIcon from '@mui/icons-material/Add';
+import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import { styled } from '@mui/material/styles';
 import Button from '@mui/material/Button';
 
@@ -31,9 +31,16 @@ export default function StyledButton() {
           }}
         >
           <MyButton variant="contained">
-            <AddIcon />
-            <Typography variant="h5" component="div" sx={{marginLeft:'10px'}}>
-              CRIAR NOVA POSTAGEM
+            <AddCircleOutlineIcon sx={{fontSize: '2.5rem', color: '#a9a9a9'}}/>
+            <Typography variant="h5" component="div"
+              sx={{    
+              fontFamily: 'Montserrat, Sans Serif',
+              fontWeight: '600',
+              letterSpacing: '-0.05em',
+              marginLeft:'10px',
+              color: '#a9a9a9'
+            }}>
+              ADICIONAR NOVA OBSERVAÇÃO
             </Typography>
           </MyButton>
         </StyledLink>

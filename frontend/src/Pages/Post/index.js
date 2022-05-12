@@ -23,7 +23,7 @@ export default function ListPosts() {
     <Layout>
       <Container container>
         <StyledButton />
-        <HeaderPage title="Mostrando postagens recentes:" filter />
+        <HeaderPage title="Mostrando observações recentes:" filter />
         {
           posts.map((post) => (
             <StyledCard
