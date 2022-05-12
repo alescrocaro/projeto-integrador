@@ -43,13 +43,14 @@ Tela de impressão: Essa página irá mostrar todas as informações disponívei
 Issue:https://github.com/alescrocaro/forum-botanica/issues/23 \
 Pull request: https://github.com/alescrocaro/forum-botanica/pull/28 \
 Implementado por: Leonardo\
-Aprovado por: Alexandre (encarregado pela garantia de qualidade)\
+Aprovado por: Alexandre (encarregado pela garantia de qualidade) \
 Tela de impressão: Primeira configuração do sequelize no backend.
 
 
 **Subrequisito: Criar página de criação de post** \
 Issue: https://github.com/alescrocaro/forum-botanica/issues/26 \
-Pull request: https://github.com/alescrocaro/forum-botanica/pull/44 (esse foi o último PR relacionado à essa tarefa)\ 
+Pull request: https://github.com/alescrocaro/forum-botanica/pull/44 (esse foi o último PR relacionado à essa tarefa)
+\
 Implementado por: Leonardo\
 Aprovado por: Alexandre (encarregado pela garantia de qualidade)\
 Tela de impressão:  Arrumar alguns dados faltante no modelo de posts.
