@@ -57,8 +57,8 @@ Tela de impressão:  Arrumar alguns dados faltante no modelo de posts.
 Issue: https://github.com/alescrocaro/forum-botanica/issues/22 \
 Pull request: https://github.com/alescrocaro/forum-botanica/pull/38\
 Implementado por: Caio\
-Aprovado por: Alexadre
-Tela de impressão: Arquivo para servir de guia para o layout das páginas. \
+Aprovado por: Alexadre \
+Tela de impressão: Arquivo para servir de guia para o layout das páginas.
 
 
 
