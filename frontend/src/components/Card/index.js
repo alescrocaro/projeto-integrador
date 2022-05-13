@@ -49,7 +49,7 @@ export default function StyledCard({ post }) {
 
             {/* titulo do post */}
             <Titulo>
-              TITULO {post.id} {post.title}
+              {post.title}
             </Titulo>
             <DescricaoG>
               Observado por <b>{post.userName}</b> em <b>{date.getDate()}/{date.getMonth() + 1}/{date.getFullYear()}</b>.
@@ -72,7 +72,6 @@ export default function StyledCard({ post }) {
               <div>
                 <Subtitulo>LOCAL:</Subtitulo>          
                 <DescricaoB>
-                  Bioma: {post.weather}{<br/>}
                   Bioma: {post.biome}{<br/>}
                   Clima: {post.weather}{<br/>}
                   Cidade: {post.city}{<br/>}

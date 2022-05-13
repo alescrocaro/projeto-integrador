@@ -16,62 +16,55 @@ export default function MyTable({
     scientificTable=false, 
     detailsTable=false 
   }) {
-  const rowsScientificTable = [
-    createData('Reino', data.kingdom),
-    createData('Filo', data.phylum),
-    createData('Classe', data.className),
-    createData('Ordem', data.order),
-    createData('Família', data.family),
-    createData('Gênero', data.genus),
-    createData('Espécie', data.specie),
-  ];
-  const rowsDetailsTable = [
-    createData('Clima', data.weather),
-    createData('Bioma', data.weather),
-    createData('Coordenadas', '-10.24, -48.29'),
-    createData('Cidade', data.city),
-    createData('Data', data.dateFound),
-  ];
+  
+  let table;
+  const date = new Date(data.dateFound);
+  
+  if (scientificTable){
+  // const rowsScientificTable = [
+    table = [
+      createData('Reino:', data.kingdom),
+      createData('Filo:', data.phylum),
+      createData('Classe:', data.className),
+      createData('Ordem:', data.order),
+      createData('Família:', data.family),
+      createData('Gênero:', data.genus),
+      createData('Espécie:', data.specie),
+    ];
+  }else{
+    // const rowsDetailsTable = [   
+    table = [
+      createData('Clima:', data.weather),
+      createData('Bioma:', data.biome),
+      createData('Coord:', '-10.24, -48.29'),
+      createData('Cidade:', data.city),
+      createData('Data:', date.getDate() + '/' + (date.getMonth() + 1) + '/' + date.getFullYear()),
+    ];
+  }
+
   return (
-    <>
-      {scientificTable &&
-        <TableContainer component={Paper} sx={{margin: '5px', maxWidth: '90%'}}>
+        <TableContainer component={Paper} sx={{width: '100%'}}>
           <Table sx={{ minWidth: '100%' }} size="small" aria-label="a table">
             <TableBody>
-              {rowsScientificTable.map((row) => (
+              {table.map((row) => (
                 <TableRow
                   key={row.name}
-                  sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                  sx={{ '&:last-child td, &:last-child th': { borderBottom: 0 } ,
+                    // '&:nth-child(odd)': {backgroundColor: '#f5f5f5'}
+                  }}
                 >
-                  <TableCell align="center" component="th" scope="row">
+                  <TableCell component="th" scope="row" sx={{
+                    width: '20%',
+                    overflow: 'hidden',
+                    borderRight: '1px solid #f0f0f0',
+                  }}>
                     {row.name}
                   </TableCell>
-                  <TableCell align="center">{row.data}</TableCell>
+                  <TableCell>{row.data}</TableCell>
                 </TableRow>
               ))}
             </TableBody>
           </Table>
         </TableContainer>
-      }
-      {detailsTable &&
-        <TableContainer component={Paper} sx={{margin: '5px', maxWidth: '90%'}}>
-          <Table sx={{ minWidth: '100%' }} size="small" aria-label="a table">
-            <TableBody>
-              {rowsDetailsTable.map((row) => (
-                <TableRow
-                  key={row.name}
-                  sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                >
-                  <TableCell align="center" component="th" scope="row">
-                    {row.name}
-                  </TableCell>
-                  <TableCell align="center">{row.data}</TableCell>
-                </TableRow>
-              ))}
-            </TableBody>
-          </Table>
-        </TableContainer>
-      }
-    </>
   );
 }

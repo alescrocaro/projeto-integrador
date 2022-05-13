@@ -4,7 +4,9 @@ import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import ArrowDropDownCircleIcon from '@mui/icons-material/ArrowDropDownCircle';
 
-import "./style.css";
+import {
+  DescricaoG,
+} from "./style";
 
 export default function StyledCard({ title='SEM TITULO', userName, dateFound, filter=false }) {
   const date = new Date(dateFound);
@@ -14,6 +16,7 @@ export default function StyledCard({ title='SEM TITULO', userName, dateFound, fi
         margin: '2vh 0',
         backgroundColor: '#3D3D3D',
         width: '100%',
+        height: 'fit-content', 
       }}
     >
       <CardContent
@@ -39,18 +42,33 @@ export default function StyledCard({ title='SEM TITULO', userName, dateFound, fi
               color: 'white',
             }}  
           >
-            <Typography vartiant='h5' style={{
-              fontFamily: 'Montserrat, Sans Serif',
-              fontWeight: '600',
-              letterSpacing: '-0.05em',
-            }}>
-              {title}
-            </Typography>
+            
+            {!userName && !dateFound &&
+              <Typography vartiant='h5' style={{
+                fontFamily: 'Montserrat, Sans Serif',
+                fontWeight: '600',
+                letterSpacing: '-0.05em',
+              }}>
+                {title}
+              </Typography>
+            }
 
             {!!userName && !!dateFound &&
-              <Typography sx={{ mb: 1.5 }} color="#14aa6b">
-                  Avistado por {userName} em {date.getDate()}/{date.getMonth() + 1}/{date.getFullYear()}
+              <div>
+              <Typography vartiant='h5' style={{
+                fontFamily: 'Montserrat, Sans Serif',
+                fontWeight: '600',
+                letterSpacing: '-0.05em',
+                fontSize: '2em',
+                lineHeight: '1',
+              }}>
+                {title}
               </Typography>
+
+              <DescricaoG>
+                Observado por <b>{userName}</b> em <b>{date.getDate()}/{date.getMonth() + 1}/{date.getFullYear()}</b>.
+              </DescricaoG>
+              </div>
             }
           </div>
           <div id='filter'>
