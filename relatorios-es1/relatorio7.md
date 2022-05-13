@@ -26,3 +26,19 @@
 
 - Alexandre, Carlos e Leonardo trabalharam no documento da Implementação 1 e acrescentaram mudanças
 - Caio fez mudanças no estilo das páginas
+
+## Ações - Reunião 3
+**Data e local:** 13 de maio de 2022, sala E101\
+**Início:** 15h50 \
+**Término:** 17h30 \
+**Presentes:** Alexandre, Caio, Carlos, Leonardo\
+**Faltantes:**
+
+- Apresentamos os resultados da primeira sprint para a disciplina de Projeto Integrador, com as páginas de:
+  - Criação de post;
+  - Listagem de posts;
+  - Página do post.
+ - Lançamento da primeira release no GitHub
+ - Entrega do documento da Implementação 1
+ - Definição das histórias de usuário para a nova sprint
+ - Criação das tarefas das histórias de usuário para a nova sprint
