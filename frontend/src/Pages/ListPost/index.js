@@ -21,7 +21,9 @@ export default function ListPosts() {
 
   return (
     <Layout>
-      <Container container>
+      <Container container  sx={{
+          minHeight: '0 !important',
+        }}>
         <StyledButton />
         <HeaderPage title="Mostrando observações recentes:" filter />
         {
