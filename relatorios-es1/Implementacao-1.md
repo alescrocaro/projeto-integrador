@@ -12,7 +12,7 @@ Issue: https://github.com/alescrocaro/forum-botanica/issues/20 \
 Pull request: https://github.com/alescrocaro/forum-botanica/pull/44 \
 Implementado por: Alexandre, Caio, Carlos e Leonardo\
 Aprovado por: Alexandre (encarregado pela garantia de qualidade)\
-Tela de impressão: Para tanto, foi necessário criar três páginas: listagem com todos posts, criação de um post e a de mostrar o post específico. (inserir o print nos subrequisitos fará mais sentido).
+Tela de impressão: Para tanto, foi necessário criar três páginas: listagem com todos posts, criação de um post e a de mostrar o post específico. (inserir os prints no look & feel fará mais sentido).
 
 **Subrequisito: Fazer o CRUD da tabela de postagens.** \
 Issue: https://github.com/alescrocaro/forum-botanica/issues/24 \
@@ -125,4 +125,4 @@ A licença escolhida foi a [MIT](https://choosealicense.com/licenses/mit/), mais
 Alguns dos membros utilizaram conhecimentos prévios das linguagens e frameworks, outros tiveram que aprender (por meio de troca de conhecimento entre os membros ou vídeos online), além de ser um contato direto com metodologia ágeis e utilização mais complexa do github, ótima forma de conseguir experiência com essas tecnologias.
 
 ## Demo
-resolver na prox aula
+https://youtu.be/WvbdLIZnVnI
