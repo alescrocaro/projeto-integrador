@@ -108,5 +108,28 @@ module.exports = {
       console.log(error);
       res.status(500).send();
     }
+  },
+
+  async updatePostImage (req, res) {
+    const { id } = req.params;
+    
+    try {
+      const posts = await Post.findAll({where:{id}})
+
+      if (posts.length === 0) return res.status(404).send();
+      if (req.files['specieImage'] == null && req.files['localImage'] == null ) return res.status(404).send()
+    
+      if(!posts[0].imgUrl) {
+        res.json({ok:"ok"})
+      } else {
+
+      }
+
+    } catch (error) {
+      console.log(error);
+      res.status(500).send();
+    }
+
   }
+
 }
