@@ -24,4 +24,4 @@ const multerConfig = {
 
 }
 
-module.exports = multer(multerConfig).fields([{name:'localImage'}, {name: 'specieImage'}])
+module.exports = multer(multerConfig).single('specieImage')
