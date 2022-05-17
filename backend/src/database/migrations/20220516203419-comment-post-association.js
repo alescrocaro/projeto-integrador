@@ -3,7 +3,7 @@
 module.exports = {
   async up (queryInterface, Sequelize) {
     await queryInterface.addConstraint('Comments', {
-      fields: ['postId'],
+      fields: ['PostId'],
       type: 'foreign key',
       name: 'comment_post_association',
       references: {

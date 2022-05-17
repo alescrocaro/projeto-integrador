@@ -1,13 +1,26 @@
-const { Comment } = require('../models');
+const { Comment, Post } = require('../models');
 
 module.exports = {
   async index(req, res){
     try {
-      const comments = await Comment.findAll();
-      console.log(comments);
+      const { id } = req.params;
+      const post = await Post.findByPk(id);
+
+      var comments = null;
+      try {
+          comments = await Comment.findAll({
+          where: {
+            PostId: post.dataValues.id,
+          }
+        });
+      } catch (error) {
+        console.log(error);
+        res.status(500).send();
+      }
   
       return res.json(comments);
     } catch (error) {
+      console.log(error)
       res.status(500).send();
     }
   },
@@ -29,19 +42,20 @@ module.exports = {
         userName,
         type,
         description,
-        postId,
+        PostId,
       } = req.body;
     
-      const post = await Comment.create({
+      const comment = await Comment.create({
         userName,
         type,
         description,
-        postId,
+        PostId,
       }); 
 
-      console.log("PRINT ID ---------------------------- "+post.dataValues.id);
-      return res.json(post.dataValues.id); 
+      console.log("PRINT COMMENT ID ---------------------------- ", comment.dataValues.PostId);
+      return res.json(comment.dataValues.id); 
     } catch (error) {
+      console.log('MENSAGEM:', error.message);
       console.log(error);
       res.status(500).send();      
     }
@@ -59,22 +73,8 @@ module.exports = {
   async delete(req, res){
     try {
       const { id } = req.params;
-      // const user_id = req.headers.authorization;
-      /*
-      const post = await connection('posts')
-        .where('id', id)
-        .select('user_id')
-        .first() // retorna apenas 1 resultado
-  
-      if(post.user_id !== user_id){
-        return response.status(401).json({ error: 'Unauthorized user.'}); 
-        // 401 - nao autorizado
-      }
-  
-      await connection('posts').where('id', id).delete();
-      */
-
-      await Post.destroy({
+      
+      await Comment.destroy({
         where: {
           id: id
         }
@@ -82,7 +82,7 @@ module.exports = {
 
       return res.status(204).send(); // 204 - res sucesso sem conteudo
     } catch (error) {
-      console.log(error);
+      console.log('MENSAGEM: ',error.message);
       res.status(500).send();
     }
   }

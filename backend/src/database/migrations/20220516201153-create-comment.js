@@ -18,7 +18,7 @@ module.exports = {
       description: {
         type: Sequelize.STRING
       },
-      postId: {
+      PostId: {
         type: Sequelize.INTEGER
       },
       createdAt: {
