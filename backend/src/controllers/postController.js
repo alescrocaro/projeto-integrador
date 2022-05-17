@@ -27,7 +27,6 @@ module.exports = {
       const { 
         title,
         biome,
-        imgUrl,
         userName, 
         specie,
         genus,
@@ -46,7 +45,6 @@ module.exports = {
       const post = await Post.create({
         title,
         biome,
-        imgUrl,
         userName, 
         specie,
         genus,
@@ -108,5 +106,27 @@ module.exports = {
       console.log(error);
       res.status(500).send();
     }
+  },
+
+  async updatePostImage (req, res) {
+    const { id } = req.params;
+    
+    try {
+      const posts = await Post.findAll({where:{id}})
+      console.log(req.file)
+      if (posts.length === 0) return res.status(404).send();
+      if (req.file == null) {
+        return res.status(404).send()
+      }
+      
+      await Post.update({imgUrl:req.file.filename }, {where: {id}})
+      return res.status(200).send()
+
+    } catch (error) {
+      console.log(error);
+      res.status(500).send();
+    }
+
   }
+
 }
