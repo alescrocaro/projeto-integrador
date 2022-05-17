@@ -4,6 +4,7 @@ module.exports = {
   async index(req, res){
     try {
       const { id } = req.params;
+      console.log('ID PARAM INDEX:::::::::',id)
       const post = await Post.findByPk(id);
 
       var comments = null;
@@ -42,8 +43,9 @@ module.exports = {
         userName,
         type,
         description,
-        PostId,
       } = req.body;
+
+      const { PostId } = req.params;
     
       const comment = await Comment.create({
         userName,
@@ -51,6 +53,7 @@ module.exports = {
         description,
         PostId,
       }); 
+      console.log('ID PARAM CREATE:::::::::',PostId)
 
       console.log("PRINT COMMENT ID ---------------------------- ", comment.dataValues.PostId);
       return res.json(comment.dataValues.id); 

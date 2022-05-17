@@ -1,6 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import api from '../../services/api';
+import { useFormik } from 'formik';
+import * as yup from 'yup';
+
+
 import { styled } from '@mui/material/styles';
 
 import { Box, Card, Typography, Button, TextField } from '@mui/material/';
@@ -11,7 +15,6 @@ import HeaderPage from '../../components/HeaderPage';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 
 import { Descricao, Img, Subsubtitulo, Subtitulo } from './style';
-import NotFound from '../NotFound';
 import { Divider} from '@material-ui/core';
 
 import Paper from '@mui/material/Paper';
@@ -37,7 +40,7 @@ export default function SpecificPost() {
 
   }, [id]);
 
-
+  
   const RedTextField = styled(TextField)({
     '& label.Mui-focused': {
       color: 'red !important',
@@ -49,6 +52,56 @@ export default function SpecificPost() {
     },
   });
 
+  const scheme = yup.object({
+    description: yup
+      .string('Comentário')
+      .required('Campo obrigatório')
+      .trim(),
+    type: yup
+      .string('Tipo')
+      .required('Campo obrigatório'),
+    userName: yup
+      .string('Nome')
+      .required('Campo obrigatório'),
+  });
+
+  const formik = useFormik({
+    validationSchema: scheme,
+    initialValues: {
+      userName: 'userName',
+      description: '',
+      type: '',
+      PostId: id,
+    },
+    
+    onSubmit: async (values) => {
+      const {
+        userName,
+        description,
+        type,
+      } = values;
+
+      
+      const postId = id;
+      console.log(userName, description, type, postId);
+      try {
+        await api.post(`/posts/${postId}/comments`, { 
+          userName, 
+          description, 
+          type,
+        });
+
+        setComment(comment => [...comments, { 
+          userName, 
+          description, 
+          type,
+        }]);
+      } catch (error) {
+        console.log(error);
+      }
+    },
+  });
+  
   return (
     <Layout>
       {!!post &&
@@ -156,135 +209,106 @@ export default function SpecificPost() {
                 display: 'flex',
                 flexDirection: 'column',
                 justifyContent: 'center',
-                marginBottom: '.15rem'
+                marginBottom: '.15rem',
+                padding: '1rem',
               }}
             >
-          
+              <Subtitulo>COMUNIDADE:</Subtitulo>
               {/* Box de um comentário  */}
-              <Box
-                sx={{
-                  display: 'grid',
-                  gridTemplateColumns: '5% 10% 85%',
-                  alignItems: 'center',
-                  margin: '.3rem',
-                  rowGap: '.3rem'
-                }}
-              >
                 {
                   comments.map((comment) => (
-                    <>
-                      <AccountCircleIcon sx={{margin: '10px',}} fontSize="large"/>
-                      <Typography variant='h7' color='black'>
-                        {comment.userName}
-                      </Typography> 
-                      <TextField
-                        fullWidth
-                        multiline
-                        disabled
-                        defaultValue={comment.description}
-                      />
-                    </>
+                    <Box
+                      key={comment.id}
+                      sx={{
+                        display: 'grid',
+                        gridTemplateColumns: '15% 85%',
+                        alignItems: 'center',
+                        margin: '.3rem',
+                        rowGap: '.3rem'
+                      }}
+                    >
+                      <Box
+                        sx={{
+                          display: 'flex',
+                          flexDirection: 'column',
+                          justifyContent: 'center',
+                          alignItems: 'center',
+                        }}
+                      >
+                        <AccountCircleIcon sx={{margin: '10px',}} fontSize="large"/>
+                        <Typography variant='h7' color='black'>
+                          {comment.userName}
+                        </Typography> 
+                      </Box>
+                      <Paper elevation={0}>
+                        <Descricao>{comment.description}</Descricao>
+                      </Paper>
+                    </Box>
                   ))
                 }
               </Box>
-            </Box>
-
-          </Card>
-
-
-            {/*}
-            </Box>
-
-            <Box 
-              style={{
-                display: 'flex',
-                flexDirection: 'column',
-                marginBottom: '10px',
-              }}
-            >
-              <Typography variant='h7' color='black'>
-                COMUNIDADE:
-              </Typography>
-
-              <Box
-              sx={{
-                  display: 'flex',
-                  flexDirection: 'row',
-                  alignItems: 'center',
-                  marginTop: '10px',
-                }}
-              >
-                <AccountCircleIcon sx={{margin: '10px',}}fontSize="large"/>
-                <Typography variant='h7' color='black'>
-                  Vitor
-                </Typography> 
-                <RedTextField
-                  label="CONTESTAÇÃO"
-                  fullWidth
-                  multiline
-                  sx={{
-                    margin: '15px',
-                  }}
-                  defaultValue={"Loureiro não é invasor desse lugar!"}
-                  disabled
-                  />
-              </Box>
-
-              <Box
-                sx={{
-                  display: 'flex',
-                  flexDirection: 'row',
-                  alignItems: 'center',
-                }}
-              >
-              </Box>
-            </Box>
+            
+            {/* Box de postagem de comentário */}
             <Box
               sx={{
                 display: 'flex',
                 flexDirection: 'column',
+                justifyContent: 'center',
+                padding: '1rem',
               }}
+
             >
-              <Typography variant='h7' color='black'>
-                ESCREVER COMENTÁRIO:
-              </Typography>
-              <TextField 
-                label="Escreva seu comentário" 
-                variant="outlined" 
-                multiline
-                sx={{ 
-                  maxWidth: '100%',
-                  margin: '10px',
-                }}
-              />
-              <Box
-                style={{
-                  display: 'flex',
-                  flexDirection: 'row',
-                  justifyContent: 'flex-end'
-                }}
-              >
-                <Button 
-                  variant='contained' 
-                  color='error'
+              <Subsubtitulo>ESCREVER COMENTÁRIO:</Subsubtitulo>
+              <form component="form" onSubmit={formik.handleSubmit}>
+                <TextField
                   sx={{
-                    margin: '0 10px',
+                    backgroundColor: "white",
+                    borderRadius: '10px',
+                    marginTop: '10px',
+                  }}
+                  fullWidth
+                  multiline
+                  name="description"
+                  value={formik.values.description}
+                  onChange={formik.handleChange}
+                  error={formik.touched.title && Boolean(formik.errors.title)}
+                  helperText={formik.touched.title && formik.errors.title}
+                  label={'Seu comentário'}
+                />
+                {/* Box de botões */}
+                <Box
+                  sx={{
+                    display: 'flex',
+                    flexDirection: 'row',
+                    justifyContent: 'flex-end',
+                    alignItems: 'center',
+                    marginTop: '5px',
                   }}
                 >
-                  CONTESTAR
-                </Button>
-                <Button 
-                  variant='contained' 
-                  color='primary'
-                  sx={{
-                    margin: '0 10px',
-                  }}
-                >
-                  COMENTAR
-                </Button>
-              </Box>
+                  <Button
+                    variant="contained"
+                    color="error"
+                    sx={{
+                      margin: '0 5px'
+                    }}
+                  >
+                    Contestar
+                  </Button>
+                  <Button
+                    type="submit"
+                    variant="contained"
+                    color="primary"
+                    onClick={() => {
+                      const type = 'comment';
+                      formik.setFieldValue('type', type);
+                    }}
+                  >
+                    Comentar
+                  </Button>
+                </Box>
+              </form>
             </Box>
-          </Card> */}
+          </Card>
         </Container>
       }
     </Layout>
