@@ -18,6 +18,7 @@ import Paper from '@mui/material/Paper';
 
 export default function SpecificPost() {  
   const [post, setPost] = useState({});
+  const [comments, setComment] = useState([]);
   const {id} = useParams();
   
   async function getPost(id) {
@@ -25,10 +26,17 @@ export default function SpecificPost() {
     setPost(data);
   };
 
+  async function getComments(id) {
+    const { data } = await api.get(`posts/${id}/comments`);
+    setComment(data);
+  };
+  
   useEffect(() => {
     getPost(id);
+    getComments(id);
 
   }, [id]);
+
 
   const RedTextField = styled(TextField)({
     '& label.Mui-focused': {
@@ -69,7 +77,7 @@ export default function SpecificPost() {
               display: 'grid',
               marginBottom: '5px',
             }}
-            >
+          >
 
             {/* Box das infos com fotos e tabelas */}
             <Box
@@ -129,7 +137,59 @@ export default function SpecificPost() {
 
           </Card>
           
-              
+          {/* card da comunidade */}
+          <Card 
+            sx={{ 
+              width: '100%',
+              height: 'fit-content',
+              backgroundColor:'#f0f0f0', 
+              // border: 1,
+              // borderColor: 'grey.500',s
+              display: 'grid',
+              marginBottom: '5px',
+            }}
+          >
+
+            {/* Box da listagem de comentários */}
+            <Box
+              sx={{
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'center',
+                marginBottom: '.15rem'
+              }}
+            >
+          
+              {/* Box de um comentário  */}
+              <Box
+                sx={{
+                  display: 'grid',
+                  gridTemplateColumns: '5% 10% 85%',
+                  alignItems: 'center',
+                  margin: '.3rem',
+                  rowGap: '.3rem'
+                }}
+              >
+                {
+                  comments.map((comment) => (
+                    <>
+                      <AccountCircleIcon sx={{margin: '10px',}} fontSize="large"/>
+                      <Typography variant='h7' color='black'>
+                        {comment.userName}
+                      </Typography> 
+                      <TextField
+                        fullWidth
+                        multiline
+                        disabled
+                        defaultValue={comment.description}
+                      />
+                    </>
+                  ))
+                }
+              </Box>
+            </Box>
+
+          </Card>
 
 
             {/*}
@@ -147,33 +207,11 @@ export default function SpecificPost() {
               </Typography>
 
               <Box
-                sx={{
+              sx={{
                   display: 'flex',
                   flexDirection: 'row',
                   alignItems: 'center',
                   marginTop: '10px',
-                }}
-              >
-                <AccountCircleIcon sx={{margin: '10px',}}fontSize="large"/>
-                <Typography variant='h7' color='black'>
-                  João
-                </Typography> 
-                <TextField
-                  fullWidth
-                  multiline
-                  sx={{
-                    margin: '0 15px',
-                  }}
-                  disabled
-                  defaultValue={"apsdj apodpoa skdpoka podkaspo k"}
-                />
-              </Box>
-
-              <Box
-                sx={{
-                  display: 'flex',
-                  flexDirection: 'row',
-                  alignItems: 'center',
                 }}
               >
                 <AccountCircleIcon sx={{margin: '10px',}}fontSize="large"/>
@@ -190,6 +228,15 @@ export default function SpecificPost() {
                   defaultValue={"Loureiro não é invasor desse lugar!"}
                   disabled
                   />
+              </Box>
+
+              <Box
+                sx={{
+                  display: 'flex',
+                  flexDirection: 'row',
+                  alignItems: 'center',
+                }}
+              >
               </Box>
             </Box>
             <Box
