@@ -5,6 +5,9 @@ const routes = require('./routes');
 
 app.use(express.json());
 
+app.use(express.static(__dirname + '/uploads'));
+app.use('/uploads', express.static('uploads'));
+
 app.use(cors({
   origin: '*'
 }));
