@@ -20,6 +20,14 @@ export default function MyTable({
   let table;
   const date = new Date(data.dateFound);
   
+  //cordenadas
+  let lat = 0, lng = 0;
+
+  if(data.latlng){
+    lat = data.latlng.coordinates[1].toFixed(5);
+    lng = data.latlng.coordinates[0].toFixed(5);
+  }
+
   if (scientificTable){
   // const rowsScientificTable = [
     table = [
@@ -36,7 +44,7 @@ export default function MyTable({
     table = [
       createData('Clima:', data.weather),
       createData('Bioma:', data.biome),
-      createData('Coord:', '-10.24, -48.29'),
+      createData('Coord:', `Lat: ${lat}, Lng: ${lng}`),
       createData('Cidade:', data.city),
       createData('Data:', date.getDate() + '/' + (date.getMonth() + 1) + '/' + date.getFullYear()),
     ];
