@@ -23,6 +23,9 @@ export default function SpecificPost() {
   async function getPost(id) {
     const { data } = await api.get(`posts/${id}`);
     setPost(data);
+
+    //data.latlng está em geojson (lnglat)
+    console.log('post data ->', data);
   };
 
   useEffect(() => {

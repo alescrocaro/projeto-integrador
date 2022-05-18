@@ -2,19 +2,10 @@
 
 module.exports = {
   async up (queryInterface, Sequelize) {
-
     return Promise.all([
-
-      queryInterface.addColumn('Posts',  'title',
-        Sequelize.STRING
-      ),
-      queryInterface.addColumn('Posts',  'biome',
-      Sequelize.STRING
-      ),
-      queryInterface.addColumn('Posts',  'imgUrl',
-      Sequelize.STRING
-      ),
-
+      queryInterface.addColumn('Posts', 'latlng',
+      Sequelize.GEOMETRY      
+      )
     ])
   },
 

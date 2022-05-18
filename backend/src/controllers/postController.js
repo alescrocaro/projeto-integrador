@@ -41,6 +41,7 @@ module.exports = {
         weather,
         dateFound,
         description,
+        latlng,
       } = req.body;
     
       const post = await Post.create({
@@ -60,6 +61,7 @@ module.exports = {
         weather,
         dateFound,
         description,
+        latlng: {type: 'Point', coordinates: [latlng.lng, latlng.lat]} //geojson format [lng, lat]
       }); 
 
       console.log("PRINT ID ---------------------------- "+post.dataValues.id);

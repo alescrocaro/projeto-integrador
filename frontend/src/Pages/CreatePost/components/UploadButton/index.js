@@ -14,8 +14,8 @@ const MyButton = styled(Button)(() => ({
   },
   borderWidth:2,
   borderColor:"#9e9e9e",  
-  width: '48%',
-  height: '400px',
+  width: '100%',
+  aspectRatio: '16/9',
 }));
 
 
