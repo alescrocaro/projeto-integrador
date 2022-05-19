@@ -156,7 +156,7 @@ export default function SpecificPost() {
                 }}
               >
                 <Subtitulo>ESPÉCIME:</Subtitulo>
-                <Img src={post.imgUrl} alt='img'/>
+                <Img src={process.env.REACT_APP_BASE_URL+'/uploads/images/'+post.imgUrl} alt='img'/>
                 <Subsubtitulo>CLASSIFICAÇÃO CIENTÍFICA:</Subsubtitulo>
                 <StyledTable data={post} scientificTable />
               </Box>

@@ -40,7 +40,7 @@ export default function StyledCard({ post }) {
           {/* imagem */}
           <BannerImage 
             component='img'
-            src={require('../../img/foto1.jpg')} 
+            src={process.env.REACT_APP_BASE_URL+'/uploads/images/'+post.imgUrl}
             alt='img'
           />
 
