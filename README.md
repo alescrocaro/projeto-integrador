@@ -1,4 +1,4 @@
-# Nome do Software
+# Invasores
 
 ## Descrição do repositório
 Projeto desenvolvido para as matérias projeto integrador e engenharia de software 1
@@ -94,12 +94,12 @@ npm start
 **Caio Miglioli:**
   - caiomiglioli@gmail.com
 
- **Carlos Miguel:**
+**Carlos Miguel:**
   - cmiguelsantosfilho@gmail.com
 
- **Leonardo Omori Farias:**
+**Leonardo Omori Farias:**
   - leonardoomori99@gmail.com
 
 
 ## Papéis dos membros da equipe (Product Owner, Scrum Master, Desenvolvedores)
-Ainda não decidido.
+Todos os membros exerceram todos papéis, rotacionando a cada sprint.
