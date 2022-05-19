@@ -19,6 +19,8 @@ import { Divider} from '@material-ui/core';
 
 import Paper from '@mui/material/Paper';
 
+import Map from './components/Map';
+
 export default function SpecificPost() {  
   const [post, setPost] = useState({});
   const [comments, setComment] = useState([]);
@@ -27,6 +29,9 @@ export default function SpecificPost() {
   async function getPost(id) {
     const { data } = await api.get(`posts/${id}`);
     setPost(data);
+
+    //data.latlng está em geojson (lnglat)
+    // console.log('post data ->', post);
   };
 
   async function getComments(id) {
@@ -166,7 +171,12 @@ export default function SpecificPost() {
               }}
               >
                 <Subtitulo>LOCAL E DATA:</Subtitulo>
-                <Img src={require('../../img/foto1.jpg')} alt='img'/>
+
+                {/* mapa */
+                (post.latlng && <Map latlng={post.latlng}/>)
+                /*placeholder do mapa*/
+                || (!post.latlng && <Img src={require('../../img/foto1.jpg')} alt='img'/>)}
+
                 <Subsubtitulo>DETALHES:</Subsubtitulo>
                 <StyledTable data={post} detailsTable />
               </Box>

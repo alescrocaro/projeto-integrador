@@ -29,7 +29,8 @@ module.exports = (sequelize, DataTypes) => {
     city: DataTypes.STRING,
     weather: DataTypes.STRING,
     dateFound: DataTypes.DATE,
-    description: DataTypes.STRING
+    description: DataTypes.STRING,
+    latlng: DataTypes.GEOMETRY,
   }, {
     sequelize,
     modelName: 'Post',

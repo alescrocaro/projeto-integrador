@@ -1,21 +1,27 @@
 import * as yup from 'yup';
+import { useState } from 'react';
 import { useFormik } from 'formik';
 import api from '../../services/api';
-import { ValidationTextField, StyledDatePicker } from './style';
+import { ValidationTextField, StyledDatePicker} from './style';
 import Layout from '../../components/Layout';
 import Container from '../../components/Container';
 import {Box, Card, Typography, Button} from '@mui/material/';
 import UploadButton from './components/UploadButton';
+import Map from './components/Map';
 import { useNavigate } from "react-router-dom";
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 
 
 
-export default function CreatePost() {  
-
+export default function CreatePost() {
+  
   const navigate = useNavigate();
 
+  //hook para pegar coordenadas no mapa
+  const [latlng, setLatlng] = useState(null);
+  const changeLatlng = (coords) => {setLatlng(coords)};
+  
   const validationSchema = yup.object({
     title: yup
       .string('Espécie + Bioma')
@@ -57,6 +63,7 @@ export default function CreatePost() {
     .required('Campo obrigatório')
   });
 
+  //botao de criar post
   const formik = useFormik({
     initialValues: {
       title: '',
@@ -74,8 +81,8 @@ export default function CreatePost() {
       dateEncounter: new Date(),
     },
     validationSchema: validationSchema,
+    //enviar info para o backend
     onSubmit: (values) => {
-
       try {
         api.post('/posts', {
           title: values.title,
@@ -93,7 +100,8 @@ export default function CreatePost() {
           userName:'Usuário', 
           phylum: values.specieDivision,
           country:'Brasil',
-          dateFound: values.dateEncounter
+          dateFound: values.dateEncounter,
+          latlng: latlng, //{lat: double, lng: double}
         } )
       } catch (e) {
         console.log(e)
@@ -101,6 +109,7 @@ export default function CreatePost() {
       navigate('/');
     },
   });
+
 
   return (
     <Layout>
@@ -163,15 +172,17 @@ export default function CreatePost() {
               Informações:
             </Typography>
 
+            {/* IMAGENS E MAPA */}
             <Box 
               sx={{
-                display:'flex', 
-                flexDirection:'row', 
-                justifyContent:'space-between'
+                display:'grid', 
+                gridTemplateColumns:'49% 49%',
+                gap: '2%'
               }}
             >
               <UploadButton label={'Imagem'}/>
-              <UploadButton label={'localização'}/>
+              <Map changeLatlng={changeLatlng}/>
+
             </Box>
 
             <Typography 
