@@ -22,8 +22,6 @@ const icon = L.icon({
 
 export default function Map(props) {
     const position = [props.latlng.coordinates[1], props.latlng.coordinates[0]];
-    
-    console.log(position);
 
     function BackToPos(){
         const map = useMapEvents({
