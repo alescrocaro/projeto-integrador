@@ -4,9 +4,6 @@ import api from '../../services/api';
 import { useFormik } from 'formik';
 import * as yup from 'yup';
 
-
-import { styled } from '@mui/material/styles';
-
 import { Box, Card, Typography, Button, TextField } from '@mui/material/';
 import StyledTable from '../../components/Table';
 import Container from '../../components/Container';
@@ -44,18 +41,6 @@ export default function SpecificPost() {
     getComments(id);
 
   }, [id]);
-
-  
-  const RedTextField = styled(TextField)({
-    '& label.Mui-focused': {
-      color: 'red !important',
-    },
-    '& .MuiOutlinedInput-root': {
-      '& fieldset': {
-        borderColor: 'red !important',
-      },
-    },
-  });
 
   const scheme = yup.object({
     description: yup
@@ -250,9 +235,16 @@ export default function SpecificPost() {
                           {comment.userName}
                         </Typography> 
                       </Box>
-                      <Paper elevation={0}>
-                        <Descricao>{comment.description}</Descricao>
-                      </Paper>
+                      {comment.type === 'comment' &&
+                        <Paper  elevation={0}>
+                          <Descricao>{comment.description}</Descricao>
+                        </Paper>
+                      }
+                      {comment.type === 'contestation' &&
+                        <Paper sx={{border: `1px solid #ed5132`}} elevation={0}>
+                          <Descricao>{comment.description}</Descricao>
+                        </Paper>
+                      }
                     </Box>
                   ))
                 }
@@ -296,10 +288,15 @@ export default function SpecificPost() {
                   }}
                 >
                   <Button
+                    type="submit"
                     variant="contained"
                     color="error"
                     sx={{
                       margin: '0 5px'
+                    }}
+                    onClick={() => {
+                      const type = 'contestation';
+                      formik.setFieldValue('type', type);
                     }}
                   >
                     Contestar
