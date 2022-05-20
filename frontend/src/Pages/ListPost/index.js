@@ -7,6 +7,8 @@ import StyledButton from '../../components/Button';
 import StyledCard from '../../components/Card';
 import HeaderPage from '../../components/HeaderPage';
 
+import Map from './components/Map';
+
 export default function ListPosts() {  
   const [posts, setPosts] = useState([]);
 
@@ -25,6 +27,7 @@ export default function ListPosts() {
           minHeight: '0 !important',
         }}>
         <StyledButton />
+        {posts && <Map posts={posts}/>}
         <HeaderPage title="Mostrando observações recentes:" filter />
         {
           posts.map((post) => (
