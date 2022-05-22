@@ -111,10 +111,8 @@ export default function CreatePost() {
           dateFound: values.dateEncounter,
           latlng: latlng, //{lat: double, lng: double}
         } )
-
-        console.log("AUFUHADUFAUFD")
-        console.log(res.data)
-        if (imgFile.currentFile != undefined) {
+        
+        if (imgFile.currentFile !== undefined) {
           const formData = new FormData()
           
           formData.append("specieImage", imgFile.currentFile)

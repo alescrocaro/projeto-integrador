@@ -1,12 +1,11 @@
 import { ImgCard } from '../imgCard';
-import React, {useState} from 'react';
+import React from 'react';
 import { styled } from '@mui/material/styles';
 import { Box,Typography, Button} from '@mui/material';
 import AddCircleOutlineOutlinedIcon from '@mui/icons-material/AddCircleOutlineOutlined';
 
 const StyledButton = styled(Button)(() => ({
   color: 'black',
-  borderColor:"#d4d2d2",
   '&:hover': {
     opacity:0.5,
     borderColor:"#a3a3a3",
@@ -27,7 +26,6 @@ const StyledButton = styled(Button)(() => ({
 export default function UploadButton({label, imgFile, setImgFile}) {
 
   const handleOnChange = (e) => {
-    console.log(e.target.files[0])
     setImgFile({
       currentFile: e.target.files[0],
       previewImage: URL.createObjectURL(e.target.files[0]),
@@ -64,7 +62,7 @@ export default function UploadButton({label, imgFile, setImgFile}) {
           />
       </StyledButton>
       {
-        imgFile.currentFile != undefined &&
+        imgFile.currentFile !== undefined &&
         <ImgCard
           imgName={imgFile.currentFile.name}
         />
