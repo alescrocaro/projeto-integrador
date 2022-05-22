@@ -1,4 +1,5 @@
 const { Post } = require('../models');
+const { Comment } = require('../models');
 
 module.exports = {
   async index(req, res){
@@ -84,18 +85,26 @@ module.exports = {
       const { id } = req.params;
       // const user_id = req.headers.authorization;
       /*
-      const post = await connection('posts')
-        .where('id', id)
-        .select('user_id')
-        .first() // retorna apenas 1 resultado
-  
       if(post.user_id !== user_id){
         return response.status(401).json({ error: 'Unauthorized user.'}); 
         // 401 - nao autorizado
       }
   
-      await connection('posts').where('id', id).delete();
       */
+      const post = await Post.findOne({ where: { id: req.params.id } });
+      console.log('post::::::::::::::::::::::::::::::::', post.dataValues.id);
+
+      const comments = await Comment.findAll({ 
+        where: { PostId: post.dataValues.id } 
+      });
+
+      console.log('comment::::::::::::::::::::::::::::::::', comments.length);
+
+      for(i in comments){
+        await Comment.destroy({
+          where: { PostId: comments[i].dataValues.id}
+        })
+      }
 
       await Post.destroy({
         where: {
