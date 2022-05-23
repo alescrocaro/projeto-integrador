@@ -14,6 +14,6 @@ module.exports = {
   },
 
   async down (queryInterface, Sequelize) {
-      await queryInterface.removeConstraint('Comments', 'comment-post-association');
+      await queryInterface.removeConstraint('Comments', 'comment_post_association');
   }
 };

@@ -91,21 +91,6 @@ module.exports = {
       }
   
       */
-      const post = await Post.findOne({ where: { id: req.params.id } });
-      console.log('post::::::::::::::::::::::::::::::::', post.dataValues.id);
-
-      const comments = await Comment.findAll({ 
-        where: { PostId: post.dataValues.id } 
-      });
-
-      console.log('comment::::::::::::::::::::::::::::::::', comments.length);
-
-      for(i in comments){
-        await Comment.destroy({
-          where: { PostId: comments[i].dataValues.id}
-        })
-      }
-
       await Post.destroy({
         where: {
           id: id
