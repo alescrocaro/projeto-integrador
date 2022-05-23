@@ -1,31 +1,72 @@
+import { ImgCard } from '../imgCard';
 import React from 'react';
-import Typography from '@mui/material/Typography';
-import AddIcon from '@mui/icons-material/Add';
 import { styled } from '@mui/material/styles';
-import Button from '@mui/material/Button';
+import { Box,Typography, Button} from '@mui/material';
+import AddCircleOutlineOutlinedIcon from '@mui/icons-material/AddCircleOutlineOutlined';
 
-const MyButton = styled(Button)(() => ({
+const StyledButton = styled(Button)(() => ({
   color: 'black',
-  backgroundColor: '#e6e3e3',
   '&:hover': {
-    backgroundColor: '#9e9e9e',
+    opacity:0.5,
+    borderColor:"#a3a3a3",
+    borderRadius:2,
     borderWidth:2,
-    borderColor:"#d4d2d2",
+    borderStyle:'dashed'
   },
-  borderWidth:2,
-  borderColor:"#9e9e9e",  
+  borderColor:"#141414",
+  borderRadius:2,
   width: '100%',
-  aspectRatio: '16/9',
+  display:'flex',
+  justifyContent:'center',
+  alignItems:'center',
+  borderWidth:2,
+  borderStyle:'dashed',
 }));
 
+export default function UploadButton({label, imgFile, setImgFile}) {
 
-export default function UploadButton({label}) {
+  const handleOnChange = (e) => {
+    setImgFile({
+      currentFile: e.target.files[0],
+      previewImage: URL.createObjectURL(e.target.files[0]),
+      progress: 0,
+      message: ""
+    })
+  }
+  
   return (
-    <MyButton variant="outlined" >
-        <AddIcon />
-        <Typography variant="h5" component="div">
-            {label}
-        </Typography>
-    </MyButton>
+    <Box sx={{
+      borderWidth:10,
+      borderColor:"#262626",  
+      width: '100%',
+      aspectRatio: '16/9',
+      borderRadius:2,
+      height:100
+    }}>
+      <StyledButton component="label" variant="outlined">
+        <Box sx={{
+          display:'flex',
+          flexDirection:'column',
+          justifyContent:'center',
+          alignItems:'center',
+        }}>
+          <AddCircleOutlineOutlinedIcon fontSize='large'/>
+          <Typography variant="h5" component="div">
+              {label}
+          </Typography>
+        </Box>
+          <input
+            onChange={handleOnChange}
+            type="file"
+            hidden
+          />
+      </StyledButton>
+      {
+        imgFile.currentFile !== undefined &&
+        <ImgCard
+          imgName={imgFile.currentFile.name}
+        />
+      }
+    </Box>
   );
 }

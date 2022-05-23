@@ -15,6 +15,14 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 
 
 export default function CreatePost() {
+
+    const [imgFile, setImgFile] = useState({
+      currentFile: undefined,
+      previewImage: undefined,
+      message: "",
+      imageInfos: []
+  })
+
   
   const navigate = useNavigate();
 
@@ -82,9 +90,9 @@ export default function CreatePost() {
     },
     validationSchema: validationSchema,
     //enviar info para o backend
-    onSubmit: (values) => {
+    onSubmit: async (values) => {
       try {
-        api.post('/posts', {
+        const res = await api.post('/posts', {
           title: values.title,
           specie:values.specieName,
           genus:values.specieGenre,
@@ -103,6 +111,18 @@ export default function CreatePost() {
           dateFound: values.dateEncounter,
           latlng: latlng, //{lat: double, lng: double}
         } )
+        
+        if (imgFile.currentFile !== undefined) {
+          const formData = new FormData()
+          
+          formData.append("specieImage", imgFile.currentFile)
+          api.post(`/updatePostImage/${res.data}`,formData, {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+          })
+        }
+
       } catch (e) {
         console.log(e)
       }
@@ -180,9 +200,8 @@ export default function CreatePost() {
                 gap: '2%'
               }}
             >
-              <UploadButton label={'Imagem'}/>
+              <UploadButton label={'Imagem'} imgFile={imgFile} setImgFile={setImgFile}/>
               <Map changeLatlng={changeLatlng}/>
-
             </Box>
 
             <Typography 
