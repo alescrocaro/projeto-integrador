@@ -12,7 +12,6 @@ import { Img } from '../../style';
 
 const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
 
-
 export default function ImageSlider({images}) {
     const theme = useTheme();
     const [activeStep, setActiveStep] = React.useState(0);
