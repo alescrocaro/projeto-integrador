@@ -16,12 +16,7 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 
 export default function CreatePost() {
 
-    const [imgFile, setImgFile] = useState({
-      currentFile: undefined,
-      previewImage: undefined,
-      message: "",
-      imageInfos: []
-  })
+    const [imgFile, setImgFile] = useState([])
 
   
   const navigate = useNavigate();
@@ -112,10 +107,11 @@ export default function CreatePost() {
           latlng: latlng, //{lat: double, lng: double}
         } )
         
-        if (imgFile.currentFile !== undefined) {
+        if (imgFile.length > 0) {
           const formData = new FormData()
-          
-          formData.append("specieImage", imgFile.currentFile)
+          imgFile.forEach(element => {
+            formData.append("specieImages", element.currentFile)
+          })
           api.post(`/updatePostImage/${res.data}`,formData, {
             headers: {
               "Content-Type": "multipart/form-data",

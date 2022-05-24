@@ -18,7 +18,9 @@ module.exports = {
   
   async get(req, res){
     try {
-      const post = await Post.findOne({ where: { id: req.params.id } });
+      const post = await Post.findOne({ where: { id: req.params.id }, include:[
+        {model:Image}
+      ] });
   
       return res.json(post);
     } catch (error) {
@@ -117,7 +119,7 @@ module.exports = {
         return res.status(404).send()
       }
       for(element in req.files) {
-        await Image.create({url:element.filename, PostId:id })
+        await Image.create({url:req.files[element].filename, PostId:id })
       }
       return res.status(200).send()
 

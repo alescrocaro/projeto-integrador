@@ -26,12 +26,15 @@ const StyledButton = styled(Button)(() => ({
 export default function UploadButton({label, imgFile, setImgFile}) {
 
   const handleOnChange = (e) => {
-    setImgFile({
+    setImgFile(old => [
+      ...old,{
       currentFile: e.target.files[0],
-      previewImage: URL.createObjectURL(e.target.files[0]),
-      progress: 0,
-      message: ""
-    })
+      } 
+    ])
+  }
+
+  const handleOnDelete = (index) => {
+    setImgFile(old => old.splice(index,1))
   }
   
   return (
@@ -62,10 +65,13 @@ export default function UploadButton({label, imgFile, setImgFile}) {
           />
       </StyledButton>
       {
-        imgFile.currentFile !== undefined &&
-        <ImgCard
-          imgName={imgFile.currentFile.name}
-        />
+        imgFile.length > 0 &&
+        imgFile.map((element, index) => 
+          <ImgCard
+            key={index}
+            imgName={element.currentFile.name}
+          />  
+        )
       }
     </Box>
   );

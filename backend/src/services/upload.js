@@ -24,4 +24,4 @@ const multerConfig = {
 
 }
 
-module.exports = multer(multerConfig).array('specieImages',3)
+module.exports = multer(multerConfig).array('specieImages')
