@@ -21,6 +21,8 @@ import Map from './components/Map';
 export default function SpecificPost() {  
   const [post, setPost] = useState({});
   const [comments, setComment] = useState([]);
+  const [contestationCounter, setContestationCounter] = useState(2);
+
   const {id} = useParams();
   
   async function getPost(id) {
@@ -208,7 +210,33 @@ export default function SpecificPost() {
                 padding: '1rem',
               }}
             >
-              <Subtitulo>COMUNIDADE:</Subtitulo>
+              <Box
+                sx={{ 
+                  display: 'flex',
+                  flexDirection: 'row',
+                  justifyContent: 'space-between',
+                }}
+              >
+                <Subtitulo>COMUNIDADE:</Subtitulo>
+                {(contestationCounter < 2) &&
+                  <Button
+                    variant='contained'
+                    color='primary'
+                    onClick={() => setContestationCounter(contestationCounter+1)}
+                  >
+                    Marcar como resolvida {contestationCounter}/2
+                  </Button>
+                }
+                {(contestationCounter === 2) &&
+                  <Button
+                    variant='contained'
+                    color='primary'
+                    disabled
+                  >
+                    Nenhuma contestação ativa
+                  </Button>
+                }
+              </Box>
               {/* Box de um comentário  */}
                 {
                   comments.map((comment) => (
@@ -297,6 +325,7 @@ export default function SpecificPost() {
                     onClick={() => {
                       const type = 'contestation';
                       formik.setFieldValue('type', type);
+                      setContestationCounter(0)
                     }}
                   >
                     Contestar
