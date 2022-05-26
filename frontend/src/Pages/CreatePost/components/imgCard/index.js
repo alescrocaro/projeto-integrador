@@ -2,7 +2,7 @@
 import { Box,Typography} from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 
-export function ImgCard ({imgName}) {
+export function ImgCard ({id,imgName,handleOnDelete}) {
     return (
         <Box sx={{
             display:"flex",
@@ -13,7 +13,7 @@ export function ImgCard ({imgName}) {
                 {imgName}
             </Typography>
 
-            <DeleteIcon />
+            <DeleteIcon onClick={() => {handleOnDelete(id)}}/>
 
         </Box>
     )
