@@ -15,7 +15,7 @@ import {
 export default function StyledCard({ post }) {
   const date = new Date(post.dateFound);
   const url = post.Images.length > 0 ? process.env.REACT_APP_BASE_URL+'/uploads/images/' + post.Images[0].url : 
-  'http://cdn.onlinewebfonts.com/svg/img_148071.png'
+  require('../../img/placeholder.png')
   return (
     <Link 
       to={'/posts/'+post.id}

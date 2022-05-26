@@ -146,7 +146,7 @@ export default function SpecificPost() {
                   (post.Images != null) && post.Images.length > 0 && <ImageSlider images={post.Images}/>
                 }
                 {
-                  post.Images != null && post.Images.length === 0 && <Img src={require('../../img/foto1.jpg')} alt='img'/>
+                  post.Images != null && post.Images.length === 0 && <Img src={require('../../img/placeholder.png')} alt='img'/>
                 }
                 <Subsubtitulo>CLASSIFICAÇÃO CIENTÍFICA:</Subsubtitulo>
                 <StyledTable data={post} scientificTable />
