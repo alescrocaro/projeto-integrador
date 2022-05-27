@@ -14,6 +14,8 @@ import {
 
 export default function StyledCard({ post }) {
   const date = new Date(post.dateFound);
+  const url = post.Images.length > 0 ? process.env.REACT_APP_BASE_URL+'/uploads/images/' + post.Images[0].url : 
+  require('../../img/placeholder.png')
   return (
     <Link 
       to={'/posts/'+post.id}
@@ -40,7 +42,7 @@ export default function StyledCard({ post }) {
           {/* imagem */}
           <BannerImage 
             component='img'
-            src={process.env.REACT_APP_BASE_URL+'/uploads/images/'+post.imgUrl}
+            src={url}
             alt='img'
           />
 
