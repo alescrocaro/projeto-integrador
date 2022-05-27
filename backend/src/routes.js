@@ -10,7 +10,7 @@ routes.get('/posts/:id', postController.get);
 routes.post('/posts', uploadService ,postController.create);
 routes.delete('/posts/:id', postController.delete);
 
-routes.post('/updatePostImage/:id', uploadService ,postController.updatePostImage);
+routes.post('/updatePostImage/:id', uploadService, postController.updatePostImage);
 /*
 routes.post('/posts', postController.update);
 */
@@ -19,5 +19,6 @@ routes.post('/posts', postController.update);
 routes.get('/posts/:id/comments', commentController.index);
 routes.post('/posts/:PostId/comments', commentController.create);
 routes.delete('/posts/:id/comments/:id', commentController.delete);
+routes.post('/posts/:id/comments/updateContestation', commentController.updateContestation);
 
 module.exports = routes;
