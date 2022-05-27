@@ -26,6 +26,7 @@ const StyledButton = styled(Button)(() => ({
 export default function UploadButton({label, imgFile, setImgFile}) {
 
   const handleOnChange = (e) => {
+    console.log("hello")
     const file = e.target.files[0]
     if (!['jpg','png', 'jpeg', 'jpe','jif','webp','tiff','tif'].includes(file.name.split('.')[1])) {
       alert('O sistema somente aceita images com as seguintes extensões: jpg, png, jpeg, jpe, jif, web, tiff, tif')
@@ -35,9 +36,10 @@ export default function UploadButton({label, imgFile, setImgFile}) {
       alert('O sistema aceita somente três imagens por post')
       return
     }
+    console.log("imgFile")
     setImgFile(old => [
       ...old,{
-      currentFile: e.target.files[0],
+      currentFile: file,
       id: Date.now()
       } 
     ])
@@ -69,6 +71,7 @@ export default function UploadButton({label, imgFile, setImgFile}) {
           </Typography>
         </Box>
           <input
+            onClick={(e) => e.target.value = null}
             onChange={handleOnChange}
             type="file"
             hidden
