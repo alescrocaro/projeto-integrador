@@ -263,6 +263,8 @@ export default function SpecificPost() {
                                   color='primary'
                                   sx={{
                                     marginLeft: '5px',
+                                    maxWidth: '150px',
+                                    width: '35%',
                                   }}
                                   onClick={async () => {
                                     comment.contestation -= 1;
@@ -290,6 +292,8 @@ export default function SpecificPost() {
                                   color='primary'
                                   sx={{
                                     marginLeft: '5px',
+                                    maxWidth: '150px',
+                                    width: '35%',
                                   }}
                                   disabled
                                 >
