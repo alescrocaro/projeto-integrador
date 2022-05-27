@@ -4,7 +4,7 @@ module.exports = {
   async index(req, res){
     try {
       const { id } = req.params;
-      console.log('ID PARAM INDEX:::::::::',id)
+      //console.log('ID PARAM INDEX:::::::::',id)
       const post = await Post.findByPk(id);
 
       var comments = null;
@@ -43,6 +43,7 @@ module.exports = {
         userName,
         type,
         description,
+        contestation,
       } = req.body;
 
       const { PostId } = req.params;
@@ -51,11 +52,10 @@ module.exports = {
         userName,
         type,
         description,
+        contestation,
         PostId,
       }); 
-      console.log('ID PARAM CREATE:::::::::',PostId)
-
-      console.log("PRINT COMMENT ID ---------------------------- ", comment.dataValues.PostId);
+      
       return res.json(comment.dataValues.id); 
     } catch (error) {
       console.log('MENSAGEM:', error.message);
@@ -64,15 +64,23 @@ module.exports = {
     }
   },
 
+  async updateContestation(req, res){
+    try {
+      const { commentId, contestation } = req.body;
+      const comment = await Comment.findByPk(commentId);
+      console.log('TESTETESTE',commentId, contestation);
+
+      comment.contestation = contestation;
+
+      await comment.save();
   
-  /*,
-
-  async update(req, res){
-    // const { title, description } = req.body;
-
+      return res.json(comment);
+    } catch (error) {
+      console.log(error)
+      res.status(500).send();
+    }
   },
-  */
-
+  
   async delete(req, res){
     try {
       const { id } = req.params;

@@ -16,12 +16,7 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 
 export default function CreatePost() {
 
-    const [imgFile, setImgFile] = useState({
-      currentFile: undefined,
-      previewImage: undefined,
-      message: "",
-      imageInfos: []
-  })
+    const [imgFile, setImgFile] = useState([])
 
   
   const navigate = useNavigate();
@@ -87,6 +82,7 @@ export default function CreatePost() {
       city: '',
       description:'',
       dateEncounter: new Date(),
+      contested: 0,
     },
     validationSchema: validationSchema,
     //enviar info para o backend
@@ -110,12 +106,15 @@ export default function CreatePost() {
           country:'Brasil',
           dateFound: values.dateEncounter,
           latlng: latlng, //{lat: double, lng: double}
-        } )
+          contested: values.contested
+        })
         
-        if (imgFile.currentFile !== undefined) {
+        
+        if (imgFile.length > 0) {
           const formData = new FormData()
-          
-          formData.append("specieImage", imgFile.currentFile)
+          imgFile.forEach(element => {
+            formData.append("specieImages", element.currentFile)
+          })
           api.post(`/updatePostImage/${res.data}`,formData, {
             headers: {
               "Content-Type": "multipart/form-data",
@@ -161,6 +160,7 @@ export default function CreatePost() {
             mb:10 
           }}
         >
+          
           <form onSubmit={formik.handleSubmit}>
           <Typography 
             variant="h5" 

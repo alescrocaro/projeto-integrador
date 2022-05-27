@@ -13,6 +13,7 @@ module.exports = (sequelize, DataTypes) => {
     userName: DataTypes.STRING,
     type: DataTypes.STRING,
     description: DataTypes.STRING,
+    contestation: DataTypes.INTEGER,
   }, {
     sequelize,
     modelName: 'Comment',

@@ -1,10 +1,14 @@
-const { Post } = require('../models');
+const { Post,Image } = require('../models');
 const { Comment } = require('../models');
 
 module.exports = {
   async index(req, res){
     try {
-      const posts = await Post.findAll();
+      const posts = await Post.findAll({
+        include:[
+          {model:Image}
+        ]
+      });
   
       return res.json(posts);
     } catch (error) {
@@ -14,7 +18,9 @@ module.exports = {
   
   async get(req, res){
     try {
-      const post = await Post.findOne({ where: { id: req.params.id } });
+      const post = await Post.findOne({ where: { id: req.params.id }, include:[
+        {model:Image}
+      ] });
   
       return res.json(post);
     } catch (error) {
@@ -60,10 +66,9 @@ module.exports = {
         weather,
         dateFound,
         description,
-        latlng: {type: 'Point', coordinates: [latlng.lng, latlng.lat]} //geojson format [lng, lat]
+        latlng: {type: 'Point', coordinates: [latlng.lng, latlng.lat]}, //geojson format [lng, lat]
       }); 
 
-      console.log("PRINT ID ---------------------------- "+post.dataValues.id);
       return res.json(post.dataValues.id); 
     } catch (error) {
       console.log(error);
@@ -106,16 +111,15 @@ module.exports = {
 
   async updatePostImage (req, res) {
     const { id } = req.params;
-    
     try {
       const posts = await Post.findAll({where:{id}})
-      console.log(req.file)
       if (posts.length === 0) return res.status(404).send();
-      if (req.file == null) {
+      if (req.files == null) {
         return res.status(404).send()
       }
-      
-      await Post.update({imgUrl:req.file.filename }, {where: {id}})
+      for(element in req.files) {
+        await Image.create({url:req.files[element].filename, PostId:id })
+      }
       return res.status(200).send()
 
     } catch (error) {
