@@ -26,12 +26,25 @@ const StyledButton = styled(Button)(() => ({
 export default function UploadButton({label, imgFile, setImgFile}) {
 
   const handleOnChange = (e) => {
-    setImgFile({
+    const file = e.target.files[0]
+    if (!['jpg','png', 'jpeg', 'jpe','jif','webp','tiff','tif'].includes(file.name.split('.')[1])) {
+      alert('O sistema somente aceita images com as seguintes extensões: jpg, png, jpeg, jpe, jif, web, tiff, tif')
+      return
+    }
+    if(imgFile.length === 3 ) {
+      alert('O sistema aceita somente três imagens por post')
+      return
+    }
+    setImgFile(old => [
+      ...old,{
       currentFile: e.target.files[0],
-      previewImage: URL.createObjectURL(e.target.files[0]),
-      progress: 0,
-      message: ""
-    })
+      id: Date.now()
+      } 
+    ])
+  }
+
+  const handleOnDelete = (id) => {
+    setImgFile(old => old.filter((element) => element.id != id))
   }
   
   return (
@@ -62,10 +75,15 @@ export default function UploadButton({label, imgFile, setImgFile}) {
           />
       </StyledButton>
       {
-        imgFile.currentFile !== undefined &&
-        <ImgCard
-          imgName={imgFile.currentFile.name}
-        />
+        imgFile.length > 0 &&
+        imgFile.map((element, index) => 
+          <ImgCard
+            handleOnDelete={handleOnDelete}
+            key={index}
+            id={element.id}
+            imgName={element.currentFile.name}
+          />  
+        )
       }
     </Box>
   );

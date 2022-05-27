@@ -17,6 +17,7 @@ import { Divider} from '@material-ui/core';
 import Paper from '@mui/material/Paper';
 
 import Map from './components/Map';
+import ImageSlider from './components/imageSlider';
 
 export default function SpecificPost() {  
   const [post, setPost] = useState({});
@@ -26,7 +27,6 @@ export default function SpecificPost() {
   async function getPost(id) {
     const { data } = await api.get(`posts/${id}`);
     setPost(data);
-    console.log(data);
     //data.latlng está em geojson (lnglat)
   };
 
@@ -139,7 +139,13 @@ export default function SpecificPost() {
                 }}
               >
                 <Subtitulo>ESPÉCIME:</Subtitulo>
-                <Img src={process.env.REACT_APP_BASE_URL+'/uploads/images/'+post.imgUrl} alt='img'/>
+
+                {
+                  (post.Images != null) && post.Images.length > 0 && <ImageSlider images={post.Images}/>
+                }
+                {
+                  post.Images != null && post.Images.length === 0 && <Img src={require('../../img/placeholder.png')} alt='img'/>
+                }
                 <Subsubtitulo>CLASSIFICAÇÃO CIENTÍFICA:</Subsubtitulo>
                 <StyledTable data={post} scientificTable />
               </Box>

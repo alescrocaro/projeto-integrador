@@ -10,6 +10,10 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
+      Post.hasMany(models.Image, {
+        onDelete: 'CASCADE',
+        hooks: true
+      })
       Post.hasMany(models.Comment, {
         onDelete: 'CASCADE',
         hooks: true
