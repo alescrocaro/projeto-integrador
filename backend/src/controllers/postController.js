@@ -1,5 +1,4 @@
 const { Post } = require('../models');
-const { Comment } = require('../models');
 
 module.exports = {
   async index(req, res){
@@ -15,7 +14,7 @@ module.exports = {
   async get(req, res){
     try {
       const post = await Post.findOne({ where: { id: req.params.id } });
-  
+      //console.log(post)
       return res.json(post);
     } catch (error) {
       console.log(error)
@@ -60,10 +59,9 @@ module.exports = {
         weather,
         dateFound,
         description,
-        latlng: {type: 'Point', coordinates: [latlng.lng, latlng.lat]} //geojson format [lng, lat]
+        latlng: {type: 'Point', coordinates: [latlng.lng, latlng.lat]}, //geojson format [lng, lat]
       }); 
 
-      console.log("PRINT ID ---------------------------- "+post.dataValues.id);
       return res.json(post.dataValues.id); 
     } catch (error) {
       console.log(error);

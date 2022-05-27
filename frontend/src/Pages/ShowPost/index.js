@@ -21,27 +21,25 @@ import Map from './components/Map';
 export default function SpecificPost() {  
   const [post, setPost] = useState({});
   const [comments, setComment] = useState([]);
-  const [contestationCounter, setContestationCounter] = useState(2);
-
   const {id} = useParams();
   
   async function getPost(id) {
     const { data } = await api.get(`posts/${id}`);
     setPost(data);
-
+    console.log(data);
     //data.latlng está em geojson (lnglat)
-    // console.log('post data ->', post);
   };
 
   async function getComments(id) {
     const { data } = await api.get(`posts/${id}/comments`);
     setComment(data);
+    return data;
+    //console.log(data)
   };
   
   useEffect(() => {
     getPost(id);
     getComments(id);
-
   }, [id]);
 
   const scheme = yup.object({
@@ -71,23 +69,21 @@ export default function SpecificPost() {
         userName,
         description,
         type,
+        contestation,
       } = values;
 
-      
       const postId = id;
-      console.log(userName, description, type, postId);
+      
       try {
         await api.post(`/posts/${postId}/comments`, { 
           userName, 
           description, 
           type,
+          contestation,
         });
+        getComments(id)
+        console.log(values)
 
-        setComment(comment => [...comments, { 
-          userName, 
-          description, 
-          type,
-        }]);
       } catch (error) {
         console.log(error);
       }
@@ -158,7 +154,7 @@ export default function SpecificPost() {
               }}
               >
                 <Subtitulo>LOCAL E DATA:</Subtitulo>
-
+              
                 {/* mapa */
                 (post.latlng && <Map latlng={post.latlng}/>)
                 /*placeholder do mapa*/
@@ -218,65 +214,94 @@ export default function SpecificPost() {
                 }}
               >
                 <Subtitulo>COMUNIDADE:</Subtitulo>
-                {(contestationCounter < 2) &&
-                  <Button
-                    variant='contained'
-                    color='primary'
-                    onClick={() => setContestationCounter(contestationCounter+1)}
-                  >
-                    Marcar como resolvida {contestationCounter}/2
-                  </Button>
-                }
-                {(contestationCounter === 2) &&
-                  <Button
-                    variant='contained'
-                    color='primary'
-                    disabled
-                  >
-                    Nenhuma contestação ativa
-                  </Button>
-                }
-              </Box>
-              {/* Box de um comentário  */}
-                {
-                  comments.map((comment) => (
-                    <Box
-                      key={comment.id}
-                      sx={{
-                        display: 'grid',
-                        gridTemplateColumns: '15% 85%',
-                        alignItems: 'center',
-                        margin: '.3rem',
-                        rowGap: '.3rem'
-                      }}
-                    >
+                </Box>
+                {/* Box de um comentário  */}
+                  {
+                    comments.map((comment, index) => (
                       <Box
+                        key={index}
                         sx={{
-                          display: 'flex',
-                          flexDirection: 'column',
-                          justifyContent: 'center',
+                          display: 'grid',
+                          gridTemplateColumns: '15% 85%',
                           alignItems: 'center',
+                          margin: '.3rem',
+                          rowGap: '.3rem'
                         }}
                       >
-                        <AccountCircleIcon sx={{margin: '10px',}} fontSize="large"/>
-                        <Typography variant='h7' color='black'>
-                          {comment.userName}
-                        </Typography> 
+                        <Box
+                          sx={{
+                            display: 'flex',
+                            flexDirection: 'column',
+                            justifyContent: 'center',
+                            alignItems: 'center',
+                          }}
+                        >
+                          <AccountCircleIcon sx={{margin: '10px',}} fontSize="large"/>
+                          <Typography variant='h7' color='black'>
+                            {comment.userName}
+                          </Typography> 
+                        </Box>
+                        {comment.type === 'comment' &&
+                          <Paper  elevation={0}>
+                            <Descricao>{comment.description}</Descricao>
+                          </Paper>
+                        }
+                        {comment.type === 'contestation' &&
+                          <Box
+                            sx={{
+                              display: 'flex',
+                              flexDirection: 'row',
+                            }}
+                          >
+                            <Paper sx={{border: `1px solid #ed5132`, width: '100%'}} elevation={0}>
+                              <Descricao>{comment.description}</Descricao>
+                            </Paper>
+                              {(comment.contestation > 0) &&
+                                <Button
+                                  type="submit"
+                                  variant='contained'
+                                  color='primary'
+                                  sx={{
+                                    marginLeft: '5px',
+                                  }}
+                                  onClick={async () => {
+                                    comment.contestation -= 1;
+                                    formik.setFieldValue('contestation', comment.contestation);
+                                    let commentId = comment.id;
+                                    let contestation = comment.contestation;
+                                    console.log("commentId",comment.id)
+                                    try {
+                                      await api.post(`/posts/${id}/comments/updateContestation`, { 
+                                        commentId,
+                                        contestation,
+                                      });
+                              
+                                    } catch (error) {
+                                      console.log(error);
+                                    }
+                                  }}
+                                >
+                                  Marcar como resolvida ({comment.contestation})
+                                </Button> 
+                              }
+                              {(comment.contestation === 0) &&
+                                <Button
+                                  variant='contained'
+                                  color='primary'
+                                  sx={{
+                                    marginLeft: '5px',
+                                  }}
+                                  disabled
+                                >
+                                  Contestação resolvida
+                                </Button> 
+                              }
+                          </Box>
+                        }
                       </Box>
-                      {comment.type === 'comment' &&
-                        <Paper  elevation={0}>
-                          <Descricao>{comment.description}</Descricao>
-                        </Paper>
-                      }
-                      {comment.type === 'contestation' &&
-                        <Paper sx={{border: `1px solid #ed5132`}} elevation={0}>
-                          <Descricao>{comment.description}</Descricao>
-                        </Paper>
-                      }
-                    </Box>
-                  ))
-                }
-              </Box>
+                    ))
+                  }
+                </Box>
             
             {/* Box de postagem de comentário */}
             <Box
@@ -324,8 +349,9 @@ export default function SpecificPost() {
                     }}
                     onClick={() => {
                       const type = 'contestation';
+                      const auxContestation = 2;
                       formik.setFieldValue('type', type);
-                      setContestationCounter(0)
+                      formik.setFieldValue('contestation', auxContestation);
                     }}
                   >
                     Contestar
