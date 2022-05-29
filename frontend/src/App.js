@@ -5,13 +5,14 @@ import Post from './Pages/ListPost';
 import CreatePost from './Pages/CreatePost';
 import SpecificPost from './Pages/ShowPost';
 import NotFound from './Pages/NotFound';
+import Login from './Pages/Login';
 
 export default function App() {
   return (
     <BrowserRouter>
       <Routes>
         <Route exact path="/" element={<Post />} />
-        <Route path="/create-post" element={<CreatePost />} />
+        <Route exact path="/login" element={<Login />} />
         <Route exact path="/create-post" element={<CreatePost />} />
         <Route exact path="/posts/:id" element={<SpecificPost />} />
         <Route exact path="/*" element={<NotFound />} />
