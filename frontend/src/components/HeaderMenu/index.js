@@ -1,8 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import AppBar from '@mui/material/AppBar';
-import Avatar from '@mui/material/Avatar';
 import {StyledImage} from './style';
+
+import User from '../User';
 
 export default function HeaderMenu () {
   return (
@@ -22,7 +23,7 @@ export default function HeaderMenu () {
           alt='LOGO'
         />
       </Link>
-      <Avatar sx={{ width: '50px', height: '50px', margin: '0' }}/>
+      <User />
   </AppBar>
   );
 };
