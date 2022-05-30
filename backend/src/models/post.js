@@ -37,6 +37,7 @@ module.exports = (sequelize, DataTypes) => {
     weather: DataTypes.STRING,
     dateFound: DataTypes.DATE,
     description: DataTypes.STRING,
+    tags: DataTypes.ARRAY(DataTypes.STRING),
     latlng: DataTypes.GEOMETRY,
   }, {
     sequelize,
