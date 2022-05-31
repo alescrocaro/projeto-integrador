@@ -22,7 +22,7 @@ export default function CreatePost() {
   const navigate = useNavigate();
 
   //hook para pegar coordenadas no mapa
-  const [latlng, setLatlng] = useState({lat: 0, lng: 0});
+  const [latlng, setLatlng] = useState(null);
   const changeLatlng = (coords) => {setLatlng(coords)};
   
   const validationSchema = yup.object({
@@ -87,6 +87,7 @@ export default function CreatePost() {
     validationSchema: validationSchema,
     //enviar info para o backend
     onSubmit: async (values) => {
+      if(!latlng) return alert('É necessário definir um local no mapa!');
       try {
         const res = await api.post('/posts', {
           title: values.title,
