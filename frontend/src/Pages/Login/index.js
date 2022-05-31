@@ -10,7 +10,6 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Link } from 'react-router-dom';
-
 import CreateUser from '../../components/CreateUser';
 
 const theme = createTheme();
@@ -24,7 +23,6 @@ export default function SignIn() {
       password: data.get('password'),
     });
   };
-  
 
   return (
     <ThemeProvider theme={theme}>

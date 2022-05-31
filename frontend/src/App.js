@@ -7,6 +7,7 @@ import Post from './Pages/ListPost';
 import CreatePost from './Pages/CreatePost';
 import SpecificPost from './Pages/ShowPost';
 import NotFound from './Pages/NotFound';
+import Login from './Pages/Login';
 
 export default function App() {
   return (
