@@ -22,7 +22,7 @@ export default function CreatePost() {
   const navigate = useNavigate();
 
   //hook para pegar coordenadas no mapa
-  const [latlng, setLatlng] = useState(null);
+  const [latlng, setLatlng] = useState({lat: 0, lng: 0});
   const changeLatlng = (coords) => {setLatlng(coords)};
   
   const validationSchema = yup.object({
