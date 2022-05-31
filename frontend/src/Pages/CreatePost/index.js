@@ -11,13 +11,13 @@ import Map from './components/Map';
 import { useNavigate } from "react-router-dom";
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-
-
+import Chip from '@mui/material/Chip';
 
 export default function CreatePost() {
 
-    const [imgFile, setImgFile] = useState([])
-
+  const [imgFile, setImgFile] = useState([])
+  const [tagsArray, setTagsArray] = useState([])
+  const [currentHashtag, setCurrentHashtag] = useState("")
   
   const navigate = useNavigate();
 
@@ -63,7 +63,9 @@ export default function CreatePost() {
     .string('Descrição'),
     dateEncounter:yup
     .date()
-    .required('Campo obrigatório')
+    .required('Campo obrigatório'),
+    currentHashtag:yup
+    .string()
   });
 
   //botao de criar post
@@ -83,6 +85,7 @@ export default function CreatePost() {
       description:'',
       dateEncounter: new Date(),
       contested: 0,
+      currentHashtag: "",
     },
     validationSchema: validationSchema,
     //enviar info para o backend
@@ -130,6 +133,12 @@ export default function CreatePost() {
     },
   });
 
+  // botão de deletar tags
+  const onDeleteTags = (chipToDelete) => {
+    setTagsArray(old => old.filter(element => element.key !== chipToDelete.key))
+
+    console.log(chipToDelete)
+  }
 
   return (
     <Layout>
@@ -390,6 +399,27 @@ export default function CreatePost() {
               multiline
               rows={4}
             />
+
+            <Box
+              sx={{display:'flex'}}
+            >
+              <ValidationTextField
+                id='currenthashTag'
+                name='currenthashTag'
+                label="Tags"
+                value={formik.values.currentHashtag}
+                onChange={formik.handleChange}
+              />
+              <Button variant="contained" color='success' sx={{fontWeight:'bold'}} onClick={() => {
+                setTagsArray(old => [...old, {currentHashtag: formik.values.currentHashtag, key: old.length}])
+              }}> Adicionar</Button>
+            </Box>
+
+            {tagsArray.map((element) => <Chip
+              key={element.key}
+              label={element.currentHashtag}
+              onDelete={onDeleteTags(element)}
+            />)}
             
             <Box
               sx={{display:'flex', justifyContent:'flex-end', mt:5}}
