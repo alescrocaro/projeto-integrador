@@ -10,6 +10,7 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Link } from 'react-router-dom';
+import CreateUser from '../../components/CreateUser';
 
 const theme = createTheme();
 
@@ -47,7 +48,7 @@ export default function SignIn() {
               required
               fullWidth
               id="email"
-              label="Email Address"
+              label="Endereço de email"
               name="email"
               autoComplete="email"
               autoFocus
@@ -57,7 +58,7 @@ export default function SignIn() {
               required
               fullWidth
               name="password"
-              label="Password"
+              label="Senha"
               type="password"
               id="password"
               autoComplete="current-password"
@@ -85,18 +86,25 @@ export default function SignIn() {
               </Button>
             </Link>
 
-            <Grid container>
+            <Box
+              sx={{
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center'
+              }}
+            >
               <Grid item xs>
-                <Link to="#" variant="body2">
+                <Button
+                  variant='text' 
+                >
                   Esqueceu sua senha?
-                </Link>
+                </Button>
               </Grid>
+
               <Grid item>
-                <Link to="/create-account" variant="body2">
-                  {"Não tem uma conta? Inscreva-se"}
-                </Link>
+                <CreateUser />
               </Grid>
-            </Grid>
+            </Box>
           </Box>
         </Box>
       </Container>
