@@ -87,6 +87,7 @@ export default function CreatePost() {
     validationSchema: validationSchema,
     //enviar info para o backend
     onSubmit: async (values) => {
+      if(!latlng) return alert('É necessário definir um local no mapa!');
       try {
         const res = await api.post('/posts', {
           title: values.title,

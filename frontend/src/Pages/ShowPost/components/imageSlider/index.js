@@ -37,9 +37,9 @@ export default function ImageSlider({images}) {
           enableMouseEvents
         >
           {images.map((step, index) => (
-            <div key={step.label}>
+            <div key={index}>
               {Math.abs(activeStep - index) <= 2 ? (
-                <Img                   
+                <Img               
                 component="img"
                 sx={{
                   overflow: 'hidden',

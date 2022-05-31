@@ -1,51 +1,66 @@
 import React from 'react';
 import { Mapa } from './style';
-
-import { MapContainer, TileLayer, Marker, Popup} from 'react-leaflet';
-import { useMapEvents } from 'react-leaflet/hooks'
-
+  
 import "leaflet/dist/leaflet.css";
 import L from 'leaflet';
-
+  
 import iconMarker from 'leaflet/dist/images/marker-icon.png'
 import iconRetina from 'leaflet/dist/images/marker-icon-2x.png'
 import iconShadow from 'leaflet/dist/images/marker-shadow.png'
-
-const icon = L.icon({ 
-    iconRetinaUrl:iconRetina, 
-    iconUrl: iconMarker, 
-    shadowUrl: iconShadow,
-    iconSize: [25,41],
-    iconAnchor: [12,41],
-    popupAnchor: [0, -41]
-});
-
-export default function Map(props) {
-    const position = [props.latlng.coordinates[1], props.latlng.coordinates[0]];
-
-    function BackToPos(){
-        const map = useMapEvents({
-            click(){
-                map.flyTo(position, 10);
-            },
+  
+class Map extends React.Component {
+    constructor(props){
+        super(props);
+    }
+  
+    getIcon(kingdom){
+        let iconURL = iconMarker;
+          
+        if(kingdom === 'Plantae') iconURL = 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-green.png'
+        else if(kingdom === 'Animalia') iconURL = 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-red.png'
+        else if(kingdom === 'Fungi') iconURL = 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-grey.png'
+        else if(kingdom === 'Chromista') iconURL = 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-orange.png'
+        else if(kingdom === 'Protozoa') iconURL = 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-yellow.png'
+        else if(kingdom === 'Bacteria') iconURL = 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-violet.png'
+        
+        return L.icon({ 
+            iconRetinaUrl:iconRetina, 
+            iconUrl: iconURL, 
+            shadowUrl: iconShadow,
+            iconSize: [25,41],
+            iconAnchor: [12,41],
+            popupAnchor: [0, -41]
         });
     }
 
-    return (
-        <Mapa>
-            <MapContainer center={position} zoom={10} style={{width: '100%', height: '100%'}}>
-                <TileLayer
-                    attribution='<a href="https://github.com/cyclosm/cyclosm-cartocss-style/releases">CyclOSM</a> | <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-                    url="https://{s}.tile-cyclosm.openstreetmap.fr/cyclosm/{z}/{x}/{y}.png"
-                />
+    componentDidMount(){
+        // LEAFLET ----------------------------------------------------------------------
+        const position = this.props.post.latlng ? [this.props.post.latlng.coordinates[1], this.props.post.latlng.coordinates[0]] : [-15,-48];                    
+        
+        var map = L.map('map').setView(position, 13);
+          
+        L.tileLayer('https://{s}.tile-cyclosm.openstreetmap.fr/cyclosm/{z}/{x}/{y}.png', {
+            attribution: '<a href="https://github.com/cyclosm/cyclosm-cartocss-style/releases">CyclOSM</a> | <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+        }).addTo(map);
 
-                <Marker position={position} icon={icon}>
-                    <Popup>
-                        <p>Espécime encontrado<br/>Lat: {position[1]}, Lng: {position[0]}</p>
-                    </Popup>
-                </Marker>
-                <BackToPos/>
-            </MapContainer>
-        </Mapa>
-    );
-  }
+        L.marker(position, {icon: this.getIcon(this.props.post.kingdom)})
+            .addTo(map)
+            .bindPopup(`<h5 style='margin: 0 0 .5em 0'>${this.props.post.title}</h5>
+                        <p style='margin: 0'>Lat: ${position[1].toFixed(5)}<br/>
+                        Lng: ${position[0].toFixed(5)}</p>`)
+            .openPopup();
+        
+        map.on('click', () => {        
+            map.setView(position, 13);      
+        });
+        // LEAFLET ----------------------------------------------------------------------
+    }
+    
+    render(){
+        return(
+            <Mapa id='map'/>
+        );
+    }
+}
+  
+  export default Map;
