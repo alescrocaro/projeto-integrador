@@ -48,14 +48,16 @@ module.exports = {
         dateFound,
         description,
         latlng,
+        tags
       } = req.body;
+
     
       const post = await Post.create({
         title,
         biome,
         userName, 
         specie,
-        genus,
+        genus,  
         family,
         order,
         className,
@@ -66,9 +68,9 @@ module.exports = {
         weather,
         dateFound,
         description,
+        tags,
         latlng: {type: 'Point', coordinates: [latlng.lng, latlng.lat]}, //geojson format [lng, lat]
       }); 
-
       return res.json(post.dataValues.id); 
     } catch (error) {
       console.log(error);

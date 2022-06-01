@@ -27,7 +27,8 @@ export default function ListPosts() {
           minHeight: '0 !important',
         }}>
         <StyledButton />
-        {posts && <Map posts={posts}/>}
+        {console.log('posts index', posts)}
+        {posts.length && <Map posts={posts}/>}
         <HeaderPage title="Mostrando observações recentes:" filter />
         {
           posts.map((post) => (

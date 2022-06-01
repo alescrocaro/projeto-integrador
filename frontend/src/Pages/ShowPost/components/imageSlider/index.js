@@ -6,11 +6,11 @@ import Button from '@mui/material/Button';
 import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
 import SwipeableViews from 'react-swipeable-views';
-import { autoPlay } from 'react-swipeable-views-utils';
+import { autoPlay,bindKeyboard  } from 'react-swipeable-views-utils';
 import { Img } from '../../style';
 
 
-const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
+const BindKeyboardSwipeableViews = bindKeyboard(SwipeableViews);
 
 export default function ImageSlider({images}) {
     const theme = useTheme();
@@ -31,15 +31,15 @@ export default function ImageSlider({images}) {
   
     return (
       <Box sx={{aspectRatio:'16/9', width:'100%', position:'relative'}}>
-        <AutoPlaySwipeableViews
+        <BindKeyboardSwipeableViews
           index={activeStep}
           onChangeIndex={handleStepChange}
           enableMouseEvents
         >
           {images.map((step, index) => (
-            <div key={step.label}>
+            <div key={index}>
               {Math.abs(activeStep - index) <= 2 ? (
-                <Img                   
+                <Img               
                 component="img"
                 sx={{
                   overflow: 'hidden',
@@ -49,7 +49,7 @@ export default function ImageSlider({images}) {
               ) : null}
             </div>
           ))}
-        </AutoPlaySwipeableViews>
+        </BindKeyboardSwipeableViews>
         <MobileStepper
           sx={{backgroundColor:"rgba(255, 252, 252,0.8)", position:'absolute', width:"60%",bottom:10, marginLeft:'auto', marginRight:'auto',left:0, right:0}}
           steps={maxSteps}
