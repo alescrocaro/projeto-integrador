@@ -1,8 +1,6 @@
 import React from 'react';
 import { Routes, Route, BrowserRouter } from 'react-router-dom';
 
-import Login from './Pages/Login';
-
 import Post from './Pages/ListPost';
 import CreatePost from './Pages/CreatePost';
 import SpecificPost from './Pages/ShowPost';
