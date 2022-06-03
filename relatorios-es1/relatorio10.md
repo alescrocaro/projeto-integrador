@@ -20,7 +20,7 @@ Os Seperaram melhos as histórias em issue
 **Data e local:** 3 de junho de 2022, sala E101\
 **Início:** 13h50 \
 **Término:** 15h30 \
-**Presentes:** Alexandre, Carlos,Leonardo, Carlos
+**Presentes:** Alexandre, Carlos,Leonardo, Caio
 
 
 Os integrantes se juntaram para terminar as issues
