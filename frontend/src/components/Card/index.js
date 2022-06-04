@@ -1,7 +1,7 @@
 import * as React from 'react';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import Card from '@mui/material/Card';
-import { CardActionArea } from '@mui/material';
+import { CardActionArea, Chip, Box } from '@mui/material';
 
 import { 
   BannerImage,
@@ -13,12 +13,13 @@ import {
 } from './style.js';
 
 export default function StyledCard({ post }) {
+  const navigate = useNavigate()
   const date = new Date(post.dateFound);
   const url = post.Images.length > 0 ? process.env.REACT_APP_BASE_URL+'/uploads/images/' + post.Images[0].url : 
   require('../../img/placeholder.png')
   return (
-    <Link 
-      to={'/posts/'+post.id}
+    <Box 
+      onClick={(e) => {navigate('/posts/'+post.id)}}
       style={{
         textDecoration: 'none',
         width: '100%',
@@ -27,7 +28,7 @@ export default function StyledCard({ post }) {
     >
       <Card sx={{ 
         width:'100%',
-        height: '150px',
+        height: '180px',
         alignItems: 'center',
       }}>
 
@@ -80,11 +81,25 @@ export default function StyledCard({ post }) {
                 </DescricaoB>
               </div>
             </StyledCardDescription>
-
+            <Box>
+              { 
+                (post.tags != null) &&
+                post.tags.map(element =>
+                  <Chip
+                    color='success'
+                    onClick={(e) => {e.stopPropagation(); }}
+                    size='small'
+                    sx={{mr:1, mt:1}}
+                    key={element}
+                    label={'#' + element}
+                  />
+                )
+              }
+            </Box>
 
           </StyledCardContent>
         </CardActionArea>
       </Card>
-    </Link>
+    </Box>
   );
 }
