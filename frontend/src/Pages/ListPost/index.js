@@ -21,9 +21,10 @@ export default function ListPosts() {
   mapControls.getSearchRadius = () => {return mapSearchRadius};
 
   //filter controls
-  const applyFilters = (filters) => {
-    //const { data } = await api.get('/posts');
-    //setPosts(data)
+  const applyFilters = async (filters) => {
+    const { data } = await api.get('/posts', { params: filters });
+    // console.log(data)
+    setPosts(data)
   };
 
   // //funcao para setar o mapcenter (latlng)

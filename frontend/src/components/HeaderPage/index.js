@@ -35,7 +35,7 @@ export default function StyledCard({ title='SEM TITULO', userName, dateFound, fi
 
   //filters
   const filters = {
-    mapSearchRadius: mapControls?.getSearchRadius(),
+    mapSearchRadius: 2 ** mapControls?.getSearchRadius(),
     mapCenter: mapControls?.getMapCenter(),
   }
 
