@@ -1,5 +1,6 @@
 const {User} = require('../models')
-const  {hashPassword} = require("../services/hash")
+const  {hashPassword, passwordValidation} = require("../services/hash")
+const  {generateJwt} = require("../services/jwtService")
 
 module.exports = {
 
@@ -16,9 +17,7 @@ module.exports = {
     
     async create(req, res) {
         const {firstName,lastName,email,password} = req.body
-
         if (email === null || password  === null) return res.status(401).json({error:"email and password should not be empty"})
-
         if (password.length < 6) return res.status(401).json({error:"Password should be bigger than 6 digits"})
     
         try {
@@ -42,7 +41,26 @@ module.exports = {
             console.log(e)
             return res.status(500).json({error:"Internal Error"})
         }
+    },
+
+    async login(req, res) {
+        const {email, password} = req.body
+        try {
+            const data = await User.findOne({
+                where: {email: email}
+            })
+            if (!data) return res.status(401).json({error: "User not found"})
+            const user = data.dataValues
+            console.log(user)
+            const isValid = passwordValidation(password,user.password,user.salt)
+            if(!isValid) return res.status(401).json({error: "password invalid"})
+
+            const token = generateJwt(user.id, user.firstName, user.lastName, user.email)
+            res.status(200).json({token:token})
+
+        } catch (e) {
+            console.log(e)
+            return res.status(500).json({error:"Internal error"})
+        }       
     }
-
-
 }
