@@ -10,17 +10,17 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Link } from 'react-router-dom';
-import CreateUser from '../../components/CreateUser';
+import CreateUser from '../Create';
 
 const theme = createTheme();
 
 export default function SignIn() {
-  const handleSubmit = (event) => {
+  const handleSubmit = event => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     console.log({
       email: data.get('email'),
-      password: data.get('password'),
+      password: data.get('password')
     });
   };
 
@@ -33,7 +33,7 @@ export default function SignIn() {
             marginTop: 8,
             display: 'flex',
             flexDirection: 'column',
-            alignItems: 'center',
+            alignItems: 'center'
           }}
         >
           <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
@@ -42,7 +42,12 @@ export default function SignIn() {
           <Typography component="h1" variant="h5">
             Entrar
           </Typography>
-          <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+          <Box
+            component="form"
+            onSubmit={handleSubmit}
+            noValidate
+            sx={{ mt: 1 }}
+          >
             <TextField
               margin="normal"
               required
@@ -64,7 +69,7 @@ export default function SignIn() {
               autoComplete="current-password"
             />
 
-            <Link to='/' style={{ textDecoration: 'none' }}>
+            <Link to="/" style={{ textDecoration: 'none' }}>
               <Button
                 type="submit"
                 fullWidth
@@ -74,13 +79,13 @@ export default function SignIn() {
                 Entrar
               </Button>
             </Link>
-            <Link to='/' style={{ textDecoration: 'none' }}>
+            <Link to="/" style={{ textDecoration: 'none' }}>
               <Button
                 type="submit"
                 fullWidth
                 variant="contained"
                 color="error"
-                sx={{ mt: 0, mb: 2}}
+                sx={{ mt: 0, mb: 2 }}
               >
                 Cancelar
               </Button>
@@ -94,11 +99,7 @@ export default function SignIn() {
               }}
             >
               <Grid item xs>
-                <Button
-                  variant='text' 
-                >
-                  Esqueceu sua senha?
-                </Button>
+                <Button variant="text">Esqueceu sua senha?</Button>
               </Grid>
 
               <Grid item>
