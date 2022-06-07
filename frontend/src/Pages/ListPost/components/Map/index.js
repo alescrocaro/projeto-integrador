@@ -11,6 +11,9 @@ import iconShadow from 'leaflet/dist/images/marker-shadow.png'
 class Map extends React.Component {
     constructor(props){
         super(props);
+        let map;
+        let markers;
+        let posts = props.posts;
     }
 
     getIcon(kingdom){
@@ -35,27 +38,63 @@ class Map extends React.Component {
 
     componentDidMount(){
         // LEAFLET ----------------------------------------------------------------------
-        var map = L.map('map').locate({setView: true, maxZoom: 9, enableHighAccuracy: true});//setView([0, 0], 6);
-        
+        this.map = L.map('map').locate({setView: true, maxZoom: 9, enableHighAccuracy: true});
+
         L.tileLayer('https://{s}.tile-cyclosm.openstreetmap.fr/cyclosm/{z}/{x}/{y}.png', {
             attribution: '<a href="https://github.com/cyclosm/cyclosm-cartocss-style/releases">CyclOSM</a> | <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-        }).addTo(map);
+        }).addTo(this.map);
 
-        this.props.posts.map((post) => {
-            const position = post.latlng ? [post.latlng.coordinates[1], post.latlng.coordinates[0]] : [0,0];                    
-            L.marker(position, {icon: this.getIcon(post.kingdom)})
-                .addTo(map)
-                .bindPopup(`<h5 style='margin: 0 0 .5em 0'><a href='/posts/${post.id}'>${post.title}</a></h5>
-                            <p style='margin: 0'>Lat: ${position[1].toFixed(5)}<br/>
-                            Lng: ${position[0].toFixed(5)}</p>`);
+        //caso a localizacao do pc esteja desativado
+        this.map.once('locationerror', () => {        
+            this.map.setView([-15, -48], 4);      
         });
-
-        map.once('locationerror', () => {        
-            map.setView([-15, -48], 4);      
+        
+        //setar map center no inicio
+        this.map.once('locationfound', () => {   
+            this.props.mapControls?.setMapCenter([
+                this.map.getCenter().lat,
+                this.map.getCenter().lng
+            ]);
+            this.props.mapControls?.setSearchRadius(7);
+        });
+        
+        //ao mover o mapa de lugar
+        this.map.on('dragend', () => {
+                this.props.mapControls?.setMapCenter([
+                    this.map.getCenter().lat,
+                this.map.getCenter().lng
+            ]);
         });
         // LEAFLET ----------------------------------------------------------------------
     }
 
+    componentDidUpdate(){
+        //update markers de cada posts (add se nao existe)
+        if(this.posts != this.props.posts){
+            this.posts = this.props.posts;
+        
+            //se existe markers, remove tudo. Se nao existe, cria
+            if(this.markers){
+                while(this.markers.length){
+                    this.markers.pop().remove(); //remove da array(pop), e remove do mapa (remove)
+                }
+            }else{
+                this.markers = new Array();
+            }
+
+            this.props.posts?.map((post) => {
+                const position = post.latlng ? [post.latlng.coordinates[1], post.latlng.coordinates[0]] : [0,0];                    
+                this.markers.push(
+                    L.marker(position, {icon: this.getIcon(post.kingdom)})
+                        .addTo(this.map)
+                        .bindPopup(`<h5 style='margin: 0 0 .5em 0'><a href='/posts/${post.id}'>${post.title}</a></h5>
+                                    <p style='margin: 0'>Lat: ${position[1].toFixed(5)}<br/>
+                                    Lng: ${position[0].toFixed(5)}</p>`)
+                );
+            });    
+        }
+    }
+       
     render(){
         return(
             <Mapa id='map'/>

@@ -30,6 +30,7 @@ export default function StyledCard({ post }) {
         width:'100%',
         height: '180px',
         alignItems: 'center',
+        backgroundColor: '#fafafa',
       }}>
 
         {/* card com tudo dentro */}

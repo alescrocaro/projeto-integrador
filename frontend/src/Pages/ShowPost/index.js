@@ -162,10 +162,12 @@ export default function SpecificPost() {
               >
                 <Subtitulo>LOCAL E DATA:</Subtitulo>
               
-                {/* mapa */
-                (post.latlng && <Map post={post}/>)
-                /*placeholder do mapa*/
-                || (!post.latlng && <Img src={require('../../img/foto1.jpg')} alt='img'/>)}
+                {
+                  //mapa
+                  (post.latlng && <Map post={post}/>) ||
+                  //placeholder do mapa
+                  (!post.latlng && <Img src={require('../../img/foto1.jpg')} alt='img'/>)
+                }
 
                 <Subsubtitulo>DETALHES:</Subsubtitulo>
                 <StyledTable data={post} detailsTable />
