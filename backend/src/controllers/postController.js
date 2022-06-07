@@ -1,17 +1,53 @@
 const { Post,Image } = require('../models');
 const { Comment } = require('../models');
 
+
+const sequelize = require('sequelize');
+
 module.exports = {
   async index(req, res){
     try {
-      const posts = await Post.findAll({
-        include:[
-          {model:Image}
-        ]
-      });
-  
-      return res.json(posts);
+      //se tiver filtros
+      if(Object.keys(req.query).length){
+
+      const distanceAttr = sequelize.fn('ST_DistanceSphere',
+        sequelize.literal(`latlng`),
+        sequelize.literal(`ST_MakePoint(${req.query.mapCenter[1]}, ${req.query.mapCenter[0]})`)
+      )
+
+        const posts = await Post.findAll({
+          include:[
+            {model:Image}
+          ],
+          // attributes:{
+          //   include:[
+          //     [distanceAttr, 'distance'],
+          //   ]
+          // },
+          where: {
+            $and: sequelize.where(distanceAttr, { [sequelize.Op.lte]: (req.query.mapSearchRadius * 1000) }),
+          },
+          order: [['updatedAt', 'DESC']],
+        });
+
+
+        console.log('posts ->', posts)
+        return res.json(posts);
+
+      }else{
+        const posts = await Post.findAll({
+          include:[
+            {model:Image}
+          ],
+          order: [['updatedAt', 'DESC']],
+        });
+
+        console.log(posts);
+        return res.json(posts);
+      }
+
     } catch (error) {
+      console.log(error)
       res.status(500).send();
     }
   },

@@ -15,6 +15,7 @@ import { Descricao, Img, Subsubtitulo, Subtitulo } from './style';
 import { Divider} from '@material-ui/core';
 
 import Paper from '@mui/material/Paper';
+import Chip from '@mui/material/Chip';
 
 import Map from './components/Map';
 import ImageSlider from './components/imageSlider';
@@ -161,10 +162,12 @@ export default function SpecificPost() {
               >
                 <Subtitulo>LOCAL E DATA:</Subtitulo>
               
-                {/* mapa */
-                (post.latlng && <Map post={post}/>)
-                /*placeholder do mapa*/
-                || (!post.latlng && <Img src={require('../../img/foto1.jpg')} alt='img'/>)}
+                {
+                  //mapa
+                  (post.latlng && <Map post={post}/>) ||
+                  //placeholder do mapa
+                  (!post.latlng && <Img src={require('../../img/foto1.jpg')} alt='img'/>)
+                }
 
                 <Subsubtitulo>DETALHES:</Subsubtitulo>
                 <StyledTable data={post} detailsTable />
@@ -186,6 +189,23 @@ export default function SpecificPost() {
                   <Descricao>{post.description}</Descricao>
                 </Paper>
               </Box> 
+              <Divider variant='middle'/>
+              <Box sx={{padding:'1rem'}}>
+              <Subtitulo>TAGS:</Subtitulo>
+              { 
+                (post.tags != null) &&
+                post.tags.map(element =>
+                  <Chip
+                    color='success'
+                    onClick={(e) => {e.stopPropagation(); }}
+                    size='small'
+                    sx={{mr:1, mt:1}}
+                    key={element}
+                    label={'#' + element}
+                  />
+                )
+              }
+              </Box>
 
           </Card>
           
