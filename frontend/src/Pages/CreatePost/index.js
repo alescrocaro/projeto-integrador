@@ -11,14 +11,13 @@ import Map from './components/Map';
 import { useNavigate } from "react-router-dom";
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-
-
+import Chip from '@mui/material/Chip';
 
 export default function CreatePost() {
 
-    const [imgFile, setImgFile] = useState([])
+  const [imgFile, setImgFile] = useState([])
+  const [tagsArray, setTagsArray] = useState([])
 
-  
   const navigate = useNavigate();
 
   //hook para pegar coordenadas no mapa
@@ -63,7 +62,9 @@ export default function CreatePost() {
     .string('Descrição'),
     dateEncounter:yup
     .date()
-    .required('Campo obrigatório')
+    .required('Campo obrigatório'),
+    currentHashtag:yup
+    .string('currentHashtag')
   });
 
   //botao de criar post
@@ -83,10 +84,12 @@ export default function CreatePost() {
       description:'',
       dateEncounter: new Date(),
       contested: 0,
+      currentHashtag: '',
     },
     validationSchema: validationSchema,
     //enviar info para o backend
     onSubmit: async (values) => {
+      if(!latlng) return alert('É necessário definir um local no mapa!');
       try {
         const res = await api.post('/posts', {
           title: values.title,
@@ -106,7 +109,8 @@ export default function CreatePost() {
           country:'Brasil',
           dateFound: values.dateEncounter,
           latlng: latlng, //{lat: double, lng: double}
-          contested: values.contested
+          contested: values.contested,
+          tags:tagsArray
         })
         
         
@@ -129,6 +133,10 @@ export default function CreatePost() {
     },
   });
 
+  // botão de deletar tags
+  const onDeleteTags = (chipToDelete) => {
+    setTagsArray(old => old.filter(element => element !== chipToDelete))  
+  }
 
   return (
     <Layout>
@@ -389,12 +397,41 @@ export default function CreatePost() {
               multiline
               rows={4}
             />
-            
+            <Typography variant="h5" component="h5" color={'#3c9e44'} sx={{marginTop:4}}>
+              Tags:
+            </Typography>
+
             <Box
+              sx={{display:'flex', mt: 4}}
+            >
+              <ValidationTextField 
+                  label='Tags'
+                  color="success"
+                  id='currentHashtag'
+                  name='currentHashtag'
+                  value={formik.values.currentHashtag}
+                  onChange={formik.handleChange}/>              
+
+              <Button onSubmit={e => { e.preventDefault() } } variant="contained" color='success' sx={{fontWeight:'bold',ml:2}} onClick={() => {
+                if (tagsArray.includes(formik.values.currentHashtag) || formik.values.currentHashtag.trim() === '') return 
+                setTagsArray(old => [...old, formik.values.currentHashtag])
+                formik.values.currentHashtag = ''
+              }}> Adicionar</Button>
+            </Box>
+            <Box sx={{mt:2}}>
+              {tagsArray.map((element) => 
+              <Chip
+                sx={{mr: 2, mt:2}}
+                key={element}
+                label={'#' + element}
+                onDelete={(_) => {onDeleteTags(element)}}
+              />)}              
+            </Box>            
+            <Box  
               sx={{display:'flex', justifyContent:'flex-end', mt:5}}
             >
-              <Button variant="text" sx={{mr:2,color:'#000000', fontWeight:'bold'}}>Cancelar</Button>
-              <Button type="submit"  variant="contained" color='success' sx={{fontWeight:'bold'}}> Publicar</Button>
+              <Button onSubmit={e => { e.preventDefault() } } variant="text" sx={{mr:2,color:'#000000', fontWeight:'bold'}}>Cancelar</Button>
+              <Button onSubmit={e => { e.preventDefault() } } type="submit"  variant="contained" color='success' sx={{fontWeight:'bold'}}> Publicar</Button>
             </Box>
 
           </form>
