@@ -2,6 +2,7 @@ const express = require('express');
 const routes = express.Router();
 const postController = require('./controllers/postController');
 const commentController = require('./controllers/commentController');
+const userController = require('./controllers/userController')
 
 const uploadService = require('./services/upload')
 
@@ -20,5 +21,9 @@ routes.get('/posts/:id/comments', commentController.index);
 routes.post('/posts/:PostId/comments', commentController.create);
 routes.delete('/posts/:id/comments/:id', commentController.delete);
 routes.post('/posts/:id/comments/updateContestation', commentController.updateContestation);
+
+// USER ROUTES
+routes.get('/user/:id', userController.get);
+routes.post('/user', userController.create);
 
 module.exports = routes;
