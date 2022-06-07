@@ -23,7 +23,7 @@ routes.delete('/posts/:id/comments/:id', commentController.delete);
 routes.post('/posts/:id/comments/updateContestation', commentController.updateContestation);
 
 // USER ROUTES
-routes.get('/user/:id', userController.get);
-routes.post('/user', userController.create);
+routes.get('/users/:id', userController.get);
+routes.post('/users', userController.create);
 
 module.exports = routes;
