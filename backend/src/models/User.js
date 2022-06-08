@@ -11,14 +11,14 @@ module.exports = (sequelize, DataTypes) => {
         hooks: true
       })
     }
-  }
+  } 
   User.init({
     firstName: DataTypes.STRING,
     lastName: DataTypes.STRING,
     email: DataTypes.STRING,
     password: DataTypes.STRING,
-    salt: DataTypes.STRING
-    
+    salt: DataTypes.STRING,
+    bio: DataTypes.STRING
 }, {
   sequelize,
   modelName: 'User',

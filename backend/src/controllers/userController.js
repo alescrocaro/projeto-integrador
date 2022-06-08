@@ -9,6 +9,8 @@ module.exports = {
         try {
             const user = await User.findByPk(id)
             if (!user) return res.status(400).json({error:"User not found"})
+            delete user["password"]
+            delete user["salt"]
             res.status(200).json(user)
         } catch (e) {
             return res.status(500).json({error:"internal error"})
@@ -16,7 +18,7 @@ module.exports = {
     },
     
     async create(req, res) {
-        const {firstName,lastName,email,password} = req.body
+        const {firstName,lastName,email,password,bio} = req.body
         if (email === null || password  === null) return res.status(401).json({error:"email and password should not be empty"})
         if (password.length < 6) return res.status(401).json({error:"Password should be bigger than 6 digits"})
     
@@ -32,7 +34,8 @@ module.exports = {
                 lastName,
                 email,
                 password:hash,
-                salt:salt
+                salt:salt,
+                bio
             })
 
             return res.status(200).json(200)
