@@ -149,8 +149,6 @@ export default function StyledCard({ title='SEM TITULO', userName, dateFound, fi
                   sx={{color: '#14aa6b', margin: '10px 0'}}
                 />
                 <DescricaoB>ℹ️ O filtro é aplicado com base no centro visual do mapa.</DescricaoB>
-                <p>Mapcenter = {mapControls.getMapCenter()}<br/>
-                searchradius = {mapControls.getSearchRadius()}</p>
               </div>
             </FiltersContent>
 
