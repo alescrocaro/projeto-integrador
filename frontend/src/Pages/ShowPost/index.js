@@ -273,41 +273,42 @@ export default function SpecificPost() {
                       >
                         <Descricao>{comment.description}</Descricao>
                       </Paper>
-                      {comment.contestation > 0 && (
-                        <Button
-                          type="submit"
-                          variant="contained"
-                          color="primary"
-                          sx={{
-                            marginLeft: '5px',
-                            maxWidth: '150px',
-                            width: '35%'
-                          }}
-                          onClick={async () => {
-                            comment.contestation -= 1;
-                            formik.setFieldValue(
-                              'contestation',
-                              comment.contestation
-                            );
-                            let commentId = comment.id;
-                            let contestation = comment.contestation;
-                            console.log('commentId', comment.id);
-                            try {
-                              await api.post(
-                                `/posts/${id}/comments/updateContestation`,
-                                {
-                                  commentId,
-                                  contestation
-                                }
+                      {comment.contestation > 0 &&
+                        localStorage.getItem('token') && (
+                          <Button
+                            type="submit"
+                            variant="contained"
+                            color="primary"
+                            sx={{
+                              marginLeft: '5px',
+                              maxWidth: '150px',
+                              width: '35%'
+                            }}
+                            onClick={async () => {
+                              comment.contestation -= 1;
+                              formik.setFieldValue(
+                                'contestation',
+                                comment.contestation
                               );
-                            } catch (error) {
-                              console.log(error);
-                            }
-                          }}
-                        >
-                          Marcar como resolvida ({comment.contestation})
-                        </Button>
-                      )}
+                              let commentId = comment.id;
+                              let contestation = comment.contestation;
+                              console.log('commentId', comment.id);
+                              try {
+                                await api.post(
+                                  `/posts/${id}/comments/updateContestation`,
+                                  {
+                                    commentId,
+                                    contestation
+                                  }
+                                );
+                              } catch (error) {
+                                console.log(error);
+                              }
+                            }}
+                          >
+                            Marcar como resolvida ({comment.contestation})
+                          </Button>
+                        )}
                       {comment.contestation === 0 && (
                         <Button
                           variant="contained"
@@ -329,71 +330,73 @@ export default function SpecificPost() {
             </Box>
 
             {/* Box de postagem de comentário */}
-            <Box
-              sx={{
-                display: 'flex',
-                flexDirection: 'column',
-                justifyContent: 'center',
-                padding: '1rem'
-              }}
-            >
-              <Subsubtitulo>ESCREVER COMENTÁRIO:</Subsubtitulo>
-              <form component="form" onSubmit={formik.handleSubmit}>
-                <TextField
-                  sx={{
-                    backgroundColor: 'white',
-                    borderRadius: '10px',
-                    marginTop: '10px'
-                  }}
-                  fullWidth
-                  multiline
-                  name="description"
-                  value={formik.values.description}
-                  onChange={formik.handleChange}
-                  error={formik.touched.title && Boolean(formik.errors.title)}
-                  helperText={formik.touched.title && formik.errors.title}
-                  label={'Seu comentário'}
-                />
-                {/* Box de botões */}
-                <Box
-                  sx={{
-                    display: 'flex',
-                    flexDirection: 'row',
-                    justifyContent: 'flex-end',
-                    alignItems: 'center',
-                    marginTop: '5px'
-                  }}
-                >
-                  <Button
-                    type="submit"
-                    variant="contained"
-                    color="error"
+            {localStorage.getItem('token') && (
+              <Box
+                sx={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  justifyContent: 'center',
+                  padding: '1rem'
+                }}
+              >
+                <Subsubtitulo>ESCREVER COMENTÁRIO:</Subsubtitulo>
+                <form component="form" onSubmit={formik.handleSubmit}>
+                  <TextField
                     sx={{
-                      margin: '0 5px'
+                      backgroundColor: 'white',
+                      borderRadius: '10px',
+                      marginTop: '10px'
                     }}
-                    onClick={() => {
-                      const type = 'contestation';
-                      const auxContestation = 2;
-                      formik.setFieldValue('type', type);
-                      formik.setFieldValue('contestation', auxContestation);
+                    fullWidth
+                    multiline
+                    name="description"
+                    value={formik.values.description}
+                    onChange={formik.handleChange}
+                    error={formik.touched.title && Boolean(formik.errors.title)}
+                    helperText={formik.touched.title && formik.errors.title}
+                    label={'Seu comentário'}
+                  />
+                  {/* Box de botões */}
+                  <Box
+                    sx={{
+                      display: 'flex',
+                      flexDirection: 'row',
+                      justifyContent: 'flex-end',
+                      alignItems: 'center',
+                      marginTop: '5px'
                     }}
                   >
-                    Contestar
-                  </Button>
-                  <Button
-                    type="submit"
-                    variant="contained"
-                    color="primary"
-                    onClick={() => {
-                      const type = 'comment';
-                      formik.setFieldValue('type', type);
-                    }}
-                  >
-                    Comentar
-                  </Button>
-                </Box>
-              </form>
-            </Box>
+                    <Button
+                      type="submit"
+                      variant="contained"
+                      color="error"
+                      sx={{
+                        margin: '0 5px'
+                      }}
+                      onClick={() => {
+                        const type = 'contestation';
+                        const auxContestation = 2;
+                        formik.setFieldValue('type', type);
+                        formik.setFieldValue('contestation', auxContestation);
+                      }}
+                    >
+                      Contestar
+                    </Button>
+                    <Button
+                      type="submit"
+                      variant="contained"
+                      color="primary"
+                      onClick={() => {
+                        const type = 'comment';
+                        formik.setFieldValue('type', type);
+                      }}
+                    >
+                      Comentar
+                    </Button>
+                  </Box>
+                </form>
+              </Box>
+            )}
           </Card>
         </Container>
       )}
