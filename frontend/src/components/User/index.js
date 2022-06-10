@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
-// import api from '../../services/api';
+import { useToken } from '../../Context/AuthContext';
 
 import Avatar from '@mui/material/Avatar';
 import Box from '@mui/material/Box';
@@ -15,15 +15,18 @@ import { Button } from '@mui/material';
 const settings = ['Perfil', 'Sair'];
 
 export default function User() {
+  const { handleLogout } = useToken();
   const [anchorElUser, setAnchorElUser] = React.useState(null);
   let navigate = useNavigate();
 
   const handleOpenUserMenu = event => {
     setAnchorElUser(event.currentTarget);
   };
+
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
+
   return (
     <>
       <Link to="/login" style={{ textDecoration: 'none' }}>
@@ -66,6 +69,7 @@ export default function User() {
                 // if sair: handle logout from context
                 // if perfil: get user id from headers and redirect to /users/${id}
                 if (setting === 'Perfil') navigate(`/users/1`);
+                if (setting === 'Sair') handleLogout();
               }}
             >
               <Typography textAlign="center">{setting}</Typography>

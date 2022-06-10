@@ -40,18 +40,20 @@ export default function SignUpDialog() {
       lastName: '',
       email: '',
       password: '',
+      bio: '',
       confirmPassword: ''
     },
     onSubmit: async values => {
       try {
-        let { firstName, lastName, email, password } = values;
+        let { firstName, lastName, email, password, bio } = values;
         email = email.toLowerCase();
 
         await api.post('/users', {
           firstName,
           lastName,
           email,
-          password
+          password,
+          bio
         });
 
         handleClose();
