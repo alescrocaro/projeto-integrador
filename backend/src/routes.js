@@ -25,5 +25,6 @@ routes.post('/posts/:id/comments/updateContestation', commentController.updateCo
 // USER ROUTES
 routes.get('/users/:id', userController.get);
 routes.post('/users', userController.create);
+routes.post('/login', userController.login);
 
 module.exports = routes;

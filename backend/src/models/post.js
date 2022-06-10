@@ -18,6 +18,7 @@ module.exports = (sequelize, DataTypes) => {
         onDelete: 'CASCADE',
         hooks: true
       });
+      Post.belongsTo(models.User);
     }
   }
   Post.init({
