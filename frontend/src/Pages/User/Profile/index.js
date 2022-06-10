@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import api from '../../../services/api';
+import { api } from '../../../services/api';
 
 import avatarImage from '../../../img/avatar.png';
 import postIcon from '../../../img/postIcon.svg';

@@ -3,7 +3,7 @@ import * as React from 'react';
 import * as Yup from 'yup';
 import { useNavigate } from 'react-router-dom';
 import { useFormik } from 'formik';
-import api from '../../../services/api';
+import { api } from '../../../services/api';
 
 import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
