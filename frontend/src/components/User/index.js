@@ -29,54 +29,62 @@ export default function User() {
 
   return (
     <>
-      <Link to="/login" style={{ textDecoration: 'none' }}>
-        <Button
-          variant="text"
-          color="inherit"
-          size="large"
-          sx={{ color: 'white' }}
-        >
-          Login
-        </Button>
-      </Link>
-      <Box sx={{ flexGrow: 0 }}>
-        <Tooltip title="Abrir opções de usuário">
-          <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-            <Avatar />
-          </IconButton>
-        </Tooltip>
-        <Menu
-          sx={{ mt: '45px' }}
-          id="menu-appbar"
-          anchorEl={anchorElUser}
-          anchorOrigin={{
-            vertical: 'top',
-            horizontal: 'right'
-          }}
-          keepMounted
-          transformOrigin={{
-            vertical: 'top',
-            horizontal: 'right'
-          }}
-          open={Boolean(anchorElUser)}
-          onClose={handleCloseUserMenu}
-        >
-          {settings.map(setting => (
-            <MenuItem
-              key={setting}
-              onClick={() => {
-                handleCloseUserMenu();
-                // if sair: handle logout from context
-                // if perfil: get user id from headers and redirect to /users/${id}
-                if (setting === 'Perfil') navigate(`/users/1`);
-                if (setting === 'Sair') handleLogout();
-              }}
-            >
-              <Typography textAlign="center">{setting}</Typography>
-            </MenuItem>
-          ))}
-        </Menu>
-      </Box>
+      {!localStorage.getItem('token') && (
+        <Link to="/login" style={{ textDecoration: 'none' }}>
+          <Button
+            variant="text"
+            color="inherit"
+            size="large"
+            sx={{ color: 'white' }}
+          >
+            Login
+          </Button>
+        </Link>
+      )}
+      {localStorage.getItem('token') && (
+        <Box sx={{ flexGrow: 0 }}>
+          <Tooltip title="Abrir opções de usuário">
+            <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+              <Avatar />
+            </IconButton>
+          </Tooltip>
+          <Menu
+            sx={{ mt: '45px' }}
+            id="menu-appbar"
+            anchorEl={anchorElUser}
+            anchorOrigin={{
+              vertical: 'top',
+              horizontal: 'right'
+            }}
+            keepMounted
+            transformOrigin={{
+              vertical: 'top',
+              horizontal: 'right'
+            }}
+            open={Boolean(anchorElUser)}
+            onClose={handleCloseUserMenu}
+          >
+            {settings.map(setting => (
+              <MenuItem
+                key={setting}
+                onClick={() => {
+                  handleCloseUserMenu();
+                  // if sair: handle logout from context
+                  // if perfil: get user id from headers and redirect to /users/${id}
+
+                  if (setting === 'Perfil') {
+                    const data = JSON.parse(localStorage.getItem('user'));
+                    navigate(`/users/${data.id}`);
+                  }
+                  if (setting === 'Sair') handleLogout();
+                }}
+              >
+                <Typography textAlign="center">{setting}</Typography>
+              </MenuItem>
+            ))}
+          </Menu>
+        </Box>
+      )}
     </>
   );
 }
