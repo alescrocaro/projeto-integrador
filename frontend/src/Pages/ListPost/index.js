@@ -56,8 +56,19 @@ export default function ListPosts() {
           minHeight: '0 !important'
         }}
       >
-        <StyledButton />
-
+        {localStorage.getItem('token') && (
+          <StyledButton
+            title={'ADICIONAR NOVA OBSERVAÇÃO'}
+            icon={'add'}
+            isLinkActive
+          />
+        )}
+        {!localStorage.getItem('token') && (
+          <StyledButton
+            title={'VOCÊ DEVE SE CONECTAR PARA CRIAR UM POST'}
+            icon={'warn'}
+          />
+        )}
         <Map posts={posts} mapControls={mapControls} />
 
         <HeaderPage
