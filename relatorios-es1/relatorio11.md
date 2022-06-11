@@ -16,7 +16,7 @@
 
 Leonardo: Terminei a issue de criação da rota de autenticação
 Carlos: Fez o teste e aprovou a issues
-caio: terminou o layout das páginas do usuário
+alexandre: terminou o layout das páginas do usuário
 carlos: terminou de implementar a filtragem por geolocalização
 
 
