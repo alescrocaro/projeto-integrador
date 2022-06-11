@@ -15,7 +15,7 @@ import { Button } from '@mui/material';
 const settings = ['Perfil', 'Sair'];
 
 export default function User() {
-  const { handleLogout } = useToken();
+  const { handleLogout, user } = useToken();
   const [anchorElUser, setAnchorElUser] = React.useState(null);
   let navigate = useNavigate();
 
@@ -29,7 +29,7 @@ export default function User() {
 
   return (
     <>
-      {!localStorage.getItem('token') && (
+      {!user && (
         <Link to="/login" style={{ textDecoration: 'none' }}>
           <Button
             variant="text"
@@ -41,7 +41,7 @@ export default function User() {
           </Button>
         </Link>
       )}
-      {localStorage.getItem('token') && (
+      {user && (
         <Box sx={{ flexGrow: 0 }}>
           <Tooltip title="Abrir opções de usuário">
             <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
@@ -73,8 +73,7 @@ export default function User() {
                   // if perfil: get user id from headers and redirect to /users/${id}
 
                   if (setting === 'Perfil') {
-                    const data = JSON.parse(localStorage.getItem('user'));
-                    navigate(`/users/${data.id}`);
+                    navigate(`/users/${user.id}`);
                   }
                   if (setting === 'Sair') handleLogout();
                 }}

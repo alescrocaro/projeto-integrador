@@ -46,13 +46,12 @@ export function AuthProvider({ children }) {
       const token = response.data.token;
 
       const loggedUser = decode(response.data.token);
+      setUser(loggedUser);
 
-      localStorage.setItem('user', JSON.stringify(loggedUser));
       localStorage.setItem('token', JSON.stringify(token));
 
       api.defaults.headers.authorization = `Bearer ${token}`;
 
-      setUser(loggedUser);
       navigate('/');
       setLoading(false);
     } catch (error) {
@@ -82,7 +81,6 @@ export function AuthProvider({ children }) {
   const handleLogout = () => {
     console.log('logout');
 
-    localStorage.removeItem('user');
     localStorage.removeItem('token');
     api.defaults.headers.authorization = null;
 
@@ -110,79 +108,3 @@ export function useToken() {
   console.log('context', context);
   return context;
 }
-
-/* import React, { createContext, useState, useContext } from 'react';
-import api from '../services/api';
-
-const TokenContext = createContext();
-
-export function TokenProvider({ children }) {
-  const [authenticated, setAuthenticated] = useState(false);
-  const [loading, setLoading] = useState(true);
-  // const [isMaster, setMaster] = useState(false);
-  console.log('ANTES TOKEN PROoi');
-
-  function handleLogout() {
-    setAuthenticated(false);
-    // setMaster(false);
-    localStorage.removeItem('token');
-    api.defaults.headers.Authorization = undefined;
-    window.location = '/';
-  }
-
-  const decode = token => {
-    try {
-      // const { isMaster: masterFlag } = JSON.parse(
-      //   Buffer.from(token.split('.')[1], 'base64')
-      // );
-      // setMaster(masterFlag);
-    } catch (error) {
-      console.log(error);
-      handleLogout();
-    }
-  };
-
-  function handleLogin(email = String, password = String) {
-    setLoading(true);
-    api
-      .post('/login', { email, password })
-      .then(res => {
-        localStorage.setItem('token', res.data.token);
-        decode(res.data.token);
-        api.defaults.headers.Authorization = `Bearer ${res.data.token}`;
-        setAuthenticated(true);
-      })
-      .catch(err => {
-        // TODO: Fazer tratamento dos retornos com erro
-        console.debug('ERRO', err);
-        // eslint-disable-next-line no-alert
-        alert('Erro ao fazer login.');
-      })
-      .finally(() => {
-        setLoading(false);
-      });
-  }
-
-  return (
-    <TokenContext.Provider
-      value={{
-        loading,
-        authenticated,
-        setAuthenticated,
-        setLoading,
-        handleLogin,
-        handleLogout
-        // isMaster,
-        // setMaster
-      }}
-    >
-      {children}
-    </TokenContext.Provider>
-  );
-}
-
-export function useToken() {
-  const context = useContext(TokenContext);
-  return context;
-}
- */

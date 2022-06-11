@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { api } from '../../services/api';
+import { useToken } from '../../Context/AuthContext';
 
 import Container from '../../components/Container';
 import Layout from '../../components/Layout';
@@ -10,6 +11,8 @@ import HeaderPage from '../../components/HeaderPage';
 import Map from './components/Map';
 
 export default function ListPosts() {
+  const { user } = useToken();
+  console.log(user);
   //map filter constrols
   const [mapCenter, setMapCenter] = useState([-15, -48]); //tem que ficar onde esta o mapa e o headerpage
   const [mapSearchRadius, setMapSearchRadius] = useState(12);
@@ -56,14 +59,14 @@ export default function ListPosts() {
           minHeight: '0 !important'
         }}
       >
-        {localStorage.getItem('token') && (
+        {user && (
           <StyledButton
             title={'ADICIONAR NOVA OBSERVAÇÃO'}
             icon={'add'}
             isLinkActive
           />
         )}
-        {!localStorage.getItem('token') && (
+        {!user && (
           <StyledButton
             title={'VOCÊ DEVE SE CONECTAR PARA CRIAR UM POST'}
             icon={'warn'}

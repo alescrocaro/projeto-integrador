@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { api } from '../../services/api';
+import { useToken } from '../../Context/AuthContext';
 import { useFormik } from 'formik';
 import * as yup from 'yup';
 
@@ -21,6 +22,7 @@ import Map from './components/Map';
 import ImageSlider from './components/imageSlider';
 
 export default function SpecificPost() {
+  const { user } = useToken();
   const [post, setPost] = useState({});
   const [comments, setComment] = useState([]);
   const { id } = useParams();
@@ -273,42 +275,41 @@ export default function SpecificPost() {
                       >
                         <Descricao>{comment.description}</Descricao>
                       </Paper>
-                      {comment.contestation > 0 &&
-                        localStorage.getItem('token') && (
-                          <Button
-                            type="submit"
-                            variant="contained"
-                            color="primary"
-                            sx={{
-                              marginLeft: '5px',
-                              maxWidth: '150px',
-                              width: '35%'
-                            }}
-                            onClick={async () => {
-                              comment.contestation -= 1;
-                              formik.setFieldValue(
-                                'contestation',
-                                comment.contestation
+                      {comment.contestation > 0 && user && (
+                        <Button
+                          type="submit"
+                          variant="contained"
+                          color="primary"
+                          sx={{
+                            marginLeft: '5px',
+                            maxWidth: '150px',
+                            width: '35%'
+                          }}
+                          onClick={async () => {
+                            comment.contestation -= 1;
+                            formik.setFieldValue(
+                              'contestation',
+                              comment.contestation
+                            );
+                            let commentId = comment.id;
+                            let contestation = comment.contestation;
+                            console.log('commentId', comment.id);
+                            try {
+                              await api.post(
+                                `/posts/${id}/comments/updateContestation`,
+                                {
+                                  commentId,
+                                  contestation
+                                }
                               );
-                              let commentId = comment.id;
-                              let contestation = comment.contestation;
-                              console.log('commentId', comment.id);
-                              try {
-                                await api.post(
-                                  `/posts/${id}/comments/updateContestation`,
-                                  {
-                                    commentId,
-                                    contestation
-                                  }
-                                );
-                              } catch (error) {
-                                console.log(error);
-                              }
-                            }}
-                          >
-                            Marcar como resolvida ({comment.contestation})
-                          </Button>
-                        )}
+                            } catch (error) {
+                              console.log(error);
+                            }
+                          }}
+                        >
+                          Marcar como resolvida ({comment.contestation})
+                        </Button>
+                      )}
                       {comment.contestation === 0 && (
                         <Button
                           variant="contained"
@@ -330,7 +331,7 @@ export default function SpecificPost() {
             </Box>
 
             {/* Box de postagem de comentário */}
-            {localStorage.getItem('token') && (
+            {user && (
               <Box
                 sx={{
                   display: 'flex',
