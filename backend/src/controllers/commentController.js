@@ -12,7 +12,8 @@ module.exports = {
           comments = await Comment.findAll({
           where: {
             PostId: post.dataValues.id,
-          }
+          },
+          order: [['createdAt', 'ASC']]
         });
       } catch (error) {
         console.log(error);
