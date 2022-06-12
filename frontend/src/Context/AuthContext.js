@@ -11,14 +11,11 @@ export function AuthProvider({ children }) {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const recoveredUser = localStorage.getItem('user');
     const token = localStorage.getItem('token');
-    console.log(token);
-    console.log(recoveredUser);
+    const recoveredUser = decode(token);
 
     if (recoveredUser && token) {
-      console.log(!!recoveredUser);
-      setUser(JSON.parse(recoveredUser));
+      setUser(recoveredUser);
       api.defaults.headers.authorization = `Bearer ${token}`;
     }
 
