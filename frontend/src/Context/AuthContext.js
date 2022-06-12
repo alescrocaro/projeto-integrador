@@ -30,7 +30,6 @@ export function AuthProvider({ children }) {
       return data;
     } catch (error) {
       console.log(error);
-      handleLogout();
     }
   };
 
@@ -102,6 +101,5 @@ export function AuthProvider({ children }) {
 
 export function useToken() {
   const context = useContext(TokenContext);
-  console.log('context', context);
   return context;
 }

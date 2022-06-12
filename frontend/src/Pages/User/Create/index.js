@@ -79,8 +79,8 @@ export default function SignUpDialog() {
 
   return (
     <div>
-      <Button variant="text" onClick={handleClickOpen}>
-        Não tem uma conta? Cadastre-se!
+      <Button variant="outlined" onClick={handleClickOpen}>
+        Não tem um conta? Cadastre-se!
       </Button>
       <Dialog open={open} onClose={handleClose}>
         <DialogTitle>Criar conta</DialogTitle>

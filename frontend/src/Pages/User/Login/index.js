@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { useFormik } from 'formik';
 import { useToken } from '../../../Context/AuthContext';
 import CreateUser from '../Create';
@@ -88,7 +89,14 @@ export default function Login() {
                 </Link>
               </Grid> */}
 
-              <Grid item>
+              <Grid item xs={6} sx={{ pr: 1 }}>
+                <Link to="/" style={{ textDecoration: 'none' }}>
+                  <Button variant="outlined" color="error">
+                    Continuar sem uma conta
+                  </Button>
+                </Link>
+              </Grid>
+              <Grid item xs={6} sx={{ pl: 1 }}>
                 <CreateUser />
               </Grid>
             </Grid>
