@@ -29,12 +29,12 @@ import {
 } from './style';
 
 export default function Profile() {
-  const [user, setUser] = useState({});
+  const [profileData, setProfileData] = useState({});
   const { id } = useParams();
 
   async function getUser(id) {
     const { data } = await api.get(`users/${id}`);
-    setUser(data);
+    setProfileData(data);
     //return data;
   }
 
@@ -58,7 +58,7 @@ export default function Profile() {
           <StyledDiv>
             Nome:
             <StyledPaper>
-              {user.firstName} {user.lastName}
+              {profileData.firstName} {profileData.lastName}
             </StyledPaper>
           </StyledDiv>
           <StyledDiv>
@@ -75,7 +75,7 @@ export default function Profile() {
             <ContentLine>
               <IconImg src={postIcon} />
               <SubTitle>POSTS:</SubTitle>
-              <TopContribution style={{ color: '#BD7100' }}>
+              <TopContribution style={{ color: '#c71700' }}>
                 ANIMALIA (4)
               </TopContribution>
             </ContentLine>
@@ -96,7 +96,7 @@ export default function Profile() {
             <Title>ESPECIALIDADES:</Title>
             <ContentLine>
               <IconImg src={animaliaIcon} />
-              <SubTitle style={{ color: '#BD7100' }}>ANIMALIA:</SubTitle>
+              <SubTitle style={{ color: '#c71700' }}>ANIMALIA:</SubTitle>
               <TopContribution>2 contribuições</TopContribution>
             </ContentLine>
             <ContentLine>
@@ -106,22 +106,22 @@ export default function Profile() {
             </ContentLine>
             <ContentLine>
               <IconImg src={fungiIcon} />
-              <SubTitle style={{ color: '#496389' }}>FUNGI:</SubTitle>
+              <SubTitle style={{ color: '#7a7a7a' }}>FUNGI:</SubTitle>
               <TopContribution>2 contribuições</TopContribution>
             </ContentLine>
             <ContentLine>
               <IconImgProtista src={protistaIcon} />
-              <SubTitle style={{ color: '#013c5e' }}>PROTISTA:</SubTitle>
+              <SubTitle style={{ color: '#d1a400' }}>PROTISTA:</SubTitle>
               <TopContribution>2 contribuições</TopContribution>
             </ContentLine>
             <ContentLine>
               <IconImg src={moneraIcon} />
-              <SubTitle style={{ color: '#00D1FF' }}>MONERA:</SubTitle>
+              <SubTitle style={{ color: '#8f00d1' }}>MONERA:</SubTitle>
               <TopContribution>2 contribuições</TopContribution>
             </ContentLine>
           </ContentDiv>
         </StyledCard>
-        {console.log(user)}
+        {console.log(profileData)}
       </Container>
     </Layout>
   );
