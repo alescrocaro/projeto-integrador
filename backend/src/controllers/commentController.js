@@ -1,7 +1,7 @@
 const { Comment, Post } = require('../models');
 
 module.exports = {
-  async index(req, res){
+  async index(req, res) {
     try {
       const { id } = req.params;
       //console.log('ID PARAM INDEX:::::::::',id)
@@ -9,9 +9,9 @@ module.exports = {
 
       var comments = null;
       try {
-          comments = await Comment.findAll({
+        comments = await Comment.findAll({
           where: {
-            PostId: post.dataValues.id,
+            PostId: post.dataValues.id
           },
           order: [['createdAt', 'ASC']]
         });
@@ -19,18 +19,18 @@ module.exports = {
         console.log(error);
         res.status(500).send();
       }
-  
+
       return res.json(comments);
     } catch (error) {
-      console.log(error)
+      console.log(error);
       res.status(500).send();
     }
   },
-  
+
   // async get(req, res){
   //   try {
   //     const post = await Comment.findOne({ where: { id: req.params.id } });
-  
+
   //     return res.json(post);
   //   } catch (error) {
   //     console.log(error)
@@ -38,54 +38,49 @@ module.exports = {
   //   }
   // },
 
-  async create(req, res){
+  async create(req, res) {
     try {
-      const { 
-        userName,
-        type,
-        description,
-        contestation,
-      } = req.body;
+      const { userName, type, description, contestation } = req.body;
 
       const { PostId } = req.params;
-    
+
       const comment = await Comment.create({
         userName,
         type,
         description,
         contestation,
-        PostId,
-      }); 
-      
-      return res.json(comment.dataValues.id); 
+        PostId
+      });
+
+      return res.json(comment.dataValues.id);
     } catch (error) {
       console.log('MENSAGEM:', error.message);
       console.log(error);
-      res.status(500).send();      
+      res.status(500).send();
     }
   },
 
-  async updateContestation(req, res){
+  async updateContestation(req, res) {
     try {
       const { commentId, contestation } = req.body;
       const comment = await Comment.findByPk(commentId);
-      console.log('TESTETESTE',commentId, contestation);
+      console.log('TESTETESTE', commentId, contestation);
 
       comment.contestation = contestation;
 
       await comment.save();
-  
+
       return res.json(comment);
     } catch (error) {
-      console.log(error)
+      console.log(error);
       res.status(500).send();
     }
   },
-  
-  async delete(req, res){
+
+  async delete(req, res) {
     try {
       const { id } = req.params;
-      
+
       await Comment.destroy({
         where: {
           id: id
@@ -94,8 +89,8 @@ module.exports = {
 
       return res.status(204).send(); // 204 - res sucesso sem conteudo
     } catch (error) {
-      console.log('MENSAGEM: ',error.message);
+      console.log('MENSAGEM: ', error.message);
       res.status(500).send();
     }
   }
-}
+};
