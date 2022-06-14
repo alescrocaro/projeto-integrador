@@ -1,9 +1,49 @@
-# Implementação 1
-## Introdução
-&emsp; O problema da falta de mapeamento de seres invasores afeta pesquisadores e estudantes, e pode ser visto pela dificuldade em mensurar o impacto ambiental causado por tais seres, dificultando assim a elaboração de soluções que possam vir a tratar problemas ambientais em uma determinada região. O FÓRUM é um site de biologia que procura mapear os seres invasores de um determinado lugar. Nosso software procura ser informativo de maneira que o usuário consiga visualizar facilmente os seres que não fazem parte de determinado ambiente, além de possibilitar que qualquer pessoa possa ajudar a comunidade fazendo postagens para identificar novos invasores.
+# Implementação 2 
+ 
+##	Introdução
+&emsp; O problema da falta de mapeamento de seres invasores afeta pesquisadores e estudantes, e pode ser visto pela dificuldade em mensurar o impacto ambiental causado por tais seres, dificultando assim a elaboração de soluções que possam vir a tratar problemas ambientais em uma determinada região. O Invasores é um fórum de biologia que procura mapear os seres invasores de um determinado lugar. Nosso software procura ser informativo de maneira que o usuário consiga visualizar facilmente os seres que não fazem parte de determinado ambiente, além de possibilitar que qualquer pessoa possa ajudar a comunidade fazendo postagens para identificar novos invasores. Atualmente o software consiste em uma tela inicial com um mapa para visualização dos seres invasores, uma listagem de posts feitos por todos usuários e uma filtragem a partir de um raio de busca; uma tela para mostrar o post com todas suas informações, tags (#) e uma seção de comentários; e por fim uma teal de criação de posts, na qual podem ser inseridas informações científicas, de geolocalidade e upload de imagens.
 \
 \
 &emsp; Link para o projeto: https://github.com/alescrocaro/forum-botanica/
+ 
+2.	Requisitos implementados
+Liste nesta seção, os requisitos e os pull-requests associados ao que vocês implementaram para esta versão, seguindo o exemplo abaixo---inclua a descrição do requisito, link para a(s) issue(s), link para o(s) pull(s) que implementaram o requisito, quem implementou o requisito, quem o aprovou e um print que mostra o recurso implementado (se aplicável). Ordene os requisitos pelo nome do aluno que o implementou.
+ 
+Espero que vocês implementem/prototipem os recursos que você especificou em seu MVP (cf. Requisitos). Espera-se que todos os membros do grupo tenham se envolvido em alguma atividade de programação e relatem vários pull requests.
+ 
+Exemplo:
+Requisito: Como Aluno, quero adicionar uma tarefa de casa para poder organizar minha lista de tarefas.
+Issue: <link para a issue no GitHub>
+Pull request: https://github.com/user/project/pull/426
+Implementado por: Martin Fowler
+Aprovado por: Ada Lovelace
+Print: Uma tela que mostre o recurso implementado (se aplicável)
+
+ 
+Lembre-se de que todo código-fonte deve ser enviado por meio de pull requests e a pessoa de garantia de qualidade da equipe deve revisar e aprovar cada pull request. Para obter mais informações sobre solicitações pull:
+https://help.github.com/articles/about-pull-requests/ 
+ 
+Esta seção será avaliada em termos de correção, completude e quantidade de esforço colocado na implementação. Os alunos podem receber notas diferentes, dependendo de seu envolvimento (além disso, vou fazer uma avaliação por pares em que cada aluno coloca a % de trabalho desenvolvida por cada). Espera-se que todos os membros contribuam com uma implementação não trivial. Todos os pull request devem ser aprovados e integrados pelo responsável pela garantia de qualidade. Você deve seguir um fluxo de trabalho adequado (descrição do requisito no issue tracker, envio do requisito implementado como um pull request e revisão do pull por outro desenvolvedor).
+ 
+3.	Testes (PARA O PRÓXIMO ENTREGÁVEL! VOCÊ JÁ PODE PENSAR NISSO)
+Você deverá implementar testes automatizados para os recursos descritos na subseção anterior. Para agora providencie a seguinte informação:
+ 
+3.1.1. 	Framework de teste que você deve utilizar para desenvolver seus testes (por exemplo, JUnit, unittest, pytest, etc.):
+3.1.2. 	Link para sua pasta do GitHub onde seus testes de unidade automatizados estarão localizados.
+ 
+4.	Demo
+Inclua um link para um vídeo mostrando o funcionamento do sistema.
+ 
+Esta seção será avaliada com base na qualidade do vídeo e na evidência de que os recursos estão funcionando conforme o esperado. Critérios adicionais são a relevância das funcionalidades demonstradas, correção das funcionalidades e qualidade do sistema desenvolvido do ponto de vista externo (interface do usuário).
+ 
+5.	Qualidade do código
+Descreva como sua equipe gerenciou a qualidade do código. Quais foram suas políticas, convenções, práticas recomendadas adotadas, etc. para promover o código de alta qualidade? 
+ 
+6.	Lições aprendidas
+Em retrospectiva, descreva o que sua equipe aprendeu durante esta segunda versão e o que você mudaria se continuasse desenvolvendo o projeto.
+
+
+
 ## Requisitos implementados
 &emsp; Utilizando o método SCRUM, resolvemos implementar apenas o requisito de maior valor nessa primeira entrega, ele foi subdividido em issues menores e todos os quatro membros do grupo participaram.\
 \
