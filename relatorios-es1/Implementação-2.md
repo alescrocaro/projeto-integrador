@@ -21,7 +21,8 @@ Tarefas:
  - Fazer CRUD da tabela de comentários;
  - Mostrar comentários na página do post;
  - Fazer campo para postar comentário.
-Print: Uma tela que mostre o recurso implementado (se aplicável)
+
+Print: ![](./assets/prints/secao-comentarios.png)
 
 **REQUISITO: Como usuário, gostaria de anexar uma geolocalização à minha postagem para que seja possível identificar se o ser é invasor daquela área específica.** \
 Issue: https://github.com/alescrocaro/forum-botanica/issues/10 \
