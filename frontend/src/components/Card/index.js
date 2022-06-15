@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Card from '@mui/material/Card';
 import { CardActionArea, Chip, Box } from '@mui/material';
@@ -17,6 +17,8 @@ export default function StyledCard({ post }) {
   const date = new Date(post.dateFound);
   const url = post.Images.length > 0 ? process.env.REACT_APP_BASE_URL+'/uploads/images/' + post.Images[0].url : 
   require('../../img/placeholder.png')
+  const username = post.User == null  ? "user" : post.User.firstName + " " +  post.User.lastName
+  
   return (
     <Box 
       onClick={(e) => {navigate('/posts/'+post.id)}}
@@ -56,7 +58,7 @@ export default function StyledCard({ post }) {
               {post.title}
             </Titulo>
             <DescricaoG>
-              Observado por <b>{post.userName}</b> em <b>{date.getDate()}/{date.getMonth() + 1}/{date.getFullYear()}</b>.
+              Observado por <b>{username}</b> em <b>{date.getDate()}/{date.getMonth() + 1}/{date.getFullYear()}</b>.
             </DescricaoG>
 
             {/* descriçao do post */}

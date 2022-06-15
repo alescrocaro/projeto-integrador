@@ -79,7 +79,7 @@ export default function SpecificPost() {
       }
     }
   });
-
+  const username = post.User == null  ? "user" : post.User.firstName + " " + post.User.lastName
   return (
     <Layout>
       {!!post && (
@@ -95,7 +95,7 @@ export default function SpecificPost() {
           {/* titulo do post */}
           <HeaderPage
             title={post.title}
-            userName={post.userName}
+            userName={username}
             dateFound={post.dateFound}
           />
 
