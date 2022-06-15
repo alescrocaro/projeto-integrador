@@ -14,19 +14,10 @@ import moneraIcon from '../../../img/moneraIcon.svg';
 
 import Layout from '../../../components/Layout';
 import Container from '../../../components/Container';
-import {
-  StyledCard,
-  StyledImg,
-  StyledPaper,
-  StyledDiv,
-  Title,
-  ContentDiv,
-  ContentLine,
-  IconImg,
-  SubTitle,
-  TopContribution,
-  IconImgProtista
-} from './style';
+
+import { Paper } from '@mui/material';
+
+import './style.css';
 
 export default function Profile() {
   const [profileData, setProfileData] = useState({});
@@ -44,83 +35,84 @@ export default function Profile() {
 
   return (
     <Layout>
-      <Container
-        container
-        sx={{
-          display: 'grid',
-          gridTemplateColumns: '30% 70%',
-          gap: '1rem',
-          margin: '1rem'
-        }}
-      >
-        <StyledCard>
-          <StyledImg src={avatarImage} />
-          <StyledDiv>
+      <Container container className="container">
+        <div className="styledCard main">
+          <img className="styledAvatar" src={avatarImage} alt="avatar" />
+          <div className="styledDiv">
             Nome:
-            <StyledPaper>
+            <Paper className="styledPaper">
               {profileData.firstName} {profileData.lastName}
-            </StyledPaper>
-          </StyledDiv>
-          <StyledDiv>
+            </Paper>
+          </div>
+          <div className="styledDiv">
             Bio:
-            <StyledPaper>
+            <Paper className="styledPaper">
               Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem
               Ipsum Lorem Ipsum
-            </StyledPaper>
-          </StyledDiv>
-        </StyledCard>
-        <StyledCard>
-          <ContentDiv>
-            <Title>CONTRIBUIÇÕES PARA REINOS:</Title>
-            <ContentLine>
-              <IconImg src={postIcon} />
-              <SubTitle>POSTS:</SubTitle>
-              <TopContribution style={{ color: '#c71700' }}>
+            </Paper>
+          </div>
+        </div>
+        <div className="styledCard infos">
+          <div className="contentDiv">
+            <h3>CONTRIBUIÇÕES PARA REINOS:</h3>
+            <div className="contentLine">
+              <img className="icon" src={postIcon} alt="post icon" />
+              <h4>POSTS:</h4>
+              <h4 className="topContribution" style={{ color: '#c71700' }}>
                 ANIMALIA (4)
-              </TopContribution>
-            </ContentLine>
-            <ContentLine>
-              <IconImg src={commentIcon} />
-              <SubTitle>COMENTÁRIOS:</SubTitle>
-              <TopContribution style={{ color: '#04b500' }}>
+              </h4>
+            </div>
+            <div className="contentLine">
+              <img className="icon" src={commentIcon} alt="comment icon" />
+              <h4>COMENTÁRIOS:</h4>
+              <h4 className="topContribution" style={{ color: '#04b500' }}>
                 PLANTAE (45)
-              </TopContribution>
-            </ContentLine>
-            <ContentLine>
-              <IconImg src={contestationIcon} />
-              <SubTitle>CONTESTAÇÕES:</SubTitle>
-              <TopContribution style={{ color: '#04b500' }}>
+              </h4>
+            </div>
+            <div className="contentLine">
+              <img
+                className="icon"
+                src={contestationIcon}
+                alt="contestation icon"
+              />
+              <h4>CONTESTAÇÕES:</h4>
+              <h4 className="topContribution" style={{ color: '#04b500' }}>
                 PLANTAE (13)
-              </TopContribution>
-            </ContentLine>
-            <Title>ESPECIALIDADES:</Title>
-            <ContentLine>
-              <IconImg src={animaliaIcon} />
-              <SubTitle style={{ color: '#c71700' }}>ANIMALIA:</SubTitle>
-              <TopContribution>2 contribuições</TopContribution>
-            </ContentLine>
-            <ContentLine>
-              <IconImg src={plantaeIcon} />
-              <SubTitle style={{ color: '#04b500' }}>PLANTAE:</SubTitle>
-              <TopContribution>2 contribuições</TopContribution>
-            </ContentLine>
-            <ContentLine>
-              <IconImg src={fungiIcon} />
-              <SubTitle style={{ color: '#7a7a7a' }}>FUNGI:</SubTitle>
-              <TopContribution>2 contribuições</TopContribution>
-            </ContentLine>
-            <ContentLine>
-              <IconImgProtista src={protistaIcon} />
-              <SubTitle style={{ color: '#d1a400' }}>PROTISTA:</SubTitle>
-              <TopContribution>2 contribuições</TopContribution>
-            </ContentLine>
-            <ContentLine>
-              <IconImg src={moneraIcon} />
-              <SubTitle style={{ color: '#8f00d1' }}>MONERA:</SubTitle>
-              <TopContribution>2 contribuições</TopContribution>
-            </ContentLine>
-          </ContentDiv>
-        </StyledCard>
+              </h4>
+            </div>
+            <h3>ESPECIALIDADES:</h3>
+            <div className="contentLine">
+              <img className="icon" src={animaliaIcon} alt="animalia icon" />
+              <h4 style={{ color: '#c71700' }}>ANIMALIA:</h4>
+              <h4 className="topContribution">2 contribuições</h4>
+            </div>
+            <div className="contentLine">
+              <img className="icon" src={plantaeIcon} alt="plantae icon" />
+              <h4 style={{ color: '#04b500' }}>PLANTAE:</h4>
+              <h4 className="topContribution">2 contribuições</h4>
+            </div>
+            <div className="contentLine">
+              <img className="icon" src={fungiIcon} alt="fungi icon" />
+              <h4 style={{ color: '#7a7a7a' }}>FUNGI:</h4>
+              <h4 className="topContribution">2 contribuições</h4>
+            </div>
+            <div className="contentLine">
+              <img
+                className="icon"
+                Protista
+                src={protistaIcon}
+                alt="protista icon"
+              />
+              <h4 style={{ color: '#d1a400' }}>PROTISTA:</h4>
+              <h4 className="topContribution">2 contribuições</h4>
+            </div>
+            <div className="contentLine">
+              <img className="icon" src={moneraIcon} alt="monera icon" />
+              <h4 style={{ color: '#8f00d1' }}>MONERA:</h4>
+              <h4 className="topContribution">2 contribuições</h4>
+            </div>
+          </div>
+        </div>
         {console.log(profileData)}
       </Container>
     </Layout>
