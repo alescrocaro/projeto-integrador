@@ -89,7 +89,7 @@ export default function CreatePost() {
           latlng: latlng, //{lat: double, lng: double}
           contested: values.contested,
           tags: tagsArray,
-          UserId: user.id
+          userId: user.id
         });
 
         if (imgFile.length > 0) {
