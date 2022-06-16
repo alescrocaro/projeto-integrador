@@ -30,9 +30,9 @@ export default function Profile() {
     const { data } = await api.get(`users/${id}`);
     setProfileData(data);
     setTopKingdomPosts([
-      kingdoms[data.topKingdom[0]],
-      colors[data.topKingdom[0]],
-      data.topKingdom[1]
+      kingdoms[data.topKingdomPostsAPI[0]],
+      colors[data.topKingdomPostsAPI[0]],
+      data.topKingdomPostsAPI[1]
     ]);
     //return data;
   }

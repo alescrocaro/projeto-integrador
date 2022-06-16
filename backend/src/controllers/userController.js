@@ -12,7 +12,7 @@ module.exports = {
       delete user['password'];
       delete user['salt'];
 
-      // descobrir reino com mais posts do usuário
+      ////////////// descobrir reino com mais posts do usuário //////////////
       let topKingdomPost = [];
 
       const animaliaPosts = await Post.findAll({
@@ -63,8 +63,10 @@ module.exports = {
         }
       }
 
-      user.dataValues['topKingdom'] = max;
-      /////////////////////////////////////////////////////////
+      user.dataValues['topKingdomPostsAPI'] = max;
+
+      //////////////////////////////////////////////////////////////////////
+
       console.log(user);
 
       res.status(200).json(user);
