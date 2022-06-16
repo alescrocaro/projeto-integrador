@@ -1,24 +1,28 @@
-const { Post,Image, User } = require('../models');
+const { Post, Image, User } = require('../models');
 const { Comment } = require('../models');
-
 
 const sequelize = require('sequelize');
 
 module.exports = {
-  async index(req, res){
+  async index(req, res) {
     try {
       //se tiver filtros
-      if(Object.keys(req.query).length){
-
-      const distanceAttr = sequelize.fn('ST_DistanceSphere',
-        sequelize.literal(`latlng`),
-        sequelize.literal(`ST_MakePoint(${req.query.mapCenter[1]}, ${req.query.mapCenter[0]})`)
-      )
+      if (Object.keys(req.query).length) {
+        const distanceAttr = sequelize.fn(
+          'ST_DistanceSphere',
+          sequelize.literal(`latlng`),
+          sequelize.literal(
+            `ST_MakePoint(${req.query.mapCenter[1]}, ${req.query.mapCenter[0]})`
+          )
+        );
 
         const posts = await Post.findAll({
-          include:[
-            {model:Image},
-            {model: User, attributes: ["firstName","lastName", "email", "id"]}
+          include: [
+            { model: Image },
+            {
+              model: User,
+              attributes: ['firstName', 'lastName', 'email', 'id']
+            }
           ],
           // attributes:{
           //   include:[
@@ -26,54 +30,59 @@ module.exports = {
           //   ]
           // },
           where: {
-            $and: sequelize.where(distanceAttr, { [sequelize.Op.lte]: (req.query.mapSearchRadius * 1000) }),
+            $and: sequelize.where(distanceAttr, {
+              [sequelize.Op.lte]: req.query.mapSearchRadius * 1000
+            })
           },
-          order: [['updatedAt', 'DESC']],
+          order: [['updatedAt', 'DESC']]
         });
 
-
-        console.log('posts ->', posts)
+        //console.log('posts ->', posts);
         return res.json(posts);
-
-      }else{
+      } else {
         const posts = await Post.findAll({
-          include:[
-            {model:Image},
-            {model: User,attributes: ["firstName","lastName", "email", "id"]}
+          include: [
+            { model: Image },
+            {
+              model: User,
+              attributes: ['firstName', 'lastName', 'email', 'id']
+            }
           ],
-          order: [['updatedAt', 'DESC']],
+          order: [['updatedAt', 'DESC']]
         });
 
-        console.log(posts);
+        //console.log(posts);
         return res.json(posts);
       }
-
     } catch (error) {
-      console.log(error)
+      console.log(error);
       res.status(500).send();
     }
   },
-  
-  async get(req, res){
+
+  async get(req, res) {
     try {
-      const post = await Post.findOne({ where: { id: req.params.id }, include:[
-        {model:Image},
-        {model: User, attributes: ["firstName","lastName", "email", "id"]}
-      ] });
-  
+      const post = await Post.findOne({
+        where: { id: req.params.id },
+        include: [
+          { model: Image },
+          { model: User, attributes: ['firstName', 'lastName', 'email', 'id'] }
+        ]
+      });
+
       return res.json(post);
     } catch (error) {
-      console.log(error)
+      console.log(error);
       res.status(500).send();
     }
   },
 
-  async create(req, res){
+  async create(req, res) {
     try {
-      const { 
+      let {
         title,
         biome,
-        userName, 
+        userName,
         specie,
         genus,
         family,
@@ -88,16 +97,23 @@ module.exports = {
         description,
         latlng,
         tags,
-        userId,
+        userId
       } = req.body;
+      biome = biome.toLowerCase();
+      specie = specie.toLowerCase();
+      genus = genus.toLowerCase();
+      family = family.toLowerCase();
+      order = order.toLowerCase();
+      className = className.toLowerCase();
+      phylum = phylum.toLowerCase();
+      kingdom = kingdom.toLowerCase();
 
-    
       const post = await Post.create({
         title,
         biome,
-        userName, 
+        userName,
         specie,
-        genus,  
+        genus,
         family,
         order,
         className,
@@ -109,17 +125,16 @@ module.exports = {
         dateFound,
         description,
         tags,
-        latlng: {type: 'Point', coordinates: [latlng.lng, latlng.lat]}, //geojson format [lng, lat]
+        latlng: { type: 'Point', coordinates: [latlng.lng, latlng.lat] }, //geojson format [lng, lat]
         UserId: userId
-      }); 
-      return res.json(post.dataValues.id); 
+      });
+      return res.json(post.dataValues.id);
     } catch (error) {
       console.log(error);
-      res.status(500).send();      
+      res.status(500).send();
     }
   },
 
-  
   /*,
 
   async update(req, res){
@@ -128,7 +143,7 @@ module.exports = {
   },
   */
 
-  async delete(req, res){
+  async delete(req, res) {
     try {
       const { id } = req.params;
       // const user_id = req.headers.authorization;
@@ -152,24 +167,21 @@ module.exports = {
     }
   },
 
-  async updatePostImage (req, res) {
+  async updatePostImage(req, res) {
     const { id } = req.params;
     try {
-      const posts = await Post.findAll({where:{id}})
+      const posts = await Post.findAll({ where: { id } });
       if (posts.length === 0) return res.status(404).send();
       if (req.files == null) {
-        return res.status(404).send()
+        return res.status(404).send();
       }
-      for(element in req.files) {
-        await Image.create({url:req.files[element].filename, PostId:id })
+      for (element in req.files) {
+        await Image.create({ url: req.files[element].filename, PostId: id });
       }
-      return res.status(200).send()
-
+      return res.status(200).send();
     } catch (error) {
       console.log(error);
       res.status(500).send();
     }
-
   }
-
-}
+};

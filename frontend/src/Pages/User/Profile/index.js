@@ -21,11 +21,19 @@ import './style.css';
 
 export default function Profile() {
   const [profileData, setProfileData] = useState({});
+  const [topKingdomPosts, setTopKingdomPosts] = useState([]);
   const { id } = useParams();
+  const colors = ['#c71700', '#d1a400', '#04b500', '#8f00d1', '#7a7a7a'];
+  const kingdoms = ['ANIMALIA', 'PROTOZOA', 'PLANTAE', 'MONERA', 'FUNGI'];
 
   async function getUser(id) {
     const { data } = await api.get(`users/${id}`);
     setProfileData(data);
+    setTopKingdomPosts([
+      kingdoms[data.topKingdom[0]],
+      colors[data.topKingdom[0]],
+      data.topKingdom[1]
+    ]);
     //return data;
   }
 
@@ -58,8 +66,11 @@ export default function Profile() {
             <div className="contentLine">
               <img className="icon" src={postIcon} alt="post icon" />
               <h4>POSTS:</h4>
-              <h4 className="topContribution" style={{ color: '#c71700' }}>
-                ANIMALIA (4)
+              <h4
+                className="topContribution"
+                style={{ color: topKingdomPosts[1] }}
+              >
+                {topKingdomPosts[0]} ({topKingdomPosts[2]})
               </h4>
             </div>
             <div className="contentLine">
@@ -87,28 +98,23 @@ export default function Profile() {
               <h4 className="topContribution">2 contribuições</h4>
             </div>
             <div className="contentLine">
+              <img className="icon" src={protistaIcon} alt="protista icon" />
+              <h4 style={{ color: '#d1a400' }}>PROTOZOA:</h4>
+              <h4 className="topContribution">2 contribuições</h4>
+            </div>
+            <div className="contentLine">
               <img className="icon" src={plantaeIcon} alt="plantae icon" />
               <h4 style={{ color: '#04b500' }}>PLANTAE:</h4>
               <h4 className="topContribution">2 contribuições</h4>
             </div>
             <div className="contentLine">
-              <img className="icon" src={fungiIcon} alt="fungi icon" />
-              <h4 style={{ color: '#7a7a7a' }}>FUNGI:</h4>
-              <h4 className="topContribution">2 contribuições</h4>
-            </div>
-            <div className="contentLine">
-              <img
-                className="icon"
-                Protista
-                src={protistaIcon}
-                alt="protista icon"
-              />
-              <h4 style={{ color: '#d1a400' }}>PROTISTA:</h4>
-              <h4 className="topContribution">2 contribuições</h4>
-            </div>
-            <div className="contentLine">
               <img className="icon" src={moneraIcon} alt="monera icon" />
               <h4 style={{ color: '#8f00d1' }}>MONERA:</h4>
+              <h4 className="topContribution">2 contribuições</h4>
+            </div>
+            <div className="contentLine">
+              <img className="icon" src={fungiIcon} alt="fungi icon" />
+              <h4 style={{ color: '#7a7a7a' }}>FUNGI:</h4>
               <h4 className="topContribution">2 contribuições</h4>
             </div>
           </div>
