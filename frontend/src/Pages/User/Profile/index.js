@@ -52,9 +52,11 @@ export default function Profile() {
     ]);
 
     setContributionInfo([
-      kingdoms[data.contestationInfo[0]],
-      colors[data.contestationInfo[0]],
-      data.contestationInfo[1]
+      data.contributionsInfo[0],
+      data.contributionsInfo[1],
+      data.contributionsInfo[2],
+      data.contributionsInfo[3],
+      data.contributionsInfo[4]
     ]);
     //return data;
   }
@@ -124,35 +126,35 @@ export default function Profile() {
               <img className="icon" src={animaliaIcon} alt="animalia icon" />
               <h4 style={{ color: '#c71700' }}>ANIMALIA:</h4>
               <h4 className="topContribution">
-                {profileData.contributionsInfo[0]} contribuições
+                {contributionInfo[0]} contribuições
               </h4>
             </div>
             <div className="contentLine">
               <img className="icon" src={protistaIcon} alt="protista icon" />
               <h4 style={{ color: '#d1a400' }}>PROTOZOA:</h4>
               <h4 className="topContribution">
-                {profileData.contributionsInfo[1]} contribuições
+                {contributionInfo[1]} contribuições
               </h4>
             </div>
             <div className="contentLine">
               <img className="icon" src={plantaeIcon} alt="plantae icon" />
               <h4 style={{ color: '#04b500' }}>PLANTAE:</h4>
               <h4 className="topContribution">
-                {profileData.contributionsInfo[2]} contribuições
+                {contributionInfo[2]} contribuições
               </h4>
             </div>
             <div className="contentLine">
               <img className="icon" src={moneraIcon} alt="monera icon" />
               <h4 style={{ color: '#8f00d1' }}>MONERA:</h4>
               <h4 className="topContribution">
-                {profileData.contributionsInfo[3]} contribuições
+                {contributionInfo[3]} contribuições
               </h4>
             </div>
             <div className="contentLine">
               <img className="icon" src={fungiIcon} alt="fungi icon" />
               <h4 style={{ color: '#7a7a7a' }}>FUNGI:</h4>
               <h4 className="topContribution">
-                {profileData.contributionsInfo[4]} contribuições
+                {contributionInfo[4]} contribuições
               </h4>
             </div>
           </div>
