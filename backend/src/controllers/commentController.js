@@ -1,4 +1,4 @@
-const { Comment, Post } = require('../models');
+const { Comment, Post,User } = require('../models');
 
 module.exports = {
   async index(req, res) {
@@ -10,6 +10,9 @@ module.exports = {
       var comments = null;
       try {
         comments = await Comment.findAll({
+          include:[
+            {model: User, attributes: ["firstName","lastName", "email", "id"]}
+          ],
           where: {
             PostId: post.dataValues.id
           },

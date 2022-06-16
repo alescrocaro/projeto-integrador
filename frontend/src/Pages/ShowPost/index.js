@@ -257,7 +257,7 @@ export default function SpecificPost() {
                       fontSize="large"
                     />
                     <Typography variant="h7" color="black">
-                      {comment.userName}
+                      {comment.User == null  ? "user" : comment.User.firstName + " " +  comment.User.lastName}
                     </Typography>
                   </Box>
                   {comment.type === 'comment' && (
