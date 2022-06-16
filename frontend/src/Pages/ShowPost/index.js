@@ -64,13 +64,14 @@ export default function SpecificPost() {
       const { userName, description, type, contestation } = values;
 
       const postId = id;
-
+      console.log("pq eu to aqui??")
       try {
         await api.post(`/posts/${postId}/comments`, {
           userName,
-          description,
+          description,  
           type,
-          contestation
+          contestation,
+          userId: user.id
         });
         getComments(id);
         console.log(values);
@@ -229,126 +230,10 @@ export default function SpecificPost() {
               >
                 <Subtitulo>COMUNIDADE:</Subtitulo>
                 </Box>
-                {/* Box de um comentário  */}
-                  {
-                    comments.map((comment, index) => (
-                      <Box
-                        key={index}
-                        sx={{
-                          display: 'grid',
-                          gridTemplateColumns: '15% 85%',
-                          alignItems: 'center',
-                          margin: '.3rem',
-                          rowGap: '.3rem'
-                        }}
-                      >
-                        <Box
-                          sx={{
-                            display: 'flex',
-                            flexDirection: 'column',
-                            justifyContent: 'center',
-                            alignItems: 'center',
-                          }}
-                        >
-                          <AccountCircleIcon sx={{margin: '10px',}} fontSize="large"/>
-                          <Typography variant='h7' color='black'>
-                            {comment.userName}
-                          </Typography> 
-                        </Box>
-                        {comment.type === 'comment' &&
-                          <Paper  elevation={0}>
-                            <Descricao>{comment.description}</Descricao>
-                          </Paper>
-                        }
-                        {comment.type === 'contestation' &&
-                          <Box
-                            sx={{
-                              display: 'flex',
-                              flexDirection: 'row',
-                            }}
-                          >
-                            <Paper sx={{border: `1px solid #ed5132`, width: '100%'}} elevation={0}>
-                              <Descricao>{comment.description}</Descricao>
-                            </Paper>
-                              {(comment.contestation > 0) &&
-                                <Button
-                                  type="submit"
-                                  variant='contained'
-                                  color='primary'
-                                  sx={{
-                                    marginLeft: '5px',
-                                    maxWidth: '150px',
-                                    width: '35%',
-                                  }}
-                                  onClick={async () => {
-                                    comment.contestation -= 1;
-                                    formik.setFieldValue('contestation', comment.contestation);
-                                    let commentId = comment.id;
-                                    let contestation = comment.contestation;
-                                    console.log("commentId",comment.id)
-                                    try {
-                                      await api.post(`/posts/${id}/comments/updateContestation`, { 
-                                        commentId,
-                                        contestation,
-                                      });
-                              
-                                    } catch (error) {
-                                      console.log(error);
-                                    }
-                                  }}
-                                >
-                                  Marcar como resolvida ({comment.contestation})
-                                </Button> 
-                              }
-                              {(comment.contestation === 0) &&
-                                <Button
-                                  variant='contained'
-                                  color='primary'
-                                  sx={{
-                                    marginLeft: '5px',
-                                    maxWidth: '150px',
-                                    width: '35%',
-                                  }}
-                                  disabled
-                                >
-                                  Contestação resolvida
-                                </Button> 
-                              }
-                          </Box>
-                        }
-                      </Box>
-                    ))
-                  }
-                </Box>
+              </Box>
             
-            {/* Box de postagem de comentário */} 
-            <Box
-              sx={{
-                display: 'flex',
-                flexDirection: 'column',
-                justifyContent: 'center',
-                padding: '1rem',
-              }}
-
-            >
-              <Subsubtitulo>ESCREVER COMENTÁRIO:</Subsubtitulo>
-              <form component="form" onSubmit={formik.handleSubmit}>
-                <TextField
-                  sx={{
-                    backgroundColor: "white",
-                    borderRadius: '10px',
-                    marginTop: '10px',
-                  }}
-                  fullWidth
-                  multiline
-                  name="description"
-                  value={formik.values.description}
-                  onChange={formik.handleChange}
-                  error={formik.touched.title && Boolean(formik.errors.title)}
-                  helperText={formik.touched.title && formik.errors.title}
-                  label={'Seu comentário'}
-                />
-                {/* Box de botões */}
+              {/* Box de um comentário  */}
+              {comments.map((comment, index) => (
                 <Box
                   key={index}
                   sx={{
@@ -446,7 +331,6 @@ export default function SpecificPost() {
                   )}
                 </Box>
               ))}
-            </Box>
 
             {/* Box de postagem de comentário */}
             {user && (
