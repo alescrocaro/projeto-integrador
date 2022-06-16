@@ -65,6 +65,8 @@ export default function Profile() {
     getUser(id);
   }, [id]);
 
+  const bio = profileData.bio !== '' ? profileData.bio : 'Sem descrição';
+
   return (
     <Layout>
       <Container container className="container">
@@ -78,9 +80,9 @@ export default function Profile() {
           </div>
           <div className="styledDiv">
             Bio:
-            <Paper className="styledPaper">
-              Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem
-              Ipsum Lorem Ipsum
+            {}
+            <Paper className="styledPaper" placeholder="Insira uma descrição">
+              {bio}
             </Paper>
           </div>
         </div>
