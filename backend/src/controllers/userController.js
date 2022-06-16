@@ -1,7 +1,6 @@
 const { Post, User, Comment } = require('../models');
 const { hashPassword, passwordValidation } = require('../services/hash');
 const { generateJwt } = require('../services/jwtService');
-const postController = require('./postController');
 
 module.exports = {
   async get(req, res) {
