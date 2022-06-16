@@ -333,7 +333,7 @@ export default function SpecificPost() {
                   }
                 </Box>
             
-            {/* Box de postagem de comentário */}
+            {/* Box de postagem de comentário */} 
             <Box
               sx={{
                 display: 'flex',

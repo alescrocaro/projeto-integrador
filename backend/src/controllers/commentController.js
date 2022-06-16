@@ -45,6 +45,7 @@ module.exports = {
         type,
         description,
         contestation,
+        userId
       } = req.body;
 
       const { PostId } = req.params;
@@ -55,6 +56,7 @@ module.exports = {
         description,
         contestation,
         PostId,
+        UserId:userId
       }); 
       
       return res.json(comment.dataValues.id); 
