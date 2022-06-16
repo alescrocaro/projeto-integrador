@@ -63,26 +63,9 @@ module.exports = {
         }
       }
 
-      switch (max[0]) {
-        case 0:
-          max[0] = 'animalia';
-          break;
-        case 1:
-          max[0] = 'protozoa';
-          break;
-        case 2:
-          max[0] = 'plantae';
-          break;
-        case 3:
-          max[0] = 'monera';
-          break;
-        case 4:
-          max[0] = 'fungi';
-          break;
-      }
-
-      user['topKingdom'] = max;
+      user.dataValues['topKingdom'] = max;
       /////////////////////////////////////////////////////////
+      console.log(user);
 
       res.status(200).json(user);
     } catch (e) {
