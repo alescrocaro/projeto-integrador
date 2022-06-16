@@ -59,6 +59,8 @@ div.contentDiv {
 div.contentLine {
   display: flex;
   flex-direction: row;
+  justify-content: left;
+  gap: 0.5rem;
   align-items: center;
   margin-bottom: 1rem;
 }
@@ -76,7 +78,6 @@ img.IconProtista {
 h4 {
   font-size: 1rem;
   line-height: 29px;
-  padding: 0 2rem;
   font-weight: 300;
   line-height: 0.2rem;
   letter-spacing: 0em;
@@ -85,7 +86,6 @@ h4 {
 
 h4.topContribution {
   font-size: 1rem;
-  line-height: 29px;
   font-weight: 600;
   line-height: 0.2rem;
   letter-spacing: 0em;
