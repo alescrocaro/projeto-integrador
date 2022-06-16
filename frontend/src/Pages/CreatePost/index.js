@@ -1,5 +1,5 @@
 import * as yup from 'yup';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { useFormik } from 'formik';
 import { api } from '../../services/api';
 import { ValidationTextField, StyledDatePicker } from './style';
@@ -12,10 +12,13 @@ import { useNavigate } from 'react-router-dom';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import Chip from '@mui/material/Chip';
+import { useToken } from '../../Context/AuthContext';
 
 export default function CreatePost() {
   const [imgFile, setImgFile] = useState([]);
   const [tagsArray, setTagsArray] = useState([]);
+
+  const {user} = useToken()
 
   const navigate = useNavigate();
 
@@ -85,7 +88,8 @@ export default function CreatePost() {
           dateFound: values.dateEncounter,
           latlng: latlng, //{lat: double, lng: double}
           contested: values.contested,
-          tags: tagsArray
+          tags: tagsArray,
+          userId: user.id
         });
 
         if (imgFile.length > 0) {

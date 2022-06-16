@@ -1,4 +1,4 @@
-const { Post,Image } = require('../models');
+const { Post,Image, User } = require('../models');
 const { Comment } = require('../models');
 
 
@@ -17,7 +17,8 @@ module.exports = {
 
         const posts = await Post.findAll({
           include:[
-            {model:Image}
+            {model:Image},
+            {model: User, attributes: ["firstName","lastName", "email", "id"]}
           ],
           // attributes:{
           //   include:[
@@ -37,7 +38,8 @@ module.exports = {
       }else{
         const posts = await Post.findAll({
           include:[
-            {model:Image}
+            {model:Image},
+            {model: User,attributes: ["firstName","lastName", "email", "id"]}
           ],
           order: [['updatedAt', 'DESC']],
         });
@@ -55,7 +57,8 @@ module.exports = {
   async get(req, res){
     try {
       const post = await Post.findOne({ where: { id: req.params.id }, include:[
-        {model:Image}
+        {model:Image},
+        {model: User, attributes: ["firstName","lastName", "email", "id"]}
       ] });
   
       return res.json(post);
@@ -84,7 +87,8 @@ module.exports = {
         dateFound,
         description,
         latlng,
-        tags
+        tags,
+        userId,
       } = req.body;
 
     
@@ -106,6 +110,7 @@ module.exports = {
         description,
         tags,
         latlng: {type: 'Point', coordinates: [latlng.lng, latlng.lat]}, //geojson format [lng, lat]
+        UserId: userId
       }); 
       return res.json(post.dataValues.id); 
     } catch (error) {
