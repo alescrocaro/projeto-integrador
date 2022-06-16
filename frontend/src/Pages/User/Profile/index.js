@@ -132,7 +132,11 @@ export default function Profile() {
               </h4>
             </div>
             <div className="contentLine">
-              <img className="icon" src={protistaIcon} alt="protista icon" />
+              <img
+                className="iconProtista"
+                src={protistaIcon}
+                alt="protista icon"
+              />
               <h4 style={{ color: '#d1a400' }}>PROTOZOA:</h4>
               <h4 className="topContribution">
                 {contributionInfo[1]} contribuições
