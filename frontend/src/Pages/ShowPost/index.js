@@ -64,13 +64,14 @@ export default function SpecificPost() {
       const { userName, description, type, contestation } = values;
 
       const postId = id;
-
+      console.log("pq eu to aqui??")
       try {
         await api.post(`/posts/${postId}/comments`, {
           userName,
-          description,
+          description,  
           type,
-          contestation
+          contestation,
+          userId: user.id
         });
         getComments(id);
         console.log(values);
@@ -228,7 +229,9 @@ export default function SpecificPost() {
                 }}
               >
                 <Subtitulo>COMUNIDADE:</Subtitulo>
+                </Box>
               </Box>
+            
               {/* Box de um comentário  */}
               {comments.map((comment, index) => (
                 <Box
@@ -254,7 +257,7 @@ export default function SpecificPost() {
                       fontSize="large"
                     />
                     <Typography variant="h7" color="black">
-                      {comment.userName}
+                      {comment.User == null  ? "user" : comment.User.firstName + " " +  comment.User.lastName}
                     </Typography>
                   </Box>
                   {comment.type === 'comment' && (
@@ -328,7 +331,6 @@ export default function SpecificPost() {
                   )}
                 </Box>
               ))}
-            </Box>
 
             {/* Box de postagem de comentário */}
             {user && (
