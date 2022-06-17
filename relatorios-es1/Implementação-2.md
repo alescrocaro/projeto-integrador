@@ -1,7 +1,7 @@
 # Implementação 2 
  
 ##	Introdução
-&emsp; O problema da falta de mapeamento de seres invasores afeta pesquisadores e estudantes, e pode ser visto pela dificuldade em mensurar o impacto ambiental causado por tais seres, dificultando assim a elaboração de soluções que possam vir a tratar problemas ambientais em uma determinada região. O Invasores é um fórum de biologia que procura mapear os seres invasores de um determinado lugar. Nosso software procura ser informativo de maneira que o usuário consiga visualizar facilmente os seres que não fazem parte de determinado ambiente, além de possibilitar que qualquer pessoa possa ajudar a comunidade fazendo postagens para identificar novos invasores. Atualmente o software consiste em uma tela inicial com um mapa para visualização dos seres invasores, uma listagem de posts feitos por todos usuários e uma filtragem a partir de um raio de busca; uma tela para mostrar o post com todas suas informações, tags (#) e uma seção de comentários; e por fim uma teal de criação de posts, na qual podem ser inseridas informações científicas, de geolocalidade e upload de imagens.
+&emsp; O problema da falta de mapeamento de seres invasores afeta pesquisadores e estudantes, e pode ser visto pela dificuldade em mensurar o impacto ambiental causado por tais seres, dificultando assim a elaboração de soluções que possam vir a tratar problemas ambientais em uma determinada região. O Invasores é um fórum de biologia que procura mapear os seres invasores de um determinado lugar. Nosso software procura ser informativo de maneira que o usuário consiga visualizar facilmente os seres que não fazem parte de determinado ambiente, além de possibilitar que qualquer pessoa possa ajudar a comunidade fazendo postagens para identificar novos invasores. Atualmente o software consiste em uma tela inicial com um mapa para visualização dos seres invasores, uma listagem de posts feitos por todos usuários e uma filtragem a partir de um raio de busca; uma tela para mostrar o post com todas suas informações, tags (#) e uma seção de comentários; e por fim uma tela de criação de posts, na qual podem ser inseridas informações científicas, de geolocalidade e upload de imagens.
 \
 \
 &emsp; Link para o projeto: https://github.com/alescrocaro/forum-botanica/
@@ -81,6 +81,25 @@ Implementado por: Carlos e Leonardo\
 Aprovado por: Carlos\
 Tarefas: ?
 Print: Uma tela que mostre o recurso implementado (se aplicável)
+
+
+**REQUISITO: Criar sistema de usuários.** \
+Issue: https://github.com/alescrocaro/forum-botanica/issues/73 \
+Pull request: https://github.com/alescrocaro/forum-botanica/pull/111 \
+Implementado por: Alexandre e Leonardo\
+Aprovado por: Carlos\
+Tarefas: 
+ - Criar tela de login #80
+ - Criar modal de criação de usuário #84
+ - criar rota de criação de usuário #90
+ - Criar rota de autenticação com JWT
+ - Conectar login com rota de autenticação do backend
+ - Criar tela de perfil de usuário #95
+ - Criar rota de perfil do usuário
+ - Alterar dados enviados pela rota de perfil do usuário #109
+ - Relacionar usuário a um post #106
+ - Relacionar usuário ao comentário #108
+Print:
 
 
 
