@@ -127,12 +127,9 @@ Quando feitos os Pull Requests, o responsável pela garantia de qualidade realiz
  
  
 ##	Lições aprendidas
-
-**Alexandre**\
 Na parte do frontend, aprendi brevemente sobre responsividade (como media query) por meio de pesquisas, mas não tive tempo de aplicar esse conhecimento no projeto e como já tinha algum conhecimento acerca de React consegui realizar o resto das tarefas tranquilamente. Como não tinha nenhum conhecimento no backend, tive que aprender por meio de vídeos e com auxílio do Leonardo consegui fazer as tarefas que precisei (com algum esforço). 
 Para continuar a desenvolver o projeto, acredito que teria que refatorar algumas partes do código - que foram feitas rapidamente e que sei que poderiam ter sido escritas de maneira muito melhor. Assim como ajustar a responsividade do site para celulares e pensar em futuras funcionalidades.
 
-**Caio:** \
 Definir a implementação de um requisito que terá funcionalidades implementadas em outros momentos é muito mais difícil do que parece. Ao lidar com os mapas, optei por utilizar uma biblioteca de terceiros que implementava o Leaflet, e isso me limitou e me impediu de implementar as funcionalidades necessárias em outras sprints e issues, me obrigando a alterar completamente a implementação dos mapas.\
 Ao alterar a minha abordagem com o Leaflet (mapas), me deparei com bugs causados pelo modo que o React lida com a renderização de componente, e pra resolver isso tive que aprender o Ciclo de Vida de um componente React, o que mudou minha visão sobre como os componentes dinâmicos se comportam ou deveriam se comportar, entendendo melhor as responsabilidades que cada componente deve ter.\
 E por fim, enfrentei algumas vezes situações em que tive que trocar informações entre componentes (módulos) independentes, algo que resolvi aprendendo sobre os hooks, jogando informações importantes para o componente pai, e apenas alterando a variável nos componentes.\
