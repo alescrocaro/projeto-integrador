@@ -8,7 +8,7 @@
 **Apresentador:** Caio
 
 ## Ações - Reunião 1
-**Data e local:** 7 de junho de 2022, sala E101\
+**Data e local:** 13 de junho de 2022, sala E101\
 **Início:** 13:50 \
 **Término:** 15:30 \
 **Presentes:** Alexandre, Carlos,Leonardo, caio
