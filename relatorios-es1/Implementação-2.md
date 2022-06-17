@@ -24,6 +24,7 @@ Tarefas:
 
 Print: ![](./assets/prints/secao-comentarios.png)
 
+
 **REQUISITO: Como usuário, gostaria de anexar uma geolocalização à minha postagem para que seja possível identificar se o ser é invasor daquela área específica.** \
 Issue: https://github.com/alescrocaro/forum-botanica/issues/10 \
 Pull request: https://github.com/alescrocaro/forum-botanica/pull/60 \
@@ -89,40 +90,47 @@ Pull request: https://github.com/alescrocaro/forum-botanica/pull/111 \
 Implementado por: Alexandre e Leonardo\
 Aprovado por: Carlos\
 Tarefas: 
- - Criar tela de login #80
- - Criar modal de criação de usuário #84
- - criar rota de criação de usuário #90
+ - Criar tela de login
+ - Criar modal de criação de usuário
+ - criar rota de criação de usuário 
  - Criar rota de autenticação com JWT
  - Conectar login com rota de autenticação do backend
- - Criar tela de perfil de usuário #95
+ - Criar tela de perfil de usuário 
  - Criar rota de perfil do usuário
- - Alterar dados enviados pela rota de perfil do usuário #109
- - Relacionar usuário a um post #106
- - Relacionar usuário ao comentário #108
+ - Alterar dados enviados pela rota de perfil do usuário 
+ - Relacionar usuário a um post 
+ - Relacionar usuário ao comentário
+ 
 Print:
+![](./assets/prints/tela-login.png)
+![](./assets/prints/modal-register.png)
+![](./assets/prints/tela-profile.png)
 
 
 
 ## Testes
 &emsp; O framework que utilizaremos para a implementação dos testes no sistema será o Jest.\
-&emsp; Link para sua pasta do GitHub onde seus testes de unidade automatizados estarão localizados.\
+&emsp;[Pasta de testes](https://github.com/alescrocaro/forum-invasores/tree/main/backend/tests)\
  
  
  
 ## Demo
-[Primeira demo](https://youtu.be/WvbdLIZnVnI)
- 
-Esta seção será avaliada com base na qualidade do vídeo e na evidência de que os recursos estão funcionando conforme o esperado. Critérios adicionais são a relevância das funcionalidades demonstradas, correção das funcionalidades e qualidade do sistema desenvolvido do ponto de vista externo (interface do usuário).
- 
- 
+[Segunda demo](https://www.youtube.com/watch?v=qEf3xQMGk6U)
+
+
  
 ##	Qualidade do código
 Descreva como sua equipe gerenciou a qualidade do código. Quais foram suas políticas, convenções, práticas recomendadas adotadas, etc. para promover o código de alta qualidade? 
- 
+
+Quando feitos os Pull Requests, o responsável pela garantia de qualidade realizou testes manuais a procura de bugs, eles eram aprovados somente quando não a branch main não seria afetada negativamente (com bugs).
+
  
  
 ##	Lições aprendidas
-Em retrospectiva, descreva o que sua equipe aprendeu durante esta segunda versão e o que você mudaria se continuasse desenvolvendo o projeto.
+
+**Alexandre**\
+Na parte do frontend, aprendi brevemente sobre responsividade (como media query) por meio de pesquisas, mas não tive tempo de aplicar esse conhecimento no projeto e como já tinha algum conhecimento acerca de React consegui realizar o resto das tarefas tranquilamente. Como não tinha nenhum conhecimento no backend, tive que aprender por meio de vídeos e com auxílio do Leonardo consegui fazer as tarefas que precisei (com algum esforço). 
+Para continuar a desenvolver o projeto, acredito que teria que refatorar algumas partes do código - que foram feitas rapidamente e que sei que poderiam ter sido escritas de maneira muito melhor. Assim como ajustar a responsividade do site para celulares e pensar em futuras funcionalidades.
 
 **Caio:** \
 Definir a implementação de um requisito que terá funcionalidades implementadas em outros momentos é muito mais difícil do que parece. Ao lidar com os mapas, optei por utilizar uma biblioteca de terceiros que implementava o Leaflet, e isso me limitou e me impediu de implementar as funcionalidades necessárias em outras sprints e issues, me obrigando a alterar completamente a implementação dos mapas.\
