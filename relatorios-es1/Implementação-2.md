@@ -35,6 +35,7 @@ Tarefas:
  - Colocar mapa com geolocalização na página de criação de post;
  - Colocar mapa com geolocalização na página do post;
  - Colocar mapa com geolocalização na página inicial;
+
 Print: ![](https://i.imgur.com/mJIvv4Z.png)
 
 
@@ -69,6 +70,7 @@ Aprovado por: Carlos\
 Tarefas: 
  - Adicionar Slider para definição do Raio, Marker e Geometry no mapa;
  - Alterar a rota findAll posts para adicionar os filtros.
+
 Print:  ![](https://imgur.com/elukDj7.png)
 
 
