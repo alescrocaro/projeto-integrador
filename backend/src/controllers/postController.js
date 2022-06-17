@@ -1,4 +1,4 @@
-const { Post, Image, User } = require('../models');
+const { Post, Image, User, Contestation } = require('../models');
 const { Comment } = require('../models');
 
 const sequelize = require('sequelize');
@@ -66,7 +66,8 @@ module.exports = {
         where: { id: req.params.id },
         include: [
           { model: Image },
-          { model: User, attributes: ['firstName', 'lastName', 'email', 'id'] }
+          { model: User, attributes: ['firstName', 'lastName', 'email', 'id'],
+        include:[{ model: Contestation}]}
         ]
       });
 

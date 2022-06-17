@@ -6,7 +6,8 @@ module.exports = {
   async get(req, res) {
     const { id } = req.params;
     try {
-      const user = await User.findByPk(id);
+      const user = await User.findByPk(id,{ 
+        include:[{model: Contestation, attributes: ['CommentId']}]});
 
       if (!user) return res.status(400).json({ error: 'User not found' });
       delete user['password'];
