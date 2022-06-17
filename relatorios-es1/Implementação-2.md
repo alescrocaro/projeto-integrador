@@ -32,9 +32,10 @@ Aprovado por: Carlos\
 Tarefas: 
  - Estudar, definir e conectar alternativa (google maps, etc) para geolocalização no front end;
  - Atualização nas rotas de post e get de criação de post para conter geolocalização (olhar POSTGIS e dados geograficos no sequelize);
+ - Colocar mapa com geolocalização na página de criação de post;
  - Colocar mapa com geolocalização na página do post;
- - Colocar mapa com geolocalização na página de criação de post.
-Print: Uma tela que mostre o recurso implementado (se aplicável)
+ - Colocar mapa com geolocalização na página inicial;
+Print: ![](https://i.imgur.com/mJIvv4Z.png)
 
 
 **REQUISITO: Como usuário, gostaria de anexar uma imagem à minha postagem para que facilite a visualização do ser, além de facilitar a discussão.** \
@@ -68,7 +69,7 @@ Aprovado por: Carlos\
 Tarefas: 
  - Adicionar Slider para definição do Raio, Marker e Geometry no mapa;
  - Alterar a rota findAll posts para adicionar os filtros.
-Print: Uma tela que mostre o recurso implementado (se aplicável)
+Print:  ![](https://imgur.com/elukDj7.png)
 
 
 **REQUISITO: Como usuário, gostaria de marcar minhas postagens com tags, para que elas apareçam em pesquisas junta com outras postagens com as mesmas tags.** \
@@ -102,3 +103,8 @@ Descreva como sua equipe gerenciou a qualidade do código. Quais foram suas pol�
 ##	Lições aprendidas
 Em retrospectiva, descreva o que sua equipe aprendeu durante esta segunda versão e o que você mudaria se continuasse desenvolvendo o projeto.
 
+**Caio:** \
+Definir a implementação de um requisito que terá funcionalidades implementadas em outros momentos é muito mais difícil do que parece. Ao lidar com os mapas, optei por utilizar uma biblioteca de terceiros que implementava o Leaflet, e isso me limitou e me impediu de implementar as funcionalidades necessárias em outras sprints e issues, me obrigando a alterar completamente a implementação dos mapas.\
+Ao alterar a minha abordagem com o Leaflet (mapas), me deparei com bugs causados pelo modo que o React lida com a renderização de componente, e pra resolver isso tive que aprender o Ciclo de Vida de um componente React, o que mudou minha visão sobre como os componentes dinâmicos se comportam ou deveriam se comportar, entendendo melhor as responsabilidades que cada componente deve ter.\
+E por fim, enfrentei algumas vezes situações em que tive que trocar informações entre componentes (módulos) independentes, algo que resolvi aprendendo sobre os hooks, jogando informações importantes para o componente pai, e apenas alterando a variável nos componentes.\
+O que eu levo disso é que muitas vezes é preciso entender algo por completo e imaginar suas futuras utilizações para definir como implementar, pois pode causar muita dor de cabeça futuramente, e se eu fosse continuar esse projeto, daria mais importância ao planejamento, inclusive de pequenas funcionalidades. Fora isso, eu faria muita refatoração levando em conta o que aprendi sobre os componentes (módulos), seu ciclo de vida e suas responsabilidades, pois quando se aprende as possibilidades na prática, todos os principios teóricos se tornam mais tangíveis e se tornam claro a necessidade de padronizar e dividir.
