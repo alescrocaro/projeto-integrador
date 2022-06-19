@@ -13,6 +13,7 @@ class Map extends React.Component {
         super(props);
         let map;
         let markers;
+        let radius = null;
         let posts = props.posts;
     }
 
@@ -60,8 +61,8 @@ class Map extends React.Component {
         
         //ao mover o mapa de lugar
         this.map.on('dragend', () => {
-                this.props.mapControls?.setMapCenter([
-                    this.map.getCenter().lat,
+            this.props.mapControls?.setMapCenter([
+                this.map.getCenter().lat,
                 this.map.getCenter().lng
             ]);
         });
@@ -92,6 +93,23 @@ class Map extends React.Component {
                                     Lng: ${position[0].toFixed(5)}</p>`)
                 );
             });    
+        }
+
+        //se é pra mostrar o radius
+        if(this.props.mapControls?.getShowRadius()){
+            // console.log('abrir circulo');
+            if(this.radius) this.radius.remove();
+            this.radius = L.circle(this.props.mapControls?.getMapCenter(), {
+                color: '#14aa6b33',
+                fillColor: '#14aa6b',
+                fillOpacity: 0.25,
+                radius: 1000 * 2 ** this.props.mapControls?.getSearchRadius(),
+            }).addTo(this.map);
+        }
+        //esconder o searchradius
+        else{
+            // console.log('fechar circulo');
+            if(this.radius) this.radius.remove();
         }
     }
        

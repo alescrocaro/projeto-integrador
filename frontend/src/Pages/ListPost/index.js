@@ -13,12 +13,15 @@ export default function ListPosts() {
   //map filter constrols
   const [mapCenter, setMapCenter] = useState([-15, -48]); //tem que ficar onde esta o mapa e o headerpage
   const [mapSearchRadius, setMapSearchRadius] = useState(12);
+  const [mapShowRadius, setMapShowRadius] = useState(false);
   
   const mapControls = new Object();
   mapControls.setMapCenter = (c) => {setMapCenter(c)};
   mapControls.getMapCenter = () => {return mapCenter};
   mapControls.setSearchRadius = (r) => {setMapSearchRadius(r)}; 
   mapControls.getSearchRadius = () => {return mapSearchRadius};
+  mapControls.setShowRadius = (r) => {setMapShowRadius(r)}; 
+  mapControls.getShowRadius = () => {return mapShowRadius};
 
   //filter controls
   const applyFilters = async (filters) => {
