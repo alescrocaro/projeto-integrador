@@ -9,9 +9,7 @@ const Container = ({ children, ...props }) => {
         justifyContent: 'center'
       }}
     >
-      <StyledContainer {...props}>
-        {children}
-      </StyledContainer>
+      <StyledContainer {...props}>{children}</StyledContainer>
     </div>
   );
 };

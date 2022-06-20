@@ -10,6 +10,10 @@ module.exports = (sequelize, DataTypes) => {
         onDelete: 'CASCADE',
         hooks: true
       })
+      User.hasMany(models.Comment, {
+        onDelete: 'CASCADE',
+        hooks: true
+      })
     }
   } 
   User.init({
@@ -18,7 +22,7 @@ module.exports = (sequelize, DataTypes) => {
     email: DataTypes.STRING,
     password: DataTypes.STRING,
     salt: DataTypes.STRING,
-    bio: DataTypes.STRING
+    bio: DataTypes.STRING,
 }, {
   sequelize,
   modelName: 'User',

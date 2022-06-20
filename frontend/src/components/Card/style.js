@@ -25,8 +25,8 @@ export const StyledCardDescription = styled(CardContent)`
   overflow: hidden;
   padding: 0 !important;
   margin-top: 10px;
-  
-  >:nth-child(2){
+
+  > :nth-child(2) {
     border-style: none none none solid;
     border-width: 1px;
     border-color: #ccc;
@@ -50,7 +50,6 @@ export const DescricaoG = styled.p`
   color: #14aa6b;
 `;
 
-
 export const DescricaoB = styled.p`
   margin: 0;
   padding: 0;
@@ -60,9 +59,8 @@ export const DescricaoB = styled.p`
   letter-spacing: -0.05em;
 `;
 
-
 export const Subtitulo = styled.h4`
-  margin: 0;
+  margin: 10px 0;
   padding: 0;
   font-family: 'Montserrat', sans-serif;
   font-weigth: 800;
