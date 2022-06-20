@@ -3,10 +3,10 @@ import HeaderMenu from '../HeaderMenu';
 import StickyFooter from '../StickyFooter';
 import Box from '@mui/material/Box';
 
-export default function Layout({ children }){
-  return(
-    <Box 
-      component='header' 
+export default function Layout({ children }) {
+  return (
+    <Box
+      component="header"
       sx={{
         display: 'flex',
         flexDirection: 'column',
@@ -18,5 +18,5 @@ export default function Layout({ children }){
       {children}
       <StickyFooter />
     </Box>
-  )
+  );
 }

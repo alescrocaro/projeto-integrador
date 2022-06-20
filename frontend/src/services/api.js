@@ -1,8 +1,11 @@
 import axios from 'axios';
 
-const api = axios.create({
+export const api = axios.create({
   baseURL: process.env.REACT_APP_BASE_URL,
-  timeout: 10000, // 10 segundos
+  timeout: 10000 // 10 segundos
 });
 
-export default api;
+export const createSession = async (email, password) => {
+  console.log('process.env.REACT_APP_BASE_URL', process.env.REACT_APP_BASE_URL);
+  return api.post('/login', { email, password });
+};
