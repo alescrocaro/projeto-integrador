@@ -24,9 +24,42 @@ export default function CreatePost() {
 
   //hook para pegar coordenadas no mapa
   const [latlng, setLatlng] = useState(null);
-  const changeLatlng = coords => {
-    setLatlng(coords);
-  };
+  const latlngControls = new Object();
+  latlngControls.changeLatlng = (coords) => {setLatlng(coords)};
+  latlngControls.getLatlng = () => {return latlng};
+
+  const validateLatlng = (str) => {    
+    //remove all letters and special char except . and - 
+    str = str.replace(/[^\d.\-]+/g, '');
+    
+    //remove all . but the first
+    str = str.replace(/(?<=(.*\..*))\./gm, '');
+    
+    //remove all - but in the first char
+    if(str.charAt(0) === '-') str = '-' + str.replace(/-/g, '');
+    else str = str.replace(/-/g, '');
+    
+    //change all -. or ^. to -0.
+    str = str.replace(/((?<=-)\.|(?<=^)\.)/g, '0.');
+
+    // //change all 0+. or -0+.  to single 0
+    // str = str.replace(/((?<=-)|(?<=^))0+\./g, '0.');
+
+    return str;
+  }
+  const changeLat = (l) => {
+    setLatlng({
+      lat: validateLatlng(l.target.value),
+      lng: latlng?.lng || 0, 
+    });
+  }
+  
+  const changeLng = (l) => {
+    setLatlng({
+      lat: latlng?.lat || 0, 
+      lng: validateLatlng(l.target.value),
+    });
+  }
 
   const validationSchema = yup.object({
     title: yup.string('Espécie + Bioma').required('Campo obrigatório'),
@@ -184,12 +217,27 @@ export default function CreatePost() {
                 gap: '2%'
               }}
             >
-              <UploadButton
-                label={'Imagem'}
-                imgFile={imgFile}
-                setImgFile={setImgFile}
-              />
-              <Map changeLatlng={changeLatlng} />
+              <UploadButton label={'Imagem'} imgFile={imgFile} setImgFile={setImgFile}/>
+              <div>
+                <Map latlngControls={latlngControls}/>
+                
+                <div style={{display: 'flex', justifyContent: 'space-between', gap: '20px', padding: '10px 0'}}>
+                  <ValidationTextField
+                    id='latitude'
+                    label={'Latitude'}
+                    value={latlng?.lat || ''}
+                    onChange={changeLat}
+                    style={{width: '100%'}}
+                  />
+                  <ValidationTextField
+                    id='longitude'
+                    label={'Longitude'}
+                    value={latlng?.lng || ''}
+                    onChange={changeLng}
+                    style={{width: '100%'}}
+                  />
+                </div>
+              </div>
             </Box>
 
             <Typography

@@ -31,6 +31,7 @@ export default function StyledCard({ title='SEM TITULO', userName, dateFound, fi
   //botao de abrir os filtros
   const openFilters = () => {
     setFiltersOpen(!isFiltersOpen);
+    mapControls?.setShowRadius(!mapControls?.getShowRadius());
   }
 
   //filters

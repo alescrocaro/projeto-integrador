@@ -21,31 +21,57 @@ class Map extends React.Component {
     constructor(props){
         super(props);
         let marker = null;
+        let map;
     }
 
     componentDidMount(){
         // LEAFLET ----------------------------------------------------------------------
-        var map = L.map('map').locate({setView: true, maxZoom: 9, enableHighAccuracy: true});
+        this.map = L.map('map').locate({setView: true, maxZoom: 9, enableHighAccuracy: true});
           
         L.tileLayer('https://{s}.tile-cyclosm.openstreetmap.fr/cyclosm/{z}/{x}/{y}.png', {
             attribution: '<a href="https://github.com/cyclosm/cyclosm-cartocss-style/releases">CyclOSM</a> | <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-        }).addTo(map);
+        }).addTo(this.map);
         
-        map.on('click', (e) => {
+        this.map.on('click', (e) => {
             if(!this.marker){
-                this.marker = L.marker(e.latlng, {icon: icon, draggable: true}).addTo(map);
+                this.marker = L.marker(e.latlng, {icon: icon, draggable: true}).addTo(this.map);
                 
                 this.marker.on('dragend', (e) => {
-                    this.props.changeLatlng(e.target._latlng);
+                    this.props.latlngControls.changeLatlng(e.target._latlng);
                 });
             }else{
                 this.marker.setLatLng(e.latlng);
             }
-            this.props.changeLatlng(e.latlng);
+            this.props.latlngControls.changeLatlng({
+                lat: e.latlng.lat.toFixed(6),
+                lng: e.latlng.lng.toFixed(6)
+            });
         });
         // LEAFLET ----------------------------------------------------------------------
     }
     
+    componentDidUpdate(){
+        if(this.props.latlngControls.getLatlng()){
+            const pos = [
+                parseFloat(this.props.latlngControls.getLatlng().lat) || 0,
+                parseFloat(this.props.latlngControls.getLatlng().lng) || 0
+            ];
+            console.log('pos', pos)
+
+            if(!this.marker){
+                this.marker = L.marker(pos, {icon: icon, draggable: true}).addTo(this.map);
+                
+                this.marker.on('dragend', (e) => {
+                    this.props.latlngControls.changeLatlng(e.target._latlng);
+                });
+                console.log('marker criado');
+            }else{
+                this.marker.setLatLng(pos);
+                console.log('marker atualizado');
+            }
+        }
+    }
+
     render(){
         return(
             <Mapa id='map'/>
