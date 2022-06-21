@@ -30,7 +30,6 @@ export default function SpecificPost() {
   async function getPost(id) {
     const { data } = await api.get(`posts/${id}`);
     setPost(data);
-    console.log(data)
     //data.latlng está em geojson (lnglat)
   }
 
@@ -74,7 +73,6 @@ export default function SpecificPost() {
           userId: user.id
         });
         getComments(id);
-        console.log(values);
       } catch (error) {
         console.log(error);
       }
@@ -280,7 +278,12 @@ export default function SpecificPost() {
                       </Paper>
                       {comment.Contestations.length < 2 && user && (
                         <Button
-                          disabled={!(comment.UserId === user.id)}
+                          disabled={
+                            (comment.UserId === user.id) ||
+                            comment.Contestations.some(element => {
+                              return element.UserId === user.id;
+                            })
+                          }
                           type="submit"
                           variant="contained"
                           color="primary"
