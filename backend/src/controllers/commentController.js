@@ -1,4 +1,4 @@
-const { Comment, Post,User } = require('../models');
+const { Comment, Post,User, Contestation } = require('../models');
 
 module.exports = {
   async index(req, res) {
@@ -11,6 +11,7 @@ module.exports = {
       try {
         comments = await Comment.findAll({
           include:[
+            {model: Contestation},
             {model: User, attributes: ["firstName","lastName", "email", "id"]}
           ],
           where: {
@@ -70,22 +71,22 @@ module.exports = {
     }
   },
 
-  async updateContestation(req, res) {
-    try {
-      const { commentId, contestation } = req.body;
-      const comment = await Comment.findByPk(commentId);
-      console.log('TESTETESTE', commentId, contestation);
+  // async updateContestation(req, res) {
+  //   try {
+  //     const { commentId, contestation } = req.body;
+  //     const comment = await Comment.findByPk(commentId);
+  //     console.log('TESTETESTE', commentId, contestation);
 
-      comment.contestation = contestation;
+  //     comment.contestation = contestation;
 
-      await comment.save();
+  //     await comment.save();
 
-      return res.json(comment);
-    } catch (error) {
-      console.log(error);
-      res.status(500).send();
-    }
-  },
+  //     return res.json(comment);
+  //   } catch (error) {
+  //     console.log(error);
+  //     res.status(500).send();
+  //   }
+  // },
 
   async delete(req, res) {
     try {

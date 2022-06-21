@@ -30,14 +30,15 @@ export default function SpecificPost() {
   async function getPost(id) {
     const { data } = await api.get(`posts/${id}`);
     setPost(data);
+    console.log(data)
     //data.latlng está em geojson (lnglat)
   }
 
   async function getComments(id) {
     const { data } = await api.get(`posts/${id}/comments`);
     setComment(data);
+    console.log(data)
     return data;
-    //console.log(data)
   }
 
   useEffect(() => {
@@ -64,7 +65,6 @@ export default function SpecificPost() {
       const { userName, description, type, contestation } = values;
 
       const postId = id;
-      console.log("pq eu to aqui??")
       try {
         await api.post(`/posts/${postId}/comments`, {
           userName,
@@ -278,8 +278,9 @@ export default function SpecificPost() {
                       >
                         <Descricao>{comment.description}</Descricao>
                       </Paper>
-                      {comment.contestation > 0 && user && (
+                      {comment.Contestations.length < 2 && user && (
                         <Button
+                          disabled={!(comment.UserId === user.id)}
                           type="submit"
                           variant="contained"
                           color="primary"
@@ -289,31 +290,29 @@ export default function SpecificPost() {
                             width: '35%'
                           }}
                           onClick={async () => {
-                            comment.contestation -= 1;
                             formik.setFieldValue(
                               'contestation',
-                              comment.contestation
+                              2 - comment.Contestations.length
                             );
                             let commentId = comment.id;
-                            let contestation = comment.contestation;
-                            console.log('commentId', comment.id);
                             try {
                               await api.post(
-                                `/posts/${id}/comments/updateContestation`,
+                                `/contestation`,
                                 {
                                   commentId,
-                                  contestation
+                                  userId: user.id
                                 }
                               );
+                              getComments(post.id)
                             } catch (error) {
                               console.log(error);
                             }
                           }}
                         >
-                          Marcar como resolvida ({comment.contestation})
+                          Marcar como resolvida ({2 - comment.Contestations.length })
                         </Button>
                       )}
-                      {comment.contestation === 0 && (
+                      {comment.Contestations.length >= 2 && (
                         <Button
                           variant="contained"
                           color="primary"
@@ -324,7 +323,7 @@ export default function SpecificPost() {
                           }}
                           disabled
                         >
-                          Contestação resolvida
+                          Contestação resolvida {2 - comment.Contestations.length}
                         </Button>
                       )}
                     </Box>

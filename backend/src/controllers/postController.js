@@ -66,8 +66,7 @@ module.exports = {
         where: { id: req.params.id },
         include: [
           { model: Image },
-          { model: User, attributes: ['firstName', 'lastName', 'email', 'id'],
-        include:[{ model: Contestation}]}
+          { model: User, attributes: ['firstName', 'lastName', 'email', 'id'] }
         ]
       });
 
