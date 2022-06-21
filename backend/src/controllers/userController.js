@@ -1,4 +1,4 @@
-const { Post, User } = require('../models');
+const { Post, User, Comment } = require('../models');
 const { hashPassword, passwordValidation } = require('../services/hash');
 const { generateJwt } = require('../services/jwtService');
 
@@ -13,7 +13,7 @@ module.exports = {
       delete user['password'];
       delete user['salt'];
 
-      // descobrir reino com mais posts do usuário
+      ////////////// descobrir reino com mais posts do usuário //////////////
       let topKingdomPost = [];
 
       const animaliaPosts = await Post.findAll({
@@ -56,17 +56,133 @@ module.exports = {
       });
       topKingdomPost.push(fungiPosts.length);
 
-      let max = [0, 0];
+      let maxPost = [0, 0];
       for (let i = 0; i < topKingdomPost.length; i++) {
-        if (topKingdomPost[i] > max[0]) {
-          max[0] = i;
-          max[1] = topKingdomPost[i];
+        if (topKingdomPost[i] > maxPost[0]) {
+          maxPost[0] = i;
+          maxPost[1] = topKingdomPost[i];
         }
       }
 
-      user.dataValues['topKingdom'] = max;
-      /////////////////////////////////////////////////////////
-      console.log(user);
+      user.dataValues['topKingdomPostsAPI'] = maxPost;
+
+      //////////////////////////////////////////////////////////////////////
+
+      /////////////////////// Top Comments /////////////////////////////////
+
+      let allKingdomComment = [];
+
+      const userComments = await Comment.findAll({
+        where: {
+          UserId: id,
+          type: 'comment'
+        }
+      });
+
+      var commentInfo = [0, 0, 0, 0, 0];
+      for (let i = 0; i < userComments.length; i++) {
+        allKingdomComment[i] = await Post.findOne({
+          where: {
+            id: userComments[i].dataValues.PostId
+          }
+        });
+
+        switch (allKingdomComment[i].dataValues.kingdom) {
+          case 'animalia':
+            commentInfo[0] += 1;
+            break;
+          case 'protozoa':
+            commentInfo[1] += 1;
+            break;
+          case 'plantae':
+            commentInfo[2] += 1;
+            break;
+          case 'monera':
+            commentInfo[3] += 1;
+            break;
+          case 'fungi':
+            commentInfo[4] += 1;
+            break;
+        }
+      }
+
+      let maxComment = [0, 0];
+      for (let i = 0; i < commentInfo.length; i++) {
+        if (commentInfo[i] > maxComment[0]) {
+          maxComment[0] = i;
+          maxComment[1] = commentInfo[i];
+        }
+      }
+
+      user.dataValues['commentInfo'] = maxComment;
+
+      //////////////////////////////////////////////////////////////////////
+
+      /////////////////////// Top Contestation /////////////////////////////
+
+      let allKingdomContestation = [];
+      const userContestations = await Comment.findAll({
+        where: {
+          UserId: id,
+          type: 'contestation'
+        }
+      });
+
+      var contestationInfo = [0, 0, 0, 0, 0];
+      for (let i = 0; i < userContestations.length; i++) {
+        allKingdomContestation[i] = await Post.findOne({
+          where: {
+            id: userContestations[i].dataValues.PostId
+          }
+        });
+
+        switch (allKingdomContestation[i].dataValues.kingdom) {
+          case 'animalia':
+            contestationInfo[0] += 1;
+            break;
+          case 'protozoa':
+            contestationInfo[1] += 1;
+            break;
+          case 'plantae':
+            contestationInfo[2] += 1;
+            break;
+          case 'monera':
+            contestationInfo[3] += 1;
+            break;
+          case 'fungi':
+            contestationInfo[4] += 1;
+            break;
+        }
+      }
+
+      let maxContestation = [0, 0];
+      for (let i = 0; i < contestationInfo.length; i++) {
+        if (contestationInfo[i] > maxContestation[0]) {
+          maxContestation[0] = i;
+          maxContestation[1] = contestationInfo[i];
+        }
+      }
+
+      user.dataValues['contestationInfo'] = maxContestation;
+
+      //////////////////////////////////////////////////////////////////////
+
+      /////////////////////// Somas contribuicois //////////////////////////
+
+      let contributionsInfo = [0, 0, 0, 0, 0];
+
+      for (let i = 0; i < contestationInfo.length; i++) {
+        contributionsInfo[i] =
+          topKingdomPost[i] + commentInfo[i] + contestationInfo[i];
+      }
+
+      user.dataValues['contributionsInfo'] = contributionsInfo;
+
+      //
+      //
+      //
+      //
+      //
 
       res.status(200).json(user);
     } catch (e) {
