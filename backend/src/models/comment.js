@@ -8,6 +8,10 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       Comment.belongsTo(models.Post);
       Comment.belongsTo(models.User);
+      Comment.hasMany(models.Contestation, {
+        onDelete: 'CASCADE',
+        hooks: true
+      })
     }
   }
   Comment.init({
