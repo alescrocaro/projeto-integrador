@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const Mapa = styled.div`
-  aspect-ratio: 16/9;
+  aspect-ratio: 16/10;
   width: 100%;
   border-radius: 5px;
   overflow: hidden;
