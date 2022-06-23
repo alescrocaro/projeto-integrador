@@ -1,48 +1,47 @@
-import { ImgCard } from '../imgCard';
 import React from 'react';
+
+//components
+import { ImgCard } from '../imgCard';
 import { styled } from '@mui/material/styles';
-import { Box,Typography, Button} from '@mui/material';
+import { Typography, Button} from '@mui/material';
 import AddCircleOutlineOutlinedIcon from '@mui/icons-material/AddCircleOutlineOutlined';
 
 const StyledButton = styled(Button)(() => ({
-  color: 'black',
-  '&:hover': {
-    opacity:0.5,
-    borderColor:"#a3a3a3",
-    borderRadius:2,
-    borderWidth:2,
-    borderStyle:'dashed'
-  },
-  borderColor:"#141414",
-  borderRadius:2,
+  color: '#14aa6b',
+  borderColor: '#14aa6b',
   width: '100%',
-  display:'flex',
-  justifyContent:'center',
-  alignItems:'center',
-  borderWidth:2,
-  borderStyle:'dashed',
+  height: '100px',
+  gap: '5px',
+  '&:hover': {
+    backgroundColor: '#3d3d3d',
+    borderColor: '#fff',
+    color: '#fff',
+  },
 }));
+
 
 export default function UploadButton({label, imgFile, setImgFile}) {
 
   const handleOnChange = (e) => {
-    console.log("hello")
+    // console.log("hello")
     const file = e.target.files[0]
     if (!['jpg','png', 'jpeg', 'jpe','jif','webp','tiff','tif'].includes(file.name.split('.')[1])) {
-      alert('O sistema somente aceita images com as seguintes extensões: jpg, png, jpeg, jpe, jif, web, tiff, tif')
+      alert('ERRO: Não foi possível reconhecer a extensão da imagem. As extensões permitidas são .jpg, .png, .jpeg, .jpe, .jif, .web, .tiff e .tif!')
       return
     }
-    if(imgFile.length === 3 ) {
-      alert('O sistema aceita somente três imagens por post')
+    if(imgFile.length >= 5 ) {
+      alert('ERRO: Você atingiu o limite de imagens para esta observação!')
       return
     }
-    console.log("imgFile")
+    // console.log("imgFile")
     setImgFile(old => [
       ...old,{
       currentFile: file,
       id: Date.now()
       } 
     ])
+
+    console.log(imgFile);
   }
 
   const handleOnDelete = (id) => {
@@ -50,26 +49,16 @@ export default function UploadButton({label, imgFile, setImgFile}) {
   }
   
   return (
-    <Box sx={{
-      borderWidth:10,
-      borderColor:"#262626",  
-      width: '100%',
-      aspectRatio: '16/9',
-      borderRadius:2,
-      height:100
-    }}>
+    <div style={{display: 'grid', gap: '16px'}}>
       <StyledButton component="label" variant="outlined">
-        <Box sx={{
-          display:'flex',
-          flexDirection:'column',
-          justifyContent:'center',
-          alignItems:'center',
-        }}>
           <AddCircleOutlineOutlinedIcon fontSize='large'/>
-          <Typography variant="h5" component="div">
+          <Typography variant="h5" component="div" sx={{
+            fontFamily: 'Montserrat, Sans Serif',
+            fontWeight: '600',
+            letterSpacing: '-0.05em',
+          }}>
               {label}
           </Typography>
-        </Box>
           <input
             onClick={(e) => e.target.value = null}
             onChange={handleOnChange}
@@ -77,17 +66,40 @@ export default function UploadButton({label, imgFile, setImgFile}) {
             hidden
           />
       </StyledButton>
-      {
-        imgFile.length > 0 &&
-        imgFile.map((element, index) => 
-          <ImgCard
-            handleOnDelete={handleOnDelete}
-            key={index}
-            id={element.id}
-            imgName={element.currentFile.name}
-          />  
-        )
-      }
-    </Box>
+      
+      <div>
+        <Typography variant="p" component="div" sx={{
+          fontFamily: 'Montserrat, Sans Serif',
+            letterSpacing: '-0.05em',
+            fontWeight: '600',
+            color: '#333'
+          }}>
+            Fotos carregadas:
+          </Typography>
+        {/* <p style={{fontWeight: '600', margin}}>Fotos carregadas:</p> */}
+        
+        { imgFile.length > 0 ?
+          imgFile.map((element, index) => {
+            return (<ImgCard
+              handleOnDelete={handleOnDelete}
+              key={index}
+              id={element.id}
+              imgName={element.currentFile.name}
+            />)
+          })
+          :
+          <Typography variant="p" component="div" sx={{
+            fontFamily: 'Montserrat, Sans Serif',
+            letterSpacing: '-0.05em',
+            fontWeight: '500',
+            color: 'red',
+            fontSize: '.8em',
+            marginTop: '5px'
+          }}>
+            ⚠️ Você deve anexar pelo menos uma foto!
+          </Typography>
+        }
+      </div>
+    </div>
   );
 }

@@ -61,12 +61,7 @@ export default function ListPosts() {
             isLinkActive
           />
         )}
-        {!user && (
-          <StyledButton
-            title={'VOCÊ DEVE SE CONECTAR PARA CRIAR UM POST'}
-            icon={'warn'}
-          />
-        )}
+        
         <Map posts={posts} mapControls={mapControls} />
 
         <HeaderPage

@@ -56,18 +56,14 @@ class Map extends React.Component {
                 parseFloat(this.props.latlngControls.getLatlng().lat) || 0,
                 parseFloat(this.props.latlngControls.getLatlng().lng) || 0
             ];
-            console.log('pos', pos)
-
             if(!this.marker){
                 this.marker = L.marker(pos, {icon: icon, draggable: true}).addTo(this.map);
                 
                 this.marker.on('dragend', (e) => {
                     this.props.latlngControls.changeLatlng(e.target._latlng);
                 });
-                console.log('marker criado');
             }else{
                 this.marker.setLatLng(pos);
-                console.log('marker atualizado');
             }
         }
     }
