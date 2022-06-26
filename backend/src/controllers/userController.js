@@ -1,4 +1,4 @@
-const { Post, User, Comment } = require('../models');
+const { Post, User, Comment, Contestation } = require('../models');
 const { hashPassword, passwordValidation } = require('../services/hash');
 const { generateJwt } = require('../services/jwtService');
 
