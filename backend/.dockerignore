@@ -1,0 +1,17 @@
+.vscode
+.github
+database
+docs
+test
+
+.git
+node_modules
+
+*.env
+.env.example
+*.md
+*.yml
+.gitignore
+.prettierrc
+Dockerfile
+docker-compose.yaml
