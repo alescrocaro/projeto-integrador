@@ -12,3 +12,6 @@ yarn-error.log*
 
 package-lock.json
 db.sqlite
+
+
+src/database/config/config.json
