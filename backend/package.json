@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "nodemon src/index.js",
+    "db-migrate": "sequelize db:migrate",
     "test": "jest --verbose"
   },
   "author": "",
