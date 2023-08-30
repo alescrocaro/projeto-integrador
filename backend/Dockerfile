@@ -2,16 +2,14 @@
 FROM node:18
 
 WORKDIR /app
-
-COPY package.json package-lock.json ./
+COPY . .
 
 RUN npm install
 
-COPY . .
 
 # Initialize Sequelize and run migrations
-#RUN npx sequelize init
-#RUN npx sequelize db:migrate
+RUN npx sequelize init --force
+RUN npx sequelize db:migrate --url "postgres://admin:123456@localhost:5544/forumDB"
 
 # Expose the port your application is running on
 EXPOSE 3333
