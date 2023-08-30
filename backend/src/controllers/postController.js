@@ -24,11 +24,6 @@ module.exports = {
               attributes: ['firstName', 'lastName', 'email', 'id']
             }
           ],
-          // attributes:{
-          //   include:[
-          //     [distanceAttr, 'distance'],
-          //   ]
-          // },
           where: {
             $and: sequelize.where(distanceAttr, {
               [sequelize.Op.lte]: req.query.mapSearchRadius * 1000
@@ -37,7 +32,7 @@ module.exports = {
           order: [['updatedAt', 'DESC']]
         });
 
-        //console.log('posts ->', posts);
+        console.log('posts com filtro ->', posts);
         return res.json(posts);
       } else {
         const posts = await Post.findAll({
@@ -51,11 +46,11 @@ module.exports = {
           order: [['updatedAt', 'DESC']]
         });
 
-        //console.log(posts);
+        console.log('posts sem filtro', posts);
         return res.json(posts);
       }
     } catch (error) {
-      console.log(error);
+      console.log('error', error);
       res.status(500).send();
     }
   },

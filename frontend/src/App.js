@@ -10,30 +10,6 @@ import Login from './Pages/User/Login';
 import Profile from './Pages/User/Profile';
 
 export default function App() {
-  /*const Private = ({ children }) => {
-    const { authenticated, loading } = useToken();
-
-    if (loading) return <h1>Carregando...</h1>;
-
-    if (!authenticated) {
-      return <Navigate to="/" />;
-    }
-
-    return children;
-  };
-
-  const Public = ({ children }) => {
-    const { authenticated, loading } = useToken();
-
-    if (loading) return <h1>Carregando...</h1>;
-
-    if (authenticated) {
-      return <Navigate to="/home" />;
-    }
-
-    return children;
-  };*/
-
   return (
     <BrowserRouter>
       <AuthProvider>
