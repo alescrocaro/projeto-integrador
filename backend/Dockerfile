@@ -8,8 +8,9 @@ RUN npm install
 
 
 # Initialize Sequelize and run migrations
-RUN npx sequelize init --force
-RUN npx sequelize db:migrate --url "postgres://admin:123456@localhost:5544/forumDB"
+RUN npx sequelize-cli init --force
+#RUN npx sequelize-cli db:migrate
+# --url "postgres://admin:123456@localhost:5432/forumDB"
 
 # Expose the port your application is running on
 EXPOSE 3333
