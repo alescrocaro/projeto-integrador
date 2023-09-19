@@ -24,7 +24,7 @@ O software tem como objetivo principal ajudar pesquisadores e estudantes de biol
 ## Dependências (linguagem de desenvolvimento, frameworks usados, banco de dados, pacotes de software, etc...)
 - Frontend: React;
 - Backend: Node;
-- Banco de dados: PostgreSQL.
+- Banco de dados: PostgreSQL, Postgis.
 
 
 ## Instruções para download e execução do projeto em qualquer computador
@@ -32,6 +32,18 @@ O software tem como objetivo principal ajudar pesquisadores e estudantes de biol
 - React;
 - Node;
 - Docker
+
+## Para utilizar as imagens docker diretamente
+```bash
+cd backend
+docker compose up -d
+
+cd frontend
+docker compose up -d
+```
+
+Agora basta acessar a URL definida (padrão localhost:3000).
+
 
 ## para instalar o banco de dados
 

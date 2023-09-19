@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "dev": "nodemon src/index.js",
-    "db-migrate": "sequelize db:migrate",
-    "test": "jest --verbose"
+    "test": "jest --verbose",
+    "start": "npx sequelize-cli db:migrate && nodemon src/index.js"
   },
   "author": "",
   "license": "ISC",

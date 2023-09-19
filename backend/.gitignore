@@ -13,4 +13,4 @@ yarn-error.log*
 db.sqlite
 
 
-src/database/config/config.json
+#src/database/config/config.json
