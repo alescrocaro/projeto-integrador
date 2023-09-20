@@ -14,6 +14,7 @@ Para visualizar as funcionalidades definidas no início do projeto, visualize [e
 - React;
 - Node;
 - Docker
+- Docker compose
 
 
 ## Instalação
