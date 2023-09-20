@@ -1,35 +1,18 @@
-# Install dependencies only when needed
-FROM node:18 AS deps
+FROM node:18
+
+ARG REACT_APP_BASE_URL
+ARG GENERATE_SOURCEMAP
 
 WORKDIR /app
-COPY package.json yarn.lock ./
-RUN apk add --no-cache g++ make python3 git
-RUN yarn install
-
-
-# Rebuild the source code only when needed
-FROM node:18 AS builder
-ARG REACT_APP_API_URL
-ARG REACT_APP_IMPORT_API_URL
-
-WORKDIR /app
-COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 
-ENV NODE_ENV production
-ENV REACT_APP_API_URL $REACT_APP_API_URL
-ENV REACT_APP_IMPORT_API_URL $REACT_APP_IMPORT_API_URL
-RUN yarn build
+ENV REACT_APP_BASE_URL $REACT_APP_BASE_URL
+ENV GENERATE_SOURCEMAP $GENERATE_SOURCEMAP
 
-# Production image, copy all the files and run next
-FROM node:18 AS runner
-WORKDIR /app
+RUN npm install --force
 
-RUN yarn global add serve
-COPY --from=builder /app/build ./
+# Expose port
+EXPOSE 3000
 
-EXPOSE 8080
-
-ENV PORT 8080
-
-CMD serve -s -l 8080 .
+# Start the app
+CMD [ "npm", "start" ]

@@ -1,0 +1,42 @@
+version: "3.7"
+services:
+  db:
+    image: postgis/postgis
+    restart: always
+    environment:      
+      PGDATA: /var/lib/postgresql/data
+      POSTGRES_DB: forumDB
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: 123456
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+  
+  api:
+    depends_on:
+      - db  # This makes sure the "db" service is started before the API service
+    build:
+      context: ./backend
+      dockerfile: ./Dockerfile
+    environment:
+      - JWT_SECRET=green
+    ports:
+      - "3333:3333"
+
+  app:
+    depends_on:
+      - api
+    build:
+      context: ./frontend
+      dockerfile: ./Dockerfile
+    environment:
+      - REACT_APP_BASE_URL=http://0.0.0.0:3333
+      - GENERATE_SOURCEMAP=false
+    ports:
+      - 3000:3000
+
+volumes:
+  db-data:
+  api-data:
+  app-data:

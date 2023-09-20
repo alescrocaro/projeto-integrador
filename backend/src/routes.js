@@ -3,7 +3,7 @@ const routes = express.Router();
 const postController = require('./controllers/postController');
 const commentController = require('./controllers/commentController');
 const userController = require('./controllers/userController');
-const contestationController = require('./controllers/ contestationController');
+const contestationController = require('./controllers/contestationController');
 const uploadService = require('./services/upload');
 
 routes.get('/posts', postController.index);
