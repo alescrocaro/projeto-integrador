@@ -18,20 +18,13 @@ Para visualizar as funcionalidades definidas no início do projeto, visualize [e
 
 
 ## Instalação
-Você tem duas opções:
-### Utilizar as imagens docker diretamente (recomendado para não desenvolvedores)
-```bash
-[forum-invasores] $ docker compose up -d
+
+Faça um clone do repositório:
+```
+git clone git@github.com:alescrocaro/forum-invasores.git
 ```
 
-Agora basta acessar a URL definida (padrão 0.0.0.0:3000).
-
-
-### Instalar cada componente (recomendado para desenvolvedores) 
-#### Configurando o banco de dados
-
 É necessário ter instalado o docker na sua máquina. Após a instalação do docker é preciso instalar o docker compose. Caso esteja usando windows, a instalação do docker compose já vem junto com o docker.
-
 ```
 DOCKER_CONFIG=${DOCKER_CONFIG:-$HOME/.docker}
 mkdir -p $DOCKER_CONFIG/cli-plugins
@@ -45,6 +38,18 @@ teste para ver se a instalação foi bem sucedida
 ```
 docker compose version
 ```
+
+
+Você tem duas opções:
+### Utilizar as imagens docker diretamente (recomendado para não desenvolvedores)
+```bash
+[forum-invasores] $ docker compose up -d
+```
+
+Agora basta acessar a URL definida (padrão 0.0.0.0:3000).
+
+
+### Instalar cada componente (recomendado para desenvolvedores) 
 Vá até a pasta do backend e rode o seguinte comando
 ```
 cd backend
