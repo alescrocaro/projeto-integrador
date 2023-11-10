@@ -46,7 +46,7 @@ Você tem duas opções:
 [forum-invasores] $ docker compose up -d
 ```
 
-Agora basta acessar a URL definida (padrão 0.0.0.0:3000).
+Agora basta acessar a URL definida (padrão 0.0.0.0:3777).
 
 
 ### Instalar cada componente (recomendado para desenvolvedores) 
@@ -60,7 +60,7 @@ docker compose up -d
 Para visualizar o banco de dados você pode utilizar o software de sua preferência, as credenciais são:
 usuário:admin@admin.com
 senha:123456
-crie um servidor e conecte no host pgsql-server na porta 5432. As credencias do banco são:
+crie um servidor e conecte no host pgsql-server na porta 5437. As credencias do banco são:
 usuário:admin 
 senha:123456
 
