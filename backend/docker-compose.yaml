@@ -11,7 +11,7 @@ services:
     volumes:
       - db-data:/var/lib/postgresql/data
     ports:
-      - "5432:5432"
+      - "5437:5432"
   
   api:
     depends_on:
@@ -20,7 +20,7 @@ services:
       context: .
       dockerfile: ./Dockerfile
     ports:
-      - "3333:3333"
+      - "3337:3333"
 
 volumes:
   db-data:

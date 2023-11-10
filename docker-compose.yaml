@@ -11,7 +11,7 @@ services:
     volumes:
       - db-data:/var/lib/postgresql/data
     ports:
-      - "5432:5432"
+      - "5437:5432"
   
   api:
     depends_on:
@@ -22,7 +22,7 @@ services:
     environment:
       - JWT_SECRET=green
     ports:
-      - "3333:3333"
+      - "3337:3333"
 
   app:
     depends_on:
@@ -31,10 +31,10 @@ services:
       context: ./frontend
       dockerfile: ./Dockerfile
     environment:
-      - REACT_APP_BASE_URL=http://0.0.0.0:3333
+      - REACT_APP_BASE_URL=http://0.0.0.0:3337
       - GENERATE_SOURCEMAP=false
     ports:
-      - 3000:3000
+      - 3777:3000
 
 volumes:
   db-data:
