@@ -22,7 +22,7 @@ services:
     environment:
       - JWT_SECRET=green
     ports:
-      - "3337:3333"
+      - "3337:3337"
 
   app:
     depends_on:

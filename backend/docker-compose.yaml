@@ -20,7 +20,7 @@ services:
       context: .
       dockerfile: ./Dockerfile
     ports:
-      - "3337:3333"
+      - "3337:3337"
 
 volumes:
   db-data:

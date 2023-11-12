@@ -16,7 +16,7 @@ export default function Layout({ children }) {
     >
       <HeaderMenu />
       {children}
-      <StickyFooter />
+      {/* <StickyFooter /> */}
     </Box>
   );
 }

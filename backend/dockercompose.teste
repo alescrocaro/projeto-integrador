@@ -32,7 +32,7 @@ services:
       dockerfile: ./Dockerfile
     image: api
     ports:
-      - "3337:3333"
+      - "3337:3337"
     depends_on:
       - db  # This makes sure the "db" service is started before the API service
 
