@@ -25,7 +25,7 @@ export default function UploadButton({label, imgFile, setImgFile}) {
   const handleOnChange = (e) => {
     // console.log("hello")
     const file = e.target.files[0]
-    if (!['jpg','png', 'jpeg', 'jpe','jif','webp','tiff','tif'].includes(file.name.split('.')[1])) {
+    if (!['jpg','png', 'jpeg', 'jpe','jif','webp','tiff','tif'].includes(file.name.split('.')[1].toLowerCase())) {
       alert('ERRO: Não foi possível reconhecer a extensão da imagem. As extensões permitidas são .jpg, .png, .jpeg, .jpe, .jif, .web, .tiff e .tif!')
       return
     }
