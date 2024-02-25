@@ -20,69 +20,78 @@ Para visualizar as funcionalidades definidas no início do projeto, visualize [e
 ## Instalação
 
 Faça um clone do repositório:
-```
+```sh
 git clone git@github.com:alescrocaro/forum-invasores.git
 ```
 
 É necessário ter instalado o docker na sua máquina. Após a instalação do docker é preciso instalar o docker compose. Caso esteja usando windows, a instalação do docker compose já vem junto com o docker.
-```
+```sh
 DOCKER_CONFIG=${DOCKER_CONFIG:-$HOME/.docker}
 mkdir -p $DOCKER_CONFIG/cli-plugins
 curl -SL https://github.com/docker/compose/releases/download/v2.4.1/docker-compose-linux-x86_64 -o $DOCKER_CONFIG/cli-plugins/docker-compose
 ```
-De permissão do binário para seu usário
-```
+Dê permissão do binário para seu usuário
+```sh
 chmod +x $DOCKER_CONFIG/cli-plugins/docker-compose
 ```
-teste para ver se a instalação foi bem sucedida
-```
+Para verificar se a instalação foi bem sucedida, execute:
+```sh
 docker compose version
 ```
 
 
 Você tem duas opções:
-### Utilizar as imagens docker diretamente (recomendado para não desenvolvedores)
-```bash
-[forum-invasores] $ docker compose up -d
+### Utilizar as imagens docker diretamente
+```sh
+[forum-invasores] $
+docker compose up -d
 ```
 
 Agora basta acessar a URL definida (padrão 0.0.0.0:3777).
 
 
-### Instalar cada componente (recomendado para desenvolvedores) 
-Vá até a pasta do backend e rode o seguinte comando
-```
-cd backend
+### Instalar cada componente - devs
+Para subir o banco, execute os comandos (sobe instância do banco e da api, se não quiser subir a api, basta editar o Dockerfile do backend comentando as linhas referentes à API):
+```sh
+[forum-invasores/backend] $
 sudo chmod 666 /var/run/docker.sock
 docker compose up -d
 ```
+acesso padrão:\
+usuário: admin\
+senha: 123456
 
-Para visualizar o banco de dados você pode utilizar o software de sua preferência, as credenciais são:
-usuário:admin@admin.com
-senha:123456
-crie um servidor e conecte no host pgsql-server na porta 5437. As credencias do banco são:
-usuário:admin 
-senha:123456
-
-após criar o banco, vá para a pasta do backend e rode o comando:
-
-```
-cd backend
+Para criar e migrar o banco, execute (no backend):
+```sh
+[forum-invasores/backend] $
 npm install
+npx sequelize-cli db:create # utiliza o arquivo /src/database/config/config.json
 npx sequelize-cli db:migrate
 ```
 
-#### Executar o backend:
-
+Você pode criar um usuário automaticamente executando o comando:
+```sh
+[forum-invasores/backend] $
+npx sequelize db:seed --seed seeders/20240224021706-add-first-users.js
+# credenciais:
+# alexandre@example.com and alexandre2@example.com
+# 123456
 ```
-cd backend
+
+
+
+
+
+#### Executar o backend:
+```sh
+[forum-invasores/backend] $
 npm install
 npm run dev
 ```
 
 #### Executar o frontend:
-```
-cd frontend
+```sh
+[forum-invasores/frontend] $
 npm install
 npm start
 ```
