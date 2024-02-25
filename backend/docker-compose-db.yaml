@@ -1,0 +1,17 @@
+version: "3.7"
+services:
+  db:
+    image: postgis/postgis
+    restart: always
+    environment:
+      #POSTGRES_DB: forumDB
+      #POSTGRES_USER: admin
+      #POSTGRES_PASSWORD: 123456
+      PGDATA: /var/lib/postgresql/data
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    ports:
+      - "5437:5432"
+
+volumes:
+  db-data:
