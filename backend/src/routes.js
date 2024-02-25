@@ -8,7 +8,7 @@ const uploadService = require('./services/upload');
 
 routes.get('/posts', postController.index);
 routes.get('/posts/:id', postController.get);
-routes.post('/posts', uploadService ,postController.create);
+routes.post('/posts', uploadService, postController.create);
 routes.delete('/posts/:id', postController.delete)
 routes.post('/updatePostImage/:id', uploadService, postController.updatePostImage);
 /*
@@ -17,7 +17,7 @@ routes.post('/posts', postController.update);
 
 // COMMENTS
 routes.get('/posts/:id/comments', commentController.index);
-routes.post('/posts/:PostId/comments', commentController.create);
+routes.post('/posts/:id/comments', commentController.create);
 routes.delete('/posts/:id/comments/:id', commentController.delete);
 // routes.post('/posts/:id/comments/updateContestation', commentController.updateContestation);
 
@@ -27,6 +27,6 @@ routes.post('/users', userController.create);
 routes.post('/login', userController.login);
 
 // CONTESTATION
-routes.post('/contestation', contestationController.create);
+routes.post('/resolve-contestation', contestationController.create);
 
 module.exports = routes;
