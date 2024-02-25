@@ -3,10 +3,10 @@ module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface.createTable("UserResolvedContestation", {
       id: {
+        type: Sequelize.UUID,
+        defaultValue: Sequelize.UUIDV4,
         allowNull: false,
-        autoIncrement: true,
-        primaryKey: true,
-        type: Sequelize.INTEGER,
+        primaryKey: true
       },
       userId: {
         type: Sequelize.UUID,
@@ -19,7 +19,7 @@ module.exports = {
         foreignKey: { allowNull: false },
       },
       commentId: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.UUID,
         references: {
           model: "Comments",
           key: "id",

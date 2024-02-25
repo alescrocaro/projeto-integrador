@@ -4,10 +4,10 @@ module.exports = {
     await queryInterface.sequelize.query('CREATE EXTENSION postgis;')
     await queryInterface.createTable("Posts", {
       id: {
+        type: Sequelize.UUID,
+        defaultValue: Sequelize.UUIDV4,
         allowNull: false,
-        autoIncrement: true,
-        primaryKey: true,
-        type: Sequelize.INTEGER,
+        primaryKey: true
       },
       title: {
         allowNull: false,
