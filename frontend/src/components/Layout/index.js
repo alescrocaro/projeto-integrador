@@ -10,7 +10,7 @@ export default function Layout({ children }) {
       sx={{
         display: 'flex',
         flexDirection: 'column',
-        justifyContent: 'space-between',
+        // justifyContent: 'space-between',
         height: '100%'
       }}
     >
