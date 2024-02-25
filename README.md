@@ -55,7 +55,7 @@ Para subir o banco, execute os comandos (sobe instância do banco e da api, se n
 ```sh
 [forum-invasores/backend] $
 sudo chmod 666 /var/run/docker.sock
-docker compose up -d
+docker compose -f docker-compose-db.yaml up -d
 ```
 acesso padrão:\
 usuário: admin\
@@ -65,8 +65,8 @@ Para criar e migrar o banco, execute (no backend):
 ```sh
 [forum-invasores/backend] $
 npm install
-npx sequelize-cli db:create # utiliza o arquivo /src/database/config/config.json
-npx sequelize-cli db:migrate
+npm create-db # utiliza o arquivo /src/database/config/config.json
+npm migrate-db
 ```
 
 Você pode criar um usuário automaticamente executando o comando:
