@@ -16,7 +16,7 @@ export default function ListPosts() {
   const [mapShowRadius, setMapShowRadius] = useState(false);
   const [posts, setPosts] = useState([]);
 
-  const mapControls = new Object({
+  const mapControls = {
     getMapCenter: () => {
       return mapCenter;
     },
@@ -35,7 +35,7 @@ export default function ListPosts() {
     setShowRadius: (r) => {
       setMapShowRadius(r);
     },
-  });
+  };
 
   const getPosts = async (filters) => {
     await api.get("/posts", { params: filters }).then(({ data }) => {

@@ -1,20 +1,15 @@
+import { Card, CircularProgress, Step, StepLabel, Stepper } from '@mui/material/';
+import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useToken } from '../../Context/AuthContext';
+import Container from '../../components/Container';
 import HeaderPage from '../../components/HeaderPage';
+import Layout from '../../components/Layout';
+import { api } from '../../services/api';
+import useTrait from '../../utils/useTrait';
 import StepDescricao from './components/StepDescricao';
 import StepEspecime from './components/StepEspecime';
 import StepLocal from './components/StepLocal';
-import Layout from '../../components/Layout';
-import Container from '../../components/Container';
-import { Card, Stepper, Step, StepLabel, CircularProgress } from '@mui/material/';
-
-import useTrait from '../../utils/useTrait';
-
-import * as yup from 'yup';
-import { useContext, useState, useEffect, useRef } from 'react';
-import { useFormik } from 'formik';
-import { api } from '../../services/api';
-
-import { useNavigate } from 'react-router-dom';
-import { useToken } from '../../Context/AuthContext';
 
 export default function CreatePost() {
   const {user} = useToken()
