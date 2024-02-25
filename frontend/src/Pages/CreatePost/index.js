@@ -65,10 +65,9 @@ export default function CreatePost() {
 
       //ir pra pagina do post
       navigate(`/posts/${res.data}`);
-
     } catch(e) {
       alert('ERRO: Algo inexperado aconteceu, tente novamente mais tarde! :(');
-      navigate('/');
+      setActiveStep(2);
     }
 };
     
