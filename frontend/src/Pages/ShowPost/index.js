@@ -1,95 +1,114 @@
-import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
-import { api } from '../../services/api';
-import { useToken } from '../../Context/AuthContext';
-import { useFormik } from 'formik';
-import * as yup from 'yup';
+import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import { api } from "../../services/api";
+import { useToken } from "../../Context/AuthContext";
+import { useFormik } from "formik";
+import * as yup from "yup";
 
-import { Box, Card, Typography, Button, TextField } from '@mui/material/';
-import StyledTable from '../../components/Table';
-import Container from '../../components/Container';
-import Layout from '../../components/Layout';
-import HeaderPage from '../../components/HeaderPage';
-import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import { Box, Card, Typography, Button, TextField } from "@mui/material/";
+import StyledTable from "../../components/Table";
+import Container from "../../components/Container";
+import Layout from "../../components/Layout";
+import HeaderPage from "../../components/HeaderPage";
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 
-import { Descricao, Img, Subsubtitulo, Subtitulo } from './style';
-import { Divider } from '@material-ui/core';
+import { Descricao, Img, Subsubtitulo, Subtitulo } from "./style";
+import { Divider } from "@material-ui/core";
 
-import Paper from '@mui/material/Paper';
-import Chip from '@mui/material/Chip';
+import Paper from "@mui/material/Paper";
+import Chip from "@mui/material/Chip";
 
-import Map from './components/Map';
-import ImageSlider from './components/imageSlider';
+import Map from "./components/Map";
+import ImageSlider from "./components/imageSlider";
 
 export default function SpecificPost() {
   const { user } = useToken();
   const [post, setPost] = useState({});
-  const [comments, setComment] = useState([]);
+  const [comments, setComments] = useState([]);
   const { id } = useParams();
 
   async function getPost(id) {
     const { data } = await api.get(`posts/${id}`);
-    console.log('postdata', data)
+    console.log("postdata", data);
     setPost(data);
     //data.latlng está em geojson (lnglat)
   }
 
   async function getComments(id) {
+    console.log("getComments");
     const { data } = await api.get(`posts/${id}/comments`);
-    setComment(data);
-    console.log(data)
+    setComments(data);
+    console.log(data);
     return data;
   }
+
+  const resolveContestation = (commentId) => {
+    console.log("onclick");
+    api
+      .post(`/resolve-contestation`, {
+        commentId: commentId,
+        userId: user.id,
+      })
+      .then(() => {
+        console.log("depois de postar");
+        getComments(post.id);
+      })
+      .catch((error) => {
+        console.log("erro: ", error);
+      });
+  };
+
+  const scheme = yup.object({
+    description: yup.string("Comentário").required("Campo obrigatório").trim(),
+    type: yup.string("Tipo").required("Campo obrigatório"),
+    userName: yup.string("Nome").required("Campo obrigatório"),
+  });
+
+  const formik = useFormik({
+    validationSchema: scheme,
+    initialValues: {
+      userName: "userName",
+      description: "",
+      type: "",
+      postId: id,
+    },
+
+    onSubmit: async (values) => {
+      const { userName, description, type, contestationResolvedAmount } =
+        values;
+
+      const postId = id;
+      try {
+        await api.post(`/posts/${postId}/comments`, {
+          userName,
+          description,
+          type,
+          userId: user.id,
+        });
+        getComments(id);
+      } catch (error) {
+        console.log(error);
+      }
+    },
+  });
+
+  const username = post.User ? post.User.name : "user";
 
   useEffect(() => {
     getPost(id);
     getComments(id);
   }, [id]);
 
-  const scheme = yup.object({
-    description: yup.string('Comentário').required('Campo obrigatório').trim(),
-    type: yup.string('Tipo').required('Campo obrigatório'),
-    userName: yup.string('Nome').required('Campo obrigatório')
-  });
-
-  const formik = useFormik({
-    validationSchema: scheme,
-    initialValues: {
-      userName: 'userName',
-      description: '',
-      type: '',
-      PostId: id
-    },
-
-    onSubmit: async values => {
-      const { userName, description, type, contestation } = values;
-
-      const postId = id;
-      try {
-        await api.post(`/posts/${postId}/comments`, {
-          userName,
-          description,  
-          type,
-          contestation,
-          userId: user.id
-        });
-        getComments(id);
-      } catch (error) {
-        console.log(error);
-      }
-    }
-  });
-  const username = post.User == null  ? "user" : post.User.firstName + " " + post.User.lastName
   return (
     <Layout>
       {!!post && (
         <Container
           container
           sx={{
-            display: 'grid',
-            alignItems: 'start',
-            gap: '2vh',
-            margin: '2vh 0'
+            display: "grid",
+            alignItems: "start",
+            gap: "2vh",
+            margin: "2vh 0",
           }}
         >
           {/* titulo do post */}
@@ -102,39 +121,39 @@ export default function SpecificPost() {
           {/* card do post */}
           <Card
             sx={{
-              width: '100%',
-              height: 'fit-content',
-              backgroundColor: '#f0f0f0',
+              width: "100%",
+              height: "fit-content",
+              backgroundColor: "#f0f0f0",
               // border: 1,
               // borderColor: 'grey.500',s
-              display: 'grid',
-              marginBottom: '5px'
+              display: "grid",
+              marginBottom: "5px",
             }}
           >
             {/* Box das infos com fotos e tabelas */}
             <Box
               sx={{
-                display: 'grid',
-                gridTemplateColumns: '50% 50%',
-                alignItems: 'start',
-                marginBottom: '.15rem'
+                display: "grid",
+                gridTemplateColumns: "50% 50%",
+                alignItems: "start",
+                marginBottom: ".15rem",
               }}
             >
               {/* Box com foto do especime e tabela de classificacao*/}
               <Box
                 sx={{
-                  display: 'grid',
-                  gap: '.5rem',
-                  padding: '1rem'
+                  display: "grid",
+                  gap: ".5rem",
+                  padding: "1rem",
                 }}
               >
                 <Subtitulo>ESPÉCIME:</Subtitulo>
 
-                {post.Images != null && post.Images.length > 0 && (
+                {post.Images != null && post.Images?.length > 0 && (
                   <ImageSlider images={post.Images} />
                 )}
-                {post.Images != null && post.Images.length === 0 && (
-                  <Img src={require('../../img/placeholder.png')} alt="img" />
+                {post.Images != null && post.Images?.length === 0 && (
+                  <Img src={require("../../img/placeholder.png")} alt="img" />
                 )}
                 <Subsubtitulo>CLASSIFICAÇÃO CIENTÍFICA:</Subsubtitulo>
                 <StyledTable data={post} scientificTable />
@@ -143,9 +162,9 @@ export default function SpecificPost() {
               {/* Box com localizacao e tabela de detalhes*/}
               <Box
                 sx={{
-                  display: 'grid',
-                  gap: '.5rem',
-                  padding: '1rem'
+                  display: "grid",
+                  gap: ".5rem",
+                  padding: "1rem",
                 }}
               >
                 <Subtitulo>LOCAL E DATA:</Subtitulo>
@@ -155,7 +174,7 @@ export default function SpecificPost() {
                   (post.latlng && <Map post={post} />) ||
                     //placeholder do mapa
                     (!post.latlng && (
-                      <Img src={require('../../img/foto1.jpg')} alt="img" />
+                      <Img src={require("../../img/foto1.jpg")} alt="img" />
                     ))
                 }
 
@@ -169,9 +188,9 @@ export default function SpecificPost() {
             <Box
               className="description"
               sx={{
-                display: 'grid',
-                gap: '.5rem',
-                padding: '1rem'
+                display: "grid",
+                gap: ".5rem",
+                padding: "1rem",
               }}
             >
               <Subtitulo>DESCRIÇÃO:</Subtitulo>
@@ -180,19 +199,19 @@ export default function SpecificPost() {
               </Paper>
             </Box>
             <Divider variant="middle" />
-            <Box sx={{ padding: '1rem' }}>
+            <Box sx={{ padding: "1rem" }}>
               <Subtitulo>TAGS:</Subtitulo>
               {post.tags != null &&
-                post.tags.map(element => (
+                post.tags.map((element) => (
                   <Chip
                     color="success"
-                    onClick={e => {
+                    onClick={(e) => {
                       e.stopPropagation();
                     }}
                     size="small"
                     sx={{ mr: 1, mt: 1 }}
                     key={element}
-                    label={'#' + element}
+                    label={"#" + element}
                   />
                 ))}
             </Box>
@@ -201,157 +220,135 @@ export default function SpecificPost() {
           {/* card da comunidade */}
           <Card
             sx={{
-              width: '100%',
-              height: 'fit-content',
-              backgroundColor: '#f0f0f0',
+              width: "100%",
+              height: "fit-content",
+              backgroundColor: "#f0f0f0",
               // border: 1,
               // borderColor: 'grey.500',s
-              display: 'grid',
-              marginBottom: '5px'
+              display: "grid",
+              marginBottom: "5px",
             }}
           >
             {/* Box da listagem de comentários */}
             <Box
               sx={{
-                display: 'flex',
-                flexDirection: 'column',
-                justifyContent: 'center',
-                marginBottom: '.15rem',
-                padding: '1rem'
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "center",
+                marginBottom: ".15rem",
+                padding: "1rem",
               }}
             >
               <Box
                 sx={{
-                  display: 'flex',
-                  flexDirection: 'row',
-                  justifyContent: 'space-between'
+                  display: "flex",
+                  flexDirection: "row",
+                  justifyContent: "space-between",
                 }}
               >
                 <Subtitulo>COMUNIDADE:</Subtitulo>
-                </Box>
               </Box>
-            
-              {/* Box de um comentário  */}
-              {comments.map((comment, index) => (
+            </Box>
+
+            {/* Box de um comentário  */}
+            {comments.map((comment, index) => (
+              <Box
+                key={index}
+                sx={{
+                  display: "grid",
+                  gridTemplateColumns: "15% 85%",
+                  alignItems: "center",
+                  margin: ".3rem",
+                  rowGap: ".3rem",
+                }}
+              >
                 <Box
-                  key={index}
                   sx={{
-                    display: 'grid',
-                    gridTemplateColumns: '15% 85%',
-                    alignItems: 'center',
-                    margin: '.3rem',
-                    rowGap: '.3rem'
+                    display: "flex",
+                    flexDirection: "column",
+                    justifyContent: "center",
+                    alignItems: "center",
                   }}
                 >
+                  <AccountCircleIcon sx={{ margin: "10px" }} fontSize="large" />
+                  <Typography variant="h7" color="black">
+                    {comment.User == null ? "user" : comment.User.name}
+                  </Typography>
+                </Box>
+                {comment.type === "COMMENT" && (
+                  <Paper elevation={0}>
+                    <Descricao>{comment.description}</Descricao>
+                  </Paper>
+                )}
+                {comment.type === "CONTESTATION" && (
                   <Box
                     sx={{
-                      display: 'flex',
-                      flexDirection: 'column',
-                      justifyContent: 'center',
-                      alignItems: 'center'
+                      display: "flex",
+                      flexDirection: "row",
                     }}
                   >
-                    <AccountCircleIcon
-                      sx={{ margin: '10px' }}
-                      fontSize="large"
-                    />
-                    <Typography variant="h7" color="black">
-                      {comment.User == null  ? "user" : comment.User.firstName + " " +  comment.User.lastName}
-                    </Typography>
-                  </Box>
-                  {comment.type === 'comment' && (
-                    <Paper elevation={0}>
+                    <Paper
+                      sx={{ border: `1px solid #ed5132`, width: "100%" }}
+                      elevation={0}
+                    >
                       <Descricao>{comment.description}</Descricao>
                     </Paper>
-                  )}
-                  {comment.type === 'contestation' && (
-                    <Box
-                      sx={{
-                        display: 'flex',
-                        flexDirection: 'row'
-                      }}
-                    >
-                      <Paper
-                        sx={{ border: `1px solid #ed5132`, width: '100%' }}
-                        elevation={0}
-                      >
-                        <Descricao>{comment.description}</Descricao>
-                      </Paper>
-                      {comment.Contestations.length < 2 && user && (
-                        <Button
-                          disabled={
-                            (comment.UserId === user.id) ||
-                            comment.Contestations.some(element => {
-                              return element.UserId === user.id;
-                            })
+                    {!comment.resolvedAmount && user && (
+                      <Button
+                        disabled={comment.UserResolvedContestations?.some(
+                          (element) => {
+                            return element.userId === user.id;
                           }
-                          type="submit"
-                          variant="contained"
-                          color="primary"
-                          sx={{
-                            marginLeft: '5px',
-                            maxWidth: '150px',
-                            width: '35%'
-                          }}
-                          onClick={async () => {
-                            formik.setFieldValue(
-                              'contestation',
-                              2 - comment.Contestations.length
-                            );
-                            let commentId = comment.id;
-                            try {
-                              await api.post(
-                                `/contestation`,
-                                {
-                                  commentId,
-                                  userId: user.id
-                                }
-                              );
-                              getComments(post.id)
-                            } catch (error) {
-                              console.log(error);
-                            }
-                          }}
-                        >
-                          Marcar como resolvida ({2 - comment.Contestations.length })
-                        </Button>
-                      )}
-                      {comment.Contestations.length >= 2 && (
-                        <Button
-                          variant="contained"
-                          color="primary"
-                          sx={{
-                            marginLeft: '5px',
-                            maxWidth: '150px',
-                            width: '35%'
-                          }}
-                          disabled
-                        >
-                          Contestação resolvida {2 - comment.Contestations.length}
-                        </Button>
-                      )}
-                    </Box>
-                  )}
-                </Box>
-              ))}
+                        )}
+                        type="submit"
+                        variant="contained"
+                        color="primary"
+                        sx={{
+                          marginLeft: "5px",
+                          maxWidth: "150px",
+                          width: "35%",
+                        }}
+                        onClick={() => resolveContestation(comment.id)}
+                      >
+                        Marcar como resolvido
+                      </Button>
+                    )}
+                    {comment.UserResolvedContestations?.length && (
+                      <Button
+                        variant="contained"
+                        color="primary"
+                        sx={{
+                          marginLeft: "5px",
+                          maxWidth: "150px",
+                          width: "35%",
+                        }}
+                        disabled
+                      >
+                        Contestação resolvida
+                      </Button>
+                    )}
+                  </Box>
+                )}
+              </Box>
+            ))}
 
             {/* Box de postagem de comentário */}
             {user && (
               <Box
                 sx={{
-                  display: 'flex',
-                  flexDirection: 'column',
-                  justifyContent: 'center',
-                  padding: '1rem'
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "center",
+                  padding: "1rem",
                 }}
               >
                 <Subsubtitulo>ESCREVER COMENTÁRIO:</Subsubtitulo>
                 <form component="form" onSubmit={formik.handleSubmit}>
                   <TextField
                     sx={{
-                      backgroundColor: 'white',
-                      borderRadius: '10px',
-                      marginTop: '10px'
+                      backgroundColor: "white",
+                      borderRadius: "10px",
+                      marginTop: "10px",
                     }}
                     fullWidth
                     multiline
@@ -360,16 +357,16 @@ export default function SpecificPost() {
                     onChange={formik.handleChange}
                     error={formik.touched.title && Boolean(formik.errors.title)}
                     helperText={formik.touched.title && formik.errors.title}
-                    label={'Seu comentário'}
+                    label={"Seu comentário"}
                   />
                   {/* Box de botões */}
                   <Box
                     sx={{
-                      display: 'flex',
-                      flexDirection: 'row',
-                      justifyContent: 'flex-end',
-                      alignItems: 'center',
-                      marginTop: '5px'
+                      display: "flex",
+                      flexDirection: "row",
+                      justifyContent: "flex-end",
+                      alignItems: "center",
+                      marginTop: "5px",
                     }}
                   >
                     <Button
@@ -377,14 +374,9 @@ export default function SpecificPost() {
                       variant="contained"
                       color="error"
                       sx={{
-                        margin: '0 5px'
+                        margin: "0 5px",
                       }}
-                      onClick={() => {
-                        const type = 'contestation';
-                        const auxContestation = 2;
-                        formik.setFieldValue('type', type);
-                        formik.setFieldValue('contestation', auxContestation);
-                      }}
+                      onClick={() => formik.setFieldValue("type", "CONTESTATION")}
                     >
                       Contestar
                     </Button>
@@ -392,10 +384,7 @@ export default function SpecificPost() {
                       type="submit"
                       variant="contained"
                       color="primary"
-                      onClick={() => {
-                        const type = 'comment';
-                        formik.setFieldValue('type', type);
-                      }}
+                      onClick={() => formik.setFieldValue("type", "COMMENT")}
                     >
                       Comentar
                     </Button>

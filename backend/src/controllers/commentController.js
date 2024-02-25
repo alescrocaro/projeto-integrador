@@ -1,33 +1,52 @@
-const { Comment, Post,User, Contestation } = require('../models');
+const { post_errors } = require("../errors/200-post");
+const { Comment, Post, User, UserResolvedContestation } = require("../models");
 
 module.exports = {
   async index(req, res) {
     try {
       const { id } = req.params;
-      //console.log('ID PARAM INDEX:::::::::',id)
-      const post = await Post.findByPk(id);
+      let post = null;
+      try {
+        post = await Post.findByPk(id);
+      } catch (error) {
+        console.log("returning error: ", {
+          code: 500,
+          message: "Error getting post",
+        });
+        return res
+          .status(500)
+          .send({ code: 500, message: "Error getting post" });
+      }
 
-      var comments = null;
+      let comments = null;
+      if (!post) {
+        console.log("returning error: ", post_errors["200"]);
+        return res.status(404).send({ code: 200, message: post_errors["200"] });
+      }
+
       try {
         comments = await Comment.findAll({
-          include:[
-            {model: Contestation},
-            {model: User, attributes: ["firstName","lastName", "email", "id"]}
+          include: [
+            { model: UserResolvedContestation },
+            {
+              model: User,
+              attributes: ["name", "email", "id"],
+            },
           ],
           where: {
-            PostId: post.dataValues.id
+            postId: post.dataValues.id,
           },
-          order: [['createdAt', 'ASC']]
+          order: [["createdAt", "ASC"]],
         });
       } catch (error) {
-        console.log(error);
-        res.status(500).send();
+        console.log("error getting comments", error);
+        return res.status(500).send();
       }
 
       return res.json(comments);
     } catch (error) {
       console.log(error);
-      res.status(500).send();
+      return res.status(500).send();
     }
   },
 
@@ -44,29 +63,27 @@ module.exports = {
 
   async create(req, res) {
     try {
-      const { 
+      const {
         userName,
         type,
         description,
-        contestation,
-        userId
+        userId,
       } = req.body;
 
-      const { PostId } = req.params;
+      const { id } = req.params;
 
       const comment = await Comment.create({
         userName,
         type,
         description,
-        contestation,
-        PostId,
-        UserId:userId
-      }); 
-      
-      return res.json(comment.dataValues.id); 
+        resolvedAmount: 0,
+        postId: id,
+        userId,
+      });
+
+      return res.json(comment.dataValues.id);
     } catch (error) {
-      console.log('MENSAGEM:', error.message);
-      console.log(error);
+      console.log("error:", error);
       res.status(500).send();
     }
   },
@@ -94,14 +111,14 @@ module.exports = {
 
       await Comment.destroy({
         where: {
-          id: id
-        }
+          id,
+        },
       });
 
       return res.status(204).send(); // 204 - res sucesso sem conteudo
     } catch (error) {
-      console.log('MENSAGEM: ', error.message);
+      console.log("error: ", error.message);
       res.status(500).send();
     }
-  }
+  },
 };

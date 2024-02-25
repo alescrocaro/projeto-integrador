@@ -2,7 +2,7 @@ import axios from 'axios';
 
 export const api = axios.create({
   baseURL: process.env.REACT_APP_BASE_URL,
-  timeout: 15000 // 15 segundos
+  timeout: 150000, // 15 segundos
 });
 
 export const createSession = async (email, password) => {

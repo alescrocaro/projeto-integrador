@@ -29,7 +29,7 @@ export default function UploadButton({label, imgFile, setImgFile}) {
       alert('ERRO: Não foi possível reconhecer a extensão da imagem. As extensões permitidas são .jpg, .png, .jpeg, .jpe, .jif, .web, .tiff e .tif!')
       return
     }
-    if(imgFile.length >= 5 ) {
+    if(imgFile?.length >= 5 ) {
       alert('ERRO: Você atingiu o limite de imagens para esta observação!')
       return
     }
@@ -78,7 +78,7 @@ export default function UploadButton({label, imgFile, setImgFile}) {
           </Typography>
         {/* <p style={{fontWeight: '600', margin}}>Fotos carregadas:</p> */}
         
-        { imgFile.length > 0 ?
+        { imgFile?.length > 0 ?
           imgFile.map((element, index) => {
             return (<ImgCard
               handleOnDelete={handleOnDelete}

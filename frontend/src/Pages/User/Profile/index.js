@@ -75,7 +75,7 @@ export default function Profile() {
           <div className="styledDiv">
             Nome:
             <Paper className="styledPaper">
-              {profileData.firstName} {profileData.lastName}
+              {profileData.name}
             </Paper>
           </div>
           <div className="styledDiv">

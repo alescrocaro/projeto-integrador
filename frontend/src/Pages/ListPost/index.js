@@ -12,7 +12,6 @@ import Map from './components/Map';
 
 export default function ListPosts() {
   const { user } = useToken();
-  console.log(user);
   //map filter constrols
   const [mapCenter, setMapCenter] = useState([-15, -48]); //tem que ficar onde esta o mapa e o headerpage
   const [mapSearchRadius, setMapSearchRadius] = useState(12);
@@ -28,9 +27,12 @@ export default function ListPosts() {
 
   //filter controls
   const applyFilters = async filters => {
-    const { data } = await api.get('/posts', { params: filters });
-    // console.log(data)
-    setPosts(data);
+    try {
+      const { data } = await api.get('/posts', { params: filters });
+      setPosts(data);
+    } catch (error) {
+      console.log('error getting posts', error);
+    }
   };
 
   // //funcao para setar o mapcenter (latlng)
@@ -40,8 +42,12 @@ export default function ListPosts() {
 
   useEffect(() => {
     const fetch = async () => {
-      const { data } = await api.get('/posts');
-      setPosts(data);
+      try {
+        const { data } = await api.get('/posts');
+        setPosts(data);
+      } catch (error) {
+        console.log(error);
+      }
     };
     fetch();
   }, []);

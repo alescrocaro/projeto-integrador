@@ -41,7 +41,7 @@ export default function StepEspecime(props) {
         }),
         onSubmit: (values) => {
             //adicionar checar imagens aqui
-            if(imgFile.length < 1) return alert('ERRO: Você deve anexar ao menos uma foto!');
+            if(imgFile?.length < 1) return alert('ERRO: Você deve anexar ao menos uma foto!');
 
             props.nextStep({
                 kingdom: values.specieKingdom,

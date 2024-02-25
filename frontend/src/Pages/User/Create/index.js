@@ -23,8 +23,7 @@ export default function SignUpDialog() {
 
   const scheme = Yup.object().shape({
     email: Yup.string().required('É necessário inserir um endereço de email!'),
-    firstName: Yup.string().required('É necessário inserir seu nome'),
-    lastName: Yup.string().required('É necessário inserir seu sobrenome'),
+    name: Yup.string().required('É necessário inserir seu nome'),
     password: Yup.string()
       .min(6, ({ min }) => `A senha deve ter no mínimo ${min} caracteres`)
       .required('É necessário inserir uma senha!'),
@@ -36,21 +35,18 @@ export default function SignUpDialog() {
   const formik = useFormik({
     validationSchema: scheme,
     initialValues: {
-      firstName: '',
-      lastName: '',
-      email: '',
+      name: '',
       password: '',
       bio: '',
       confirmPassword: ''
     },
     onSubmit: async values => {
       try {
-        let { firstName, lastName, email, password, bio } = values;
+        let { name, email, password, bio } = values;
         email = email.toLowerCase();
 
         await api.post('/users', {
-          firstName,
-          lastName,
+          name,
           email,
           password,
           bio
@@ -58,12 +54,13 @@ export default function SignUpDialog() {
 
         handleClose();
         alert(
-          `Sua conta foi criada. Obrigado por se juntar ao Invasores, ${firstName}!`
+          `Sua conta foi criada. Obrigado por se juntar ao Invasores, ${name}!`
         );
 
         redirect();
       } catch (error) {
-        alert(error);
+        console.log(error)
+        alert(error.response.data.message);
         console.log(error);
       }
     }
@@ -92,29 +89,15 @@ export default function SignUpDialog() {
             <TextField
               autoFocus
               margin="dense"
-              id="firstName"
+              id="name"
               variant="outlined"
               label="Nome"
               error={
-                formik.touched.firstName && Boolean(formik.errors.firstName)
+                formik.touched.name && Boolean(formik.errors.name)
               }
-              helperText={formik.touched.firstName && formik.errors.firstName}
+              helperText={formik.touched.name && formik.errors.name}
               onChange={formik.handleChange}
-              value={formik.values.firstName}
-              fullWidth
-              sx={{ mt: 1 }}
-            />
-            <TextField
-              autoFocus
-              margin="dense"
-              id="lastName"
-              label="Sobrenome"
-              type="text"
-              variant="outlined"
-              error={formik.touched.lastName && Boolean(formik.errors.lastName)}
-              helperText={formik.touched.lastName && formik.errors.lastName}
-              onChange={formik.handleChange}
-              value={formik.values.lastName}
+              value={formik.values.name}
               fullWidth
               sx={{ mt: 1 }}
             />

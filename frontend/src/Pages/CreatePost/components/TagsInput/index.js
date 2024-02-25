@@ -35,18 +35,18 @@ export default function TagsInput({ ...props }) {
         setInputValue("");
         return;
       }
-      if (!event.target.value.replace(/\s/g, "").length) return;
+      if (!event.target.value.replace(/\s/g, "")?.length) return;
 
       newSelectedItem.push(event.target.value.trim());
       setSelectedItem(newSelectedItem);
       setInputValue("");
     }
     if (
-      selectedItem.length &&
-      !inputValue.length &&
+      selectedItem?.length &&
+      !inputValue?.length &&
       event.key === "Backspace"
     ) {
-      setSelectedItem(selectedItem.slice(0, selectedItem.length - 1));
+      setSelectedItem(selectedItem.slice(0, selectedItem?.length - 1));
     }
   }
   function handleChange(item) {

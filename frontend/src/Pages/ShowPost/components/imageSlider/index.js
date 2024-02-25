@@ -15,7 +15,7 @@ const BindKeyboardSwipeableViews = bindKeyboard(SwipeableViews);
 export default function ImageSlider({images}) {
     const theme = useTheme();
     const [activeStep, setActiveStep] = React.useState(0);
-    const maxSteps = images.length;
+    const maxSteps = images?.length;
   
     const handleNext = () => {
       setActiveStep((prevActiveStep) => prevActiveStep + 1);

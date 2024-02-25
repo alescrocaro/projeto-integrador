@@ -80,7 +80,7 @@ class Map extends React.Component {
 
         //se existe markers, remove tudo. Se nao existe, cria
         if (this.markers) {
-            while (this.markers.length) {
+            while (this.markers?.length) {
                 this.markers.pop().remove(); //remove da array(pop), e remove do mapa (remove)
             }
         } else {

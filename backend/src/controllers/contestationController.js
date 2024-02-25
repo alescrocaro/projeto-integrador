@@ -1,29 +1,53 @@
-const {Contestation} = require('../models');
+const { contestation_errors } = require("../errors/400-contestation");
+const { sequelize, Comment, UserResolvedContestation } = require('../models');
 
 module.exports = {
+  async create(req, res) {
+    const { userId, commentId } = req.body;
+    const contestationResolvedBy = await UserResolvedContestation.findAll({
+      where: { commentId },
+    });
 
-    async create(req, res) {
-        const {userId, commentId} = req.body
-        const contestation = await Contestation.findAll({where: {CommentId:commentId}})
-        console.log(contestation)
-        if (contestation.length >= 2) return res.status(401).json({error: 'Contestation is already resolved'})
+    if (contestationResolvedBy?.length) {
+      console.log("returning error: ", contestation_errors["400"]);
+      return res
+        .status(401)
+        .json({ code: 400, message: contestation_errors["400"] });
+    }
 
-        let userConst = false
-        contestation.forEach(element => {
-            if (element.id === userId) userConst = true
+    if (contestationResolvedBy.some((data) => data.userId === userId)) {
+      return res
+        .status(401)
+        .json({ code: 401, message: contestation_errors["401"] });
+    }
+
+    return await sequelize.transaction(async (t) => {
+      const incrementResolvedAmountOfComment = Comment.increment(
+        "resolvedAmount",
+        { by: 1, where: { id: commentId } },
+        { transaction: t }
+      );
+      const createUserResolvedContestationPromise =
+        UserResolvedContestation.create(
+          {
+            userId,
+            commentId,
+          },
+          { transaction: t }
+        );
+
+      return await Promise.all([
+        createUserResolvedContestationPromise,
+        incrementResolvedAmountOfComment,
+      ])
+        .then(() => {
+          console.log('returning success');
+          return res.status(204).send();
+        })
+        .catch((error) => {
+          console.log("returning error: ", error);
+          return res.status(500).json({ code: 500, message: "Internal error" });
         });
-        if(userConst) return res.status(401).json({error:"User already resolves this contestation"})
-        try {
-            await Contestation.create({
-                UserId:userId,
-                CommentId:commentId
-            })
-            res.json({
-                status:"contestation validated"
-            })
-        } catch (err) {
-            console.log(err)
-            return res.status(500),json({error:"Internal error"})
-        }   
-    },
-}
+    });
+  },
+};

@@ -1,15 +1,15 @@
-const { Post, Image, User, Contestation } = require('../models');
-const { Comment } = require('../models');
+const { Post, Image, User, UserResolvedContestation } = require("../models");
+const { Comment } = require("../models");
 
-const sequelize = require('sequelize');
+const sequelize = require("sequelize");
 
 module.exports = {
   async index(req, res) {
     try {
       //se tiver filtros
-      if (Object.keys(req.query).length) {
+      if (Object.keys(req.query)?.length) {
         const distanceAttr = sequelize.fn(
-          'ST_DistanceSphere',
+          "ST_DistanceSphere",
           sequelize.literal(`latlng`),
           sequelize.literal(
             `ST_MakePoint(${req.query.mapCenter[1]}, ${req.query.mapCenter[0]})`
@@ -21,18 +21,18 @@ module.exports = {
             { model: Image },
             {
               model: User,
-              attributes: ['firstName', 'lastName', 'email', 'id']
-            }
+              attributes: ["name", "email", "id"],
+            },
           ],
           where: {
             $and: sequelize.where(distanceAttr, {
-              [sequelize.Op.lte]: req.query.mapSearchRadius * 1000
-            })
+              [sequelize.Op.lte]: req.query.mapSearchRadius * 1000,
+            }),
           },
-          order: [['updatedAt', 'DESC']]
+          order: [["updatedAt", "DESC"]],
         });
 
-        console.log('posts com filtro ->', posts);
+        console.log("posts com filtro ->", posts);
         return res.json(posts);
       } else {
         const posts = await Post.findAll({
@@ -40,17 +40,17 @@ module.exports = {
             { model: Image },
             {
               model: User,
-              attributes: ['firstName', 'lastName', 'email', 'id']
-            }
+              attributes: ["name", "email", "id"],
+            },
           ],
-          order: [['updatedAt', 'DESC']]
+          order: [["updatedAt", "DESC"]],
         });
 
-        console.log('posts sem filtro', posts);
+        console.log("posts sem filtro", posts);
         return res.json(posts);
       }
     } catch (error) {
-      console.log('error', error);
+      console.log("error getting posts", error);
       res.status(500).send();
     }
   },
@@ -61,13 +61,13 @@ module.exports = {
         where: { id: req.params.id },
         include: [
           { model: Image },
-          { model: User, attributes: ['firstName', 'lastName', 'email', 'id'] }
-        ]
+          { model: User, attributes: ["name", "email", "id"] },
+        ],
       });
 
       return res.json(post);
     } catch (error) {
-      console.log(error);
+      console.log("error getting post", error);
       res.status(500).send();
     }
   },
@@ -92,7 +92,7 @@ module.exports = {
         description,
         latlng,
         tags,
-        userId
+        userId,
       } = req.body;
       biome = biome.toLowerCase();
       specie = specie.toLowerCase();
@@ -120,12 +120,12 @@ module.exports = {
         dateFound,
         description,
         tags,
-        latlng: { type: 'Point', coordinates: [latlng.lng, latlng.lat] }, //geojson format [lng, lat]
-        UserId: userId
+        latlng: { type: "Point", coordinates: [latlng.lng, latlng.lat] }, //geojson format [lng, lat]
+        userId,
       });
       return res.json(post.dataValues.id);
     } catch (error) {
-      console.log(error);
+      console.log('Error creating post', error);
       res.status(500).send();
     }
   },
@@ -151,8 +151,8 @@ module.exports = {
       */
       await Post.destroy({
         where: {
-          id: id
-        }
+          id: id,
+        },
       });
 
       return res.status(204).send(); // 204 - res sucesso sem conteudo
@@ -166,17 +166,17 @@ module.exports = {
     const { id } = req.params;
     try {
       const posts = await Post.findAll({ where: { id } });
-      if (posts.length === 0) return res.status(404).send();
+      if (posts?.length === 0) return res.status(404).send();
       if (req.files == null) {
         return res.status(404).send();
       }
       for (element in req.files) {
-        await Image.create({ url: req.files[element].filename, PostId: id });
+        await Image.create({ url: req.files[element].filename, postId: id });
       }
       return res.status(200).send();
     } catch (error) {
       console.log(error);
       res.status(500).send();
     }
-  }
+  },
 };

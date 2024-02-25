@@ -49,7 +49,7 @@ export default function CreatePost() {
       });
 
       //upload das imgs
-      if (v.images.length > 0) {
+      if (v.images?.length > 0) {
         const formData = new FormData();
         
         v.images.forEach(element => {
