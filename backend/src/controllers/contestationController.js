@@ -1,5 +1,6 @@
 const { contestation_errors } = require("../errors/400-contestation");
-const { sequelize, Comment, UserResolvedContestation } = require('../models');
+const { sequelize, Comment, UserResolvedContestation } = require("../models");
+const { v4: uuid } = require("uuid");
 
 module.exports = {
   async create(req, res) {
@@ -30,6 +31,7 @@ module.exports = {
       const createUserResolvedContestationPromise =
         UserResolvedContestation.create(
           {
+            id: uuid(),
             userId,
             commentId,
           },
@@ -41,7 +43,7 @@ module.exports = {
         incrementResolvedAmountOfComment,
       ])
         .then(() => {
-          console.log('returning success');
+          console.log("returning success");
           return res.status(204).send();
         })
         .catch((error) => {

@@ -1,5 +1,6 @@
 const { post_errors } = require("../errors/200-post");
 const { Comment, Post, User, UserResolvedContestation } = require("../models");
+const { v4: uuid } = require("uuid");
 
 module.exports = {
   async index(req, res) {
@@ -73,6 +74,7 @@ module.exports = {
       const { id } = req.params;
 
       const comment = await Comment.create({
+        id: uuid(),
         userName,
         type,
         description,

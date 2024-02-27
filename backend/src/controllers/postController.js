@@ -1,6 +1,5 @@
-const { Post, Image, User, UserResolvedContestation } = require("../models");
-const { Comment } = require("../models");
-
+const { Post, Image, User } = require("../models");
+const { v4: uuid } = require("uuid");
 const sequelize = require("sequelize");
 
 module.exports = {
@@ -104,6 +103,7 @@ module.exports = {
       kingdom = kingdom.toLowerCase();
 
       const post = await Post.create({
+        id: uuid(),
         title,
         biome,
         userName,
@@ -125,7 +125,7 @@ module.exports = {
       });
       return res.json(post.dataValues.id);
     } catch (error) {
-      console.log('Error creating post', error);
+      console.log("Error creating post", error);
       res.status(500).send();
     }
   },
@@ -171,7 +171,11 @@ module.exports = {
         return res.status(404).send();
       }
       for (element in req.files) {
-        await Image.create({ url: req.files[element].filename, postId: id });
+        await Image.create({
+          id: uuid(),
+          url: req.files[element].filename,
+          postId: id,
+        });
       }
       return res.status(200).send();
     } catch (error) {
