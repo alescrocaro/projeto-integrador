@@ -1,25 +1,20 @@
+import { Divider } from "@material-ui/core";
+import { Box, Button, Card, TextField, Typography } from "@mui/material/";
+import Chip from "@mui/material/Chip";
+import Paper from "@mui/material/Paper";
+import { useFormik } from "formik";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { api } from "../../services/api";
-import { useToken } from "../../Context/AuthContext";
-import { useFormik } from "formik";
 import * as yup from "yup";
-
-import { Box, Card, Typography, Button, TextField } from "@mui/material/";
-import StyledTable from "../../components/Table";
+import { useToken } from "../../Context/AuthContext";
 import Container from "../../components/Container";
-import Layout from "../../components/Layout";
 import HeaderPage from "../../components/HeaderPage";
-import AccountCircleIcon from "@mui/icons-material/AccountCircle";
-
-import { Descricao, Img, Subsubtitulo, Subtitulo } from "./style";
-import { Divider } from "@material-ui/core";
-
-import Paper from "@mui/material/Paper";
-import Chip from "@mui/material/Chip";
-
+import Layout from "../../components/Layout";
+import StyledTable from "../../components/Table";
+import { api } from "../../services/api";
 import Map from "./components/Map";
 import ImageSlider from "./components/imageSlider";
+import { Descricao, Img, Subsubtitulo, Subtitulo } from "./style";
 
 export default function SpecificPost() {
   const { user } = useToken();
@@ -38,7 +33,6 @@ export default function SpecificPost() {
     console.log("getComments");
     const { data } = await api.get(`posts/${id}/comments`);
     setComments(data);
-    console.log(data);
     return data;
   }
 
@@ -86,6 +80,7 @@ export default function SpecificPost() {
           userId: user.id,
         });
         getComments(id);
+        formik.resetForm();
       } catch (error) {
         console.log(error);
       }
@@ -255,30 +250,60 @@ export default function SpecificPost() {
               <Box
                 key={index}
                 sx={{
-                  display: "grid",
-                  gridTemplateColumns: "15% 85%",
-                  alignItems: "center",
-                  margin: ".3rem",
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "left",
+                  padding: "1rem",
                   rowGap: ".3rem",
+                  backgroundColor:
+                    comment.type === "CONTESTATION"
+                      ? comment.resolvedAmount
+                        ? "rgba(0, 255, 0, 0.1)"
+                        : "rgba(255, 0, 0, 0.2)"
+                      : "",
                 }}
               >
                 <Box
-                  sx={{
+                  style={{
                     display: "flex",
-                    flexDirection: "column",
-                    justifyContent: "center",
-                    alignItems: "center",
+                    alignItems: "left",
+                    justifyContent: "space-between",
                   }}
                 >
-                  <AccountCircleIcon sx={{ margin: "10px" }} fontSize="large" />
-                  <Typography variant="h7" color="black">
+                  <Typography variant="h6" color="black">
                     {comment.User == null ? "user" : comment.User.name}
                   </Typography>
+                  {comment.type === "CONTESTATION" && (
+                    <div>
+                      {!comment.resolvedAmount && user && (
+                        <Button
+                          disabled={comment.UserResolvedContestations?.some(
+                            (element) => element.userId === user.id
+                          )}
+                          type="submit"
+                          size="small"
+                          variant="outlined"
+                          style={{ color: "black", borderColor: "#14aa6b" }}
+                          onClick={() => resolveContestation(comment.id)}
+                        >
+                          Marcar como resolvido
+                        </Button>
+                      )}
+                      {comment.UserResolvedContestations?.length > 0 && (
+                        <Button
+                          variant="contained"
+                          color="primary"
+                          disabled
+                          size="small"
+                        >
+                          Contestação resolvida
+                        </Button>
+                      )}
+                    </div>
+                  )}
                 </Box>
                 {comment.type === "COMMENT" && (
-                  <Paper elevation={0}>
-                    <Descricao>{comment.description}</Descricao>
-                  </Paper>
+                  <Descricao>{comment.description}</Descricao>
                 )}
                 {comment.type === "CONTESTATION" && (
                   <Box
@@ -287,48 +312,10 @@ export default function SpecificPost() {
                       flexDirection: "row",
                     }}
                   >
-                    <Paper
-                      sx={{ border: `1px solid #ed5132`, width: "100%" }}
-                      elevation={0}
-                    >
-                      <Descricao>{comment.description}</Descricao>
-                    </Paper>
-                    {!comment.resolvedAmount && user && (
-                      <Button
-                        disabled={comment.UserResolvedContestations?.some(
-                          (element) => {
-                            return element.userId === user.id;
-                          }
-                        )}
-                        type="submit"
-                        variant="contained"
-                        color="primary"
-                        sx={{
-                          marginLeft: "5px",
-                          maxWidth: "150px",
-                          width: "35%",
-                        }}
-                        onClick={() => resolveContestation(comment.id)}
-                      >
-                        Marcar como resolvido
-                      </Button>
-                    )}
-                    {comment.UserResolvedContestations?.length && (
-                      <Button
-                        variant="contained"
-                        color="primary"
-                        sx={{
-                          marginLeft: "5px",
-                          maxWidth: "150px",
-                          width: "35%",
-                        }}
-                        disabled
-                      >
-                        Contestação resolvida
-                      </Button>
-                    )}
+                    <Descricao>{comment.description}</Descricao>
                   </Box>
                 )}
+                <Divider />
               </Box>
             ))}
 
@@ -376,7 +363,9 @@ export default function SpecificPost() {
                       sx={{
                         margin: "0 5px",
                       }}
-                      onClick={() => formik.setFieldValue("type", "CONTESTATION")}
+                      onClick={() =>
+                        formik.setFieldValue("type", "CONTESTATION")
+                      }
                     >
                       Contestar
                     </Button>
@@ -385,6 +374,7 @@ export default function SpecificPost() {
                       variant="contained"
                       color="primary"
                       onClick={() => formik.setFieldValue("type", "COMMENT")}
+                      style={{ backgroundColor: "#14aa6b" }}
                     >
                       Comentar
                     </Button>

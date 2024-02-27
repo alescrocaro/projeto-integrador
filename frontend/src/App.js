@@ -1,7 +1,6 @@
 import React from 'react';
 import { Routes, Route, BrowserRouter, Navigate } from 'react-router-dom';
 import { AuthProvider } from './Context/AuthContext';
-
 import Post from './Pages/ListPost';
 import CreatePost from './Pages/CreatePost';
 import SpecificPost from './Pages/ShowPost';
