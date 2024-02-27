@@ -13,14 +13,7 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   UserResolvedContestation.init(
-    {
-      id: {
-        allowNull: false,
-        autoIncrement: true,
-        primaryKey: true,
-        type: DataTypes.INTEGER,
-      },
-    },
+    {},
     {
       sequelize,
       modelName: "UserResolvedContestation",
