@@ -6,6 +6,9 @@ COPY . .
 
 RUN npm install
 
+ARG DB_URL
+ENV DB_URL=$DB_URL
+
 
 # Initialize Sequelize and run migrations
 #RUN npx sequelize-cli init --force
