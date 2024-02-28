@@ -7,7 +7,7 @@
     "dev": "nodemon src/index.js",
     "debug": "nodemon --inspect src/index.js",
     "test": "jest --verbose",
-    "start": "npx sequelize db:migrate && nodemon src/index.js",
+    "start": "nodemon src/index.js",
     "drop-db": "npx sequelize db:drop",
     "create-db": "npx sequelize db:create",
     "migrate-db": "npx sequelize db:migrate",

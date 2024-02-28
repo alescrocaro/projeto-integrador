@@ -3,10 +3,12 @@ services:
   db:
     image: postgis/postgis
     restart: always
-    environment:      
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
       PGDATA: /var/lib/postgresql/data
     volumes:
-      - db-data:/var/lib/postgresql/data
+      - db-data:/var/lib/postgres/data
     ports:
       - "5437:5432"
   
@@ -19,6 +21,12 @@ services:
     environment:
       JWT_SECRET: palmeiras
       DB_URL: "${DB_URL}"
+      DB_DIALECT: ${DB_DIALECT}
+      DB_USER: ${DB_USER}
+      DB_PASSWORD: ${DB_PASSWORD}
+      DB_HOST: ${DB_HOST}
+      DB_PORT: ${DB_PORT}
+      DB_NAME: ${DB_NAME}
     ports:
       - "3337:3337"
 
