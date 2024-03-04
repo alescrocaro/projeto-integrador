@@ -1,7 +1,6 @@
 "use strict";
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.sequelize.query('CREATE EXTENSION postgis;')
     await queryInterface.createTable("Posts", {
       id: {
         type: Sequelize.UUID,
