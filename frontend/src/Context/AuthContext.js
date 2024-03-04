@@ -26,7 +26,6 @@ export function AuthProvider({ children }) {
     try {
       const data = jwt_decode(token);
 
-      console.log('dentrodecode', data);
       return data;
     } catch (error) {
       console.log(error);
