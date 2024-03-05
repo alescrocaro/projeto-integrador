@@ -204,7 +204,7 @@ module.exports = {
     if (password.length < 6)
       return res
         .status(401)
-        .json({ error: "Password should be bigger than 6 digits" });
+        .json({ error: "Password should be bigger or equal to 6 digits" });
 
     try {
       let userFound = null;
