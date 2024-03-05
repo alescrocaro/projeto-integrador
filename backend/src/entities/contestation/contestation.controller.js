@@ -1,5 +1,5 @@
-const { contestation_errors } = require("../errors/400-contestation");
-const { sequelize, Comment, UserResolvedContestation } = require("../models");
+const { contestation_errors } = require("../../errors/400-contestation");
+const { sequelize, Comment, UserResolvedContestation } = require("../../models");
 const { v4: uuid } = require("uuid");
 
 module.exports = {

@@ -1,7 +1,7 @@
-const { Post, User, Comment, UserResolvedContestation } = require("../models");
-const { hashPassword, passwordValidation } = require("../services/hash");
-const { generateJwt } = require("../services/jwtService");
-const { user_errors } = require("../errors/100-user");
+const { Post, User, Comment, UserResolvedContestation } = require("../../models");
+const { hashPassword, passwordValidation } = require("../../services/hash");
+const { generateJwt } = require("../../services/jwtService");
+const { user_errors } = require("../../errors/100-user");
 const { v4: uuid } = require("uuid");
 
 module.exports = {
