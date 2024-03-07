@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "nodemon src/index.js",
     "debug": "nodemon --inspect src/index.js",
-    "test": "jest --verbose",
+    "test": "jest --coverage",
     "start": "npx sequelize db:migrate && nodemon src/index.js",
     "drop-db": "npx sequelize db:drop",
     "create-db": "npx sequelize db:create",
