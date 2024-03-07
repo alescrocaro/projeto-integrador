@@ -16,7 +16,6 @@ module.exports = {
       .pbkdf2Sync(password, salt, 1000, 64, 'sha512')
       .toString('hex');
 
-    console.log('hashCompare', hashCompare);
     return hash === hashCompare;
   },
 };

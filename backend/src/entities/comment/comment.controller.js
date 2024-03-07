@@ -1,5 +1,5 @@
-const { post_errors } = require("../errors/200-post");
-const { Comment, Post, User, UserResolvedContestation } = require("../models");
+const { post_errors } = require("../../errors/200-post");
+const { Comment, Post, User, UserResolvedContestation } = require("../../models");
 const { v4: uuid } = require("uuid");
 
 module.exports = {

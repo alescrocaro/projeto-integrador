@@ -1,4 +1,4 @@
-const { Post, Image, User } = require("../models");
+const { Post, Image, User } = require("../../models");
 const { v4: uuid } = require("uuid");
 const sequelize = require("sequelize");
 

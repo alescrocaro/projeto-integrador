@@ -1,9 +1,9 @@
 const express = require('express');
 const routes = express.Router();
-const postController = require('./controllers/postController');
-const commentController = require('./controllers/commentController');
-const userController = require('./controllers/userController');
-const contestationController = require('./controllers/contestationController');
+const postController = require('./entities/post/post.controller');
+const commentController = require('./entities/comment/comment.controller');
+const userController = require('./entities/user/user.controller');
+const contestationController = require('./entities/contestation/contestation.controller');
 const uploadService = require('./services/upload');
 
 routes.get('/posts', postController.index);
