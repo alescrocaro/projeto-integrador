@@ -22,6 +22,7 @@ Identificar espécies pode ser desafiador até mesmo para pesquisadores da área
     > Para isso, poderíamos adicionar missões iniciais, como identificar uma invasora de cada reino (uma missão para cada reino), identificar 3 invasoras de determinado reino, ou algo do tipo.
     - Nesse sentido, cards para as espécies é uma ideia bem interessante. Lembrando que organismos sesseis são mais fáceis de serem observados em relação aos vágeis, então pode ser que a busca não resulte em observação, o que pode ser um estimulo negativo para o usuário. Porém, penso que é importante para o log da plataforma.
     > Seguindo nessa ideia de cards, eles poderiam estar destacados na página inicial, com uma barra de progresso para completar as missões citadas acima
+    ![image](https://github.com/alescrocaro/forum-invasores/assets/37521313/2139c447-4220-44f2-8316-9c2266515bd5)
 
 - outra alternativa para construir essa lista inicial de espécies, pensando no impacto ambiental, social e econômico.
 - Por outro lado, as espécies escolhidas para serem consideradas espécies-chave teriam que ser fáceis de identificar e poderíamos até discutir a possibilidade de incluir invasoras "carismáticas" para facilitar essa parte inicial do treinamento de identificação.
