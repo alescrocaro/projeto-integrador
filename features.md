@@ -23,6 +23,7 @@ Identificar espécies pode ser desafiador até mesmo para pesquisadores da área
 
     - Nesse sentido, cards para as espécies é uma ideia bem interessante. Lembrando que organismos sesseis são mais faceis de serem observados em relação aos vageis, então pode ser que a busca não resulte em observação, o que pode ser um estimulo negativo para o usuário. Porém, penso que é importante para o log da plataforma.
     > Seguindo nessa ideia de cards, eles poderiam estar destacados na página inicial, com uma barra de progresso para completar as missões citadas acima
+    ![image](https://github.com/alescrocaro/forum-invasores/assets/37521313/2139c447-4220-44f2-8316-9c2266515bd5)
 
 
 
