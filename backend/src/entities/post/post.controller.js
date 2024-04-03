@@ -1,6 +1,7 @@
 const { Post, Image, User } = require("../../models");
 const { v4: uuid } = require("uuid");
 const sequelize = require("sequelize");
+const { post_errors } = require("../../errors/200-post");
 
 module.exports = {
   async index(req, res) {
@@ -130,13 +131,21 @@ module.exports = {
     }
   },
 
-  /*,
+  async update(req, res) {
+    const { id } = req.params;
 
-  async update(req, res){
+    const post = await Post.findOne({
+      where: {
+        id,
+      },
+    });
+
+    if (!post) {
+      return res.status(404).json({ code: 200, message: post_errors["200"] });
+    }
+
     // const { title, description } = req.body;
-
   },
-  */
 
   async delete(req, res) {
     try {
