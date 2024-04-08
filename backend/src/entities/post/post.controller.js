@@ -144,7 +144,12 @@ module.exports = {
       return res.status(404).json({ code: 200, message: post_errors["200"] });
     }
 
-    // const { title, description } = req.body;
+    const updatedPost = await post.update(req.body).catch((error) => {
+      console.log("error updating post: ", error);
+      res.status(500).json(error);
+    });
+
+    return res.status(200).json({ UpdatePost: updatedPost.dataValues });
   },
 
   async delete(req, res) {
