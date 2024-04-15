@@ -140,6 +140,10 @@ module.exports = {
       },
     });
 
+    if (post.userId !== req.user_id) {
+      return res.sendStatus(401);
+    }
+
     if (!post) {
       return res.status(404).json({ code: 200, message: post_errors["200"] });
     }
