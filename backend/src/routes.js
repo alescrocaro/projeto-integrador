@@ -6,17 +6,19 @@ const userController = require("./entities/user/user.controller");
 const contestationController = require("./entities/contestation/contestation.controller");
 const uploadService = require("./services/upload");
 const { validateUpdatePost } = require("./entities/post/post.validator");
+const { authenticateToken } = require("./services/jwtService");
 
 routes.get("/posts", postController.index);
 routes.get("/posts/:id", postController.get);
 routes.post("/posts", uploadService, postController.create);
 routes.delete("/posts/:id", postController.delete);
-routes.post(
-  "/updatePostImage/:id",
-  uploadService,
-  postController.updatePostImage
+routes.post("/addPostImage/:id", uploadService, postController.addPostImage);
+routes.patch(
+  "/posts/:id",
+  authenticateToken,
+  validateUpdatePost,
+  postController.update
 );
-routes.patch("/posts/:id", validateUpdatePost, postController.update);
 
 // COMMENTS
 routes.get("/posts/:id/comments", commentController.index);
