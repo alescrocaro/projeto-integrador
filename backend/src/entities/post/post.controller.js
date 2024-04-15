@@ -2,6 +2,7 @@ const { Post, Image, User } = require("../../models");
 const { v4: uuid } = require("uuid");
 const sequelize = require("sequelize");
 const { post_errors } = require("../../errors/200-post");
+const fs = require("fs");
 
 module.exports = {
   async index(req, res) {
@@ -180,25 +181,99 @@ module.exports = {
     }
   },
 
-  async updatePostImage(req, res) {
+  async addPostImage(req, res) {
     const { id } = req.params;
-    try {
-      const posts = await Post.findAll({ where: { id } });
-      if (posts?.length === 0) return res.status(404).send();
-      if (req.files == null) {
-        return res.status(404).send();
-      }
-      for (element in req.files) {
-        await Image.create({
-          id: uuid(),
-          url: req.files[element].filename,
-          postId: id,
-        });
-      }
-      return res.status(200).send();
-    } catch (error) {
+
+    const post = await Post.findOne({
+      where: {
+        id,
+      },
+    }).catch((error) => {
       console.log(error);
-      res.status(500).send();
+      res.status(500).json(error);
+    });
+
+    if (!post) {
+      return res.status(404).json({ code: 200, message: post_errors["200"] });
     }
+    if (req.files == null) {
+      return res.status(400).json({ code: 201, message: post_errors["201"] });
+    }
+
+    for (element in req.files) {
+      await Image.create({
+        id: uuid(),
+        url: req.files[element].filename,
+        postId: id,
+      }).catch((error) => {
+        console.log(error);
+        res.status(500).json(error);
+      });
+    }
+
+    return res.status(204).send();
+  },
+
+  // testar já implementando a funcionalidade no frontend...
+  async deletePostImage(req, res) {
+    const { id } = req.params;
+
+    const image = await Image.findOne({
+      where: {
+        id,
+      },
+    }).catch((error) => {
+      console.log(error);
+      return res.status(500).json(error);
+    });
+
+    if (!image) {
+      return res.status(404).json({ code: 203, message: post_errors["203"] });
+    }
+
+    const postImages = await Image.findAll({
+      where: {
+        postId: image.postId,
+      },
+    }).catch((error) => {
+      console.log(error);
+      return res.status(500).json(error);
+    });
+
+    if (postImages.length <= 1) {
+      return res.status(400).json({ code: 203, message: post_errors["203"] });
+    }
+
+    const imagePath = path.join(
+      __dirname,
+      "..",
+      "..",
+      "uploads",
+      "images",
+      image.url
+    );
+
+    // Deletar o arquivo de imagem
+    fs.unlink(imagePath, (err) => {
+      if (err) {
+        console.error(err);
+        return res
+          .status(500)
+          .json({ error: "Falha ao deletar a imagem do sistema de arquivos." });
+      }
+
+      Image.destroy({
+        where: {
+          id,
+        },
+      }).catch((error) => {
+        console.log(error);
+        return res.status(500).json(error);
+      });
+
+      return res.status(204).send();
+    });
+
+    return res.status(204).send();
   },
 };
