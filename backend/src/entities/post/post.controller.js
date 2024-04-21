@@ -1,8 +1,9 @@
-const { Post, Image, User } = require("../../models");
-const { v4: uuid } = require("uuid");
-const sequelize = require("sequelize");
-const { post_errors } = require("../../errors/200-post");
-const fs = require("fs");
+const { Post, Image, User } = require('../../models');
+const { v4: uuid } = require('uuid');
+const sequelize = require('sequelize');
+const { post_errors } = require('../../errors/200-post');
+const fs = require('fs');
+const path = require('path');
 
 module.exports = {
   async index(req, res) {
@@ -10,7 +11,7 @@ module.exports = {
       //se tiver filtros
       if (Object.keys(req.query)?.length) {
         const distanceAttr = sequelize.fn(
-          "ST_DistanceSphere",
+          'ST_DistanceSphere',
           sequelize.literal(`latlng`),
           sequelize.literal(
             `ST_MakePoint(${req.query.mapCenter[1]}, ${req.query.mapCenter[0]})`
@@ -22,7 +23,7 @@ module.exports = {
             { model: Image },
             {
               model: User,
-              attributes: ["name", "email", "id"],
+              attributes: ['name', 'email', 'id'],
             },
           ],
           where: {
@@ -30,10 +31,10 @@ module.exports = {
               [sequelize.Op.lte]: req.query.mapSearchRadius * 1000,
             }),
           },
-          order: [["updatedAt", "DESC"]],
+          order: [['updatedAt', 'DESC']],
         });
 
-        console.log("posts com filtro ->", posts);
+        console.log('posts com filtro ->', posts);
         return res.json(posts);
       } else {
         const posts = await Post.findAll({
@@ -41,17 +42,17 @@ module.exports = {
             { model: Image },
             {
               model: User,
-              attributes: ["name", "email", "id"],
+              attributes: ['name', 'email', 'id'],
             },
           ],
-          order: [["updatedAt", "DESC"]],
+          order: [['updatedAt', 'DESC']],
         });
 
-        console.log("posts sem filtro", posts);
+        console.log('posts sem filtro', posts);
         return res.json(posts);
       }
     } catch (error) {
-      console.log("error getting posts", error);
+      console.log('error getting posts', error);
       res.status(500).send();
     }
   },
@@ -62,13 +63,13 @@ module.exports = {
         where: { id: req.params.id },
         include: [
           { model: Image },
-          { model: User, attributes: ["name", "email", "id"] },
+          { model: User, attributes: ['name', 'email', 'id'] },
         ],
       });
 
       return res.json(post);
     } catch (error) {
-      console.log("error getting post", error);
+      console.log('error getting post', error);
       res.status(500).send();
     }
   },
@@ -122,12 +123,12 @@ module.exports = {
         dateFound,
         description,
         tags,
-        latlng: { type: "Point", coordinates: [latlng.lng, latlng.lat] }, //geojson format [lng, lat]
+        latlng: { type: 'Point', coordinates: [latlng.lng, latlng.lat] }, //geojson format [lng, lat]
         userId,
       });
       return res.json(post.dataValues.id);
     } catch (error) {
-      console.log("Error creating post", error);
+      console.log('Error creating post', error);
       res.status(500).send();
     }
   },
@@ -146,11 +147,11 @@ module.exports = {
     }
 
     if (!post) {
-      return res.status(404).json({ code: 200, message: post_errors["200"] });
+      return res.status(404).json({ code: 200, message: post_errors['200'] });
     }
 
-    const updatedPost = await post.update(req.body).catch((error) => {
-      console.log("error updating post: ", error);
+    const updatedPost = await post.update(req.body).catch(error => {
+      console.log('error updating post: ', error);
       res.status(500).json(error);
     });
 
@@ -163,7 +164,7 @@ module.exports = {
       // const user_id = req.headers.authorization;
       /*
       if(post.user_id !== user_id){
-        return response.status(401).json({ error: 'Unauthorized user.'}); 
+        return response.status(401).json({ message: 'Unauthorized user.'}); 
         // 401 - nao autorizado
       }
   
@@ -188,16 +189,16 @@ module.exports = {
       where: {
         id,
       },
-    }).catch((error) => {
+    }).catch(error => {
       console.log(error);
       res.status(500).json(error);
     });
 
     if (!post) {
-      return res.status(404).json({ code: 200, message: post_errors["200"] });
+      return res.status(404).json({ code: 200, message: post_errors['200'] });
     }
     if (req.files == null) {
-      return res.status(400).json({ code: 201, message: post_errors["201"] });
+      return res.status(400).json({ code: 201, message: post_errors['201'] });
     }
 
     for (element in req.files) {
@@ -205,7 +206,7 @@ module.exports = {
         id: uuid(),
         url: req.files[element].filename,
         postId: id,
-      }).catch((error) => {
+      }).catch(error => {
         console.log(error);
         res.status(500).json(error);
       });
