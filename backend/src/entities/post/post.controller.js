@@ -220,58 +220,65 @@ module.exports = {
 
     const image = await Image.findOne({
       where: {
-        id,
+        id: id,
       },
-    }).catch((error) => {
+    }).catch(error => {
       console.log(error);
       return res.status(500).json(error);
     });
 
     if (!image) {
-      return res.status(404).json({ code: 203, message: post_errors["203"] });
+      return res.status(404).json({ code: 203, message: post_errors['203'] });
     }
 
     const postImages = await Image.findAll({
       where: {
         postId: image.postId,
       },
-    }).catch((error) => {
+    }).catch(error => {
       console.log(error);
       return res.status(500).json(error);
     });
 
     if (postImages.length <= 1) {
-      return res.status(400).json({ code: 203, message: post_errors["203"] });
+      return res.status(400).json({ code: 204, message: post_errors['204'] });
     }
 
     const imagePath = path.join(
       __dirname,
-      "..",
-      "..",
-      "uploads",
-      "images",
+      '..',
+      '..',
+      '..',
+      'uploads',
+      'images',
       image.url
     );
 
+    if (!fs.existsSync(imagePath)) {
+      return res.status(500).json({
+        code: 0,
+        message: 'Imagem não encontrada em nosso sistema de arquivos.',
+      });
+    }
+
     // Deletar o arquivo de imagem
-    fs.unlink(imagePath, (err) => {
+    fs.unlink(imagePath, async err => {
       if (err) {
         console.error(err);
-        return res
-          .status(500)
-          .json({ error: "Falha ao deletar a imagem do sistema de arquivos." });
+        return res.status(500).json({
+          code: 0,
+          message: 'Falha ao deletar a imagem do sistema de arquivos.',
+        });
       }
 
-      Image.destroy({
+      await Image.destroy({
         where: {
-          id,
+          id: id,
         },
-      }).catch((error) => {
+      }).catch(error => {
         console.log(error);
         return res.status(500).json(error);
       });
-
-      return res.status(204).send();
     });
 
     return res.status(204).send();

@@ -19,6 +19,10 @@ routes.patch(
   validateUpdatePost,
   postController.update
 );
+routes.delete(
+  '/deletePostImage/:id',
+  postController.deletePostImage
+);
 
 // COMMENTS
 routes.get("/posts/:id/comments", commentController.index);
