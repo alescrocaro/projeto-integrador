@@ -1,7 +1,6 @@
-import { Box, Card, Divider } from '@mui/material';
+import { Card, Divider } from '@mui/material';
 import DescriptionSection from './Description/descriptionSection';
-import LocationSection from './Location/locationSection';
-import SpecimenSection from './Specimen/specimenSection';
+import DetailsSection from './Details/detailsSection';
 import TagsSection from './TagsSection/tagsSection';
 
 const PostInfo = ({ post }) => {
@@ -17,7 +16,7 @@ const PostInfo = ({ post }) => {
         marginBottom: '5px',
       }}
     >
-      <SpecimenSection post={post} />
+      <DetailsSection post={post} />
 
       <Divider variant="middle" />
 

@@ -1,27 +1,31 @@
 import { Box } from '@mui/material';
-import LocationSection from '../Location/locationSection';
-import SpecimenImageSection from './specimenImageSection';
-import { useEffect, useState } from 'react';
+import StyledTable from '../../../../../components/Table';
+import { Img, Subsubtitulo, Subtitulo } from '../../../style';
+import ImageSlider from '../../imageSlider';
+const postPlaceholderImage = require('../../../../../img/placeholder.png');
 
-const SpecimenSection = ({ post }) => {
-  const [images, setImages] = useState([]);
+const ImagesSection = ({ images, setImages, postOwnerId }) => {
+  if (images?.length) {
+    return <ImageSlider images={images} setImages={setImages} postOwnerId={postOwnerId} />;
+  }
 
-  useEffect(() => {
-    setImages(post.Images);
-    console.log('post.Iamges', post.Images);
-  }, [post.Images]);
+  return <Img src={postPlaceholderImage} alt="img" />;
+};
 
+const SpecimenSection = ({ post, images, setImages }) => {
   return (
     <Box
-      style={{
+      sx={{
         display: 'grid',
-        gridTemplateColumns: '50% 50%',
-        alignItems: 'start',
-        marginBottom: '.15rem',
+        gap: '.5rem',
+        padding: '1rem',
       }}
     >
-      <SpecimenImageSection post={post} images={images} setImages={setImages} />
-      <LocationSection post={post} />
+      <Subtitulo>ESPÉCIME:</Subtitulo>
+      <ImagesSection images={images} setImages={setImages} postOwnerId={post.userId} />
+
+      <Subsubtitulo>CLASSIFICAÇÃO CIENTÍFICA:</Subsubtitulo>
+      <StyledTable data={post} scientificTable />
     </Box>
   );
 };

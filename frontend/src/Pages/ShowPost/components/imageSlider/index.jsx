@@ -62,7 +62,7 @@ export default function ImageSlider({ images, setImages, postOwnerId }) {
                   alt={`Image ${index} of specimen`}
                 />
 
-                {postOwnerId == user?.id ? (
+                {postOwnerId === user?.id ? (
                   <DeleteImageComponent
                     imageId={image.id}
                     isDisabled={images.length <= 1 || isUpdatingImages}
@@ -123,7 +123,7 @@ export default function ImageSlider({ images, setImages, postOwnerId }) {
         }
       />
 
-      {postOwnerId == user?.id ? (
+      {postOwnerId === user?.id ? (
         <AddImageComponent
           postId={images[0].postId}
           isDisabled={images.length >= 5 || isUpdatingImages}
