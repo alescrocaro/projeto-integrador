@@ -201,18 +201,23 @@ module.exports = {
       return res.status(400).json({ code: 201, message: post_errors['201'] });
     }
 
+    const created_images = [];
     for (element in req.files) {
       await Image.create({
         id: uuid(),
         url: req.files[element].filename,
         postId: id,
-      }).catch(error => {
-        console.log(error);
-        res.status(500).json(error);
-      });
+      })
+        .then(created_image => {
+          created_images.push(created_image);
+        })
+        .catch(error => {
+          console.log(error);
+          res.status(500).json(error);
+        });
     }
 
-    return res.status(204).send();
+    return res.status(200).json({ AddPostImage: created_images });
   },
 
   // testar já implementando a funcionalidade no frontend...

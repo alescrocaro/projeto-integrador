@@ -5,16 +5,22 @@ import Button from '@mui/material/Button';
 import MobileStepper from '@mui/material/MobileStepper';
 import { useTheme } from '@mui/material/styles';
 import * as React from 'react';
+import { useState } from 'react';
 import SwipeableViews from 'react-swipeable-views';
 import { bindKeyboard } from 'react-swipeable-views-utils';
+import { useToken } from '../../../../Context/AuthContext';
 import { Img } from '../../style';
+import AddImageComponent from './addImageComponent';
 import DeleteImageComponent from './deleteImageComponent';
 
 const BindKeyboardSwipeableViews = bindKeyboard(SwipeableViews);
 
-export default function ImageSlider({ images, setImages }) {
+export default function ImageSlider({ images, setImages, postOwnerId }) {
   const theme = useTheme();
-  const [activeStep, setActiveStep] = React.useState(0);
+  const { user } = useToken();
+
+  const [activeStep, setActiveStep] = useState(0);
+  const [isUpdatingImages, setIsUpdatingImages] = useState(false);
 
   const maxSteps = images?.length;
 
@@ -56,11 +62,22 @@ export default function ImageSlider({ images, setImages }) {
                   alt={`Image ${index} of specimen`}
                 />
 
-                <DeleteImageComponent
-                  imageId={image.id}
-                  isDisabled={images.length <= 1}
-                  setImages={setImages}
-                />
+                {postOwnerId == user?.id ? (
+                  <DeleteImageComponent
+                    imageId={image.id}
+                    isDisabled={images.length <= 1 || isUpdatingImages}
+                    setImages={setImages}
+                    customStyle={{
+                      position: 'absolute',
+                      top: 8,
+                      left: 8,
+                    }}
+                    setIsLoading={setIsUpdatingImages}
+                    setCurrentImage={setActiveStep}
+                  />
+                ) : (
+                  <></>
+                )}
               </div>
             ) : null}
           </div>
@@ -105,6 +122,23 @@ export default function ImageSlider({ images, setImages }) {
           </Button>
         }
       />
+
+      {postOwnerId == user?.id ? (
+        <AddImageComponent
+          postId={images[0].postId}
+          isDisabled={images.length >= 5 || isUpdatingImages}
+          setImages={setImages}
+          customStyle={{
+            position: 'absolute',
+            top: 8,
+            right: 8,
+          }}
+          setActiveStep={setActiveStep}
+          setIsLoading={setIsUpdatingImages}
+        />
+      ) : (
+        <></>
+      )}
     </Box>
   );
 }

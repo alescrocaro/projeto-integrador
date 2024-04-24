@@ -12,15 +12,21 @@ routes.get('/posts', postController.index);
 routes.get('/posts/:id', postController.get);
 routes.post('/posts', uploadService, postController.create);
 routes.delete('/posts/:id', postController.delete);
-routes.post('/addPostImage/:id', uploadService, postController.addPostImage);
 routes.patch(
   '/posts/:id',
   authenticateToken,
   validateUpdatePost,
   postController.update
 );
+routes.post(
+  '/posts/:id/image',
+  authenticateToken,
+  uploadService,
+  postController.addPostImage
+);
 routes.delete(
-  '/deletePostImage/:id',
+  '/posts/image/:id',
+  authenticateToken,
   postController.deletePostImage
 );
 

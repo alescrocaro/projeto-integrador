@@ -1,4 +1,4 @@
-const jwt = require("jsonwebtoken");
+const jwt = require('jsonwebtoken');
 
 function generateJwt(id, name, email) {
   const jwtSecret = process.env.JWT_SECRET;
@@ -14,16 +14,16 @@ function generateJwt(id, name, email) {
 }
 
 function authenticateToken(req, res, next) {
-  const authHeader = req.headers["authorization"];
-  const token = authHeader && authHeader.split(" ")[1];
+  const authHeader = req.headers['authorization'];
+  const token = authHeader && authHeader.split(' ')[1];
   if (!token) {
-    return res.sendStatus(401);
+    return res.status(401).json({ message: 'Token inválido' });
   }
 
   jwt.verify(token, process.env.JWT_SECRET, (err, data) => {
     if (err) {
       console.log(err);
-      return res.sendStatus(403);
+      return res.status(403).json({ message: 'Erro ao validar token' });
     }
     req.user_id = data.id;
     next();

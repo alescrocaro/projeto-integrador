@@ -1,6 +1,6 @@
 import { api } from '../../services/api';
 import postQueries from '../queries/post';
-import { serializePost } from '../serializers/post';
+import { deSerializePostImage, serializePost } from '../serializers/post';
 
 class PostController {
   static updatePost = ({ postId, data }) => {
@@ -21,13 +21,29 @@ class PostController {
   static deletePostImage = ({ imageId }) => {
     return new Promise((resolve, reject) => {
       return api
-        .delete(`deletePostImage/${imageId}`)
-        .then(response => {
-          resolve(response);
+        .delete(`posts/image/${imageId}`)
+        .then(response => resolve(response))
+        .catch(error => reject(error));
+    });
+  };
+
+  static addPostImage = ({ postId, file }) => {
+    return new Promise((resolve, reject) => {
+      const formData = new FormData();
+      formData.append('specieImages', file);
+
+      return api
+        .post(`posts/${postId}/image`, formData, {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+          },
         })
-        .catch(error => {
-          return reject(error);
-        });
+        .then(({ data }) => {
+          return resolve(
+            data.AddPostImage.map(image => deSerializePostImage(image))
+          );
+        })
+        .catch(error => reject(error));
     });
   };
 }
