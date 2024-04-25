@@ -31,15 +31,15 @@ export default function CreatePost() {
 
         contested: 0,
         userId: user.id,
-        userName: 'Usuário',
+        userName: user.name,
 
         kingdom: v.kingdom,
-        phylum: v.phylum || 'Não Especificado',
-        className: v.className || 'Não Especificado',
-        order: v.order || 'Não Especificado',
-        family: v.family || 'Não Especificado',
-        genus: v.genus || 'Não Especificado',
-        specie: v.specie || 'Não Especificado',
+        phylum: v.phylum ?? null,
+        className: v.className ?? null,
+        order: v.order ?? null,
+        family: v.family ?? null,
+        genus: v.genus ?? null,
+        specie: v.specie ?? null,
         imgUrl: '',
 
         biome: v.biome,
@@ -57,7 +57,7 @@ export default function CreatePost() {
           formData.append('specieImages', element.currentFile);
         });
 
-        api.post(`/addPostImage/${res.data}`, formData, {
+        api.post(`/posts/${res.data}/image`, formData, {
           headers: {
             'Content-Type': 'multipart/form-data',
           },
