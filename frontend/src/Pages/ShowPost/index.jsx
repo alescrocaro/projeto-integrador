@@ -9,8 +9,9 @@ import Container from '../../components/Container';
 import HeaderPage from '../../components/HeaderPage';
 import Layout from '../../components/Layout';
 import { api } from '../../services/api';
-import { Descricao, Subsubtitulo, Subtitulo } from './style';
+import PostController from '../../structures/controllers/post';
 import PostInfo from './components/PostInfo/postInfo';
+import { Descricao, Subsubtitulo, Subtitulo } from './style';
 
 const Post = () => {
   const { id } = useParams();
@@ -20,9 +21,9 @@ const Post = () => {
   const [comments, setComments] = useState([]);
 
   async function getPost(id) {
-    const { data } = await api.get(`posts/${id}`);
-    setPost(data);
-    //data.latlng está em geojson (lnglat)
+    PostController.getPost({ id }).then(data => {
+      setPost(data);
+    });
   }
 
   async function getComments(id) {

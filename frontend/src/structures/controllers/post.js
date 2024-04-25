@@ -1,6 +1,10 @@
 import { api } from '../../services/api';
 import postQueries from '../queries/post';
-import { deSerializePostImage, serializePost } from '../serializers/post';
+import {
+  deSerializePost,
+  deSerializePostImage,
+  serializePost,
+} from '../serializers/post';
 
 class PostController {
   static updatePost = ({ postId, data }) => {
@@ -42,6 +46,17 @@ class PostController {
           return resolve(
             data.AddPostImage.map(image => deSerializePostImage(image))
           );
+        })
+        .catch(error => reject(error));
+    });
+  };
+
+  static getPost = ({ id }) => {
+    return new Promise((resolve, reject) => {
+      return api
+        .get(`posts/${id}`)
+        .then(({ data }) => {
+          return resolve(deSerializePost(data));
         })
         .catch(error => reject(error));
     });
