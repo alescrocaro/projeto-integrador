@@ -12,10 +12,16 @@ import { useToken } from '../../../../Context/AuthContext';
 import { Img } from '../../style';
 import AddImageComponent from './addImageComponent';
 import DeleteImageComponent from './deleteImageComponent';
+const postPlaceholderImage = require('../../../../img/placeholder.png');
 
 const BindKeyboardSwipeableViews = bindKeyboard(SwipeableViews);
 
-export default function ImageSlider({ images, setImages, postOwnerId }) {
+export default function ImageSlider({
+  images,
+  setImages,
+  postOwnerId,
+  postId,
+}) {
   const theme = useTheme();
   const { user } = useToken();
 
@@ -40,7 +46,29 @@ export default function ImageSlider({ images, setImages, postOwnerId }) {
     return `${process.env.REACT_APP_BASE_URL}/uploads/images/${imageName}`; // idk if using api url here gonna work in a prod environment
   };
 
-  console.log('images', images);
+  if (!images?.length) {
+    return (
+      <div style={{ position: 'relative' }}>
+        <Img src={postPlaceholderImage} alt="A postagem não possui imagens" />
+        {postOwnerId === user?.id ? (
+          <AddImageComponent
+            postId={postId}
+            isDisabled={isUpdatingImages}
+            setImages={setImages}
+            customStyle={{
+              position: 'absolute',
+              top: 8,
+              right: 8,
+            }}
+            setActiveStep={setActiveStep}
+            setIsLoading={setIsUpdatingImages}
+          />
+        ) : (
+          <></>
+        )}
+      </div>
+    );
+  }
 
   return (
     <Box sx={{ aspectRatio: '16/9', width: '100%', position: 'relative' }}>
@@ -122,10 +150,9 @@ export default function ImageSlider({ images, setImages, postOwnerId }) {
           </Button>
         }
       />
-
       {postOwnerId === user?.id ? (
         <AddImageComponent
-          postId={images[0].postId}
+          postId={postId}
           isDisabled={images.length >= 5 || isUpdatingImages}
           setImages={setImages}
           customStyle={{
