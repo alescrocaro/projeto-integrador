@@ -4,6 +4,7 @@ import PostController from '../../../../structures/controllers/post';
 
 const AddImageComponent = ({
   postId,
+  images,
   setImages,
   customStyle,
   setActiveStep,
@@ -27,10 +28,10 @@ const AddImageComponent = ({
     PostController.addPostImage({ postId: postId, file: file })
       .then(uploadedImages => {
         setImages(prev => [...prev, ...uploadedImages]);
-        setActiveStep(prev => prev + 1);
+        setActiveStep(images.length);
       })
       .catch(error => {
-        alert('ERRO ao adicionar imagem: ', error.response.data.message)
+        alert('ERRO ao adicionar imagem: ', error.response.data.message);
       })
       .finally(() => {
         setIsLoading(false);

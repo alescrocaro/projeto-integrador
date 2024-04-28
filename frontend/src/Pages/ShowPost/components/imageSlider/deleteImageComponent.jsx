@@ -1,6 +1,5 @@
-import { Button, Popover, Typography } from '@mui/material';
-import { useState } from 'react';
 import DeleteIcon from '@mui/icons-material/Delete';
+import { Popconfirm } from 'antd';
 import PostController from '../../../../structures/controllers/post';
 
 const DeleteImageComponent = ({
@@ -11,8 +10,6 @@ const DeleteImageComponent = ({
   setIsLoading,
   setCurrentImage,
 }) => {
-  const [anchorElConfirmDelete, setAnchorElConfirmDelete] = useState(null);
-
   const handleDeleteImage = () => {
     setIsLoading(true);
     PostController.deletePostImage({ imageId })
@@ -20,7 +17,6 @@ const DeleteImageComponent = ({
         setImages(prevImages =>
           prevImages.filter(image => image.id !== imageId)
         );
-        setAnchorElConfirmDelete(null);
         setCurrentImage(prevCurrentImage => {
           if (prevCurrentImage > 0) {
             return prevCurrentImage - 1;
@@ -29,7 +25,7 @@ const DeleteImageComponent = ({
         });
       })
       .catch(error => {
-        alert('ERRO ao remover imagem: ', error.response.data.message)
+        alert('ERRO ao remover imagem: ', error.response.data.message);
       })
       .finally(() => {
         setIsLoading(false);
@@ -53,26 +49,14 @@ const DeleteImageComponent = ({
         ...customStyle,
       }}
     >
-      <DeleteIcon
-        onClick={event =>
-          isDisabled ? null : setAnchorElConfirmDelete(event.currentTarget)
-        }
-      />
-      <Popover
-        open={!!anchorElConfirmDelete}
-        anchorEl={anchorElConfirmDelete}
-        onClose={() => setAnchorElConfirmDelete(null)}
-        anchorOrigin={{
-          vertical: 'bottom',
-          horizontal: 'left',
-        }}
+      <Popconfirm
+        title="Tem certeza que deseja excluir? essa ação é irreversível"
+        okText="Sim"
+        cancelText="Cancelar"
+        onConfirm={handleDeleteImage}
       >
-        <Typography sx={{ p: 2 }}>
-          Tem certeza que deseja excluir? essa ação é irreversível
-        </Typography>
-        <Button onClick={() => setAnchorElConfirmDelete(null)}>Cancelar</Button>
-        <Button onClick={handleDeleteImage}>Sim</Button>
-      </Popover>
+        <DeleteIcon />
+      </Popconfirm>
     </div>
   );
 };

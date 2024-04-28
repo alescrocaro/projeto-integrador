@@ -154,6 +154,7 @@ export default function ImageSlider({
         <AddImageComponent
           postId={postId}
           isDisabled={images.length >= 5 || isUpdatingImages}
+          images={images}
           setImages={setImages}
           customStyle={{
             position: 'absolute',
