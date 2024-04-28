@@ -2,18 +2,18 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { api } from '../../../services/api';
 
+import animaliaIcon from '../../../img/animaliaIcon.svg';
 import avatarImage from '../../../img/avatar.png';
-import postIcon from '../../../img/postIcon.svg';
 import commentIcon from '../../../img/commentIcon.svg';
 import contestationIcon from '../../../img/contestationIcon.svg';
-import animaliaIcon from '../../../img/animaliaIcon.svg';
-import plantaeIcon from '../../../img/plantaeIcon.svg';
 import fungiIcon from '../../../img/fungiIcon.svg';
-import protistaIcon from '../../../img/protistaIcon.svg';
 import moneraIcon from '../../../img/moneraIcon.svg';
+import plantaeIcon from '../../../img/plantaeIcon.svg';
+import postIcon from '../../../img/postIcon.svg';
+import protistaIcon from '../../../img/protistaIcon.svg';
 
-import Layout from '../../../components/Layout';
 import Container from '../../../components/Container';
+import Layout from '../../../components/Layout';
 
 import { Paper } from '@mui/material';
 
@@ -63,6 +63,7 @@ export default function Profile() {
 
   useEffect(() => {
     getUser(id);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
 
   const bio = profileData.bio !== '' ? profileData.bio : 'Sem descrição';
@@ -165,7 +166,6 @@ export default function Profile() {
             </div>
           </div>
         </div>
-        {console.log(profileData)}
       </Container>
     </Layout>
   );

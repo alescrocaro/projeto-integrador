@@ -1,13 +1,10 @@
-import React, {useState} from 'react';
-import {useFormik} from 'formik';
+import { Autocomplete, Box, Button } from '@mui/material/';
+import { useFormik } from 'formik';
+import React, { useState } from 'react';
 import * as yup from 'yup';
-
-//components
 import CssTextField from '../CssTextField';
-import CssAutocomplete from '../CssAutocomplete';
-import { Titulo, Subtitulo } from './style';
-import { Button, MenuItem, Autocomplete, Box} from '@mui/material/';
 import Map from '../Map';
+import { Subtitulo, Titulo } from './style';
 
 
 const validateLatlng = (str) => {    
@@ -33,7 +30,7 @@ export default function StepLocal(props) {
     //mapa
     //hook para pegar coordenadas no mapa
     const [latlng, setLatlng] = useState(null);
-    const latlngControls = new Object();
+    const latlngControls = {};
     latlngControls.changeLatlng = (coords) => {setLatlng(coords)};
     latlngControls.getLatlng = () => {return latlng};
 

@@ -1,6 +1,11 @@
-const { Post, Image, User } = require("../../models");
-const { v4: uuid } = require("uuid");
-const sequelize = require("sequelize");
+const { Post, Image, User } = require('../../models');
+const { v4: uuid } = require('uuid');
+const sequelize = require('sequelize');
+const { post_errors } = require('../../errors/200-post');
+const fs = require('fs');
+const path = require('path');
+const { image_errors } = require('../../errors/600-image');
+const { internal_errors } = require('../../errors/500-internal');
 
 module.exports = {
   async index(req, res) {
@@ -8,7 +13,7 @@ module.exports = {
       //se tiver filtros
       if (Object.keys(req.query)?.length) {
         const distanceAttr = sequelize.fn(
-          "ST_DistanceSphere",
+          'ST_DistanceSphere',
           sequelize.literal(`latlng`),
           sequelize.literal(
             `ST_MakePoint(${req.query.mapCenter[1]}, ${req.query.mapCenter[0]})`
@@ -20,7 +25,7 @@ module.exports = {
             { model: Image },
             {
               model: User,
-              attributes: ["name", "email", "id"],
+              attributes: ['name', 'email', 'id'],
             },
           ],
           where: {
@@ -28,10 +33,10 @@ module.exports = {
               [sequelize.Op.lte]: req.query.mapSearchRadius * 1000,
             }),
           },
-          order: [["updatedAt", "DESC"]],
+          order: [['updatedAt', 'DESC']],
         });
 
-        console.log("posts com filtro ->", posts);
+        console.log('posts com filtro ->', posts);
         return res.json(posts);
       } else {
         const posts = await Post.findAll({
@@ -39,17 +44,17 @@ module.exports = {
             { model: Image },
             {
               model: User,
-              attributes: ["name", "email", "id"],
+              attributes: ['name', 'email', 'id'],
             },
           ],
-          order: [["updatedAt", "DESC"]],
+          order: [['updatedAt', 'DESC']],
         });
 
-        console.log("posts sem filtro", posts);
+        console.log('posts sem filtro', posts);
         return res.json(posts);
       }
     } catch (error) {
-      console.log("error getting posts", error);
+      console.log('error getting posts', error);
       res.status(500).send();
     }
   },
@@ -60,13 +65,13 @@ module.exports = {
         where: { id: req.params.id },
         include: [
           { model: Image },
-          { model: User, attributes: ["name", "email", "id"] },
+          { model: User, attributes: ['name', 'email', 'id'] },
         ],
       });
 
       return res.json(post);
     } catch (error) {
-      console.log("error getting post", error);
+      console.log('error getting post', error);
       res.status(500).send();
     }
   },
@@ -120,23 +125,44 @@ module.exports = {
         dateFound,
         description,
         tags,
-        latlng: { type: "Point", coordinates: [latlng.lng, latlng.lat] }, //geojson format [lng, lat]
+        latlng: { type: 'Point', coordinates: [latlng.lng, latlng.lat] }, //geojson format [lng, lat]
         userId,
       });
       return res.json(post.dataValues.id);
     } catch (error) {
-      console.log("Error creating post", error);
+      console.log('Error creating post', error);
       res.status(500).send();
     }
   },
 
-  /*,
+  async update(req, res) {
+    const { id } = req.params;
 
-  async update(req, res){
-    // const { title, description } = req.body;
+    const post = await Post.findOne({
+      where: {
+        id,
+      },
+    });
 
+    if (!post) {
+      return res.status(404).json({ code: 200, message: post_errors['200'] });
+    }
+
+    if (post.userId !== req.user_id) {
+      return res
+        .status(401)
+        .json({ code: 501, message: internal_errors[501] });
+    }
+
+    const updatedPost = await post.update(req.body).catch(error => {
+      console.log('error updating post: ', error);
+      return res
+        .status(500)
+        .json({ code: 502, message: internal_errors[502] });
+    });
+
+    return res.status(200).json({ UpdatePost: updatedPost.dataValues });
   },
-  */
 
   async delete(req, res) {
     try {
@@ -144,7 +170,7 @@ module.exports = {
       // const user_id = req.headers.authorization;
       /*
       if(post.user_id !== user_id){
-        return response.status(401).json({ error: 'Unauthorized user.'}); 
+        return response.status(401).json({ message: 'Unauthorized user.'}); 
         // 401 - nao autorizado
       }
   
@@ -162,25 +188,113 @@ module.exports = {
     }
   },
 
-  async updatePostImage(req, res) {
+  async addPostImage(req, res) {
     const { id } = req.params;
-    try {
-      const posts = await Post.findAll({ where: { id } });
-      if (posts?.length === 0) return res.status(404).send();
-      if (req.files == null) {
-        return res.status(404).send();
-      }
-      for (element in req.files) {
-        await Image.create({
-          id: uuid(),
-          url: req.files[element].filename,
-          postId: id,
+
+    const post = await Post.findOne({
+      where: {
+        id,
+      },
+    }).catch(error => {
+      console.log(error);
+      res.status(500).json(error);
+    });
+
+    if (!post) {
+      return res.status(404).json({ code: 200, message: post_errors['200'] });
+    }
+    if (req.files == null) {
+      return res.status(400).json({ code: 201, message: post_errors['201'] });
+    }
+
+    const created_images = [];
+    for (element in req.files) {
+      await Image.create({
+        id: uuid(),
+        url: req.files[element].filename,
+        postId: id,
+      })
+        .then(created_image => {
+          created_images.push(created_image);
+        })
+        .catch(error => {
+          console.log(error);
+          res.status(500).json(error);
+        });
+    }
+
+    return res.status(200).json({ AddPostImage: created_images });
+  },
+
+  // testar já implementando a funcionalidade no frontend...
+  async deletePostImage(req, res) {
+    const { id } = req.params;
+
+    const image = await Image.findOne({
+      where: {
+        id: id,
+      },
+    }).catch(error => {
+      console.log(error);
+      return res.status(500).json(error);
+    });
+
+    if (!image) {
+      return res.status(404).json({ code: 203, message: post_errors['203'] });
+    }
+
+    const postImages = await Image.findAll({
+      where: {
+        postId: image.postId,
+      },
+    }).catch(error => {
+      console.log(error);
+      return res.status(500).json(error);
+    });
+
+    if (postImages.length <= 1) {
+      return res.status(400).json({ code: 204, message: post_errors['204'] });
+    }
+
+    const imagePath = path.join(
+      __dirname,
+      '..',
+      '..',
+      '..',
+      'uploads',
+      'images',
+      image.url
+    );
+
+    if (!fs.existsSync(imagePath)) {
+      return res.status(500).json({
+        code: 601,
+        message: image_errors['601'],
+      });
+    }
+
+    fs.unlink(imagePath, async err => {
+      if (err) {
+        console.error(err);
+        return res.status(500).json({
+          code: 602,
+          message: image_errors[602],
         });
       }
-      return res.status(200).send();
-    } catch (error) {
-      console.log(error);
-      res.status(500).send();
-    }
+
+      await Image.destroy({
+        where: {
+          id: id,
+        },
+      }).catch(error => {
+        console.log(error);
+        return res.status(500).json({
+          code: 602,
+          message: image_errors[602],
+        });
+      });
+    });
+
+    return res.status(204).send();
   },
 };

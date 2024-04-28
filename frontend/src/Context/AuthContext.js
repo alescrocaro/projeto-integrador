@@ -43,7 +43,7 @@ export function AuthProvider({ children }) {
       const loggedUser = decode(response.data.token);
       setUser(loggedUser);
 
-      localStorage.setItem('token', JSON.stringify(token));
+      localStorage.setItem('token', token);
 
       api.defaults.headers.authorization = `Bearer ${token}`;
 
@@ -90,7 +90,7 @@ export function AuthProvider({ children }) {
         user,
         loading,
         handleLogin,
-        handleLogout
+        handleLogout,
       }}
     >
       {children}

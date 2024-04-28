@@ -5,6 +5,7 @@ import { ImgCard } from '../imgCard';
 import { styled } from '@mui/material/styles';
 import { Typography, Button} from '@mui/material';
 import AddCircleOutlineOutlinedIcon from '@mui/icons-material/AddCircleOutlineOutlined';
+import { acceptedFileExtensions } from '../../../../structures/constants/file';
 
 const StyledButton = styled(Button)(() => ({
   color: '#14aa6b',
@@ -25,7 +26,7 @@ export default function UploadButton({label, imgFile, setImgFile}) {
   const handleOnChange = (e) => {
     // console.log("hello")
     const file = e.target.files[0]
-    if (!['jpg','png', 'jpeg', 'jpe','jif','webp','tiff','tif'].includes(file.name.split('.')[1].toLowerCase())) {
+    if (!acceptedFileExtensions.includes(file.name.split('.')[1].toLowerCase())) {
       alert('ERRO: Não foi possível reconhecer a extensão da imagem. As extensões permitidas são .jpg, .png, .jpeg, .jpe, .jif, .web, .tiff e .tif!')
       return
     }
@@ -45,7 +46,7 @@ export default function UploadButton({label, imgFile, setImgFile}) {
   }
 
   const handleOnDelete = (id) => {
-    setImgFile(old => old.filter((element) => element.id != id))
+    setImgFile(old => old.filter((element) => element.id !== id))
   }
   
   return (

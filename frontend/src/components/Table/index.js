@@ -10,8 +10,7 @@ function createData(name, data) {
   return { name, data };
 }
 
-
-export default function MyTable({ 
+export default function StyledTable({ 
     data, 
     scientificTable=false, 
     detailsTable=false 

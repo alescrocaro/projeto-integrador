@@ -1,7 +1,6 @@
+import Box from '@mui/material/Box';
 import React from 'react';
 import HeaderMenu from '../HeaderMenu';
-import StickyFooter from '../StickyFooter';
-import Box from '@mui/material/Box';
 
 export default function Layout({ children }) {
   return (
@@ -11,7 +10,7 @@ export default function Layout({ children }) {
         display: 'flex',
         flexDirection: 'column',
         // justifyContent: 'space-between',
-        height: '100%'
+        height: '100%',
       }}
     >
       <HeaderMenu />

@@ -206,10 +206,10 @@ async function get(req, res) {
  */
 function validateCreateAccountInput(email, password) {
   if (email === null || password === null) {
-    return { status: 401, code: 104, message: user_errors["104"] };
+    return { status: 401, code: 104, message: user_errors[104] };
   }
   if (password.length < 6) {
-    return res.status(401).json({ code: 103, message: user_errors["103"] });
+    return res.status(401).json({ code: 103, message: user_errors[103] });
   }
 
   return false;
@@ -229,14 +229,14 @@ async function create(req, res) {
   const userFound = await User.findOne({ where: { email: email } }).catch(
     (error) => {
       console.log("error getting user", error);
-      return res.status(500).json({ code: 102, message: user_errors["102"] });
+      return res.status(500).json({ code: 102, message: user_errors[102] });
     }
   );
 
   console.log("userFound: ", userFound);
 
   if (userFound) {
-    return res.status(400).json({ code: 100, message: user_errors["100"] });
+    return res.status(400).json({ code: 100, message: user_errors[100] });
   }
   const { hash, salt } = hashPassword(password);
 
@@ -267,7 +267,7 @@ async function login(req, res) {
     });
     if (!data) {
       console.log("user not found");
-      return res.status(401).json({ message: "User not found" });
+      return res.status(401).json({ code: 101, message: user_errors[101] });
     }
     const user = data.dataValues;
 
