@@ -8,7 +8,10 @@ function generateJwt(id, name, email) {
       name,
       email: email,
     },
-    jwtSecret
+    jwtSecret,
+    {
+      expiresIn: '365d',
+    }
   );
   return token;
 }
