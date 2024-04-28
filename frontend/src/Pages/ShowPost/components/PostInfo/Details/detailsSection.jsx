@@ -1,7 +1,7 @@
 import { Box } from '@mui/material';
 import { useEffect, useState } from 'react';
-import LocationSection from '../Location/locationSection';
-import SpecimenSection from '../Specimen/specimenSection';
+import LocationSection from './Location/locationSection';
+import SpecimenSection from './Specimen/specimenSection';
 
 const DetailsSection = ({ post }) => {
   const [images, setImages] = useState([]);

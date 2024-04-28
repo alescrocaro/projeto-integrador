@@ -1,5 +1,5 @@
 import UploadImageButton from '../../../../components/UploadImage/uploadImageButton';
-import { acceptedFileExtensions } from '../../../../structures/constants/fileConstants';
+import { acceptedFileExtensions } from '../../../../structures/constants/file';
 import PostController from '../../../../structures/controllers/post';
 
 const AddImageComponent = ({

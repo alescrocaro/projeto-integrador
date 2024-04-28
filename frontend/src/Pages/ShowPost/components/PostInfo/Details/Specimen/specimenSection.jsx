@@ -1,6 +1,6 @@
 import { Box } from '@mui/material';
-import { Subtitulo } from '../../../style';
-import ImageSlider from '../../imageSlider';
+import { Subtitulo } from '../../../../style';
+import ImageSlider from '../../../imageSlider';
 import Taxonomy from './Taxonomy/taxonomy';
 
 const SpecimenSection = ({ post, images, setImages }) => {

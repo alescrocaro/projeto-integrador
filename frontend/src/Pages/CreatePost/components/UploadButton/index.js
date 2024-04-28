@@ -5,7 +5,7 @@ import { ImgCard } from '../imgCard';
 import { styled } from '@mui/material/styles';
 import { Typography, Button} from '@mui/material';
 import AddCircleOutlineOutlinedIcon from '@mui/icons-material/AddCircleOutlineOutlined';
-import { acceptedFileExtensions } from '../../../../structures/constants/fileConstants';
+import { acceptedFileExtensions } from '../../../../structures/constants/file';
 
 const StyledButton = styled(Button)(() => ({
   color: '#14aa6b',
