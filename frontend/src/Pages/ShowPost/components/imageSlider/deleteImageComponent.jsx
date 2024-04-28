@@ -54,6 +54,7 @@ const DeleteImageComponent = ({
         okText="Sim"
         cancelText="Cancelar"
         onConfirm={handleDeleteImage}
+        disabled={isDisabled}
       >
         <DeleteIcon />
       </Popconfirm>
