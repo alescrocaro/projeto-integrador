@@ -20,7 +20,7 @@ function validateUpdatePost(req, res, next) {
   if (!validator.isUUID(req.params.id)) {
     return res
       .status(400)
-      .json({ code: 0, message: validation_errors["000"] });
+      .json({ code: 1, message: validation_errors["001"] });
   }
 
   if (
