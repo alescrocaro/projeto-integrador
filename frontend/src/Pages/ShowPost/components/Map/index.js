@@ -1,18 +1,12 @@
+import L from 'leaflet';
+import iconRetina from 'leaflet/dist/images/marker-icon-2x.png';
+import iconMarker from 'leaflet/dist/images/marker-icon.png';
+import iconShadow from 'leaflet/dist/images/marker-shadow.png';
+import "leaflet/dist/leaflet.css";
 import React from 'react';
 import { Mapa } from './style';
   
-import "leaflet/dist/leaflet.css";
-import L from 'leaflet';
-  
-import iconMarker from 'leaflet/dist/images/marker-icon.png'
-import iconRetina from 'leaflet/dist/images/marker-icon-2x.png'
-import iconShadow from 'leaflet/dist/images/marker-shadow.png'
-  
 class Map extends React.Component {
-    constructor(props){
-        super(props);
-    }
-  
     getIcon(kingdom){
         let iconURL = iconMarker;
           

@@ -1,10 +1,10 @@
 import React from 'react';
-import { Routes, Route, BrowserRouter, Navigate } from 'react-router-dom';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { AuthProvider } from './Context/AuthContext';
-import Post from './Pages/ListPost';
 import CreatePost from './Pages/CreatePost';
-import SpecificPost from './Pages/ShowPost';
+import Post from './Pages/ListPost';
 import NotFound from './Pages/NotFound';
+import SpecificPost from './Pages/ShowPost';
 import Login from './Pages/User/Login';
 import Profile from './Pages/User/Profile';
 

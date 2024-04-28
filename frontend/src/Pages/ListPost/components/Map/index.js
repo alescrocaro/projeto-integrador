@@ -1,22 +1,12 @@
+import L from 'leaflet';
+import iconRetina from 'leaflet/dist/images/marker-icon-2x.png';
+import iconMarker from 'leaflet/dist/images/marker-icon.png';
+import iconShadow from 'leaflet/dist/images/marker-shadow.png';
+import 'leaflet/dist/leaflet.css';
 import React from 'react';
 import { Mapa } from './style';
 
-import 'leaflet/dist/leaflet.css';
-import L from 'leaflet';
-
-import iconMarker from 'leaflet/dist/images/marker-icon.png';
-import iconRetina from 'leaflet/dist/images/marker-icon-2x.png';
-import iconShadow from 'leaflet/dist/images/marker-shadow.png';
-
 class Map extends React.Component {
-    constructor(props){
-        super(props);
-        let map;
-        let markers;
-        let radius = null;
-        let posts = props.posts;
-    }
-
      getIcon(kingdom) {
         let iconURL = iconMarker;
 
@@ -75,7 +65,7 @@ class Map extends React.Component {
 
   componentDidUpdate() {
     //update markers de cada posts (add se nao existe)
-    if (this.posts != this.props.posts) {
+    if (this.posts !== this.props.posts) {
         this.posts = this.props.posts;
 
         //se existe markers, remove tudo. Se nao existe, cria
@@ -84,11 +74,11 @@ class Map extends React.Component {
                 this.markers.pop().remove(); //remove da array(pop), e remove do mapa (remove)
             }
         } else {
-            this.markers = new Array();
+            this.markers = [];
         }
 
         //adicionar markers
-        this.props.posts?.map((post) => {
+        this.props.posts?.forEach((post) => {
             const position = post.latlng ? [post.latlng.coordinates[1], post.latlng.coordinates[0]] : [0, 0];
 
             this.markers.push(

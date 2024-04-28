@@ -104,6 +104,7 @@ const Taxonomy = ({ post }) => {
         specie: post.specie,
       });
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [
     post?.kingdom,
     post?.phylum,

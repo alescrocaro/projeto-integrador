@@ -46,7 +46,7 @@ export default function UploadButton({label, imgFile, setImgFile}) {
   }
 
   const handleOnDelete = (id) => {
-    setImgFile(old => old.filter((element) => element.id != id))
+    setImgFile(old => old.filter((element) => element.id !== id))
   }
   
   return (

@@ -89,9 +89,9 @@ export default function CreatePost() {
   //enviar requisição pra api
   useEffect(() => {
     if (activeStep > 2) {
-      // console.log(formValues.get())
       createPost(formValues.get());
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [activeStep]);
 
   return (
