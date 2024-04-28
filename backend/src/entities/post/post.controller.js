@@ -4,7 +4,8 @@ const sequelize = require('sequelize');
 const { post_errors } = require('../../errors/200-post');
 const fs = require('fs');
 const path = require('path');
-const { internal_errors, image_errors } = require('../../errors/600-image');
+const { image_errors } = require('../../errors/600-image');
+const { internal_errors } = require('../../errors/500-internal');
 
 module.exports = {
   async index(req, res) {
@@ -150,14 +151,14 @@ module.exports = {
     if (post.userId !== req.user_id) {
       return res
         .status(401)
-        .json({ code: 501, message: internal_errors['501'] });
+        .json({ code: 501, message: internal_errors[501] });
     }
 
     const updatedPost = await post.update(req.body).catch(error => {
       console.log('error updating post: ', error);
       return res
         .status(500)
-        .json({ code: 502, message: internal_errors['502'] });
+        .json({ code: 502, message: internal_errors[502] });
     });
 
     return res.status(200).json({ UpdatePost: updatedPost.dataValues });
