@@ -6,14 +6,11 @@ const createTaxonomyColumns = ({ isUpdating }) => {
   const taxonomyColumns = [
     {
       title: 'Categoria',
-      dataIndex: ['category'],
-      render: category => {
-        return category;
-      },
+      dataIndex: 'category',
     },
     {
       title: 'Dado',
-      dataIndex: ['data'],
+      dataIndex: 'data',
       render: (data, record) => {
         if (isUpdating) {
           const formItemName =
@@ -23,20 +20,22 @@ const createTaxonomyColumns = ({ isUpdating }) => {
 
           let updateField = <Input defaultValue={data} />;
           if (formItemName === 'kingdom') {
-            updateField = <Select
-              options={[
-                { value: 'Animalia', label: 'Animalia' },
-                { value: 'Bacteria', label: 'Bacteria' },
-                { value: 'Chromista', label: 'Chromista' },
-                { value: 'Fungi', label: 'Fungi' },
-                { value: 'Plantae', label: 'Plantae' },
-                { value: 'Protozoa', label: 'Protozoa' },
-              ]}
-              style={{
-                width: '100%',
-              }}
-              defaultValue={data}
-            />;
+            updateField = (
+              <Select
+                options={[
+                  { value: 'Animalia', label: 'Animalia' },
+                  { value: 'Bacteria', label: 'Bacteria' },
+                  { value: 'Chromista', label: 'Chromista' },
+                  { value: 'Fungi', label: 'Fungi' },
+                  { value: 'Plantae', label: 'Plantae' },
+                  { value: 'Protozoa', label: 'Protozoa' },
+                ]}
+                style={{
+                  width: '100%',
+                }}
+                defaultValue={data}
+              />
+            );
           }
 
           return (

@@ -122,6 +122,7 @@ const Taxonomy = ({ post }) => {
           pagination={false}
           columns={taxonomyColumns}
           dataSource={taxonomyData}
+          rowKey={(_, index) => index}
         />
       </Form>
     </Card>
