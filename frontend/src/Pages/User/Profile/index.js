@@ -166,7 +166,6 @@ export default function Profile() {
             </div>
           </div>
         </div>
-        {console.log(profileData)}
       </Container>
     </Layout>
   );

@@ -33,7 +33,6 @@ const LocationCard = ({ locationDetailsData }) => {
     ]);
   }, [locationDetailsData]);
 
-  console.log('locationDetailsTableData', locationDetailsTableData);
   return (
     <Card title="DETALHES">
       <Table

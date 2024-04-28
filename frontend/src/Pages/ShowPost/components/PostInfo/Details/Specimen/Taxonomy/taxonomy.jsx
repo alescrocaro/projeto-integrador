@@ -2,6 +2,7 @@ import { Button, Card, Form, Table } from 'antd';
 import { useEffect, useState } from 'react';
 import createTaxonomyColumns from './taxonomyTableColumns';
 import PostController from '../../../../../../../structures/controllers/post';
+import { useToken } from '../../../../../../../Context/AuthContext';
 
 const Taxonomy = ({ post }) => {
   const [isUpdatingTaxonomy, setIsUpdatingTaxonomy] = useState(false);
@@ -9,6 +10,7 @@ const Taxonomy = ({ post }) => {
   const [taxonomyData, setTaxonomyData] = useState(false);
 
   const [form] = Form.useForm();
+  const { user } = useToken();
 
   const taxonomyColumns = createTaxonomyColumns({
     isUpdating: isUpdatingTaxonomy,
@@ -59,11 +61,9 @@ const Taxonomy = ({ post }) => {
   };
 
   const handleUpdateTaxonomy = formValues => {
-    console.log('formValues: ', formValues);
     setIsLoading(true);
     PostController.updateTaxonomy({ postId: post.id, values: formValues })
       .then(updatedTaxonomy => {
-        console.log('res: ', updatedTaxonomy);
         form.setFieldsValue({ ...updatedTaxonomy });
         setTaxonomyData([
           { category: 'Reino', data: updatedTaxonomy.kingdom },
@@ -104,7 +104,7 @@ const Taxonomy = ({ post }) => {
         specie: post.specie,
       });
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [
     post?.kingdom,
     post?.phylum,
@@ -116,7 +116,10 @@ const Taxonomy = ({ post }) => {
   ]);
 
   return (
-    <Card title="TAXONOMIA" extra={renderTaxonomyExtraButton()}>
+    <Card
+      title="TAXONOMIA"
+      extra={post.userId === user?.id ? renderTaxonomyExtraButton() : null}
+    >
       <Form form={form} name="formTaxonomy" onFinish={handleUpdateTaxonomy}>
         <Table
           size="small"

@@ -70,7 +70,6 @@ class PostController {
           ...values,
         })
         .then(response => {
-          console.log({ response });
           const updatedPostTaxonomy = deSerializeTaxonomy(
             response.data.UpdatePost
           );
