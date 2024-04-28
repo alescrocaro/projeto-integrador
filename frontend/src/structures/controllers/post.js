@@ -3,6 +3,7 @@ import postQueries from '../queries/post';
 import {
   deSerializePost,
   deSerializePostImage,
+  deSerializeTaxonomy,
   serializePost,
 } from '../serializers/post';
 
@@ -59,6 +60,25 @@ class PostController {
           return resolve(deSerializePost(data));
         })
         .catch(error => reject(error));
+    });
+  };
+
+  static updateTaxonomy = ({ postId, values }) => {
+    return new Promise((resolve, reject) => {
+      return api
+        .patch(`posts/${postId}`, {
+          ...values,
+        })
+        .then(response => {
+          console.log({ response });
+          const updatedPostTaxonomy = deSerializeTaxonomy(
+            response.data.UpdatePost
+          );
+          resolve(updatedPostTaxonomy);
+        })
+        .catch(error => {
+          return reject(error);
+        });
     });
   };
 }

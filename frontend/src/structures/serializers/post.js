@@ -1,15 +1,15 @@
-import { capitalizeFirstLetter } from '../../utils/functions';
+import Formatter from "../../utils/formatter";
 
 export const deSerializePost = data => {
   return {
     ...data,
-    kingdom: capitalizeFirstLetter(data.kingdom),
-    phylum: capitalizeFirstLetter(data.phylum),
-    className: capitalizeFirstLetter(data.className),
-    order: capitalizeFirstLetter(data.order),
-    family: capitalizeFirstLetter(data.family),
-    genus: capitalizeFirstLetter(data.genus),
-    specie: capitalizeFirstLetter(data.specie),
+    kingdom: Formatter.capitalizeFirstLetter(data.kingdom),
+    phylum: Formatter.capitalizeFirstLetter(data.phylum),
+    className: Formatter.capitalizeFirstLetter(data.className),
+    order: Formatter.capitalizeFirstLetter(data.order),
+    family: Formatter.capitalizeFirstLetter(data.family),
+    genus: Formatter.capitalizeFirstLetter(data.genus),
+    specie: Formatter.capitalizeFirstLetter(data.specie),
   };
 };
 
@@ -18,6 +18,22 @@ export const serializePost = data => {
     title: data.title,
   };
 };
+
+export const serializeTaxonomy = data => {
+  console.log('data');
+}
+
+export const deSerializeTaxonomy = data => {
+  return {
+    kingdom: Formatter.capitalizeFirstLetter(data.kingdom),
+    phylum: Formatter.capitalizeFirstLetter(data.phylum),
+    className: Formatter.capitalizeFirstLetter(data.className),
+    order: Formatter.capitalizeFirstLetter(data.order),
+    family: Formatter.capitalizeFirstLetter(data.family),
+    genus: Formatter.capitalizeFirstLetter(data.genus),
+    specie: Formatter.capitalizeFirstLetter(data.specie),
+  }
+}
 
 export const deSerializePostImage = data => {
   return {
