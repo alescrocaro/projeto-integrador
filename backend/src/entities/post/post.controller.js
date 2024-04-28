@@ -4,6 +4,7 @@ const sequelize = require('sequelize');
 const { post_errors } = require('../../errors/200-post');
 const fs = require('fs');
 const path = require('path');
+const { internal_errors, image_errors } = require('../../errors/600-image');
 
 module.exports = {
   async index(req, res) {
@@ -142,17 +143,21 @@ module.exports = {
       },
     });
 
-    if (post.userId !== req.user_id) {
-      return res.sendStatus(401);
-    }
-
     if (!post) {
       return res.status(404).json({ code: 200, message: post_errors['200'] });
     }
 
+    if (post.userId !== req.user_id) {
+      return res
+        .status(401)
+        .json({ code: 501, message: internal_errors['501'] });
+    }
+
     const updatedPost = await post.update(req.body).catch(error => {
       console.log('error updating post: ', error);
-      res.status(500).json(error);
+      return res
+        .status(500)
+        .json({ code: 502, message: internal_errors['502'] });
     });
 
     return res.status(200).json({ UpdatePost: updatedPost.dataValues });
@@ -262,18 +267,17 @@ module.exports = {
 
     if (!fs.existsSync(imagePath)) {
       return res.status(500).json({
-        code: 0,
-        message: 'Imagem não encontrada em nosso sistema de arquivos.',
+        code: 601,
+        message: image_errors['601'],
       });
     }
 
-    // Deletar o arquivo de imagem
     fs.unlink(imagePath, async err => {
       if (err) {
         console.error(err);
         return res.status(500).json({
-          code: 0,
-          message: 'Falha ao deletar a imagem do sistema de arquivos.',
+          code: 602,
+          message: image_errors[602],
         });
       }
 
@@ -283,7 +287,10 @@ module.exports = {
         },
       }).catch(error => {
         console.log(error);
-        return res.status(500).json(error);
+        return res.status(500).json({
+          code: 602,
+          message: image_errors[602],
+        });
       });
     });
 
