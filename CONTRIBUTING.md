@@ -36,28 +36,29 @@ A documentação é crucial. Se você encontrar erros ou áreas que podem ser me
 
 Contribuições de código são bem-vindas! Para enviar um Pull Request (PR):
 
-1. **Faça um fork** do repositório.
-2. **Crie uma nova branch** para sua funcionalidade ou correção:
+1. **Contate um mantenedor** através de uma issue no repositório.
+2. **Aceite o convite de colaborador**
+3. **Crie uma nova branch** para sua funcionalidade ou correção:
 
    ```bash
    git checkout -b minha-feature
    ```
 
-3. **Implemente suas alterações**, seguindo as diretrizes de estilo de código.
-4. **Escreva testes** para suas alterações, se aplicável.
-5. **Commit suas alterações** com mensagens claras e descritivas (guie-se pelo [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/)):
+4. **Implemente suas alterações**, seguindo as diretrizes de estilo de código.
+5. **Escreva testes** para suas alterações, se aplicável.
+6. **Commit suas alterações** com mensagens claras e descritivas em inglês (guie-se pelo [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/)):
 
    ```bash
    git commit -m "feat(scope): added feature X"
    ```
 
-6. **Envie sua branch** para o seu fork:
+7. **Envie suas alterações** para sua branch:
 
    ```bash
    git push origin minha-feature
    ```
 
-7. **Abra um Pull Request** no repositório original:
+8. **Abra um Pull Request** no repositório:
 
    - Descreva detalhadamente as mudanças.
    - Referencie quaisquer Issues relacionadas.
