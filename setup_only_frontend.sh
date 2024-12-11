@@ -16,14 +16,13 @@ node -v
 
 echo "Iniciando processo de build do painel de controle"
 
-npm install --global yarn
 cd frontend
 sudo rm -r node_modules
-sudo rm yarn.lock
-yarn --production=true
+sudo rm package-lock.json
+npm i --force
 
 sudo rm -r build
-yarn build
+npm run build
 cd ..
 
 
