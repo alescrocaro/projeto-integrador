@@ -22,7 +22,7 @@ module.exports = {
         const distanceAttr = sequelize.fn(
           'ST_DistanceSphere',
           sequelize.literal('latlng'),
-          sequelize.literal(`ST_MakePoint(${longitude}, ${latitude})`)
+          sequelize.literal(`ST_MakePoint(${latitude}, ${longitude})`)
         );
 
         const { count, rows } = await Post.findAndCountAll({

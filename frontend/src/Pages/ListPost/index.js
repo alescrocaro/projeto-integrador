@@ -39,16 +39,15 @@ export default function ListPosts() {
   };
 
   const getPosts = async (filters) => {
-    try {
-      await api.get("/posts", { params: filters }).then(({ data }) => {
-        console.log("Posts recebidos da API:", data);
+    api.get("/posts", { params: filters })
+      .then(({ data }) => {
         setPosts(data.data);
         setPagination(data.pagination);
-      });
-    } catch (error) {
-      console.error("Erro ao obter posts:", error);
-      setPosts([]);
-    }
+      })
+      .catch((error) => {
+        console.error("Erro ao obter posts:", error);
+        setPosts([]);
+  });
   };
 
   useEffect(() => {
@@ -85,10 +84,10 @@ export default function ListPosts() {
           <span>nenhuma observação encontrada</span>
         )}
 
-        <div>
+        {/* <div>
           <p>Página {pagination.page} de {pagination.totalPages}</p>
           <p>Total de {pagination.totalElements} posts</p>
-        </div>
+        </div> */}
       </Container>
     </Layout>
   );
